@@ -549,8 +549,7 @@
         answers.appendChild(button);
       });
     }
-
-    <script>
+<script>
 const noButton = document.getElementById("noButton");
 
 let moveCount = 0;
@@ -584,16 +583,6 @@ noButton.addEventListener("click", function(event) {
     moveNoButton();
 });
 </script>
-    }
-
-    ["mouseenter", "touchstart", "pointerdown"].forEach(eventName => {
-      floatingNo.addEventListener(eventName, moveNoButton);
-    });
-
-    function resetNoButton() {
-      floatingNo.style.position = "relative";
-      floatingNo.style.left = "";
-      floatingNo.style.top = "";
     }
 
     // Calendar generation for August and September 2026.
