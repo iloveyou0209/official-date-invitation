@@ -12,9 +12,9 @@
       min-height: 100vh;
       font-family: "Trebuchet MS", "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 15% 15%, rgba(255,255,255,.98), transparent 28%),
-        radial-gradient(circle at 85% 80%, rgba(192, 210, 230, .45), transparent 30%),
-        linear-gradient(135deg, #ffffff 0%, #edf5fc 42%, #cbd7e3 100%);
+        radial-gradient(circle at 18% 15%, rgba(255,255,255,1), transparent 30%),
+        radial-gradient(circle at 82% 85%, rgba(180,195,210,.55), transparent 32%),
+        linear-gradient(135deg, #ffffff 0%, #eef5fb 45%, #bfcbd7 100%);
       color: #172b45;
       overflow-x: hidden;
     }
@@ -116,29 +116,44 @@
       font-size: 1.05rem;
       font-weight: 700;
       cursor: pointer;
-      background: linear-gradient(135deg, #174a7c, #2d6da3);
-      color: white;
-      box-shadow: 0 8px 18px rgba(23,74,124,.28);
+      background: linear-gradient(135deg, #0b3d6e, #1f6aa5);
+      color: #ffffff;
+      box-shadow: 0 8px 18px rgba(11,61,110,.30);
       transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
     }
 
     button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 24px rgba(23,74,124,.35);
-      background: linear-gradient(135deg, #123d67, #245e91);
+      box-shadow: 0 12px 24px rgba(11,61,110,.38);
+      background: linear-gradient(135deg, #082f55, #185a8d);
     }
 
     button.secondary {
-      background: linear-gradient(135deg, #edf2f7, #d3dce5);
-      color: #294663;
+      background: linear-gradient(135deg, #ffffff, #d6dee6);
+      color: #173b5d;
+      border: 1px solid #aebdca;
     }
 
     .no-btn {
       position: relative;
     }
 
+    .answer {
+      background: linear-gradient(135deg, #ffffff 0%, #edf3f8 55%, #d2dce5 100%);
+      color: #173b5d;
+      border: 1px solid #b8c7d3;
+      box-shadow: 0 6px 15px rgba(34,67,98,.12);
+    }
+
+    .answer:hover {
+      background: linear-gradient(135deg, #eaf4fc, #c7d9e8);
+      color: #0b3d6e;
+    }
+
     .answer.selected {
-      background: linear-gradient(135deg, #315f91, #173d68);
+      background: linear-gradient(135deg, #174a7c, #0b3155);
+      color: #ffffff;
+      border-color: #174a7c;
     }
 
     .progress {
@@ -160,10 +175,10 @@
     }
 
     .month {
-      background: rgba(247,250,253,.94);
+      background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(228,236,243,.96));
       border-radius: 20px;
       padding: 16px;
-      box-shadow: inset 0 0 0 1px #c8d4df;
+      box-shadow: inset 0 0 0 1px #b8c5d0, 0 8px 20px rgba(38,66,91,.10);
     }
 
     .month h3 {
@@ -189,13 +204,15 @@
       padding: 0;
       border-radius: 10px;
       font-size: .85rem;
-      background: #e5edf4;
-      color: #29445f;
+      background: linear-gradient(145deg, #ffffff, #dbe4ec);
+      color: #234662;
+      border: 1px solid #c1cdd7;
       box-shadow: none;
     }
 
     .day:hover {
-      background: #b9cee1;
+      background: linear-gradient(145deg, #dcecf8, #b8cee0);
+      color: #0b3d6e;
     }
 
     .day.empty {
@@ -204,8 +221,10 @@
     }
 
     .day.chosen {
-      background: linear-gradient(135deg, #315f91, #173d68);
+      background: linear-gradient(135deg, #174a7c, #0b3155);
       color: white;
+      border-color: #174a7c;
+      box-shadow: 0 5px 12px rgba(23,74,124,.25);
     }
 
     .selected-date {
