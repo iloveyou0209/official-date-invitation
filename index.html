@@ -1,25 +1,988 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>A Little Question ❤️</title>
-    <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+  <title>A Little Quiz For You ❤️</title>
+
+  <style>
+    * {
+      box-sizing: border-box;
+    }
+
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Trebuchet MS", Arial, sans-serif;
+      background:
+        radial-gradient(circle at top left, #ffd6e7, transparent 40%),
+        radial-gradient(circle at bottom right, #ffc1d8, transparent 40%),
+        linear-gradient(135deg, #fff0f5, #ffe1eb);
+
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      color: #5c2639;
+      overflow: hidden;
+    }
+
+    /* -----------------------------
+       Floating background hearts
+    ----------------------------- */
+
+    .floating-heart {
+      position: fixed;
+      bottom: -50px;
+      font-size: 25px;
+      opacity: 0.45;
+      animation: floatUp 8s linear infinite;
+      pointer-events: none;
+      z-index: 0;
+    }
+
+    @keyframes floatUp {
+      0% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
+      }
+
+      20% {
+        opacity: 0.5;
+      }
+
+      100% {
+        transform: translateY(-110vh) rotate(360deg);
+        opacity: 0;
+      }
+    }
+
+
+    /* -----------------------------
+       Main card
+    ----------------------------- */
+
+    .card {
+      width: 92%;
+      max-width: 650px;
+
+      background: rgba(255, 255, 255, 0.94);
+
+      border-radius: 30px;
+
+      padding: 40px 30px;
+
+      text-align: center;
+
+      box-shadow:
+        0 20px 60px rgba(126, 44, 76, 0.20);
+
+      position: relative;
+      z-index: 2;
+
+      max-height: 90vh;
+      overflow-y: auto;
+    }
+
+
+    /* -----------------------------
+       Top heart
+    ----------------------------- */
+
+    .big-heart {
+      font-size: 55px;
+
+      animation: heartbeat 1.3s infinite;
+    }
+
+    @keyframes heartbeat {
+      0%, 100% {
+        transform: scale(1);
+      }
+
+      50% {
+        transform: scale(1.12);
+      }
+    }
+
+
+    /* -----------------------------
+       Intro
+    ----------------------------- */
+
+    .intro h1 {
+      color: #d6336c;
+      font-size: 34px;
+      margin: 15px 0;
+    }
+
+    .intro p {
+      font-size: 19px;
+      line-height: 1.6;
+    }
+
+
+    /* -----------------------------
+       Progress
+    ----------------------------- */
+
+    .progress {
+      font-size: 14px;
+      color: #a25b73;
+      margin-bottom: 15px;
+      letter-spacing: 1px;
+    }
+
+
+    /* -----------------------------
+       Question
+    ----------------------------- */
+
+    .question {
+      animation: questionIn 0.45s ease;
+    }
+
+    @keyframes questionIn {
+      from {
+        opacity: 0;
+        transform: translateX(25px);
+      }
+
+      to {
+        opacity: 1;
+        transform: translateX(0);
+      }
+    }
+
+    .question-number {
+      color: #d6336c;
+      font-weight: bold;
+      font-size: 16px;
+      margin-bottom: 10px;
+    }
+
+    .question h2 {
+      font-size: 25px;
+      line-height: 1.4;
+      margin: 10px 0 25px;
+    }
+
+
+    /* -----------------------------
+       Answer buttons
+    ----------------------------- */
+
+    .answers {
+      display: flex;
+      flex-direction: column;
+      gap: 12px;
+    }
+
+    .answer-btn {
+      width: 100%;
+
+      border: 2px solid #ffd0df;
+
+      background: #fff7fa;
+
+      color: #63283e;
+
+      padding: 15px 18px;
+
+      border-radius: 18px;
+
+      font-size: 17px;
+
+      text-align: left;
+
+      cursor: pointer;
+
+      transition:
+        transform 0.2s ease,
+        background 0.2s ease,
+        border-color 0.2s ease,
+        box-shadow 0.2s ease;
+    }
+
+    .answer-btn:hover {
+      transform: translateY(-3px);
+
+      background: #ffe8f0;
+
+      border-color: #ff8fb1;
+
+      box-shadow: 0 7px 18px rgba(214, 51, 108, 0.12);
+    }
+
+    .answer-btn:active {
+      transform: scale(0.98);
+    }
+
+
+    /* -----------------------------
+       Final question
+    ----------------------------- */
+
+    .final-screen h1 {
+      color: #d6336c;
+      font-size: 34px;
+      line-height: 1.3;
+    }
+
+    .final-screen p {
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+    .final-buttons {
+      margin-top: 30px;
+
+      display: flex;
+
+      justify-content: center;
+
+      align-items: center;
+
+      gap: 20px;
+
+      min-height: 100px;
+    }
+
+    .yes-btn,
+    .no-btn {
+      border: none;
+
+      padding: 15px 30px;
+
+      border-radius: 50px;
+
+      font-size: 18px;
+
+      font-weight: bold;
+
+      cursor: pointer;
+    }
+
+    .yes-btn {
+      background: #ff4f81;
+      color: white;
+
+      box-shadow:
+        0 7px 20px rgba(255, 79, 129, 0.35);
+
+      transition: 0.2s;
+    }
+
+    .yes-btn:hover {
+      transform: scale(1.1);
+      background: #e83e70;
+    }
+
+    .no-btn {
+      background: #dedede;
+      color: #555;
+
+      transition: 0.15s;
+    }
+
+
+    /* -----------------------------
+       Result messages
+    ----------------------------- */
+
+    .result {
+      animation: questionIn 0.5s ease;
+    }
+
+    .result-icon {
+      font-size: 65px;
+      margin-bottom: 10px;
+    }
+
+    .result h1 {
+      color: #d6336c;
+      font-size: 32px;
+    }
+
+    .result p {
+      font-size: 20px;
+      line-height: 1.6;
+    }
+
+
+    /* -----------------------------
+       Confetti
+    ----------------------------- */
+
+    .confetti {
+      position: fixed;
+
+      top: -30px;
+
+      font-size: 25px;
+
+      pointer-events: none;
+
+      z-index: 100;
+
+      animation: confettiFall 4s linear forwards;
+    }
+
+    @keyframes confettiFall {
+      to {
+        transform:
+          translateY(110vh)
+          rotate(720deg);
+
+        opacity: 0;
+      }
+    }
+
+
+    /* -----------------------------
+       Mobile
+    ----------------------------- */
+
+    @media (max-width: 600px) {
+
+      .card {
+        padding: 30px 20px;
+        border-radius: 25px;
+      }
+
+      .intro h1,
+      .final-screen h1 {
+        font-size: 28px;
+      }
+
+      .question h2 {
+        font-size: 21px;
+      }
+
+      .answer-btn {
+        font-size: 16px;
+        padding: 14px;
+      }
+
+      .big-heart {
+        font-size: 48px;
+      }
+    }
+
+  </style>
 </head>
+
 
 <body>
 
-    <div class="container">
-        <p class="small-text">I have a question for you...</p>
+  <!-- Floating hearts -->
 
-        <h1>Will you go on a date with me? ❤️</h1>
+  <div class="floating-heart" style="left: 5%; animation-delay: 0s;">❤️</div>
+  <div class="floating-heart" style="left: 20%; animation-delay: 2s;">💕</div>
+  <div class="floating-heart" style="left: 40%; animation-delay: 4s;">💗</div>
+  <div class="floating-heart" style="left: 60%; animation-delay: 1s;">💖</div>
+  <div class="floating-heart" style="left: 80%; animation-delay: 3s;">❤️</div>
+  <div class="floating-heart" style="left: 92%; animation-delay: 5s;">💘</div>
 
-        <div class="buttons">
-            <button id="yesButton">Yes ❤️</button>
-            <button id="noButton">No</button>
-        </div>
+
+  <div class="card">
+
+    <!-- =========================
+         INTRO
+    ========================== -->
+
+    <div id="introScreen" class="intro">
+
+      <div class="big-heart">❤️</div>
+
+      <h1>Hey You... 👀</h1>
+
+      <p>
+        I have a few very important questions for you.
+      </p>
+
+      <p>
+        Please answer honestly.
+        <br>
+        (Or at least answer in a way that makes your wife happy. 😂)
+      </p>
+
+      <button
+        class="yes-btn"
+        onclick="startQuiz()">
+        Okay, let's do this 😌
+      </button>
+
     </div>
 
-    <script src="script.js"></script>
+
+    <!-- =========================
+         QUIZ
+    ========================== -->
+
+    <div id="quizScreen" class="hidden">
+
+      <div class="progress" id="progress"></div>
+
+      <div id="questionContainer"></div>
+
+    </div>
+
+
+    <!-- =========================
+         FINAL DATE QUESTION
+    ========================== -->
+
+    <div id="finalScreen" class="final-screen hidden">
+
+      <div class="big-heart">❤️</div>
+
+      <h1>
+        Okay, enough questions. ❤️
+      </h1>
+
+      <p>
+        There's only one thing left to ask...
+      </p>
+
+      <h1>
+        Will you be my date? ❤️
+      </h1>
+
+      <div class="final-buttons">
+
+        <button
+          class="yes-btn"
+          onclick="sayYes()">
+          YES ❤️
+        </button>
+
+        <button
+          id="noButton"
+          class="no-btn"
+          onclick="moveNo()">
+          NO 😐
+        </button>
+
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         YES RESULT
+    ========================== -->
+
+    <div id="yesScreen" class="result hidden">
+
+      <div class="result-icon">
+        🥰
+      </div>
+
+      <h1>
+        Excellent choice! ❤️
+      </h1>
+
+      <p>
+        It's a date.
+      </p>
+
+      <p>
+        I'll take care of the details. 😌
+      </p>
+
+      <p>
+        Now all you have to do is
+        show up and look handsome. 😏
+      </p>
+
+      <div style="font-size: 40px; margin-top: 20px;">
+        ❤️ 🌹 ❤️
+      </div>
+
+    </div>
+
+
+    <!-- =========================
+         NO RESULT
+    ========================== -->
+
+    <div id="noMessage" class="result hidden">
+
+      <div class="result-icon">
+        😂
+      </div>
+
+      <h1>
+        WHOOPS.
+      </h1>
+
+      <p>
+        That answer seems to be incorrect.
+      </p>
+
+      <p>
+        Please try again.
+      </p>
+
+      <button
+        class="yes-btn"
+        onclick="tryAgain()">
+        Try again ❤️
+      </button>
+
+    </div>
+
+  </div>
+
+
+  <script>
+
+    /* =========================================
+       QUESTIONS
+    ========================================= */
+
+    const questions = [
+
+      {
+        question:
+          "How much do you miss me?",
+
+        answers: [
+          "A. A little",
+          "B. Quite a bit",
+          "C. More than I'd admit",
+          "D. Ekdomi na. Why are we even discussing this? 😂"
+        ]
+      },
+
+
+      {
+        question:
+          "Question 2 😏: What's the most dangerous thing about going on a date with me?",
+
+        answers: [
+          "A. I'll steal your food",
+          "B. I'll make you laugh when you're trying to be serious",
+          "C. You'll end up not wanting the date to end",
+          "D. All of the above, obviously"
+        ]
+      },
+
+
+      {
+        question:
+          "Wait!! Tell me, what's more dangerous?",
+
+        answers: [
+          "A. Me when I'm hungry",
+          "B. Me when I'm annoyed",
+          "C. Me when I have an idea",
+          "D. Me saying “I have a surprise for you” 😏"
+        ]
+      },
+
+
+      {
+        question:
+          "If you could press pause on everything for one evening, what would you want us to do?",
+
+        answers: [
+          "A. Go somewhere new",
+          "B. Have dinner somewhere nice",
+          "C. Take a long drive and talk",
+          "D. Just spend time together, no plans"
+        ]
+      },
+
+
+      {
+        question:
+          "What's one thing you'd like us to do together again?",
+
+        answers: [
+          "A. Go somewhere we've been before",
+          "B. Try somewhere completely new",
+          "C. Stay up talking way too late",
+          "D. Make another memory we can laugh about later"
+        ]
+      },
+
+
+      {
+        question:
+          "I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.",
+
+        answers: [
+          "A. Absolutely. Let's go.",
+          "B. Ask where we're going first.",
+          "C. Ask what to wear.",
+          "D. Make a 🌿🚬"
+        ]
+      },
+
+
+      {
+        question:
+          "If you could change ONE thing about our relationship, what would you choose?",
+
+        answers: [
+          "A. More spontaneous dates",
+          "B. More uninterrupted time together",
+          "C. More adventures",
+          "D. Nothing. I'd rather make more memories from here ❤️"
+        ]
+      },
+
+
+      {
+        question:
+          "Imagine you have been invited on a date. What kind of date would be hardest to say no to?",
+
+        answers: [
+          "A. Dinner somewhere beautiful",
+          "B. A movie-night",
+          "C. Somewhere neither of you has been before",
+          "D. A date where the only plan is to spend time together ❤️"
+        ]
+      },
+
+
+      {
+        question:
+          "And if I told you the person asking is… me?",
+
+        answers: [
+          "A. Of course, it has to be my wife 😒 ugghhh",
+          "B. I was wondering when you'd get to the point",
+          "C. Let me think about it 😌",
+          "D. Where and when?"
+        ]
+      },
+
+
+      {
+        question:
+          "Would you let me steal you away for an evening?",
+
+        answers: [
+          "A. ❤️ Yes — Especially if it's with you.",
+          "B. 😏 Yes — But you'll have to convince me.",
+          "C. 🙈 No — I'm afraid I'm already a little too interested.",
+          "D. 😂 No — This sounds like a terrible idea… let's do it anyway."
+        ]
+      }
+
+    ];
+
+
+    /* =========================================
+       QUIZ VARIABLES
+    ========================================= */
+
+    let currentQuestion = 0;
+
+
+    /* =========================================
+       START QUIZ
+    ========================================= */
+
+    function startQuiz() {
+
+      document
+        .getElementById("introScreen")
+        .classList.add("hidden");
+
+      document
+        .getElementById("quizScreen")
+        .classList.remove("hidden");
+
+      showQuestion();
+
+    }
+
+
+    /* =========================================
+       SHOW QUESTION
+    ========================================= */
+
+    function showQuestion() {
+
+      const question = questions[currentQuestion];
+
+      const container =
+        document.getElementById("questionContainer");
+
+      document.getElementById("progress").innerText =
+        `Question ${currentQuestion + 1} of ${questions.length}`;
+
+
+      container.innerHTML = `
+
+        <div class="question">
+
+          <div class="question-number">
+            ❤️ QUESTION ${currentQuestion + 1}
+          </div>
+
+          <h2>
+            ${question.question}
+          </h2>
+
+          <div class="answers">
+
+            ${question.answers.map((answer, index) => `
+
+              <button
+                class="answer-btn"
+                onclick="answerQuestion(${index})">
+
+                ${answer}
+
+              </button>
+
+            `).join("")}
+
+          </div>
+
+        </div>
+
+      `;
+
+    }
+
+
+    /* =========================================
+       ANSWER QUESTION
+    ========================================= */
+
+    function answerQuestion(answerIndex) {
+
+      /*
+        We don't actually need to record which answer
+        he chooses. Every answer moves to the next
+        question.
+      */
+
+      currentQuestion++;
+
+      if (currentQuestion < questions.length) {
+
+        showQuestion();
+
+      } else {
+
+        showFinalQuestion();
+
+      }
+
+    }
+
+
+    /* =========================================
+       SHOW FINAL QUESTION
+    ========================================= */
+
+    function showFinalQuestion() {
+
+      document
+        .getElementById("quizScreen")
+        .classList.add("hidden");
+
+      document
+        .getElementById("finalScreen")
+        .classList.remove("hidden");
+
+    }
+
+
+    /* =========================================
+       YES
+    ========================================= */
+
+    function sayYes() {
+
+      document
+        .getElementById("finalScreen")
+        .classList.add("hidden");
+
+      document
+        .getElementById("yesScreen")
+        .classList.remove("hidden");
+
+      createConfetti();
+
+    }
+
+
+    /* =========================================
+       MOVING NO BUTTON
+    ========================================= */
+
+    function moveNo() {
+
+      const button =
+        document.getElementById("noButton");
+
+
+      /*
+        Make the button fixed so it can move
+        anywhere around the screen.
+      */
+
+      button.style.position = "fixed";
+
+
+      /*
+        Keep it away from the very edges.
+      */
+
+      const padding = 25;
+
+      const maxX =
+        window.innerWidth -
+        button.offsetWidth -
+        padding;
+
+      const maxY =
+        window.innerHeight -
+        button.offsetHeight -
+        padding;
+
+
+      const randomX =
+        Math.max(
+          padding,
+          Math.random() * maxX
+        );
+
+      const randomY =
+        Math.max(
+          padding,
+          Math.random() * maxY
+        );
+
+
+      button.style.left =
+        randomX + "px";
+
+      button.style.top =
+        randomY + "px";
+
+
+      /*
+        Change the text every time he tries.
+      */
+
+      const messages = [
+
+        "Nice try 😂",
+
+        "Nope! 😏",
+
+        "Try again, husband 😂",
+
+        "You really thought? 👀",
+
+        "Wrong button! ❤️",
+
+        "I don't think so 😂",
+
+        "Why are you like this? 😭",
+
+        "The correct answer is YES 😌"
+
+      ];
+
+
+      const randomMessage =
+        messages[
+          Math.floor(
+            Math.random() * messages.length
+          )
+        ];
+
+
+      button.innerText = randomMessage;
+
+    }
+
+
+    /* =========================================
+       CONFETTI
+    ========================================= */
+
+    function createConfetti() {
+
+      const emojis = [
+        "❤️",
+        "💕",
+        "💖",
+        "💗",
+        "🌹",
+        "✨",
+        "🥰",
+        "😘"
+      ];
+
+
+      for (let i = 0; i < 70; i++) {
+
+        const confetti =
+          document.createElement("div");
+
+        confetti.className =
+          "confetti";
+
+        confetti.innerText =
+          emojis[
+            Math.floor(
+              Math.random() * emojis.length
+            )
+          ];
+
+
+        confetti.style.left =
+          Math.random() * 100 + "vw";
+
+
+        confetti.style.animationDelay =
+          Math.random() * 2 + "s";
+
+
+        document.body.appendChild(confetti);
+
+
+        setTimeout(() => {
+
+          confetti.remove();
+
+        }, 5000);
+
+      }
+
+    }
+
+
+    /* =========================================
+       TRY AGAIN
+    ========================================= */
+
+    function tryAgain() {
+
+      document
+        .getElementById("noMessage")
+        .classList.add("hidden");
+
+      document
+        .getElementById("finalScreen")
+        .classList.remove("hidden");
+
+    }
+
+  </script>
+
 </body>
 </html>
+
