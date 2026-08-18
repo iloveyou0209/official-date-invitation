@@ -550,42 +550,29 @@
       });
     }
 
-    // Unlimited moving "No" button
-const floatingNo = document.getElementById("floatingNo");
+   // Floating "No" button on the final date question.
+    const floatingNo = document.getElementById("floatingNo");
 
-function moveNoButton() {
-  const padding = 20;
+    function moveNoButton() {
+      const padding = 20;
+      const maxX = Math.max(padding, window.innerWidth - floatingNo.offsetWidth - padding);
+      const maxY = Math.max(padding, window.innerHeight - floatingNo.offsetHeight - padding);
 
-  const maxX = Math.max(
-    padding,
-    window.innerWidth - floatingNo.offsetWidth - padding
-  );
+      floatingNo.style.position = "fixed";
+      floatingNo.style.left = Math.floor(Math.random() * (maxX - padding + 1) + padding) + "px";
+      floatingNo.style.top = Math.floor(Math.random() * (maxY - padding + 1) + padding) + "px";
+      floatingNo.style.zIndex = "9999";
+    }
 
-  const maxY = Math.max(
-    padding,
-    window.innerHeight - floatingNo.offsetHeight - padding
-  );
+    ["mouseenter", "touchstart", "pointerdown"].forEach(eventName => {
+      floatingNo.addEventListener(eventName, moveNoButton);
+    });
 
-  const randomX =
-    Math.floor(Math.random() * (maxX - padding + 1)) + padding;
-
-  const randomY =
-    Math.floor(Math.random() * (maxY - padding + 1)) + padding;
-
-  floatingNo.style.position = "fixed";
-  floatingNo.style.left = randomX + "px";
-  floatingNo.style.top = randomY + "px";
-  floatingNo.style.zIndex = "9999";
-}
-
-// The No button will keep escaping forever
-floatingNo.addEventListener("mouseenter", moveNoButton);
-
-floatingNo.addEventListener("pointerdown", function(event) {
-  event.preventDefault();
-  moveNoButton();
-});
-
+    function resetNoButton() {
+      floatingNo.style.position = "random";
+      floatingNo.style.left = "";
+      floatingNo.style.top = "";
+    }
 floatingNo.addEventListener("touchstart", function(event) {
   event.preventDefault();
   moveNoButton();
