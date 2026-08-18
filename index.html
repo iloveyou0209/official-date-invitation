@@ -1,938 +1,657 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Little Surprise ❤️</title>
-
-<style>
-    * {
-        box-sizing: border-box;
-    }
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>A Little Date Game ❤️</title>
+  <style>
+    * { box-sizing: border-box; }
 
     body {
-        margin: 0;
-        min-height: 100vh;
-        font-family: "Trebuchet MS", Arial, sans-serif;
-        background:
-            radial-gradient(circle at top left, #ffd6e7 0%, transparent 35%),
-            radial-gradient(circle at bottom right, #d8c5ff 0%, transparent 35%),
-            linear-gradient(135deg, #fff0f6, #f7efff);
-        color: #3d2940;
-        overflow-x: hidden;
-    }
-
-    .screen {
-        display: none;
-        min-height: 100vh;
-        width: 100%;
-        padding: 25px;
-        align-items: center;
-        justify-content: center;
-        position: relative;
-    }
-
-    .screen.active {
-        display: flex;
-    }
-
-    .card {
-        width: min(680px, 94vw);
-        background: rgba(255,255,255,0.92);
-        border-radius: 30px;
-        padding: 38px 30px;
-        text-align: center;
-        box-shadow: 0 20px 60px rgba(100, 50, 100, 0.18);
-        border: 1px solid rgba(255,255,255,0.8);
-        animation: appear 0.6s ease;
-    }
-
-    @keyframes appear {
-        from {
-            opacity: 0;
-            transform: translateY(20px) scale(0.97);
-        }
-        to {
-            opacity: 1;
-            transform: translateY(0) scale(1);
-        }
-    }
-
-    h1 {
-        font-size: clamp(28px, 6vw, 46px);
-        margin: 10px 0 25px;
-        color: #8f315d;
-    }
-
-    h2 {
-        font-size: clamp(23px, 5vw, 34px);
-        line-height: 1.35;
-        color: #7b3155;
-        margin-bottom: 28px;
-    }
-
-    p {
-        font-size: 18px;
-        line-height: 1.6;
-    }
-
-    .emoji {
-        font-size: 55px;
-        margin-bottom: 15px;
-    }
-
-    button {
-        border: none;
-        cursor: pointer;
-        font-family: inherit;
-        transition: 0.25s ease;
-    }
-
-    .main-btn {
-        background: linear-gradient(135deg, #d84b82, #a63c77);
-        color: white;
-        padding: 15px 35px;
-        border-radius: 50px;
-        font-size: 18px;
-        font-weight: bold;
-        margin: 8px;
-        box-shadow: 0 8px 20px rgba(166,60,119,0.25);
-    }
-
-    .main-btn:hover {
-        transform: translateY(-3px);
-        box-shadow: 0 12px 25px rgba(166,60,119,0.35);
-    }
-
-    .no-btn {
-        background: #eee;
-        color: #555;
-        padding: 15px 35px;
-        border-radius: 50px;
-        font-size: 18px;
-        font-weight: bold;
-        margin: 8px;
-    }
-
-    .option {
-        display: block;
-        width: 100%;
-        text-align: left;
-        background: #fff6fa;
-        border: 2px solid #f0c5d7;
-        color: #4d3444;
-        padding: 16px 20px;
-        margin: 12px 0;
-        border-radius: 17px;
-        font-size: 17px;
-    }
-
-    .option:hover {
-        background: #ffe5ef;
-        border-color: #d84b82;
-        transform: translateX(5px);
-    }
-
-    .progress {
-        color: #b05a7b;
-        font-size: 14px;
-        font-weight: bold;
-        margin-bottom: 15px;
-        letter-spacing: 1px;
-    }
-
-    .wrong {
-        font-size: 55px;
-        color: #c93665;
-    }
-
-    .small-note {
-        font-size: 14px;
-        color: #876d7d;
-        margin-top: 15px;
-    }
-
-    /* Final question */
-    .final-card {
-        background: linear-gradient(135deg, #fff5fa, #f4edff);
-        overflow: hidden;
-    }
-
-    .final-title {
-        font-size: clamp(35px, 8vw, 60px);
-        color: #d02f70;
-        text-shadow: 0 3px 15px rgba(208,47,112,0.2);
-    }
-
-    .final-buttons {
-        position: relative;
-        min-height: 130px;
-        display: flex;
-        justify-content: center;
-        align-items: center;
-        gap: 20px;
-    }
-
-    #runawayNo {
-        position: relative;
-    }
-
-    /* Calendar */
-    .calendar-container {
-        margin-top: 20px;
-    }
-
-    .month-title {
-        font-size: 26px;
-        color: #8f315d;
-        margin: 30px 0 15px;
-    }
-
-    .calendar {
-        display: grid;
-        grid-template-columns: repeat(7, 1fr);
-        gap: 6px;
-        margin-bottom: 15px;
-    }
-
-    .weekday {
-        font-size: 12px;
-        font-weight: bold;
-        color: #a15b79;
-        padding: 5px;
-    }
-
-    .day {
-        min-height: 42px;
-        border-radius: 10px;
-        background: #fff1f6;
-        border: 1px solid #f2cadb;
-        color: #573d4d;
-        font-weight: bold;
-        font-size: 14px;
-    }
-
-    .day:not(:disabled):hover {
-        background: #d84b82;
-        color: white;
-        transform: scale(1.05);
-    }
-
-    .day:disabled {
-        opacity: 0.3;
-        cursor: not-allowed;
-    }
-
-    .day.selected {
-        background: #a63c77;
-        color: white;
-        border-color: #a63c77;
-    }
-
-    .selected-date {
-        margin: 20px 0;
-        padding: 13px;
-        border-radius: 15px;
-        background: #fff0f6;
-        color: #8f315d;
-        font-weight: bold;
-    }
-
-    /* Outfit choices */
-    .outfit-grid {
-        display: grid;
-        grid-template-columns: repeat(2, 1fr);
-        gap: 15px;
-        margin-top: 25px;
-    }
-
-    .outfit {
-        min-height: 130px;
-        border-radius: 22px;
-        border: 3px solid transparent;
-        padding: 20px 10px;
-        font-weight: bold;
-        font-size: 17px;
-        position: relative;
-        overflow: hidden;
-    }
-
-    .outfit:hover {
-        transform: translateY(-5px);
-    }
-
-    .black-red {
-        background: linear-gradient(135deg, #111 50%, #d62855 50%);
-        color: white;
-    }
-
-    .blue-white {
-        background: linear-gradient(135deg, #3975d3 50%, #fff 50%);
-        color: #183b70;
-    }
-
-    .beige-purple {
-        background: linear-gradient(135deg, #d9c19b 50%, #a982c4 50%);
-        color: #4e315d;
-    }
-
-    .black-white {
-        background: linear-gradient(135deg, #111 50%, #fff 50%);
-        color: #555;
-    }
-
-    .outfit.selected {
-        border-color: #d84b82;
-        box-shadow: 0 0 0 4px rgba(216,75,130,0.15);
-    }
-
-    /* Celebration */
-    .celebration {
-        font-size: 65px;
-        animation: bounce 1.2s infinite alternate;
-    }
-
-    @keyframes bounce {
-        from { transform: translateY(0); }
-        to { transform: translateY(-12px); }
+      margin: 0;
+      min-height: 100vh;
+      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
+      background:
+        radial-gradient(circle at 15% 15%, rgba(255,255,255,.98), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(192, 210, 230, .45), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #edf5fc 42%, #cbd7e3 100%);
+      color: #172b45;
+      overflow-x: hidden;
     }
 
     .heart {
-        position: fixed;
-        pointer-events: none;
-        animation: floatHeart 4s linear forwards;
-        z-index: 100;
+      position: fixed;
+      font-size: 22px;
+      opacity: .55;
+      animation: float 7s linear infinite;
+      pointer-events: none;
+      z-index: 0;
     }
 
-    @keyframes floatHeart {
-        0% {
-            opacity: 1;
-            transform: translateY(0) rotate(0deg);
-        }
-        100% {
-            opacity: 0;
-            transform: translateY(-100vh) rotate(360deg);
-        }
+    @keyframes float {
+      from { transform: translateY(110vh) rotate(0deg); }
+      to { transform: translateY(-15vh) rotate(360deg); }
     }
 
-    .confetti {
-        position: fixed;
-        width: 10px;
-        height: 18px;
-        top: -20px;
-        z-index: 200;
-        animation: confettiFall 4s linear forwards;
+    .app {
+      position: relative;
+      z-index: 1;
+      min-height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      padding: 24px;
     }
 
-    @keyframes confettiFall {
-        to {
-            transform: translateY(110vh) rotate(720deg);
-        }
+    .card {
+      position: relative;
+      overflow: hidden;
+      width: min(720px, 100%);
+      min-height: 540px;
+      padding: 42px 30px;
+      border-radius: 30px;
+      background: rgba(255,255,255,.86);
+      backdrop-filter: blur(14px);
+      box-shadow: 0 20px 60px rgba(36, 67, 100, .20);
+      text-align: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: center;
+      border: 1px solid rgba(255,255,255,.95);
     }
 
-    @media (max-width: 500px) {
-        .card {
-            padding: 30px 18px;
-        }
-
-        .outfit-grid {
-            grid-template-columns: 1fr;
-        }
-
-        .day {
-            min-height: 38px;
-        }
-
-        .final-buttons {
-            min-height: 170px;
-        }
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(115deg, transparent 20%, rgba(255,255,255,.65) 48%, transparent 62%);
+      transform: translateX(-120%);
+      animation: shimmer 8s ease-in-out infinite;
+      pointer-events: none;
     }
-</style>
+
+    @keyframes shimmer {
+      0%, 55% { transform: translateX(-120%); }
+      75%, 100% { transform: translateX(120%); }
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    h1 {
+      font-size: clamp(2rem, 6vw, 3.2rem);
+      margin: 0 0 18px;
+    }
+
+    h2 {
+      font-size: clamp(1.35rem, 4vw, 2rem);
+      line-height: 1.4;
+      margin: 0 auto 28px;
+      max-width: 620px;
+    }
+
+    p {
+      font-size: 1.15rem;
+      line-height: 1.6;
+    }
+
+    .subtitle {
+      color: #58708c;
+      margin-bottom: 28px;
+    }
+
+    .buttons, .answers {
+      display: grid;
+      gap: 14px;
+      width: min(560px, 100%);
+      margin: 0 auto;
+    }
+
+    button {
+      border: 0;
+      border-radius: 18px;
+      padding: 16px 20px;
+      font-size: 1.05rem;
+      font-weight: 700;
+      cursor: pointer;
+      background: linear-gradient(135deg, #174a7c, #2d6da3);
+      color: white;
+      box-shadow: 0 8px 18px rgba(23,74,124,.28);
+      transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
+    }
+
+    button:hover {
+      transform: translateY(-3px);
+      box-shadow: 0 12px 24px rgba(23,74,124,.35);
+      background: linear-gradient(135deg, #123d67, #245e91);
+    }
+
+    button.secondary {
+      background: linear-gradient(135deg, #edf2f7, #d3dce5);
+      color: #294663;
+    }
+
+    .no-btn {
+      position: relative;
+    }
+
+    .answer.selected {
+      background: linear-gradient(135deg, #315f91, #173d68);
+    }
+
+    .progress {
+      margin-bottom: 18px;
+      font-size: .95rem;
+      color: #52708f;
+      font-weight: 700;
+    }
+
+    .calendar {
+      width: min(620px, 100%);
+      margin: 0 auto;
+    }
+
+    .months {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 18px;
+    }
+
+    .month {
+      background: rgba(247,250,253,.94);
+      border-radius: 20px;
+      padding: 16px;
+      box-shadow: inset 0 0 0 1px #c8d4df;
+    }
+
+    .month h3 {
+      margin: 0 0 12px;
+      font-size: 1.2rem;
+    }
+
+    .weekdays, .days {
+      display: grid;
+      grid-template-columns: repeat(7, 1fr);
+      gap: 5px;
+    }
+
+    .weekday {
+      font-size: .7rem;
+      color: #637d98;
+      font-weight: 700;
+      padding: 4px 0;
+    }
+
+    .day {
+      aspect-ratio: 1;
+      padding: 0;
+      border-radius: 10px;
+      font-size: .85rem;
+      background: #e5edf4;
+      color: #29445f;
+      box-shadow: none;
+    }
+
+    .day:hover {
+      background: #b9cee1;
+    }
+
+    .day.empty {
+      visibility: hidden;
+      pointer-events: none;
+    }
+
+    .day.chosen {
+      background: linear-gradient(135deg, #315f91, #173d68);
+      color: white;
+    }
+
+    .selected-date {
+      margin-top: 18px;
+      font-weight: 700;
+      color: #345a7c;
+      min-height: 28px;
+    }
+
+    .colors {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 16px;
+      width: min(560px, 100%);
+      margin: 0 auto 25px;
+    }
+
+    .color-option {
+      min-height: 100px;
+      border-radius: 20px;
+      border: 3px solid transparent;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      font-weight: 800;
+      cursor: pointer;
+      transition: .2s ease;
+      box-shadow: 0 8px 20px rgba(0,0,0,.08);
+    }
+
+    .color-option:hover { transform: translateY(-3px); }
+    .color-option.selected { border-color: #315f91; transform: scale(1.02); }
+
+    .black-red {
+      background: linear-gradient(135deg, #111 0 50%, #b00020 50%);
+      color: white;
+    }
+
+    .blue-white {
+      background: linear-gradient(135deg, #246bfd 0 50%, white 50%);
+      color: #183b7a;
+    }
+
+    .beige-purple {
+      background: linear-gradient(135deg, #e8d4b0 0 50%, #9a67b5 50%);
+      color: #3f2848;
+    }
+
+    .black-white {
+      background: linear-gradient(135deg, #111 0 50%, white 50%);
+      color: #333;
+    }
+
+    .hidden { display: none !important; }
+
+    .sparkles {
+      font-size: 3rem;
+      letter-spacing: 8px;
+      margin-bottom: 12px;
+      animation: sparkle 1.5s infinite alternate;
+    }
+
+    @keyframes sparkle {
+      from { transform: scale(.95); opacity: .7; }
+      to { transform: scale(1.05); opacity: 1; }
+    }
+
+    .celebration {
+      font-size: 4rem;
+      animation: pop 1s ease infinite alternate;
+      filter: drop-shadow(0 8px 18px rgba(49,95,145,.22));
+    }
+
+    @keyframes pop {
+      from { transform: translateY(0) rotate(-3deg); }
+      to { transform: translateY(-8px) rotate(3deg); }
+    }
+
+    .love {
+      color: #174a7c;
+      font-size: 1.25rem;
+      font-weight: 800;
+    }
+
+    @media (max-width: 620px) {
+      .card { min-height: 600px; padding: 32px 18px; }
+      .months, .colors { grid-template-columns: 1fr; }
+      .months { max-height: 55vh; overflow-y: auto; padding-right: 3px; }
+    }
+  </style>
 </head>
 
 <body>
+  <div class="heart" style="left:8%; animation-delay:0s;">💙</div>
+  <div class="heart" style="left:25%; animation-delay:2s;">🤍</div>
+  <div class="heart" style="left:48%; animation-delay:4s;">🩶</div>
+  <div class="heart" style="left:70%; animation-delay:1s;">💙</div>
+  <div class="heart" style="left:88%; animation-delay:3s;">🤍</div>
 
-<!-- PAGE 1 -->
-<section class="screen active" id="startPage">
-    <div class="card">
-        <div class="emoji">😏❤️</div>
+  <main class="app">
+    <section class="card">
+
+      <!-- START -->
+      <div id="start" class="screen">
+        <div class="sparkles">✨ 💕 ✨</div>
         <h1>Hi there! Are you ready for a game? 😏❤️</h1>
-        <button class="main-btn" onclick="goTo('warningPage')">Yes</button>
-        <button class="no-btn" onclick="goTo('wrongPage')">No</button>
-    </div>
-</section>
+        <div class="buttons">
+          <button onclick="goTo('warning')">Yes</button>
+          <button class="secondary" onclick="showWrongChoice()">No</button>
+        </div>
+      </div>
 
-<!-- WRONG CHOICE -->
-<section class="screen" id="wrongPage">
-    <div class="card">
-        <div class="wrong">😒</div>
+      <!-- WRONG CHOICE -->
+      <div id="wrong" class="screen hidden">
+        <div class="sparkles">😌</div>
         <h1>Wrong Choice</h1>
-        <p>That was definitely not the answer I was looking for. 😂</p>
-        <button class="main-btn" onclick="goTo('startPage')">Try Again ❤️</button>
-    </div>
-</section>
+        <p>You know that's not the answer.</p>
+        <button onclick="goTo('start')">Try Again ❤️</button>
+      </div>
 
-<!-- WARNING -->
-<section class="screen" id="warningPage">
-    <div class="card">
-        <div class="emoji">⚠️❤️</div>
+      <!-- WARNING -->
+      <div id="warning" class="screen hidden">
+        <div class="sparkles">⚠️ 😏 ⚠️</div>
         <h2>Please proceed with caution. Your answers may have consequences.</h2>
-        <button class="main-btn" onclick="showQuestion(0)">I Accept 😏</button>
-    </div>
-</section>
+        <button onclick="startQuestions()">Proceed ❤️</button>
+      </div>
 
-<!-- QUESTIONS -->
-<section class="screen" id="questionPage">
-    <div class="card">
+      <!-- QUESTIONS -->
+      <div id="questions" class="screen hidden">
         <div class="progress" id="progress"></div>
         <h2 id="questionText"></h2>
-        <div id="options"></div>
-    </div>
-</section>
+        <div class="answers" id="answers"></div>
+      </div>
 
-<!-- FINAL ASK -->
-<section class="screen" id="finalPage">
-    <div class="card final-card">
-        <div class="emoji">✨💖✨</div>
-        <h1 class="final-title">Will you be my date? ❤️</h1>
+      <!-- TRANSITION -->
+      <div id="transition" class="screen hidden">
+        <div class="sparkles">✨ ❤️ ✨</div>
+        <h2>Okay, enough questions. ❤️<br>There's only one thing left to ask...</h2>
+        <button onclick="goTo('dateAsk')">Continue 😏</button>
+      </div>
 
-        <div class="final-buttons">
-            <button class="main-btn" onclick="dateAccepted()">Yes ❤️</button>
-            <button class="no-btn" id="runawayNo">No 😏</button>
+      <!-- DATE ASK -->
+      <div id="dateAsk" class="screen hidden">
+        <div class="sparkles">✨ 💕 ✨</div>
+        <h1>Will you be my date? ❤️</h1>
+        <div class="buttons">
+          <button onclick="goTo('excellent')">Yes</button>
+          <button id="floatingNo" class="secondary no-btn">No</button>
         </div>
+      </div>
 
-        <p class="small-note">Choose wisely, Sir. 😌</p>
-    </div>
-</section>
-
-<!-- EXCELLENT CHOICE -->
-<section class="screen" id="excellentPage">
-    <div class="card">
-        <div class="emoji">🎉😏❤️</div>
-        <h1>Excellent choice Sir!</h1>
-        <p>Now let's make some very important arrangements...</p>
-        <button class="main-btn" onclick="goTo('calendarPage')">
-            Choose Our Date 📅
-        </button>
-    </div>
-</section>
-
-<!-- CALENDAR -->
-<section class="screen" id="calendarPage">
-    <div class="card">
-        <div class="emoji">📅❤️</div>
-        <h2>Pick a date for our date ❤️</h2>
-
-        <div class="calendar-container">
-
-            <div class="month-title">August 2026</div>
-            <div class="calendar" id="augustCalendar"></div>
-
-            <div class="month-title">September 2026</div>
-            <div class="calendar" id="septemberCalendar"></div>
-
-        </div>
-
-        <div class="selected-date" id="selectedDate">
-            Please choose a date ❤️
-        </div>
-
-        <button class="main-btn" id="dateNextBtn" onclick="goToOutfits()" disabled>
-            Continue ❤️
-        </button>
-    </div>
-</section>
-
-<!-- OUTFIT -->
-<section class="screen" id="outfitPage">
-    <div class="card">
-        <div class="emoji">👗🕴️❤️</div>
-        <h2>Now pick a color code for our outfits 😏</h2>
-
-        <div class="outfit-grid">
-
-            <button class="outfit black-red" onclick="selectOutfit(this, 'Black and Red')">
-                🖤❤️<br><br>
-                Option 1<br>
-                Black and Red
-            </button>
-
-            <button class="outfit blue-white" onclick="selectOutfit(this, 'Blue and White')">
-                💙🤍<br><br>
-                Option 2<br>
-                Blue and White
-            </button>
-
-            <button class="outfit beige-purple" onclick="selectOutfit(this, 'Beige and Purple')">
-                🤎💜<br><br>
-                Option 3<br>
-                Beige and Purple
-            </button>
-
-            <button class="outfit black-white" onclick="selectOutfit(this, 'Black and White')">
-                🖤🤍<br><br>
-                Option 4<br>
-                Black and White
-            </button>
-
-        </div>
-
-        <button class="main-btn" id="outfitNextBtn" onclick="finish()" disabled>
-            This is the one ❤️
-        </button>
-    </div>
-</section>
-
-<!-- FINAL THANK YOU -->
-<section class="screen" id="thankYouPage">
-    <div class="card">
+      <!-- EXCELLENT -->
+      <div id="excellent" class="screen hidden">
         <div class="celebration">🎉🎊🥳🎊🎉</div>
+        <h1>Excellent choice Sir!</h1>
+        <p>Now let's pick our date. ❤️</p>
+        <button onclick="goTo('calendar')">Choose a Date 📅</button>
+      </div>
 
+      <!-- CALENDAR -->
+      <div id="calendar" class="screen hidden">
+        <h2>Pick a date for our date ❤️</h2>
+        <div class="calendar">
+          <div class="months">
+            <div class="month" id="august"></div>
+            <div class="month" id="september"></div>
+          </div>
+          <div class="selected-date" id="selectedDate"></div>
+        </div>
+        <button id="dateContinue" class="hidden" onclick="goTo('colors')">Continue ❤️</button>
+      </div>
+
+      <!-- COLORS -->
+      <div id="colors" class="screen hidden">
+        <h2>Now pick a color code for our outfits 😏</h2>
+        <div class="colors">
+          <div class="color-option black-red" data-color="Black and Red">Option 1: Black and Red</div>
+          <div class="color-option blue-white" data-color="Blue and White">Option 2: Blue and White</div>
+          <div class="color-option beige-purple" data-color="Beige and Purple">Option 3: Beige and Purple</div>
+          <div class="color-option black-white" data-color="Black and White">Option 4: Black and White</div>
+        </div>
+        <button id="colorContinue" class="hidden" onclick="finish()">Continue ❤️</button>
+      </div>
+
+      <!-- FINAL -->
+      <div id="final" class="screen hidden">
+        <div class="celebration">🎉 💕 🎊 💕 🎉</div>
         <h1>Thank you for your time! I love you</h1>
+        <p class="love" id="finalDetails"></p>
+        <div class="celebration">🥳✨🎉✨🥳</div>
+      </div>
 
-        <p id="finalDetails"></p>
+    </section>
+  </main>
 
-        <div class="celebration">❤️✨❤️✨❤️</div>
-    </div>
-</section>
-
-<script>
-/* =========================================================
-   PAGE NAVIGATION
-========================================================= */
-
-function goTo(pageId) {
-    document.querySelectorAll(".screen").forEach(screen => {
-        screen.classList.remove("active");
-    });
-
-    document.getElementById(pageId).classList.add("active");
-
-    window.scrollTo({
-        top: 0,
-        behavior: "smooth"
-    });
-}
-
-
-/* =========================================================
-   QUESTIONS
-========================================================= */
-
-const questions = [
-
-    {
-        question: "Question 1: How much do you miss me?",
+  <script>
+    const questions = [
+      {
+        text: "Question 1: How much do you miss me?",
         options: [
-            "A. A little",
-            "B. Quite a bit",
-            "C. More than I'd admit",
-            "D. Ekdomi na. Why are we even discussing this? 😂"
+          "A. A little",
+          "B. Quite a bit",
+          "C. More than I'd admit",
+          "D. Ekdomi na. Why are we even discussing this? 😂"
         ]
-    },
-
-    {
-        question: "Question 2 😏: What's the most dangerous thing about going on a date with me?",
+      },
+      {
+        text: "Question 2 😏: What's the most dangerous thing about going on a date with me?",
         options: [
-            "A. I'll steal your food",
-            "B. I'll make you laugh when you're trying to be serious",
-            "C. You'll end up not wanting the date to end",
-            "D. All of the above, obviously"
+          "A. I'll steal your food",
+          "B. I'll make you laugh when you're trying to be serious",
+          "C. You'll end up not wanting the date to end",
+          "D. All of the above, obviously"
         ]
-    },
-
-    {
-        question: "Question 3: Wait!! Tell me, what's more dangerous?",
+      },
+      {
+        text: "Question 3: Wait!! Tell me, what sounds dangerous?",
         options: [
-            "A. Me when I'm hungry",
-            "B. Me when I'm annoyed",
-            "C. Me when I have an idea",
-            "D. Me saying “I have a surprise for you” 😏"
+          "A. Me when I'm hungry",
+          "B. Me when I'm annoyed",
+          "C. Me when I have an idea",
+          "D. Me saying “I have a surprise for you” 😏"
         ]
-    },
-
-    {
-        question: "Question 4: If I were a food, what would I be?",
+      },
+      {
+        text: "Question 4: If I were a food, what would I be?",
         options: [
-            "A) Chocolate 🍫",
-            "B) Pizza 🍕",
-            "C) Spicy noodles 🌶️",
-            "D) Something you can't stop eating 😏"
+          "A) Chocolate 🍫",
+          "B) Pizza 🍕",
+          "C) Spicy noodles 🌶️",
+          "D) Something you can't stop eating 😏"
         ]
-    },
-
-    {
-        question: "Question 5: What's one thing you'd like us to do together again?",
+      },
+      {
+        text: "Question 5: What's one thing you'd like us to do together again?",
         options: [
-            "A. Go somewhere we've been before",
-            "B. Try somewhere completely new",
-            "C. Stay up talking way too late",
-            "D. Make another memory we can laugh about later"
+          "A. Go somewhere we've been before",
+          "B. Try somewhere completely new",
+          "C. Stay up talking way too late",
+          "D. Make another memory we can laugh about later"
         ]
-    },
-
-    {
-        question: "Question 6: I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.",
+      },
+      {
+        text: "Question 6: I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.",
         options: [
-            "A. Absolutely. Let's go.",
-            "B. Ask where we're going first.",
-            "C. Ask what to wear.",
-            "D. Make a 🌿🚬"
+          "A. Absolutely. Let's go.",
+          "B. Ask where we're going first.",
+          "C. Ask what to wear.",
+          "D. Make a 🌿🚬"
         ]
-    },
-
-    {
-        question: "Question 7: If you could change ONE thing about our relationship, what would you choose?",
+      },
+      {
+        text: "Question 7: If you could change ONE thing about our relationship, what would you choose?",
         options: [
-            "A. Less fights",
-            "B. More uninterrupted time together",
-            "C. More adventures",
-            "D. Nothing. I'd rather make more memories from here ❤️"
+          "A. Less fights",
+          "B. More uninterrupted time together",
+          "C. More adventures",
+          "D. Nothing. I'd rather make more memories from here ❤️"
         ]
-    },
-
-    {
-        question: "Question 8: Imagine you have been invited on a date. What kind of date would be hardest to say no to?",
+      },
+      {
+        text: "Question 8: Imagine you have been invited on a date. What kind of date would be hardest to say no to?",
         options: [
-            "A. Dinner somewhere beautiful",
-            "B. A movie-night",
-            "C. Somewhere neither of you has been before",
-            "D. A date where the only plan is to spend time together ❤️"
+          "A. Dinner somewhere beautiful",
+          "B. A movie-night",
+          "C. Somewhere neither of you has been before",
+          "D. A date where the only plan is to spend time together ❤️"
         ]
-    },
-
-    {
-        question: "Question 9: And if I told you the person asking is… me?",
+      },
+      {
+        text: "Question 9: And if I told you the person asking is… me?",
         options: [
-            "A. Of course, it has to be my wife 😒 ugghhh",
-            "B. I was wondering when you'd get to the point",
-            "C. Let me think about it 😌",
-            "D. Where and when?"
+          "A. Of course, it has to be my wife 😒 ugghhh",
+          "B. I was wondering when you'd get to the point",
+          "C. Let me think about it 😌",
+          "D. Where and when?"
         ]
-    },
-
-    {
-        question: "Question 10: Would you let me steal you away for an evening?",
+      },
+      {
+        text: "Question 10: Would you let me steal you away for an evening?",
         options: [
-            "A. ❤️ Yes — Especially if it's with you.",
-            "B. 😏 Yes — But you'll have to convince me.",
-            "C. 🙈 No — I'm afraid I'm already a little too interested.",
-            "D. 😂 No — This sounds like a terrible idea… let's do it anyway."
+          "A. ❤️ Yes — Especially if it's with you.",
+          "B. 😏 Yes — But you'll have to convince me.",
+          "C. 🙈 No — I'm afraid I'm already a little too interested.",
+          "D. 😂 No — This sounds like a terrible idea… let's do it anyway."
         ]
-    }
-
-];
-
-let currentQuestion = 0;
-let answers = [];
-
-function showQuestion(index) {
-    currentQuestion = index;
-
-    goTo("questionPage");
-
-    const q = questions[index];
-
-    document.getElementById("progress").textContent =
-        `QUESTION ${index + 1} OF ${questions.length}`;
-
-    document.getElementById("questionText").textContent = q.question;
-
-    const optionsContainer = document.getElementById("options");
-    optionsContainer.innerHTML = "";
-
-    q.options.forEach((option, optionIndex) => {
-
-        const button = document.createElement("button");
-
-        button.className = "option";
-        button.textContent = option;
-
-        button.onclick = function() {
-            answers[index] = option;
-
-            if (index < questions.length - 1) {
-                showQuestion(index + 1);
-            } else {
-                goTo("finalPage");
-            }
-        };
-
-        optionsContainer.appendChild(button);
-    });
-}
-
-
-/* =========================================================
-   RUNAWAY NO BUTTON
-========================================================= */
-
-const runawayNo = document.getElementById("runawayNo");
-
-function moveNoButton() {
-
-    const padding = 20;
-
-    const maxX = Math.max(
-        padding,
-        window.innerWidth - runawayNo.offsetWidth - padding
-    );
-
-    const maxY = Math.max(
-        padding,
-        window.innerHeight - runawayNo.offsetHeight - padding
-    );
-
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    runawayNo.style.position = "fixed";
-    runawayNo.style.left = x + "px";
-    runawayNo.style.top = y + "px";
-    runawayNo.style.zIndex = "9999";
-}
-
-runawayNo.addEventListener("mouseenter", moveNoButton);
-runawayNo.addEventListener("touchstart", function(event) {
-    event.preventDefault();
-    moveNoButton();
-});
-
-runawayNo.addEventListener("click", function(event) {
-    event.preventDefault();
-    moveNoButton();
-});
-
-
-/* =========================================================
-   DATE ACCEPTED
-========================================================= */
-
-function dateAccepted() {
-    runawayNo.style.position = "";
-    runawayNo.style.left = "";
-    runawayNo.style.top = "";
-
-    goTo("excellentPage");
-
-    createHearts();
-    createConfetti();
-}
-
-
-/* =========================================================
-   CALENDAR
-========================================================= */
-
-let selectedDate = null;
-
-const weekdays = ["Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"];
-
-function createCalendar(containerId, year, month) {
-
-    const container = document.getElementById(containerId);
-
-    weekdays.forEach(day => {
-        const weekday = document.createElement("div");
-        weekday.className = "weekday";
-        weekday.textContent = day;
-        container.appendChild(weekday);
-    });
-
-    const firstDay = new Date(year, month, 1).getDay();
-    const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-    for (let i = 0; i < firstDay; i++) {
-        const blank = document.createElement("div");
-        container.appendChild(blank);
-    }
-
-    for (let day = 1; day <= daysInMonth; day++) {
-
-        const button = document.createElement("button");
-        button.className = "day";
-        button.textContent = day;
-
-        const dateValue =
-            `${year}-${String(month + 1).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
-
-        /* Disable dates before August 18, 2026 */
-        const minimumDate = "2026-08-18";
-
-        if (dateValue < minimumDate) {
-            button.disabled = true;
-        }
-
-        button.dataset.date = dateValue;
-
-        button.onclick = function() {
-            document.querySelectorAll(".day").forEach(d => {
-                d.classList.remove("selected");
-            });
-
-            this.classList.add("selected");
-
-            selectedDate = dateValue;
-
-            const readableDate = new Date(
-                year,
-                month,
-                day
-            ).toLocaleDateString("en-US", {
-                weekday: "long",
-                year: "numeric",
-                month: "long",
-                day: "numeric"
-            });
-
-            document.getElementById("selectedDate").textContent =
-                "Our date: " + readableDate + " ❤️";
-
-            document.getElementById("dateNextBtn").disabled = false;
-        };
-
-        container.appendChild(button);
-    }
-}
-
-createCalendar("augustCalendar", 2026, 7);
-createCalendar("septemberCalendar", 2026, 8);
-
-
-/* =========================================================
-   OUTFITS
-========================================================= */
-
-let selectedOutfit = null;
-
-function goToOutfits() {
-    if (!selectedDate) return;
-    goTo("outfitPage");
-}
-
-function selectOutfit(button, outfit) {
-
-    document.querySelectorAll(".outfit").forEach(item => {
-        item.classList.remove("selected");
-    });
-
-    button.classList.add("selected");
-
-    selectedOutfit = outfit;
-
-    document.getElementById("outfitNextBtn").disabled = false;
-}
-
-
-/* =========================================================
-   FINISH
-========================================================= */
-
-function finish() {
-
-    if (!selectedDate || !selectedOutfit) return;
-
-    const dateObject = new Date(selectedDate + "T12:00:00");
-
-    const readableDate = dateObject.toLocaleDateString("en-US", {
-        weekday: "long",
-        year: "numeric",
-        month: "long",
-        day: "numeric"
-    });
-
-    document.getElementById("finalDetails").innerHTML =
-        `Our date is <strong>${readableDate}</strong> ❤️<br><br>` +
-        `And our outfit color code is <strong>${selectedOutfit}</strong> 😏<br><br>` +
-        `I can't wait. ❤️`;
-
-    goTo("thankYouPage");
-
-    createHearts();
-    createConfetti();
-
-    setTimeout(createHearts, 800);
-    setTimeout(createConfetti, 1200);
-}
-
-
-/* =========================================================
-   FLOATING HEARTS
-========================================================= */
-
-function createHearts() {
-
-    const hearts = ["❤️", "💖", "💕", "💗", "💓", "💘"];
-
-    for (let i = 0; i < 25; i++) {
-
-        const heart = document.createElement("div");
-
-        heart.className = "heart";
-        heart.textContent =
-            hearts[Math.floor(Math.random() * hearts.length)];
-
-        heart.style.left = Math.random() * 100 + "vw";
-        heart.style.bottom = "-30px";
-        heart.style.fontSize =
-            (18 + Math.random() * 25) + "px";
-
-        heart.style.animationDuration =
-            (3 + Math.random() * 3) + "s";
-
-        document.body.appendChild(heart);
-
-        setTimeout(() => {
-            heart.remove();
-        }, 6000);
-    }
-}
-
-
-/* =========================================================
-   CONFETTI
-========================================================= */
-
-function createConfetti() {
-
-    const colors = [
-        "#d84b82",
-        "#a63c77",
-        "#ffd166",
-        "#6c63ff",
-        "#4ecdc4",
-        "#ff6b6b",
-        "#ffffff"
+      }
     ];
 
-    for (let i = 0; i < 100; i++) {
+    let currentQuestion = 0;
+    let selectedDate = "";
+    let selectedColor = "";
 
-        const piece = document.createElement("div");
-
-        piece.className = "confetti";
-
-        piece.style.left = Math.random() * 100 + "vw";
-
-        piece.style.background =
-            colors[Math.floor(Math.random() * colors.length)];
-
-        piece.style.animationDuration =
-            (2.5 + Math.random() * 3) + "s";
-
-        piece.style.animationDelay =
-            Math.random() * 1.5 + "s";
-
-        piece.style.transform =
-            `rotate(${Math.random() * 360}deg)`;
-
-        document.body.appendChild(piece);
-
-        setTimeout(() => {
-            piece.remove();
-        }, 6000);
+    function hideAll() {
+      document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.add("hidden");
+      });
     }
-}
-</script>
 
+    function goTo(id) {
+      hideAll();
+      document.getElementById(id).classList.remove("hidden");
+      window.scrollTo({ top: 0, behavior: "smooth" });
+    }
+
+    function showWrongChoice() {
+      goTo("wrong");
+    }
+
+    function startQuestions() {
+      currentQuestion = 0;
+      renderQuestion();
+      goTo("questions");
+    }
+
+    function renderQuestion() {
+      const q = questions[currentQuestion];
+      document.getElementById("progress").textContent =
+        `Question ${currentQuestion + 1} of ${questions.length}`;
+      document.getElementById("questionText").textContent = q.text;
+
+      const answers = document.getElementById("answers");
+      answers.innerHTML = "";
+
+      q.options.forEach(option => {
+        const button = document.createElement("button");
+        button.className = "answer";
+        button.textContent = option;
+        button.onclick = () => {
+          button.classList.add("selected");
+          setTimeout(() => {
+            if (currentQuestion < questions.length - 1) {
+              currentQuestion++;
+              renderQuestion();
+            } else {
+              goTo("transition");
+            }
+          }, 250);
+        };
+        answers.appendChild(button);
+      });
+    }
+
+    // Floating "No" button on the final date question.
+    const floatingNo = document.getElementById("floatingNo");
+
+    function moveNoButton() {
+      const padding = 20;
+      const maxX = Math.max(padding, window.innerWidth - floatingNo.offsetWidth - padding);
+      const maxY = Math.max(padding, window.innerHeight - floatingNo.offsetHeight - padding);
+
+      floatingNo.style.position = "fixed";
+      floatingNo.style.left = Math.floor(Math.random() * (maxX - padding + 1) + padding) + "px";
+      floatingNo.style.top = Math.floor(Math.random() * (maxY - padding + 1) + padding) + "px";
+      floatingNo.style.zIndex = "9999";
+    }
+
+    ["mouseenter", "touchstart", "pointerdown"].forEach(eventName => {
+      floatingNo.addEventListener(eventName, moveNoButton);
+    });
+
+    function resetNoButton() {
+      floatingNo.style.position = "relative";
+      floatingNo.style.left = "";
+      floatingNo.style.top = "";
+    }
+
+    // Calendar generation for August and September 2026.
+    function buildMonth(elementId, year, monthIndex, monthName) {
+      const container = document.getElementById(elementId);
+      const firstDay = new Date(year, monthIndex, 1).getDay();
+      const daysInMonth = new Date(year, monthIndex + 1, 0).getDate();
+
+      let html = `<h3>${monthName} 2026</h3>`;
+      html += `<div class="weekdays">
+        <div class="weekday">Sun</div>
+        <div class="weekday">Mon</div>
+        <div class="weekday">Tue</div>
+        <div class="weekday">Wed</div>
+        <div class="weekday">Thu</div>
+        <div class="weekday">Fri</div>
+        <div class="weekday">Sat</div>
+      </div>`;
+      html += `<div class="days">`;
+
+      for (let i = 0; i < firstDay; i++) {
+        html += `<button class="day empty" aria-hidden="true"></button>`;
+      }
+
+      for (let day = 1; day <= daysInMonth; day++) {
+        const monthNumber = String(monthIndex + 1).padStart(2, "0");
+        const dayNumber = String(day).padStart(2, "0");
+        const value = `2026-${monthNumber}-${dayNumber}`;
+
+        html += `<button class="day" data-date="${value}" onclick="chooseDate('${value}', this)">${day}</button>`;
+      }
+
+      html += `</div>`;
+      container.innerHTML = html;
+    }
+
+    function chooseDate(date, button) {
+      document.querySelectorAll(".day").forEach(day => day.classList.remove("chosen"));
+      button.classList.add("chosen");
+      selectedDate = date;
+
+      const pretty = new Date(date + "T12:00:00").toLocaleDateString("en-US", {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      });
+
+      document.getElementById("selectedDate").textContent =
+        `Our date: ${pretty} ❤️`;
+
+      document.getElementById("dateContinue").classList.remove("hidden");
+    }
+
+    buildMonth("august", 2026, 7, "August");
+    buildMonth("september", 2026, 8, "September");
+
+    document.querySelectorAll(".color-option").forEach(option => {
+      option.addEventListener("click", () => {
+        document.querySelectorAll(".color-option").forEach(o => o.classList.remove("selected"));
+        option.classList.add("selected");
+        selectedColor = option.dataset.color;
+        document.getElementById("colorContinue").classList.remove("hidden");
+      });
+    });
+
+    function finish() {
+      document.getElementById("finalDetails").textContent =
+        `Our date is set for ${formatDate(selectedDate)}, and our outfit colors are ${selectedColor}. ❤️`;
+      goTo("final");
+    }
+
+    function formatDate(date) {
+      return new Date(date + "T12:00:00").toLocaleDateString("en-US", {
+        weekday: "long",
+        month: "long",
+        day: "numeric",
+        year: "numeric"
+      });
+    }
+  </script>
 </body>
 </html>
