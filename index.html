@@ -394,7 +394,7 @@
       <!-- FINAL -->
       <div id="final" class="screen hidden">
         <div class="celebration">🎉 💕 🎊 💕 🎉</div>
-        <h1>Thank you for your time!  I love you</h1>
+        <h1>Thank you for your time! I love you</h1>
         <p class="love" id="finalDetails"></p>
         <div class="celebration">🥳✨🎉✨🥳</div>
       </div>
@@ -435,7 +435,7 @@
         text: "Question 4: If my nose were a food, what would it be?",
         options: [
           "A) Chocolate 🍫",
-          "B) Pizza 🍕",
+          "B) Horeen er mangsho 🦌🍕",
           "C) Spicy noodles 🌶️",
           "D) Something you can't stop eating 😏"
         ]
@@ -549,41 +549,47 @@
         answers.appendChild(button);
       });
     }
-<script>
-const noButton = document.getElementById("noButton");
 
-let moveCount = 0;
-const maxMoves = 50;
+    // Unlimited moving "No" button
+const floatingNo = document.getElementById("floatingNo");
 
 function moveNoButton() {
-    if (moveCount >= maxMoves) return;
+  const padding = 20;
 
-    moveCount++;
+  const maxX = Math.max(
+    padding,
+    window.innerWidth - floatingNo.offsetWidth - padding
+  );
 
-    const buttonWidth = noButton.offsetWidth;
-    const buttonHeight = noButton.offsetHeight;
+  const maxY = Math.max(
+    padding,
+    window.innerHeight - floatingNo.offsetHeight - padding
+  );
 
-    const padding = 20;
+  const randomX =
+    Math.floor(Math.random() * (maxX - padding + 1)) + padding;
 
-    const maxX = window.innerWidth - buttonWidth - padding;
-    const maxY = window.innerHeight - buttonHeight - padding;
+  const randomY =
+    Math.floor(Math.random() * (maxY - padding + 1)) + padding;
 
-    const x = Math.random() * maxX;
-    const y = Math.random() * maxY;
-
-    noButton.style.position = "fixed";
-    noButton.style.left = `${x}px`;
-    noButton.style.top = `${y}px`;
+  floatingNo.style.position = "fixed";
+  floatingNo.style.left = randomX + "px";
+  floatingNo.style.top = randomY + "px";
+  floatingNo.style.zIndex = "9999";
 }
 
-noButton.addEventListener("mouseenter", moveNoButton);
+// The No button will keep escaping forever
+floatingNo.addEventListener("mouseenter", moveNoButton);
 
-noButton.addEventListener("click", function(event) {
-    event.preventDefault();
-    moveNoButton();
+floatingNo.addEventListener("pointerdown", function(event) {
+  event.preventDefault();
+  moveNoButton();
 });
-</script>
-    }
+
+floatingNo.addEventListener("touchstart", function(event) {
+  event.preventDefault();
+  moveNoButton();
+});
 
     // Calendar generation for August and September 2026.
     function buildMonth(elementId, year, monthIndex, monthName) {
