@@ -12,9 +12,9 @@
       min-height: 100vh;
       font-family: "Trebuchet MS", "Segoe UI", sans-serif;
       background:
-        radial-gradient(circle at 18% 15%, rgba(255,255,255,1), transparent 30%),
-        radial-gradient(circle at 82% 85%, rgba(180,195,210,.55), transparent 32%),
-        linear-gradient(135deg, #ffffff 0%, #eef5fb 45%, #bfcbd7 100%);
+        radial-gradient(circle at 15% 15%, rgba(255,255,255,.98), transparent 28%),
+        radial-gradient(circle at 85% 80%, rgba(192, 210, 230, .45), transparent 30%),
+        linear-gradient(135deg, #ffffff 0%, #edf5fc 42%, #cbd7e3 100%);
       color: #172b45;
       overflow-x: hidden;
     }
@@ -116,44 +116,29 @@
       font-size: 1.05rem;
       font-weight: 700;
       cursor: pointer;
-      background: linear-gradient(135deg, #0b3d6e, #1f6aa5);
-      color: #ffffff;
-      box-shadow: 0 8px 18px rgba(11,61,110,.30);
+      background: linear-gradient(135deg, #174a7c, #2d6da3);
+      color: white;
+      box-shadow: 0 8px 18px rgba(23,74,124,.28);
       transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
     }
 
     button:hover {
       transform: translateY(-3px);
-      box-shadow: 0 12px 24px rgba(11,61,110,.38);
-      background: linear-gradient(135deg, #082f55, #185a8d);
+      box-shadow: 0 12px 24px rgba(23,74,124,.35);
+      background: linear-gradient(135deg, #123d67, #245e91);
     }
 
     button.secondary {
-      background: linear-gradient(135deg, #ffffff, #d6dee6);
-      color: #173b5d;
-      border: 1px solid #aebdca;
+      background: linear-gradient(135deg, #edf2f7, #d3dce5);
+      color: #294663;
     }
 
     .no-btn {
       position: relative;
     }
 
-    .answer {
-      background: linear-gradient(135deg, #ffffff 0%, #edf3f8 55%, #d2dce5 100%);
-      color: #173b5d;
-      border: 1px solid #b8c7d3;
-      box-shadow: 0 6px 15px rgba(34,67,98,.12);
-    }
-
-    .answer:hover {
-      background: linear-gradient(135deg, #eaf4fc, #c7d9e8);
-      color: #0b3d6e;
-    }
-
     .answer.selected {
-      background: linear-gradient(135deg, #174a7c, #0b3155);
-      color: #ffffff;
-      border-color: #174a7c;
+      background: linear-gradient(135deg, #315f91, #173d68);
     }
 
     .progress {
@@ -175,10 +160,10 @@
     }
 
     .month {
-      background: linear-gradient(145deg, rgba(255,255,255,.98), rgba(228,236,243,.96));
+      background: rgba(247,250,253,.94);
       border-radius: 20px;
       padding: 16px;
-      box-shadow: inset 0 0 0 1px #b8c5d0, 0 8px 20px rgba(38,66,91,.10);
+      box-shadow: inset 0 0 0 1px #c8d4df;
     }
 
     .month h3 {
@@ -204,15 +189,13 @@
       padding: 0;
       border-radius: 10px;
       font-size: .85rem;
-      background: linear-gradient(145deg, #ffffff, #dbe4ec);
-      color: #234662;
-      border: 1px solid #c1cdd7;
+      background: #e5edf4;
+      color: #29445f;
       box-shadow: none;
     }
 
     .day:hover {
-      background: linear-gradient(145deg, #dcecf8, #b8cee0);
-      color: #0b3d6e;
+      background: #b9cee1;
     }
 
     .day.empty {
@@ -221,10 +204,8 @@
     }
 
     .day.chosen {
-      background: linear-gradient(135deg, #174a7c, #0b3155);
+      background: linear-gradient(135deg, #315f91, #173d68);
       color: white;
-      border-color: #174a7c;
-      box-shadow: 0 5px 12px rgba(23,74,124,.25);
     }
 
     .selected-date {
@@ -413,7 +394,7 @@
       <!-- FINAL -->
       <div id="final" class="screen hidden">
         <div class="celebration">🎉 💕 🎊 💕 🎉</div>
-        <h1>Thank you for your time! I love you</h1>
+        <h1>Thank you for your time!  I love you</h1>
         <p class="love" id="finalDetails"></p>
         <div class="celebration">🥳✨🎉✨🥳</div>
       </div>
@@ -429,20 +410,20 @@
           "A. A little",
           "B. Quite a bit",
           "C. More than I'd admit",
-          "D. Ekdomi na. Why are we even discussing this? 😂"
+          "D. Ekdomi na. I see you everyday. Why are we even discussing this? 😂"
         ]
       },
       {
         text: "Question 2 😏: What's the most dangerous thing about going on a date with me?",
         options: [
-          "A. I'll steal your food",
-          "B. I'll make you laugh when you're trying to be serious",
+          "A. You'll steal my food",
+          "B. You'll make me laugh when I'm trying to be serious",
           "C. You'll end up not wanting the date to end",
           "D. All of the above, obviously"
         ]
       },
       {
-        text: "Question 3: Wait!! Tell me, what's more dangerous?",
+        text: "Question 3: Wait!! Tell me, what sounds more dangerous?",
         options: [
           "A. Me when I'm hungry",
           "B. Me when I'm annoyed",
@@ -451,7 +432,7 @@
         ]
       },
       {
-        text: "Question 4: If I were a food, what would I be?",
+        text: "Question 4: If my nose were a food, what would it be?",
         options: [
           "A) Chocolate 🍫",
           "B) Pizza 🍕",
@@ -491,7 +472,7 @@
         options: [
           "A. Dinner somewhere beautiful",
           "B. A movie-night",
-          "C. Somewhere neither of you has been before",
+          "C. Somewhere neither of us has been before",
           "D. A date where the only plan is to spend time together ❤️"
         ]
       },
