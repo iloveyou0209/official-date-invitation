@@ -550,18 +550,40 @@
       });
     }
 
-    // Floating "No" button on the final date question.
-    const floatingNo = document.getElementById("floatingNo");
+    <script>
+const noButton = document.getElementById("noButton");
 
-    function moveNoButton() {
-      const padding = 50;
-      const maxX = Math.max(padding, window.innerWidth - floatingNo.offsetWidth - padding);
-      const maxY = Math.max(padding, window.innerHeight - floatingNo.offsetHeight - padding);
+let moveCount = 0;
+const maxMoves = 50;
 
-      floatingNo.style.position = "fixed";
-      floatingNo.style.left = Math.floor(Math.random() * (maxX - padding + 1) + padding) + "px";
-      floatingNo.style.top = Math.floor(Math.random() * (maxY - padding + 1) + padding) + "px";
-      floatingNo.style.zIndex = "9999";
+function moveNoButton() {
+    if (moveCount >= maxMoves) return;
+
+    moveCount++;
+
+    const buttonWidth = noButton.offsetWidth;
+    const buttonHeight = noButton.offsetHeight;
+
+    const padding = 20;
+
+    const maxX = window.innerWidth - buttonWidth - padding;
+    const maxY = window.innerHeight - buttonHeight - padding;
+
+    const x = Math.random() * maxX;
+    const y = Math.random() * maxY;
+
+    noButton.style.position = "fixed";
+    noButton.style.left = `${x}px`;
+    noButton.style.top = `${y}px`;
+}
+
+noButton.addEventListener("mouseenter", moveNoButton);
+
+noButton.addEventListener("click", function(event) {
+    event.preventDefault();
+    moveNoButton();
+});
+</script>
     }
 
     ["mouseenter", "touchstart", "pointerdown"].forEach(eventName => {
