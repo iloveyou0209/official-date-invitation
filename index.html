@@ -2,92 +2,95 @@
 <html lang="en">
 <head>
 <meta charset="UTF-8">
+
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-<title>Just A Few Questions ❤️</title>
+<title>A Very Important Question ❤️</title>
 
 <style>
-
-/* ================================
-   BASIC RESET
-================================ */
 
 * {
     box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
     margin: 0;
     padding: 0;
-    width: 100%;
     min-height: 100%;
 }
 
 body {
-    min-height: 100vh;
-
     font-family:
-        "Trebuchet MS",
+        -apple-system,
+        BlinkMacSystemFont,
         "Segoe UI",
+        Roboto,
+        Helvetica,
         Arial,
         sans-serif;
 
-    color: #542438;
-
     background:
         radial-gradient(
-            circle at 15% 15%,
-            rgba(255, 255, 255, 0.9),
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 85% 85%,
-            rgba(255, 167, 198, 0.5),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #ffd9e7,
-            #fff1f6,
-            #fbd3e3
+            circle at top,
+            #fff4f7 0%,
+            #ffe5ed 45%,
+            #ffd5e1 100%
         );
 
-    display: flex;
-    justify-content: center;
-    align-items: center;
-
+    color: #43232f;
+    min-height: 100vh;
     overflow-x: hidden;
 }
 
+/* =========================================
+   MUSIC BUTTON
+========================================= */
 
-/* ================================
-   IMPORTANT:
-   THIS HIDES ALL SCREENS
-================================ */
+#musicButton {
+    position: fixed;
+    top: 15px;
+    right: 15px;
 
-.hidden {
-    display: none !important;
+    z-index: 9999;
+
+    width: auto;
+
+    padding: 10px 15px;
+
+    border-radius: 30px;
+
+    border: 1px solid #efd1dc;
+
+    background: rgba(255,255,255,0.92);
+
+    color: #7b2849;
+
+    font-size: 14px;
+    font-weight: 700;
+
+    box-shadow:
+        0 5px 20px rgba(100,30,50,0.12);
+
+    cursor: pointer;
 }
 
+/* =========================================
+   FLOATING HEARTS
+========================================= */
 
-/* ================================
-   BACKGROUND DECORATIONS
-================================ */
-
-.background-heart {
+.heart {
     position: fixed;
 
-    bottom: -60px;
-
-    z-index: 0;
+    bottom: -50px;
 
     pointer-events: none;
 
     opacity: 0;
 
+    z-index: 0;
+
     animation:
-        floatHeart 9s linear infinite;
+        floatHeart linear infinite;
 }
 
 @keyframes floatHeart {
@@ -95,749 +98,575 @@ body {
     0% {
         transform:
             translateY(0)
-            rotate(0deg)
-            scale(0.7);
+            rotate(0deg);
 
         opacity: 0;
     }
 
     15% {
-        opacity: 0.45;
+        opacity: 0.25;
     }
 
     85% {
-        opacity: 0.35;
+        opacity: 0.25;
     }
 
     100% {
         transform:
-            translateY(-115vh)
-            rotate(25deg)
-            scale(1.2);
+            translateY(-110vh)
+            rotate(360deg);
 
         opacity: 0;
     }
 }
 
+/* =========================================
+   MAIN APP
+========================================= */
 
-/* ================================
-   MAIN CARD
-================================ */
-
-.wrapper {
-
-    width: 100%;
-
-    max-width: 720px;
-
-    padding: 20px;
-
+.app {
     position: relative;
 
     z-index: 2;
-}
 
-
-.card {
-
-    width: 100%;
-
-    min-height: 560px;
-
-    padding: 45px 42px;
-
-    background:
-        rgba(255, 255, 255, 0.88);
-
-    backdrop-filter: blur(15px);
-
-    -webkit-backdrop-filter: blur(15px);
-
-    border:
-        1px solid
-        rgba(255, 255, 255, 0.9);
-
-    border-radius: 38px;
-
-    box-shadow:
-        0 30px 80px
-        rgba(132, 45, 82, 0.20),
-
-        0 8px 25px
-        rgba(132, 45, 82, 0.10);
+    min-height: 100vh;
 
     display: flex;
 
+    justify-content: center;
+
     align-items: center;
 
-    justify-content: center;
+    padding: 25px 15px;
+}
+
+.card {
+    width: min(680px, 100%);
+
+    background:
+        rgba(255,255,255,0.94);
+
+    border-radius: 28px;
+
+    padding: 45px 35px;
 
     text-align: center;
 
-    position: relative;
+    box-shadow:
+        0 20px 70px
+        rgba(126,40,70,0.16);
 
-    overflow: hidden;
+    backdrop-filter: blur(10px);
+
+    animation: cardAppear 0.5s ease;
 }
 
+@keyframes cardAppear {
 
-/* decorative glow */
+    from {
+        opacity: 0;
 
-.card::before {
-
-    content: "";
-
-    position: absolute;
-
-    width: 300px;
-    height: 300px;
-
-    background:
-        rgba(255, 119, 163, 0.12);
-
-    border-radius: 50%;
-
-    top: -170px;
-    right: -120px;
-
-    pointer-events: none;
-}
-
-.card::after {
-
-    content: "";
-
-    position: absolute;
-
-    width: 250px;
-    height: 250px;
-
-    background:
-        rgba(255, 190, 210, 0.15);
-
-    border-radius: 50%;
-
-    bottom: -150px;
-    left: -100px;
-
-    pointer-events: none;
-}
-
-
-/* ================================
-   SCREEN
-================================ */
-
-.screen {
-
-    width: 100%;
-
-    position: relative;
-
-    z-index: 3;
-}
-
-
-/* ================================
-   HEART
-================================ */
-
-.main-heart {
-
-    font-size: 64px;
-
-    display: inline-block;
-
-    margin-bottom: 10px;
-
-    filter:
-        drop-shadow(
-            0 8px 12px
-            rgba(220, 50, 100, 0.2)
-        );
-
-    animation:
-        heartbeat 1.5s ease-in-out infinite;
-}
-
-@keyframes heartbeat {
-
-    0%,
-    100% {
-        transform: scale(1);
+        transform:
+            translateY(20px)
+            scale(0.97);
     }
 
-    50% {
-        transform: scale(1.13);
+    to {
+        opacity: 1;
+
+        transform:
+            translateY(0)
+            scale(1);
     }
 }
 
+/* =========================================
+   TEXT
+========================================= */
 
-/* ================================
-   TYPOGRAPHY
-================================ */
+.emoji {
+    font-size: 55px;
 
-.eyebrow {
-
-    color: #c84b73;
-
-    text-transform: uppercase;
-
-    letter-spacing: 3px;
-
-    font-size: 12px;
-
-    font-weight: bold;
-
-    margin-bottom: 12px;
+    margin-bottom: 15px;
 }
-
 
 h1 {
+    margin: 0 0 18px;
 
-    margin: 0 0 20px;
+    color: #8d2148;
 
-    color: #c73567;
-
-    font-size: 38px;
+    font-size:
+        clamp(28px, 7vw, 43px);
 
     line-height: 1.2;
 }
 
+h2 {
+    margin: 0 0 25px;
 
-.intro-text {
+    color: #6d2441;
 
-    font-size: 20px;
+    font-size:
+        clamp(22px, 5vw, 31px);
 
-    line-height: 1.7;
-
-    color: #673548;
-
-    max-width: 540px;
-
-    margin:
-        0 auto 28px;
+    line-height: 1.4;
 }
 
+p {
+    font-size: 18px;
 
-.question-title {
+    line-height: 1.6;
 
-    font-size: 27px;
-
-    line-height: 1.45;
-
-    color: #59283c;
-
-    margin:
-        20px auto 28px;
-
-    max-width: 600px;
+    color: #61414d;
 }
 
+/* =========================================
+   BUTTONS
+========================================= */
 
-/* ================================
-   START BUTTON
-================================ */
+.buttons {
+    display: flex;
 
-.primary-button {
+    justify-content: center;
 
+    align-items: center;
+
+    gap: 15px;
+
+    flex-wrap: wrap;
+
+    margin-top: 30px;
+}
+
+button {
     border: none;
 
-    padding:
-        16px 32px;
+    border-radius: 15px;
 
-    border-radius: 999px;
+    padding: 14px 25px;
 
+    font-size: 17px;
+
+    font-weight: 700;
+
+    cursor: pointer;
+
+    transition:
+        transform 0.2s ease,
+        box-shadow 0.2s ease,
+        background 0.2s ease;
+}
+
+button:hover {
+    transform: translateY(-2px);
+}
+
+.primary {
     background:
         linear-gradient(
             135deg,
-            #ff5f91,
-            #d9366b
+            #dc3b70,
+            #a91e50
         );
 
     color: white;
 
-    font-size: 17px;
+    box-shadow:
+        0 8px 22px
+        rgba(190,38,91,0.25);
+}
 
-    font-weight: bold;
+.primary:hover {
+    box-shadow:
+        0 12px 28px
+        rgba(190,38,91,0.35);
+}
 
-    cursor: pointer;
+.secondary {
+    background: #f5e7ed;
+
+    color: #71354b;
+}
+
+.yes-button {
+    background:
+        linear-gradient(
+            135deg,
+            #ff5083,
+            #d51e58
+        );
+
+    color: white;
+
+    font-size: 20px;
+
+    padding:
+        16px 35px;
 
     box-shadow:
         0 10px 25px
-        rgba(217, 54, 107, 0.28);
-
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s;
+        rgba(213,30,88,0.25);
 }
 
-.primary-button:hover {
+/* =========================================
+   WARNING
+========================================= */
 
-    transform:
-        translateY(-3px)
-        scale(1.03);
+.warning {
+    background: #fff8df;
 
-    box-shadow:
-        0 15px 30px
-        rgba(217, 54, 107, 0.35);
+    border:
+        1px solid #eed98f;
+
+    border-radius: 18px;
+
+    padding: 20px;
+
+    margin: 25px 0;
+
+    color: #67521a;
 }
 
+.warning strong {
+    color: #795d08;
+}
 
-/* ================================
-   PROGRESS
-================================ */
+/* =========================================
+   PROGRESS BAR
+========================================= */
 
-.progress-area {
-
+.progress {
     width: 100%;
 
-    margin-bottom: 25px;
-}
+    height: 7px;
 
+    background: #f3dce4;
 
-.progress-top {
-
-    display: flex;
-
-    justify-content: space-between;
-
-    align-items: center;
-
-    color: #a65a73;
-
-    font-size: 13px;
-
-    font-weight: bold;
-
-    margin-bottom: 9px;
-}
-
-
-.progress-bar {
-
-    width: 100%;
-
-    height: 8px;
-
-    background: #f7dce6;
-
-    border-radius: 999px;
+    border-radius: 20px;
 
     overflow: hidden;
+
+    margin-bottom: 30px;
 }
 
-
-.progress-fill {
-
+.progress-bar {
     height: 100%;
 
     background:
         linear-gradient(
             90deg,
-            #ff7da5,
-            #d9366b
+            #ff6d98,
+            #b92359
         );
 
-    border-radius: 999px;
+    border-radius: 20px;
 
     transition:
-        width 0.5s ease;
+        width 0.4s ease;
 }
-
-
-/* ================================
-   QUESTION ANIMATION
-================================ */
-
-.question-card {
-
-    animation:
-        questionAppear
-        0.45s
-        ease
-        both;
-}
-
-@keyframes questionAppear {
-
-    from {
-
-        opacity: 0;
-
-        transform:
-            translateX(35px)
-            scale(0.98);
-    }
-
-    to {
-
-        opacity: 1;
-
-        transform:
-            translateX(0)
-            scale(1);
-    }
-}
-
-
-/* ================================
-   QUESTION NUMBER
-================================ */
 
 .question-number {
+    color: #c03868;
 
-    display: inline-block;
+    font-weight: 700;
 
-    padding:
-        8px 15px;
+    font-size: 17px;
 
-    border-radius: 999px;
-
-    background: #fff0f5;
-
-    color: #cc416d;
-
-    font-size: 13px;
-
-    font-weight: bold;
-
-    letter-spacing: 1px;
+    margin-bottom: 12px;
 }
 
-
-/* ================================
+/* =========================================
    ANSWERS
-================================ */
+========================================= */
 
 .answers {
-
     display: flex;
 
     flex-direction: column;
 
     gap: 13px;
 
-    width: 100%;
-
-    max-width: 600px;
-
-    margin: 0 auto;
+    margin-top: 25px;
 }
 
-
 .answer {
-
     width: 100%;
 
-    padding:
-        17px 20px;
+    text-align: left;
 
-    border-radius: 18px;
+    background: white;
 
     border:
-        2px solid
-        #f5d2de;
+        2px solid #efd6df;
 
-    background:
-        rgba(255, 250, 252, 0.9);
+    color: #4b3039;
 
-    color: #5a2a3e;
+    padding: 17px 20px;
+
+    border-radius: 16px;
 
     font-size: 16px;
 
-    line-height: 1.45;
+    font-weight: 500;
+}
 
-    text-align: left;
+.answer:hover {
+    border-color: #d84b77;
+
+    background: #fff5f8;
+
+    transform:
+        translateX(5px);
+}
+
+/* =========================================
+   DATE PICKER
+========================================= */
+
+.date-area {
+    margin-top: 25px;
+}
+
+.date-area label {
+    display: block;
+
+    margin-bottom: 10px;
+
+    font-weight: 700;
+
+    color: #6f2341;
+}
+
+input[type="date"] {
+    width: 100%;
+
+    max-width: 300px;
+
+    padding: 15px;
+
+    border:
+        2px solid #efd2dc;
+
+    border-radius: 14px;
+
+    font-size: 17px;
+
+    color: #4c303a;
+
+    background: white;
+}
+
+/* =========================================
+   OUTFIT OPTIONS
+========================================= */
+
+.outfits {
+    display: grid;
+
+    grid-template-columns:
+        1fr 1fr;
+
+    gap: 15px;
+
+    margin-top: 25px;
+}
+
+.outfit {
+    border:
+        2px solid #eed6df;
+
+    border-radius: 18px;
+
+    padding: 22px 12px;
+
+    background: white;
 
     cursor: pointer;
 
     transition:
         all 0.2s ease;
-
-    position: relative;
-
-    overflow: hidden;
 }
 
-
-.answer::before {
-
-    content: "";
-
-    position: absolute;
-
-    left: 0;
-    top: 0;
-    bottom: 0;
-
-    width: 4px;
-
-    background:
-        linear-gradient(
-            #ff6f9b,
-            #d9366b
-        );
-
-    opacity: 0;
-
-    transition: opacity 0.2s;
-}
-
-
-.answer:hover {
-
+.outfit:hover {
     transform:
-        translateX(5px);
+        translateY(-3px);
 
-    border-color:
-        #ff8faf;
-
-    background:
-        #fff0f5;
+    border-color: #cf3c6c;
 
     box-shadow:
         0 8px 20px
-        rgba(200, 55, 103, 0.10);
+        rgba(140,40,70,0.10);
 }
 
+.outfit.selected {
+    border-color: #d92f68;
 
-.answer:hover::before {
+    background: #fff1f6;
 
-    opacity: 1;
+    box-shadow:
+        0 0 0 3px
+        rgba(217,47,104,0.12);
 }
 
-
-.answer:active {
-
-    transform:
-        scale(0.98);
-}
-
-
-/* ================================
-   FINAL QUESTION
-================================ */
-
-.final-title {
-
-    font-size: 38px;
-
-    color: #c73567;
-
-    line-height: 1.3;
-
-    margin-bottom: 15px;
-}
-
-
-.final-text {
-
-    font-size: 20px;
-
-    line-height: 1.7;
-
-    margin-bottom: 20px;
-}
-
-
-.final-buttons {
-
-    position: relative;
-
-    width: 100%;
-
-    min-height: 130px;
-
+.color-dots {
     display: flex;
 
     justify-content: center;
 
-    align-items: center;
+    gap: 8px;
 
-    gap: 22px;
+    margin-bottom: 12px;
 }
 
+.dot {
+    width: 30px;
 
-.yes-button {
+    height: 30px;
 
-    border: none;
+    border-radius: 50%;
 
-    padding:
-        16px 35px;
-
-    border-radius: 999px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ff4f81,
-            #d92f65
-        );
-
-    color: white;
-
-    font-size: 18px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 10px 25px
-        rgba(217, 47, 101, 0.30);
-
-    transition:
-        transform 0.2s ease;
+    border:
+        2px solid #ddd;
 }
 
-
-.yes-button:hover {
-
-    transform:
-        scale(1.08);
+.black {
+    background: #111;
 }
 
-
-.no-button {
-
-    border: none;
-
-    padding:
-        16px 28px;
-
-    border-radius: 999px;
-
-    background: #e4e4e4;
-
-    color: #555;
-
-    font-size: 17px;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    transition:
-        left 0.15s,
-        top 0.15s;
+.red {
+    background: #e63946;
 }
 
-
-/* ================================
-   RESULT
-================================ */
-
-.result-heart {
-
-    font-size: 70px;
-
-    margin-bottom: 15px;
-
-    animation:
-        heartbeat 1.3s infinite;
+.blue {
+    background: #3478db;
 }
 
-
-.result-title {
-
-    font-size: 38px;
-
-    color: #c73567;
-
-    margin-bottom: 15px;
+.white {
+    background: #fff;
 }
 
-
-.result-text {
-
-    font-size: 21px;
-
-    line-height: 1.7;
+.beige {
+    background: #d8c2a6;
 }
 
+.purple {
+    background: #8e5ab7;
+}
 
-/* ================================
+.outfit-name {
+    font-weight: 700;
+
+    color: #57313f;
+}
+
+/* =========================================
+   FINAL NO BUTTON
+========================================= */
+
+#finalNo {
+    position: relative;
+}
+
+/* =========================================
    CONFETTI
-================================ */
+========================================= */
 
-.confetti {
-
+#celebration {
     position: fixed;
 
-    top: -40px;
-
-    z-index: 999;
+    inset: 0;
 
     pointer-events: none;
 
-    animation:
-        fall 4s linear forwards;
+    overflow: hidden;
+
+    z-index: 10000;
 }
 
-@keyframes fall {
+.confetti {
+    position: absolute;
+
+    top: -30px;
+
+    width: 10px;
+
+    height: 17px;
+
+    animation:
+        confettiFall 3s linear forwards;
+}
+
+@keyframes confettiFall {
+
+    from {
+        transform:
+            translateY(0)
+            rotate(0deg);
+    }
 
     to {
-
         transform:
             translateY(110vh)
             rotate(720deg);
-
-        opacity: 0;
     }
 }
 
+.final-message {
+    font-size:
+        clamp(30px, 7vw, 50px);
 
-/* ================================
+    color: #bd2559;
+
+    margin-bottom: 15px;
+}
+
+.love {
+    font-size: 48px;
+
+    margin: 20px 0;
+}
+
+/* =========================================
    MOBILE
-================================ */
+========================================= */
 
 @media (max-width: 600px) {
 
-    .wrapper {
-        padding: 12px;
+    .app {
+        padding:
+            20px 12px;
     }
 
     .card {
+        padding:
+            35px 20px;
 
-        min-height: 90vh;
+        border-radius: 23px;
+    }
+
+    .outfits {
+        grid-template-columns:
+            1fr;
+    }
+
+    .buttons {
+        flex-direction:
+            column;
+    }
+
+    .buttons button {
+        width: 100%;
+    }
+
+    #musicButton {
+        top: 10px;
+        right: 10px;
+
+        font-size: 12px;
 
         padding:
-            32px 20px;
-
-        border-radius: 28px;
+            8px 12px;
     }
-
-    .main-heart {
-        font-size: 50px;
-    }
-
-    h1 {
-        font-size: 30px;
-    }
-
-    .intro-text {
-        font-size: 17px;
-    }
-
-    .question-title {
-        font-size: 22px;
-    }
-
-    .answer {
-        font-size: 15px;
-
-        padding:
-            15px 16px;
-    }
-
-    .final-title {
-        font-size: 30px;
-    }
-
-    .final-text {
-        font-size: 18px;
-    }
-
 }
 
 </style>
@@ -846,680 +675,1430 @@ h1 {
 
 <body>
 
+<!-- =========================================
+     MUSIC
+========================================= -->
 
-<!-- =================================
-     FLOATING HEARTS
-================================== -->
+<audio
+    id="backgroundMusic"
+    loop
+    preload="auto">
 
-<div class="background-heart"
-     style="left:5%; font-size:25px; animation-delay:0s;">
-    ❤️
-</div>
+    <source
+        src="until-i-found-you-instrumental.mp3"
+        type="audio/mpeg">
 
-<div class="background-heart"
-     style="left:18%; font-size:20px; animation-delay:3s;">
-    💕
-</div>
-
-<div class="background-heart"
-     style="left:35%; font-size:28px; animation-delay:5s;">
-    💗
-</div>
-
-<div class="background-heart"
-     style="left:55%; font-size:22px; animation-delay:1s;">
-    💖
-</div>
-
-<div class="background-heart"
-     style="left:72%; font-size:30px; animation-delay:4s;">
-    ❤️
-</div>
-
-<div class="background-heart"
-     style="left:90%; font-size:23px; animation-delay:2s;">
-    💕
-</div>
+</audio>
 
 
-<div class="wrapper">
+<!-- Music control -->
 
-<div class="card">
+<button
+    id="musicButton"
+    onclick="toggleMusic()">
 
+    🎵 Music: OFF
 
-<!-- =================================
-     INTRO SCREEN
-================================== -->
-
-<section
-    id="intro"
-    class="screen">
-
-    <div class="main-heart">
-        ❤️
-    </div>
-
-    <div class="eyebrow">
-        A VERY IMPORTANT QUIZ
-    </div>
-
-    <h1>
-        Hey You... 👀
-    </h1>
-
-    <p class="intro-text">
-
-        I have a few very important
-        questions for you.
-
-        <br><br>
-
-        Please answer honestly.
-
-        <br>
-
-        Or at least answer in a way
-        that makes your wife happy. 😂
-
-    </p>
-
-    <button
-        class="primary-button"
-        onclick="startQuiz()">
-
-        Okay, let's do this 😌
-
-    </button>
-
-</section>
+</button>
 
 
-<!-- =================================
-     QUIZ SCREEN
-================================== -->
+<!-- Background hearts -->
 
-<section
-    id="quiz"
-    class="screen hidden">
+<div id="hearts"></div>
 
 
-    <div class="progress-area">
+<!-- Main website -->
 
-        <div class="progress-top">
+<main class="app">
 
-            <span id="questionCounter">
-                Question 1 of 10
-            </span>
-
-            <span>
-                ❤️
-            </span>
-
-        </div>
-
-
-        <div class="progress-bar">
-
-            <div
-                id="progressFill"
-                class="progress-fill"
-                style="width:10%;">
-
-            </div>
-
-        </div>
+    <div
+        class="card"
+        id="app">
 
     </div>
 
-
-    <div id="questionContainer"></div>
-
-
-</section>
+</main>
 
 
-<!-- =================================
-     FINAL SCREEN
-================================== -->
+<!-- Celebration -->
 
-<section
-    id="final"
-    class="screen hidden">
+<div
+    id="celebration">
 
-
-    <div class="main-heart">
-        ❤️
-    </div>
-
-
-    <div class="eyebrow">
-        ONE LAST QUESTION
-    </div>
-
-
-    <h1 class="final-title">
-
-        Okay, enough questions. ❤️
-
-    </h1>
-
-
-    <p class="final-text">
-
-        There's only one thing left to ask...
-
-    </p>
-
-
-    <h1 class="final-title">
-
-        Will you be my date? ❤️
-
-    </h1>
-
-
-    <div class="final-buttons">
-
-        <button
-            class="yes-button"
-            onclick="sayYes()">
-
-            YES ❤️
-
-        </button>
-
-
-        <button
-            id="noButton"
-            class="no-button"
-            onclick="moveNo()">
-
-            NO 😐
-
-        </button>
-
-    </div>
-
-
-</section>
-
-
-<!-- =================================
-     YES RESULT
-================================== -->
-
-<section
-    id="success"
-    class="screen hidden">
-
-
-    <div class="result-heart">
-        🥰
-    </div>
-
-
-    <h1 class="result-title">
-
-        Excellent choice! ❤️
-
-    </h1>
-
-
-    <p class="result-text">
-
-        It's a date.
-
-        <br><br>
-
-        I'll take care of the details. 😌
-
-    </p>
-
-
-    <div style="
-        font-size:45px;
-        margin-top:25px;
-    ">
-
-        ❤️ 🌹 ❤️
-
-    </div>
-
-
-</section>
-
-
-</div>
 </div>
 
 
 <script>
 
-/* =================================
+/* =========================================================
+   MUSIC
+========================================================= */
+
+const backgroundMusic =
+    document.getElementById(
+        "backgroundMusic"
+    );
+
+const musicButton =
+    document.getElementById(
+        "musicButton"
+    );
+
+
+backgroundMusic.volume = 0.35;
+
+
+/*
+   Try to start music immediately.
+
+   Some browsers allow this.
+   Some browsers block audible autoplay.
+
+   If blocked, the first interaction
+   with the page starts it.
+*/
+
+function startMusic() {
+
+    backgroundMusic
+        .play()
+        .then(() => {
+
+            musicButton.innerText =
+                "🎵 Music: ON";
+
+        })
+        .catch(() => {
+
+            musicButton.innerText =
+                "🎵 Tap for music";
+
+        });
+
+}
+
+
+function toggleMusic() {
+
+    if (
+        backgroundMusic.paused
+    ) {
+
+        backgroundMusic
+            .play()
+            .then(() => {
+
+                musicButton.innerText =
+                    "🎵 Music: ON";
+
+            });
+
+    } else {
+
+        backgroundMusic.pause();
+
+        musicButton.innerText =
+            "🎵 Music: OFF";
+
+    }
+
+}
+
+
+/*
+   Try autoplay immediately
+*/
+
+window.addEventListener(
+    "load",
+    () => {
+
+        startMusic();
+
+    }
+);
+
+
+/*
+   If browser blocks autoplay,
+   start music on first interaction.
+*/
+
+document.addEventListener(
+    "click",
+    () => {
+
+        if (
+            backgroundMusic.paused
+        ) {
+
+            startMusic();
+
+        }
+
+    },
+    {
+        once: true
+    }
+);
+
+
+/* =========================================================
+   BACKGROUND HEARTS
+========================================================= */
+
+function createHearts() {
+
+    const container =
+        document.getElementById(
+            "hearts"
+        );
+
+    const hearts = [
+        "❤️",
+        "💕",
+        "💗",
+        "💖",
+        "♡"
+    ];
+
+    for (
+        let i = 0;
+        i < 25;
+        i++
+    ) {
+
+        const heart =
+            document.createElement(
+                "div"
+            );
+
+        heart.className =
+            "heart";
+
+        heart.innerText =
+            hearts[
+                Math.floor(
+                    Math.random() *
+                    hearts.length
+                )
+            ];
+
+        heart.style.left =
+            Math.random() * 100 +
+            "%";
+
+        heart.style.animationDuration =
+            (8 + Math.random() * 10) +
+            "s";
+
+        heart.style.animationDelay =
+            Math.random() * 10 +
+            "s";
+
+        heart.style.fontSize =
+            (15 + Math.random() * 20) +
+            "px";
+
+        container.appendChild(
+            heart
+        );
+
+    }
+
+}
+
+createHearts();
+
+
+/* =========================================================
+   APP
+========================================================= */
+
+const app =
+    document.getElementById(
+        "app"
+    );
+
+
+let selectedDate = "";
+
+let selectedOutfit = "";
+
+let currentQuestion = 0;
+
+
+/* =========================================================
    QUESTIONS
-================================= */
+========================================================= */
 
 const questions = [
 
     {
+        number: 1,
+
         text:
-        "How much do you miss me?",
+            "How much do you miss me?",
 
         answers: [
+
             "A. A little",
+
             "B. Quite a bit",
+
             "C. More than I'd admit",
+
             "D. Ekdomi na. Why are we even discussing this? 😂"
+
         ]
     },
 
 
     {
+        number: 2,
+
         text:
-        "Question 2 😏: What's the most dangerous thing about going on a date with me?",
+            "😏 What's the most dangerous thing about going on a date with me?",
 
         answers: [
+
             "A. I'll steal your food",
+
             "B. I'll make you laugh when you're trying to be serious",
+
             "C. You'll end up not wanting the date to end",
+
             "D. All of the above, obviously"
+
         ]
     },
 
 
     {
+        number: 3,
+
         text:
-        "Wait!! Tell me, what's more dangerous?",
+            "Wait!! Tell me, what's more dangerous?",
 
         answers: [
+
             "A. Me when I'm hungry",
+
             "B. Me when I'm annoyed",
+
             "C. Me when I have an idea",
+
             "D. Me saying “I have a surprise for you” 😏"
+
         ]
     },
 
 
     {
+        number: 4,
+
         text:
-        "If you could press pause on everything for one evening, what would you want us to do?",
+            "If I were a food, what would I be?",
 
         answers: [
-            "A. Go somewhere new",
-            "B. Have dinner somewhere nice",
-            "C. Take a long drive and talk",
-            "D. Just spend time together, no plans"
+
+            "A. Chocolate 🍫",
+
+            "B. Pizza 🍕",
+
+            "C. Spicy noodles 🌶️",
+
+            "D. Something you can't stop eating 😏"
+
         ]
     },
 
 
     {
+        number: 5,
+
         text:
-        "What's one thing you'd like us to do together again?",
+            "What's one thing you'd like us to do together again?",
 
         answers: [
+
             "A. Go somewhere we've been before",
+
             "B. Try somewhere completely new",
+
             "C. Stay up talking way too late",
+
             "D. Make another memory we can laugh about later"
+
         ]
     },
 
 
     {
+        number: 6,
+
         text:
-        "I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.",
+            "I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.",
 
         answers: [
+
             "A. Absolutely. Let's go.",
+
             "B. Ask where we're going first.",
+
             "C. Ask what to wear.",
+
             "D. Make a 🌿🚬"
+
         ]
     },
 
 
     {
+        number: 7,
+
         text:
-        "If you could change ONE thing about our relationship, what would you choose?",
+            "If you could change ONE thing about our relationship, what would you choose?",
 
         answers: [
-            "A. More spontaneous dates",
+
+            "A. Less fights",
+
             "B. More uninterrupted time together",
+
             "C. More adventures",
+
             "D. Nothing. I'd rather make more memories from here ❤️"
+
         ]
     },
 
 
     {
+        number: 8,
+
         text:
-        "Imagine you have been invited on a date. What kind of date would be hardest to say no to?",
+            "Imagine you have been invited on a date. What kind of date would be hardest to say no to?",
 
         answers: [
+
             "A. Dinner somewhere beautiful",
+
             "B. A movie-night",
+
             "C. Somewhere neither of you has been before",
+
             "D. A date where the only plan is to spend time together ❤️"
+
         ]
     },
 
 
     {
+        number: 9,
+
         text:
-        "And if I told you the person asking is… me?",
+            "And if I told you the person asking is… me?",
 
         answers: [
+
             "A. Of course, it has to be my wife 😒 ugghhh",
+
             "B. I was wondering when you'd get to the point",
+
             "C. Let me think about it 😌",
+
             "D. Where and when?"
+
         ]
     },
 
 
     {
+        number: 10,
+
         text:
-        "Would you let me steal you away for an evening?",
+            "Would you let me steal you away for an evening?",
 
         answers: [
+
             "A. ❤️ Yes — Especially if it's with you.",
+
             "B. 😏 Yes — But you'll have to convince me.",
+
             "C. 🙈 No — I'm afraid I'm already a little too interested.",
+
             "D. 😂 No — This sounds like a terrible idea… let's do it anyway."
+
         ]
     }
 
 ];
 
 
-let currentQuestion = 0;
+/* =========================================================
+   PAGE 1
+========================================================= */
+
+function showWelcome() {
+
+    app.innerHTML = `
+
+        <div class="emoji">
+            😏❤️
+        </div>
+
+        <h1>
+            Hi there!
+        </h1>
+
+        <h2>
+            Are you ready for a game? 😏❤️
+        </h2>
+
+        <div class="buttons">
+
+            <button
+                class="primary"
+                onclick="showWarning()">
+
+                Yes 😏
+
+            </button>
 
 
-/* =================================
-   START
-================================= */
+            <button
+                class="secondary"
+                onclick="wrongChoice()">
 
-function startQuiz() {
+                No
 
-    document
-        .getElementById("intro")
-        .classList.add("hidden");
+            </button>
 
-    document
-        .getElementById("quiz")
-        .classList.remove("hidden");
+        </div>
 
-    showQuestion();
+    `;
+
 }
 
 
-/* =================================
-   SHOW ONE QUESTION ONLY
-================================= */
+/* =========================================================
+   NO — WRONG CHOICE
+========================================================= */
+
+function wrongChoice() {
+
+    app.innerHTML = `
+
+        <div class="emoji">
+            😐
+        </div>
+
+        <h1>
+            Wrong Choice
+        </h1>
+
+        <p>
+            That wasn't the answer I was looking for.
+        </p>
+
+        <p>
+            Please reconsider your life choices. 😂
+        </p>
+
+        <div class="buttons">
+
+            <button
+                class="primary"
+                onclick="showWelcome()">
+
+                Try Again 😌
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   WARNING PAGE
+========================================================= */
+
+function showWarning() {
+
+    /*
+       His click on YES is also the perfect
+       opportunity to start the music if the
+       browser blocked autoplay.
+    */
+
+    startMusic();
+
+
+    app.innerHTML = `
+
+        <div class="emoji">
+            ⚠️
+        </div>
+
+        <h1>
+            Please proceed with caution.
+        </h1>
+
+        <div class="warning">
+
+            <p>
+                <strong>
+                    Please proceed with caution.
+                </strong>
+            </p>
+
+            <p>
+                Your answers may have consequences.
+            </p>
+
+        </div>
+
+        <p>
+            Once you begin, there is absolutely
+            no turning back.
+        </p>
+
+        <p>
+            Probably. 😂
+        </p>
+
+        <div class="buttons">
+
+            <button
+                class="primary"
+                onclick="startQuestions()">
+
+                I'm ready 😎
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   START QUESTIONS
+========================================================= */
+
+function startQuestions() {
+
+    currentQuestion = 0;
+
+    showQuestion();
+
+}
+
+
+/* =========================================================
+   QUESTION PAGE
+========================================================= */
 
 function showQuestion() {
 
-    const question =
-        questions[currentQuestion];
-
-    const container =
-        document.getElementById(
-            "questionContainer"
-        );
+    const q =
+        questions[
+            currentQuestion
+        ];
 
 
-    document.getElementById(
-        "questionCounter"
-    ).textContent =
-        `Question ${currentQuestion + 1} of ${questions.length}`;
+    const progress =
+        (
+            (currentQuestion + 1)
+            /
+            questions.length
+        ) * 100;
 
 
-    document.getElementById(
-        "progressFill"
-    ).style.width =
-        `${((currentQuestion + 1) / questions.length) * 100}%`;
+    let answerHTML = "";
 
 
-    container.innerHTML = "";
+    q.answers.forEach(
+        (answer, index) => {
 
+            answerHTML += `
 
-    const questionCard =
-        document.createElement("div");
+                <button
+                    class="answer"
+                    onclick="nextQuestion(${index})">
 
-    questionCard.className =
-        "question-card";
+                    ${answer}
 
+                </button>
 
-    const number =
-        document.createElement("div");
-
-    number.className =
-        "question-number";
-
-    number.textContent =
-        `QUESTION ${currentQuestion + 1}`;
-
-
-    const title =
-        document.createElement("div");
-
-    title.className =
-        "question-title";
-
-    title.textContent =
-        question.text;
-
-
-    const answers =
-        document.createElement("div");
-
-    answers.className =
-        "answers";
-
-
-    question.answers.forEach(
-        function(answer) {
-
-            const button =
-                document.createElement("button");
-
-            button.className =
-                "answer";
-
-            button.textContent =
-                answer;
-
-
-            button.onclick =
-                function() {
-
-                    nextQuestion();
-
-                };
-
-
-            answers.appendChild(button);
+            `;
 
         }
     );
 
 
-    questionCard.appendChild(number);
+    app.innerHTML = `
 
-    questionCard.appendChild(title);
+        <div class="progress">
 
-    questionCard.appendChild(answers);
+            <div
+                class="progress-bar"
+                style="width:${progress}%">
 
-    container.appendChild(questionCard);
+            </div>
+
+        </div>
+
+
+        <div class="question-number">
+
+            Question
+            ${q.number}
+            of
+            ${questions.length}
+
+        </div>
+
+
+        <h2>
+            ${q.text}
+        </h2>
+
+
+        <div class="answers">
+
+            ${answerHTML}
+
+        </div>
+
+    `;
 
 }
 
 
-/* =================================
+/* =========================================================
    NEXT QUESTION
-================================= */
+========================================================= */
 
-function nextQuestion() {
+function nextQuestion(
+    answerIndex
+) {
 
     currentQuestion++;
 
 
     if (
-        currentQuestion >=
+        currentQuestion
+        <
         questions.length
     ) {
 
-        showFinal();
+        showQuestion();
 
-        return;
+    } else {
+
+        showFinalIntro();
+
     }
 
+}
 
-    showQuestion();
+
+/* =========================================================
+   FINAL INTRO
+========================================================= */
+
+function showFinalIntro() {
+
+    app.innerHTML = `
+
+        <div class="emoji">
+            ❤️
+        </div>
+
+        <h1>
+            Okay, enough questions. ❤️
+        </h1>
+
+        <h2>
+            There's only one thing left to ask...
+        </h2>
+
+        <div class="buttons">
+
+            <button
+                class="primary"
+                onclick="showDateQuestion()">
+
+                Continue ❤️
+
+            </button>
+
+        </div>
+
+    `;
 
 }
 
 
-/* =================================
-   FINAL
-================================= */
+/* =========================================================
+   WILL YOU BE MY DATE?
+========================================================= */
 
-function showFinal() {
+function showDateQuestion() {
 
-    document
-        .getElementById("quiz")
-        .classList.add("hidden");
+    app.innerHTML = `
 
-    document
-        .getElementById("final")
-        .classList.remove("hidden");
+        <div class="emoji">
+            ✨❤️✨
+        </div>
+
+        <h1>
+            Will you be my date? ❤️
+        </h1>
+
+        <p>
+            Choose carefully.
+        </p>
+
+        <div
+            class="buttons"
+            id="finalButtons">
+
+            <button
+                class="yes-button"
+                onclick="dateYes()">
+
+                Yes ❤️
+
+            </button>
+
+
+            <button
+                class="secondary"
+                id="finalNo">
+
+                No
+
+            </button>
+
+        </div>
+
+    `;
+
+
+    setupNoButton();
 
 }
 
 
-/* =================================
-   YES
-================================= */
+/* =========================================================
+   ESCAPING NO BUTTON
+========================================================= */
 
-function sayYes() {
+function setupNoButton() {
 
-    document
-        .getElementById("final")
-        .classList.add("hidden");
-
-    document
-        .getElementById("success")
-        .classList.remove("hidden");
-
-
-    makeConfetti();
-
-}
-
-
-/* =================================
-   MOVING NO BUTTON
-================================= */
-
-function moveNo() {
-
-    const button =
+    const noButton =
         document.getElementById(
-            "noButton"
+            "finalNo"
         );
 
 
-    button.style.position =
-        "fixed";
+    if (!noButton) return;
 
 
-    const padding = 20;
+    noButton.addEventListener(
+        "mouseenter",
+        escapeNo
+    );
+
+
+    noButton.addEventListener(
+        "touchstart",
+        escapeNo
+    );
+
+
+    noButton.addEventListener(
+        "click",
+        escapeNo
+    );
+
+}
+
+
+function escapeNo() {
+
+    const noButton =
+        document.getElementById(
+            "finalNo"
+        );
+
+
+    if (!noButton) return;
+
+
+    const padding = 25;
 
 
     const maxX =
-        window.innerWidth -
-        button.offsetWidth -
+        window.innerWidth
+        -
+        noButton.offsetWidth
+        -
         padding;
 
 
     const maxY =
-        window.innerHeight -
-        button.offsetHeight -
+        window.innerHeight
+        -
+        noButton.offsetHeight
+        -
         padding;
 
 
     const x =
-        Math.random() *
-        Math.max(maxX, padding);
+        Math.max(
+            padding,
+            Math.random() * maxX
+        );
 
 
     const y =
-        Math.random() *
-        Math.max(maxY, padding);
+        Math.max(
+            padding,
+            Math.random() * maxY
+        );
 
 
-    button.style.left =
-        Math.max(x, padding) + "px";
+    noButton.style.position =
+        "fixed";
 
 
-    button.style.top =
-        Math.max(y, padding) + "px";
+    noButton.style.left =
+        x + "px";
 
 
-    const messages = [
-
-        "Nice try 😂",
-
-        "NOPE 😏",
-
-        "Try again, husband 😂",
-
-        "You really thought? 👀",
-
-        "Wrong button ❤️",
-
-        "I don't think so 😂",
-
-        "The correct answer is YES 😌",
-
-        "Catch me if you can! 😂"
-
-    ];
+    noButton.style.top =
+        y + "px";
 
 
-    button.textContent =
-        messages[
-            Math.floor(
-                Math.random() *
-                messages.length
-            )
-        ];
+    noButton.style.zIndex =
+        "10000";
 
 }
 
 
-/* =================================
+/* =========================================================
+   YES
+========================================================= */
+
+function dateYes() {
+
+    startMusic();
+
+
+    app.innerHTML = `
+
+        <div class="emoji">
+            🎉❤️
+        </div>
+
+        <h1>
+            Excellent choice Sir!
+        </h1>
+
+        <p>
+            I knew you had good taste. 😌
+        </p>
+
+        <div class="buttons">
+
+            <button
+                class="primary"
+                onclick="showDatePicker()">
+
+                Pick our date 📅
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   DATE PICKER
+========================================================= */
+
+function showDatePicker() {
+
+    app.innerHTML = `
+
+        <div class="emoji">
+            📅❤️
+        </div>
+
+        <h1>
+            Choose our date
+        </h1>
+
+        <p>
+            Pick a day in August or September 2026.
+        </p>
+
+
+        <div class="date-area">
+
+            <label
+                for="datePicker">
+
+                Our date:
+
+            </label>
+
+
+            <input
+                type="date"
+                id="datePicker"
+                min="2026-08-01"
+                max="2026-09-30">
+
+        </div>
+
+
+        <div class="buttons">
+
+            <button
+                class="primary"
+                onclick="confirmDate()">
+
+                That's the day ❤️
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   CONFIRM DATE
+========================================================= */
+
+function confirmDate() {
+
+    const picker =
+        document.getElementById(
+            "datePicker"
+        );
+
+
+    if (!picker.value) {
+
+        alert(
+            "You need to choose a date first! 😌"
+        );
+
+        return;
+
+    }
+
+
+    selectedDate =
+        picker.value;
+
+
+    showOutfits();
+
+}
+
+
+/* =========================================================
+   OUTFIT COLORS
+========================================================= */
+
+function showOutfits() {
+
+    app.innerHTML = `
+
+        <div class="emoji">
+            👗🕺
+        </div>
+
+        <h1>
+            Now for the important part.
+        </h1>
+
+        <h2>
+            Pick a color code for our outfits.
+        </h2>
+
+
+        <div class="outfits">
+
+
+            <!-- OPTION 1 -->
+
+            <div
+                class="outfit"
+                onclick="
+                    selectOutfit(
+                        'Black & Red',
+                        this
+                    )
+                ">
+
+                <div class="color-dots">
+
+                    <span
+                        class="dot black">
+                    </span>
+
+                    <span
+                        class="dot red">
+                    </span>
+
+                </div>
+
+                <div class="outfit-name">
+
+                    Option 1<br>
+
+                    Black and Red
+
+                </div>
+
+            </div>
+
+
+            <!-- OPTION 2 -->
+
+            <div
+                class="outfit"
+                onclick="
+                    selectOutfit(
+                        'Blue & White',
+                        this
+                    )
+                ">
+
+                <div class="color-dots">
+
+                    <span
+                        class="dot blue">
+                    </span>
+
+                    <span
+                        class="dot white">
+                    </span>
+
+                </div>
+
+                <div class="outfit-name">
+
+                    Option 2<br>
+
+                    Blue and White
+
+                </div>
+
+            </div>
+
+
+            <!-- OPTION 3 -->
+
+            <div
+                class="outfit"
+                onclick="
+                    selectOutfit(
+                        'Beige & Purple',
+                        this
+                    )
+                ">
+
+                <div class="color-dots">
+
+                    <span
+                        class="dot beige">
+                    </span>
+
+                    <span
+                        class="dot purple">
+                    </span>
+
+                </div>
+
+                <div class="outfit-name">
+
+                    Option 3<br>
+
+                    Beige and Purple
+
+                </div>
+
+            </div>
+
+
+            <!-- OPTION 4 -->
+
+            <div
+                class="outfit"
+                onclick="
+                    selectOutfit(
+                        'Black & White',
+                        this
+                    )
+                ">
+
+                <div class="color-dots">
+
+                    <span
+                        class="dot black">
+                    </span>
+
+                    <span
+                        class="dot white">
+                    </span>
+
+                </div>
+
+                <div class="outfit-name">
+
+                    Option 4<br>
+
+                    Black and White
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+
+        <div class="buttons">
+
+            <button
+                class="primary"
+                onclick="confirmOutfit()">
+
+                Confirm our colors ❤️
+
+            </button>
+
+        </div>
+
+    `;
+
+}
+
+
+/* =========================================================
+   SELECT OUTFIT
+========================================================= */
+
+function selectOutfit(
+    name,
+    element
+) {
+
+    selectedOutfit =
+        name;
+
+
+    document
+        .querySelectorAll(
+            ".outfit"
+        )
+        .forEach(
+            item => {
+
+                item.classList.remove(
+                    "selected"
+                );
+
+            }
+        );
+
+
+    element.classList.add(
+        "selected"
+    );
+
+}
+
+
+/* =========================================================
+   CONFIRM OUTFIT
+========================================================= */
+
+function confirmOutfit() {
+
+    if (!selectedOutfit) {
+
+        alert(
+            "You need to choose our colors first! 😂"
+        );
+
+        return;
+
+    }
+
+
+    showFinalCelebration();
+
+}
+
+
+/* =========================================================
+   FINAL CELEBRATION
+========================================================= */
+
+function showFinalCelebration() {
+
+    app.innerHTML = `
+
+        <div class="emoji">
+            🎉🥳❤️🎉
+        </div>
+
+
+        <div class="final-message">
+
+            Thank you for your time!
+
+        </div>
+
+
+        <h2>
+            I love you ❤️
+        </h2>
+
+
+        <div class="love">
+
+            🎉 ❤️ 🎊 ❤️ 🎉
+
+        </div>
+
+
+        <p>
+
+            Date confirmed.
+
+        </p>
+
+
+        <p>
+
+            <strong>
+                ${formatDate(selectedDate)}
+            </strong>
+
+        </p>
+
+
+        <p>
+
+            Outfit:
+
+            <strong>
+                ${selectedOutfit}
+            </strong>
+
+        </p>
+
+
+        <p>
+
+            See you on our date, Sir. 😌❤️
+
+        </p>
+
+    `;
+
+
+    launchConfetti();
+
+}
+
+
+/* =========================================================
+   FORMAT DATE
+========================================================= */
+
+function formatDate(
+    dateString
+) {
+
+    const date =
+        new Date(
+            dateString +
+            "T12:00:00"
+        );
+
+
+    return date.toLocaleDateString(
+        "en-US",
+        {
+            weekday: "long",
+
+            year: "numeric",
+
+            month: "long",
+
+            day: "numeric"
+        }
+    );
+
+}
+
+
+/* =========================================================
    CONFETTI
-================================= */
+========================================================= */
 
-function makeConfetti() {
+function launchConfetti() {
 
-    const emojis = [
-        "❤️",
-        "💕",
-        "💖",
-        "💗",
-        "🌹",
-        "✨",
-        "🥰",
-        "😘"
+    const container =
+        document.getElementById(
+            "celebration"
+        );
+
+
+    const colors = [
+
+        "#ff4f81",
+
+        "#d9366e",
+
+        "#ffd166",
+
+        "#06d6a0",
+
+        "#118ab2",
+
+        "#9b5de5",
+
+        "#ffffff"
+
     ];
 
 
     for (
         let i = 0;
-        i < 80;
+        i < 120;
         i++
     ) {
 
@@ -1533,47 +2112,62 @@ function makeConfetti() {
             "confetti";
 
 
-        piece.textContent =
-            emojis[
+        piece.style.left =
+            Math.random() * 100 +
+            "%";
+
+
+        piece.style.background =
+            colors[
                 Math.floor(
                     Math.random() *
-                    emojis.length
+                    colors.length
                 )
             ];
 
 
-        piece.style.left =
-            Math.random() * 100 + "vw";
-
-
-        piece.style.fontSize =
-            (15 +
-            Math.random() * 20)
-            + "px";
-
-
         piece.style.animationDelay =
-            Math.random() * 1.5
-            + "s";
+            Math.random() * 1.5 +
+            "s";
 
 
-        document.body.appendChild(
+        piece.style.animationDuration =
+            2 +
+            Math.random() * 2 +
+            "s";
+
+
+        piece.style.transform =
+            `rotate(
+                ${Math.random() * 360}deg
+            )`;
+
+
+        container.appendChild(
             piece
-        );
-
-
-        setTimeout(
-            function() {
-
-                piece.remove();
-
-            },
-            5000
         );
 
     }
 
+
+    setTimeout(
+        () => {
+
+            container.innerHTML =
+                "";
+
+        },
+        5000
+    );
+
 }
+
+
+/* =========================================================
+   START
+========================================================= */
+
+showWelcome();
 
 </script>
 
