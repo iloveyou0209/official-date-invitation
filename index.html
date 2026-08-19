@@ -1,1260 +1,1193 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Our Little Adventure ❤️</title>
+
 <style>
-
-@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap');
-
-:root {
-  --pink: #ff4f91;
-  --hot-pink: #ff2f75;
-  --rose: #ff8eae;
-  --purple: #a855f7;
-  --deep-purple: #160018;
-  --wine: #35001f;
-  --gold: #ffd98a;
-  --cream: #fff5f7;
-}
+@import url('https://fonts.googleapis.com/css2?family=Baloo+2:wght@400;500;600;700;800&family=Poppins:wght@400;500;600;700&display=swap');
 
 * {
-  box-sizing: border-box;
-}
-
-html,
-body {
-  margin: 0;
-  padding: 0;
-  width: 100%;
-  min-height: 100%;
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
 
 body {
-  min-height: 100vh;
-  color: white;
-  font-family: "DM Sans", sans-serif;
-  overflow-x: hidden;
-
-  background:
-    radial-gradient(
-      circle at 15% 10%,
-      rgba(255, 65, 130, 0.30),
-      transparent 25%
-    ),
-    radial-gradient(
-      circle at 90% 15%,
-      rgba(155, 70, 255, 0.30),
-      transparent 28%
-    ),
-    radial-gradient(
-      circle at 50% 100%,
-      rgba(255, 0, 95, 0.22),
-      transparent 35%
-    ),
-    linear-gradient(
-      135deg,
-      #0b0012 0%,
-      #1a001d 30%,
-      #32001f 65%,
-      #100018 100%
-    );
-
-  position: relative;
+    min-height: 100vh;
+    font-family: 'Poppins', sans-serif;
+    overflow-x: hidden;
+    color: #fff;
+    background:
+        radial-gradient(circle at 15% 20%, rgba(255, 0, 102, .30), transparent 25%),
+        radial-gradient(circle at 85% 15%, rgba(126, 87, 255, .35), transparent 25%),
+        radial-gradient(circle at 50% 90%, rgba(255, 70, 140, .25), transparent 30%),
+        linear-gradient(135deg, #180021, #35003d 45%, #12001d);
 }
 
-/* ==========================================================
-   ANIMATED BACKGROUND
-========================================================== */
+/* ---------- BACKGROUND EFFECTS ---------- */
 
-body::before {
-  content: "";
-  position: fixed;
-  inset: -30%;
-  z-index: 0;
-  pointer-events: none;
-
-  background:
-    radial-gradient(
-      circle at 30% 40%,
-      rgba(255, 44, 112, 0.12),
-      transparent 25%
-    ),
-    radial-gradient(
-      circle at 70% 60%,
-      rgba(135, 55, 255, 0.12),
-      transparent 25%
-    );
-
-  animation: backgroundGlow 16s ease-in-out infinite alternate;
+#particles {
+    position: fixed;
+    inset: 0;
+    pointer-events: none;
+    overflow: hidden;
+    z-index: 0;
 }
 
-@keyframes backgroundGlow {
-  0% {
-    transform: translate(-5%, -3%) scale(1);
-  }
-
-  50% {
-    transform: translate(5%, 4%) scale(1.08);
-  }
-
-  100% {
-    transform: translate(-2%, 7%) scale(1.15);
-  }
-}
-
-/* ==========================================================
-   STARS
-========================================================== */
-
-.sparkle-container {
-  position: fixed;
-  inset: 0;
-  pointer-events: none;
-  z-index: 1;
-  overflow: hidden;
+.sparkle,
+.floating-heart,
+.confetti {
+    position: absolute;
+    pointer-events: none;
 }
 
 .sparkle {
-  position: absolute;
-  color: #fff;
-  opacity: 0;
-  font-size: 12px;
-
-  text-shadow:
-    0 0 5px white,
-    0 0 12px #ff79a9,
-    0 0 22px #ff3f83;
-
-  animation: starFloat linear infinite;
-}
-
-@keyframes starFloat {
-
-  0% {
-    opacity: 0;
-    transform:
-      translateY(30px)
-      scale(0.4)
-      rotate(0deg);
-  }
-
-  20% {
-    opacity: 1;
-  }
-
-  50% {
-    opacity: 0.8;
-    transform:
-      translateY(-35vh)
-      scale(1.2)
-      rotate(180deg);
-  }
-
-  80% {
-    opacity: 0.8;
-  }
-
-  100% {
-    opacity: 0;
-    transform:
-      translateY(-100vh)
-      scale(0.3)
-      rotate(360deg);
-  }
-}
-
-/* ==========================================================
-   MAIN CONTAINER
-========================================================== */
-
-.app {
-  min-height: 100vh;
-  position: relative;
-  z-index: 2;
-
-  display: flex;
-  justify-content: center;
-  align-items: center;
-
-  padding: 35px 20px;
-}
-
-/* ==========================================================
-   MAIN GLASS CARD
-========================================================== */
-
-.screen {
-  width: min(920px, 100%);
-  min-height: 600px;
-
-  padding: 65px 55px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: center;
-  align-items: center;
-
-  text-align: center;
-
-  position: relative;
-
-  border-radius: 38px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,0.13),
-      rgba(255,255,255,0.045)
-    );
-
-  border: 1px solid rgba(255,255,255,0.20);
-
-  box-shadow:
-    0 30px 100px rgba(0,0,0,0.60),
-    0 0 80px rgba(255,55,125,0.10),
-    inset 0 1px 0 rgba(255,255,255,0.15);
-
-  backdrop-filter: blur(25px);
-  -webkit-backdrop-filter: blur(25px);
-
-  animation: cardEntrance 0.7s cubic-bezier(.2,.8,.2,1);
-}
-
-.screen::before {
-  content: "";
-
-  position: absolute;
-  inset: 1px;
-
-  border-radius: 37px;
-
-  pointer-events: none;
-
-  background:
-    linear-gradient(
-      120deg,
-      rgba(255,255,255,0.07),
-      transparent 35%,
-      transparent 65%,
-      rgba(255,120,170,0.05)
-    );
-}
-
-@keyframes cardEntrance {
-
-  from {
-    opacity: 0;
-    transform:
-      translateY(35px)
-      scale(0.94);
-    filter: blur(4px);
-  }
-
-  to {
-    opacity: 1;
-    transform:
-      translateY(0)
-      scale(1);
-    filter: blur(0);
-  }
-}
-
-/* ==========================================================
-   DECORATIVE CORNERS
-========================================================== */
-
-.screen::after {
-  content: "✦";
-
-  position: absolute;
-
-  top: 22px;
-  right: 28px;
-
-  color: #ffd3e3;
-
-  font-size: 25px;
-
-  text-shadow:
-    0 0 8px white,
-    0 0 20px #ff4f91;
-
-  animation: twinkle 1.8s ease-in-out infinite alternate;
+    color: #fff;
+    animation: twinkle 2s infinite ease-in-out;
+    text-shadow: 0 0 10px white, 0 0 20px #ff70b7;
 }
 
 @keyframes twinkle {
-
-  from {
-    opacity: 0.25;
-    transform: scale(0.7) rotate(0deg);
-  }
-
-  to {
-    opacity: 1;
-    transform: scale(1.3) rotate(30deg);
-  }
+    0%, 100% {
+        opacity: .15;
+        transform: scale(.6) rotate(0deg);
+    }
+    50% {
+        opacity: 1;
+        transform: scale(1.4) rotate(180deg);
+    }
 }
 
-/* ==========================================================
-   TYPOGRAPHY
-========================================================== */
+.floating-heart {
+    animation: floatUp linear infinite;
+    opacity: .55;
+    filter: drop-shadow(0 0 8px #ff3e91);
+}
 
-h1,
-h2,
-h3 {
-  font-family: "Cormorant Garamond", serif;
+@keyframes floatUp {
+    from {
+        transform: translateY(110vh) rotate(0deg);
+        opacity: 0;
+    }
+    15% { opacity: .6; }
+    85% { opacity: .6; }
+    to {
+        transform: translateY(-15vh) rotate(360deg);
+        opacity: 0;
+    }
+}
+
+/* ---------- APP ---------- */
+
+#app {
+    position: relative;
+    z-index: 2;
+    min-height: 100vh;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    padding: 30px 15px;
+}
+
+.screen {
+    width: min(1000px, 96vw);
+    min-height: 560px;
+    padding: 45px 50px;
+    border-radius: 35px;
+    display: none;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+
+    background: rgba(255, 255, 255, .09);
+    border: 1px solid rgba(255,255,255,.20);
+    box-shadow:
+        0 25px 80px rgba(0,0,0,.45),
+        inset 0 1px rgba(255,255,255,.15);
+    backdrop-filter: blur(20px);
+    -webkit-backdrop-filter: blur(20px);
+
+    animation: screenIn .55s ease;
+}
+
+.screen.active {
+    display: flex;
+}
+
+@keyframes screenIn {
+    from {
+        opacity: 0;
+        transform: translateY(25px) scale(.97);
+    }
+    to {
+        opacity: 1;
+        transform: translateY(0) scale(1);
+    }
 }
 
 h1 {
-  margin: 0 0 24px;
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(2.5rem, 7vw, 5rem);
+    line-height: 1.05;
+    margin-bottom: 25px;
+    background: linear-gradient(90deg, #fff, #ffb3d9, #fff);
+    background-size: 200% auto;
+    -webkit-background-clip: text;
+    background-clip: text;
+    color: transparent;
+    animation: shine 3s linear infinite;
+}
 
-  font-size: clamp(3rem, 7vw, 5.2rem);
-
-  line-height: 0.98;
-
-  font-weight: 600;
-
-  letter-spacing: -1px;
-
-  color: #fff8fb;
-
-  text-shadow:
-    0 2px 20px rgba(255,65,130,0.35),
-    0 0 45px rgba(255,65,130,0.12);
+@keyframes shine {
+    to { background-position: 200% center; }
 }
 
 h2 {
-  margin: 0 0 35px;
-
-  max-width: 800px;
-
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
-
-  line-height: 1.15;
-
-  font-weight: 600;
-
-  color: #fff7fa;
-
-  text-shadow:
-    0 0 25px rgba(255,100,160,0.18);
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(2rem, 5vw, 3.5rem);
+    line-height: 1.15;
+    margin-bottom: 25px;
 }
 
-h3 {
-  font-size: 1.6rem;
+.question-number {
+    color: #ff9aca;
+    font-size: 1rem;
+    font-weight: 700;
+    letter-spacing: 3px;
+    text-transform: uppercase;
+    margin-bottom: 10px;
+}
+
+.question-text {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(1.7rem, 4vw, 2.6rem);
+    line-height: 1.25;
+    margin-bottom: 30px;
+    max-width: 850px;
 }
 
 .subtitle {
-  max-width: 700px;
-
-  margin: 0 auto 35px;
-
-  color: #fbdce8;
-
-  font-family: "DM Sans", sans-serif;
-
-  font-size: 1.15rem;
-
-  line-height: 1.8;
+    font-size: clamp(1rem, 2.5vw, 1.25rem);
+    color: #f8dceb;
+    max-width: 700px;
+    line-height: 1.7;
+    margin-bottom: 30px;
 }
 
-.warning {
-  max-width: 650px;
+/* ---------- BUTTONS ---------- */
 
-  margin-bottom: 35px;
-
-  color: #ffd5e3;
-
-  font-size: 1.25rem;
-
-  line-height: 1.8;
-}
-
-/* ==========================================================
-   SCRIPT-STYLE ACCENT
-========================================================== */
-
-.big-heart {
-  margin-bottom: 15px;
-
-  font-size: 5rem;
-
-  filter:
-    drop-shadow(0 0 10px rgba(255,50,110,0.8))
-    drop-shadow(0 0 25px rgba(255,50,110,0.4));
-
-  animation: heartBeat 1.3s ease-in-out infinite;
-}
-
-@keyframes heartBeat {
-
-  0%,
-  100% {
-    transform: scale(1);
-  }
-
-  15% {
-    transform: scale(1.16);
-  }
-
-  30% {
-    transform: scale(1);
-  }
-
-  45% {
-    transform: scale(1.1);
-  }
-}
-
-/* ==========================================================
-   QUESTION NUMBER
-========================================================== */
-
-.question-number {
-
-  display: inline-flex;
-
-  align-items: center;
-  justify-content: center;
-
-  margin-bottom: 18px;
-
-  padding: 8px 18px;
-
-  border-radius: 100px;
-
-  color: #ffd0df;
-
-  background: rgba(255,80,140,0.10);
-
-  border: 1px solid rgba(255,120,170,0.20);
-
-  font-size: 0.8rem;
-
-  letter-spacing: 3px;
-
-  text-transform: uppercase;
-
-  font-weight: 700;
-
-  box-shadow:
-    0 0 20px rgba(255,50,120,0.08);
-}
-
-/* ==========================================================
-   BUTTONS
-========================================================== */
-
-.buttons {
-
-  display: flex;
-
-  justify-content: center;
-
-  align-items: center;
-
-  gap: 16px;
-
-  flex-wrap: wrap;
-
-  margin-top: 20px;
+.button-row {
+    display: flex;
+    justify-content: center;
+    gap: 18px;
+    flex-wrap: wrap;
+    width: 100%;
 }
 
 button {
-
-  position: relative;
-
-  border: none;
-
-  padding: 16px 34px;
-
-  min-width: 155px;
-
-  border-radius: 100px;
-
-  font-family: "DM Sans", sans-serif;
-
-  font-size: 1rem;
-
-  font-weight: 700;
-
-  letter-spacing: 0.2px;
-
-  cursor: pointer;
-
-  color: white;
-
-  background:
-    linear-gradient(
-      135deg,
-      #ff477f,
-      #d63cff
-    );
-
-  box-shadow:
-    0 12px 30px rgba(255,40,120,0.25),
-    inset 0 1px 0 rgba(255,255,255,0.25);
-
-  transition:
-    transform 0.25s ease,
-    box-shadow 0.25s ease,
-    filter 0.25s ease;
-}
-
-button::before {
-
-  content: "";
-
-  position: absolute;
-
-  inset: 1px;
-
-  border-radius: inherit;
-
-  background:
-    linear-gradient(
-      120deg,
-      rgba(255,255,255,0.15),
-      transparent 40%
-    );
-
-  pointer-events: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 1.05rem;
+    font-weight: 700;
+    color: white;
+    border: none;
+    cursor: pointer;
+    padding: 15px 30px;
+    min-width: 140px;
+    border-radius: 999px;
+    transition: transform .2s ease, box-shadow .2s ease, background .2s ease;
 }
 
 button:hover {
-
-  transform:
-    translateY(-4px)
-    scale(1.04);
-
-  box-shadow:
-    0 18px 45px rgba(255,40,120,0.40),
-    0 0 25px rgba(255,60,140,0.20);
-
-  filter: brightness(1.08);
+    transform: translateY(-4px) scale(1.03);
 }
 
-button:active {
-
-  transform:
-    translateY(-1px)
-    scale(0.98);
+.primary {
+    background: linear-gradient(135deg, #ff267f, #a82cff);
+    box-shadow: 0 10px 30px rgba(255, 38, 127, .35);
 }
 
-button.secondary {
-
-  color: #ffe9f1;
-
-  background:
-    rgba(255,255,255,0.06);
-
-  border: 1px solid rgba(255,255,255,0.22);
-
-  box-shadow:
-    0 10px 25px rgba(0,0,0,0.15);
+.primary:hover {
+    box-shadow: 0 15px 40px rgba(255, 38, 127, .55);
 }
 
-/* ==========================================================
-   QUESTION OPTIONS
-========================================================== */
+.secondary {
+    background: rgba(255,255,255,.13);
+    border: 1px solid rgba(255,255,255,.2);
+}
+
+.secondary:hover {
+    background: rgba(255,255,255,.2);
+}
+
+.option-button {
+    width: min(850px, 100%);
+    text-align: left;
+    min-height: 58px;
+    border-radius: 18px;
+    padding: 15px 22px;
+    background: rgba(255,255,255,.09);
+    border: 1px solid rgba(255,255,255,.18);
+    box-shadow: 0 8px 25px rgba(0,0,0,.12);
+}
+
+.option-button:hover {
+    background: linear-gradient(90deg, rgba(255,38,127,.35), rgba(168,44,255,.3));
+    border-color: rgba(255,150,210,.5);
+}
 
 .options {
-
-  width: min(760px, 100%);
-
-  display: grid;
-
-  grid-template-columns: 1fr;
-
-  gap: 13px;
-
-  margin-top: 5px;
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 13px;
 }
 
-.option {
+/* ---------- YES/NO INTRO ---------- */
 
-  width: 100%;
-
-  min-width: 0;
-
-  padding: 18px 23px;
-
-  border-radius: 18px;
-
-  text-align: left;
-
-  font-size: 1rem;
-
-  font-weight: 500;
-
-  color: #fff5f8;
-
-  background:
-    linear-gradient(
-      120deg,
-      rgba(255,255,255,0.08),
-      rgba(255,255,255,0.035)
-    );
-
-  border: 1px solid rgba(255,255,255,0.12);
-
-  box-shadow:
-    0 8px 25px rgba(0,0,0,0.12);
-
-  transition:
-    0.25s ease;
+.big-heart {
+    font-size: 6rem;
+    animation: heartbeat 1.3s infinite;
+    margin-bottom: 10px;
 }
 
-.option:hover {
-
-  transform:
-    translateX(7px);
-
-  background:
-    linear-gradient(
-      120deg,
-      rgba(255,70,130,0.25),
-      rgba(150,60,255,0.16)
-    );
-
-  border-color:
-    rgba(255,150,190,0.45);
-
-  box-shadow:
-    0 10px 35px rgba(255,40,120,0.18);
-
+@keyframes heartbeat {
+    0%, 100% { transform: scale(1); }
+    15% { transform: scale(1.18); }
+    30% { transform: scale(1); }
+    45% { transform: scale(1.12); }
 }
 
-/* ==========================================================
-   FINAL DATE QUESTION
-========================================================== */
-
-.final-question {
-
-  width: 100%;
-
-  padding: 15px;
-
-  position: relative;
+.warning {
+    padding: 22px 30px;
+    border-radius: 20px;
+    background: rgba(255, 183, 0, .12);
+    border: 1px solid rgba(255, 210, 90, .25);
+    color: #ffeac2;
+    margin-bottom: 30px;
+    max-width: 700px;
+    font-size: 1.1rem;
 }
 
-.final-question h1 {
+/* ---------- CALENDAR ---------- */
 
-  font-size: clamp(3.5rem, 9vw, 6.5rem);
-
-  background:
-    linear-gradient(
-      135deg,
-      #fff,
-      #ffd2e1,
-      #ff70a0,
-      #d88cff
-    );
-
-  -webkit-background-clip: text;
-  background-clip: text;
-
-  color: transparent;
-
-  background-size: 300% auto;
-
-  animation:
-    gradientText 5s ease infinite;
-
-  text-shadow: none;
+.calendar-container {
+    width: 100%;
+    max-width: 850px;
 }
 
-@keyframes gradientText {
-
-  0% {
-    background-position: 0% 50%;
-  }
-
-  50% {
-    background-position: 100% 50%;
-  }
-
-  100% {
-    background-position: 0% 50%;
-  }
+.calendar-tabs {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-bottom: 20px;
 }
 
-/* ==========================================================
-   FINAL YES / NO AREA
-========================================================== */
-
-.final-buttons {
-
-  position: relative;
-
-  width: min(760px, 100%);
-
-  height: 210px;
-
-  margin-top: 15px;
+.month-tab {
+    min-width: 150px;
 }
 
-.final-buttons button {
-
-  position: absolute;
-
-  top: 65px;
+.month-tab.active {
+    background: linear-gradient(135deg, #ff267f, #a82cff);
 }
 
-#finalYes {
-
-  left: 32%;
-
-  transform: translateX(-50%);
+.calendar {
+    background: rgba(0,0,0,.18);
+    border-radius: 22px;
+    padding: 20px;
 }
 
-#finalNo {
-
-  left: 68%;
-
-  transform: translateX(-50%);
-
-  transition:
-    left 0.18s ease,
-    top 0.18s ease,
-    transform 0.18s ease;
-}
-
-/* ==========================================================
-   BACK BUTTON
-========================================================== */
-
-.back-button {
-
-  position: absolute;
-
-  bottom: 20px;
-  left: 25px;
-
-  min-width: auto;
-
-  padding: 9px 18px;
-
-  font-size: 0.82rem;
-
-  color: #ffdce8;
-
-  background: rgba(255,255,255,0.04);
-
-  border: 1px solid rgba(255,255,255,0.12);
-
-  box-shadow: none;
-}
-
-.back-button:hover {
-
-  transform: translateY(-2px);
-
-  box-shadow:
-    0 5px 20px rgba(255,50,120,0.15);
-}
-
-/* ==========================================================
-   CALENDAR
-========================================================== */
-
-.calendar-wrapper {
-
-  width: 100%;
-
-  max-width: 780px;
-}
-
-.calendar-months {
-
-  display: grid;
-
-  grid-template-columns: repeat(2, 1fr);
-
-  gap: 22px;
-
-  width: 100%;
-}
-
-.month {
-
-  padding: 23px;
-
-  border-radius: 25px;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,0.09),
-      rgba(255,255,255,0.035)
-    );
-
-  border:
-    1px solid rgba(255,255,255,0.13);
-
-  box-shadow:
-    0 15px 40px rgba(0,0,0,0.18);
-}
-
-.month h3 {
-
-  margin: 0 0 18px;
-
-  color: #ffd8e5;
-
-  text-shadow:
-    0 0 15px rgba(255,80,140,0.25);
+.calendar-title {
+    font-family: 'Baloo 2', cursive;
+    font-size: 2rem;
+    margin-bottom: 15px;
 }
 
 .weekdays,
 .days {
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(7, 1fr);
-
-  gap: 5px;
+    display: grid;
+    grid-template-columns: repeat(7, 1fr);
+    gap: 7px;
 }
 
-.weekday {
-
-  padding: 5px 0;
-
-  color: #e9aabd;
-
-  font-size: 0.7rem;
-
-  font-weight: 700;
-
-  text-transform: uppercase;
+.weekdays div {
+    color: #ffb1d5;
+    font-weight: 700;
+    font-size: .8rem;
 }
 
 .day {
-
-  min-width: 0;
-
-  padding: 9px 2px;
-
-  border-radius: 10px;
-
-  color: #fff;
-
-  background:
-    rgba(255,255,255,0.055);
-
-  border:
-    1px solid transparent;
-
-  font-size: 0.85rem;
-
-  box-shadow: none;
-
-  transition:
-    transform 0.2s ease,
-    background 0.2s ease;
+    min-width: 0;
+    min-height: 48px;
+    padding: 8px;
+    border-radius: 12px;
+    background: rgba(255,255,255,.07);
+    font-size: .95rem;
 }
 
-.day:hover {
-
-  transform: scale(1.08);
-
-  background:
-    rgba(255,75,140,0.28);
-}
-
-.day.selected {
-
-  background:
-    linear-gradient(
-      135deg,
-      #ff477f,
-      #a83cff
-    );
-
-  border-color: rgba(255,255,255,0.7);
-
-  box-shadow:
-    0 0 20px rgba(255,50,130,0.45);
+.day:not(.empty):hover {
+    background: linear-gradient(135deg, #ff267f, #a82cff);
+    transform: scale(1.05);
 }
 
 .day.empty {
+    background: transparent;
+}
 
-  background: transparent;
-
-  cursor: default;
-
-  box-shadow: none;
+.day.selected {
+    background: linear-gradient(135deg, #ff267f, #a82cff);
+    box-shadow: 0 0 20px rgba(255,50,150,.5);
 }
 
 .selected-date {
-
-  margin-top: 20px;
-
-  min-height: 28px;
-
-  color: #ffd6e5;
-
-  font-size: 1.05rem;
-
-  text-shadow:
-    0 0 15px rgba(255,70,140,0.2);
+    margin-top: 18px;
+    color: #ffd2e8;
+    min-height: 30px;
 }
 
-/* ==========================================================
-   OUTFIT COLORS
-========================================================== */
+/* ---------- OUTFITS ---------- */
 
-.color-options {
-
-  width: min(760px, 100%);
-
-  display: grid;
-
-  grid-template-columns:
-    repeat(2, 1fr);
-
-  gap: 18px;
+.outfit-grid {
+    width: 100%;
+    max-width: 850px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 18px;
 }
 
-.color-option {
-
-  min-height: 135px;
-
-  padding: 22px;
-
-  border-radius: 25px;
-
-  display: flex;
-
-  flex-direction: column;
-
-  justify-content: center;
-
-  align-items: center;
-
-  cursor: pointer;
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,255,255,0.09),
-      rgba(255,255,255,0.035)
-    );
-
-  border:
-    1px solid rgba(255,255,255,0.13);
-
-  transition:
-    transform 0.25s ease,
-    border 0.25s ease,
-    box-shadow 0.25s ease;
+.outfit {
+    position: relative;
+    padding: 25px;
+    border-radius: 22px;
+    cursor: pointer;
+    background: rgba(255,255,255,.08);
+    border: 2px solid transparent;
+    transition: .25s ease;
 }
 
-.color-option:hover {
-
-  transform:
-    translateY(-7px);
-
-  border-color:
-    rgba(255,150,190,0.5);
-
-  box-shadow:
-    0 15px 35px rgba(255,40,120,0.15);
+.outfit:hover {
+    transform: translateY(-5px);
+    background: rgba(255,255,255,.14);
 }
 
-.color-option.selected {
-
-  transform:
-    translateY(-5px)
-    scale(1.025);
-
-  border-color:
-    rgba(255,255,255,0.8);
-
-  background:
-    linear-gradient(
-      145deg,
-      rgba(255,65,130,0.20),
-      rgba(140,50,255,0.13)
-    );
-
-  box-shadow:
-    0 0 30px rgba(255,60,140,0.25);
+.outfit.selected {
+    border-color: #ff6eaf;
+    box-shadow: 0 0 30px rgba(255,65,145,.3);
 }
 
 .swatches {
-
-  display: flex;
-
-  margin-bottom: 15px;
+    display: flex;
+    justify-content: center;
+    gap: 8px;
+    margin-bottom: 15px;
 }
 
 .swatch {
-
-  width: 42px;
-
-  height: 42px;
-
-  border-radius: 50%;
-
-  margin: 0 -5px;
-
-  border:
-    2px solid rgba(255,255,255,0.75);
-
-  box-shadow:
-    0 5px 15px rgba(0,0,0,0.25);
+    width: 48px;
+    height: 48px;
+    border-radius: 50%;
+    border: 3px solid rgba(255,255,255,.5);
 }
 
-.black {
-  background: #050505;
+.outfit h3 {
+    font-family: 'Baloo 2', cursive;
+    font-size: 1.5rem;
 }
 
-.red {
-  background: #e63946;
+/* ---------- FINAL ---------- */
+
+.final-message {
+    font-family: 'Baloo 2', cursive;
+    font-size: clamp(2.2rem, 6vw, 4rem);
+    color: white;
 }
 
-.blue {
-  background: #3478db;
+.love {
+    font-size: 6rem;
+    animation: heartbeat 1.2s infinite;
 }
 
-.white {
-  background: #ffffff;
+.party {
+    font-size: 4rem;
+    margin-bottom: 15px;
 }
 
-.beige {
-  background: #d8c2a5;
+/* ---------- MOVING NO BUTTON ---------- */
+
+#noButton {
+    position: relative;
+    z-index: 20;
+    transition: left .22s ease, top .22s ease, transform .2s ease;
 }
 
-.purple {
-  background: #9b59b6;
+#dateNoArea {
+    position: relative;
+    width: min(700px, 95%);
+    min-height: 130px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-.color-name {
-
-  font-size: 1rem;
-
-  font-weight: 700;
-
-  color: #ffeaf1;
-}
-
-/* ==========================================================
-   DISABLED BUTTON
-========================================================== */
-
-button:disabled {
-
-  opacity: 0.35;
-
-  cursor: not-allowed;
-
-  transform: none !important;
-
-  box-shadow: none;
-}
-
-/* ==========================================================
-   PROGRESS BAR
-========================================================== */
-
-.progress {
-
-  position: fixed;
-
-  top: 0;
-  left: 0;
-
-  width: 0%;
-
-  height: 4px;
-
-  z-index: 100;
-
-  background:
-    linear-gradient(
-      90deg,
-      #ff3f7f,
-      #ff79ad,
-      #c76cff,
-      #ffd166
-    );
-
-  box-shadow:
-    0 0 15px rgba(255,70,140,0.8);
-
-  transition:
-    width 0.5s ease;
-}
-
-/* ==========================================================
-   SMALL NOTE
-========================================================== */
-
-.tiny-note {
-
-  margin-top: 22px;
-
-  color:
-    rgba(255,220,232,0.65);
-
-  font-size: 0.82rem;
-
-  letter-spacing: 0.3px;
-}
-
-/* ==========================================================
-   CELEBRATION
-========================================================== */
-
-.celebration {
-
-  position: fixed;
-
-  inset: 0;
-
-  pointer-events: none;
-
-  z-index: 200;
-
-  overflow: hidden;
-}
-
-.confetti {
-
-  position: absolute;
-
-  width: 9px;
-  height: 15px;
-
-  top: -30px;
-
-  border-radius: 2px;
-
-  animation:
-    confettiFall linear forwards;
-}
-
-@keyframes confettiFall {
-
-  0% {
-
-    transform:
-      translateY(0)
-      rotate(0deg);
-
-    opacity: 1;
-  }
-
-  100% {
-
-    transform:
-      translateY(110vh)
-      rotate(900deg);
-
-    opacity: 0;
-  }
-}
-
-.floating-heart {
-
-  position: absolute;
-
-  bottom: -60px;
-
-  font-size: 25px;
-
-  animation:
-    heartRise linear forwards;
-
-  filter:
-    drop-shadow(0 0 8px rgba(255,70,140,0.8));
-}
-
-@keyframes heartRise {
-
-  0% {
-
-    opacity: 0;
-
-    transform:
-      translateY(0)
-      scale(0.6)
-      rotate(0deg);
-  }
-
-  15% {
-    opacity: 1;
-  }
-
-  100% {
-
-    opacity: 0;
-
-    transform:
-      translateY(-115vh)
-      scale(1.3)
-      rotate(360deg);
-  }
-}
-
-/* ==========================================================
-   RESPONSIVE
-========================================================== */
+/* ---------- RESPONSIVE ---------- */
 
 @media (max-width: 700px) {
+    .screen {
+        padding: 35px 20px;
+        min-height: 600px;
+        border-radius: 25px;
+    }
 
-  .app {
-    padding: 18px 12px;
-  }
+    .outfit-grid {
+        grid-template-columns: 1fr;
+    }
 
-  .screen {
+    .calendar {
+        padding: 10px;
+    }
 
-    min-height: 650px;
+    .day {
+        min-height: 42px;
+        padding: 6px 2px;
+        font-size: .8rem;
+    }
 
-    padding:
-      45px 20px 60px;
+    .weekdays div {
+        font-size: .65rem;
+    }
 
-    border-radius: 28px;
-  }
+    button {
+        width: 100%;
+    }
 
-  .screen::before {
-    border-radius: 27px;
-  }
+    .month-tab {
+        min-width: 0;
+    }
+}
+</style>
+</head>
 
-  h1 {
-    font-size: clamp(2.7rem, 13vw, 4rem);
-  }
+<body>
 
-  h2 {
-    font-size: 2rem;
-  }
+<div id="particles"></div>
 
-  .subtitle {
-    font-size: 1rem;
-  }
+<main id="app">
 
-  .calendar-months {
-    grid-template-columns: 1fr;
-  }
+    <!-- SCREEN 1 -->
+    <section class="screen active" id="screen1">
+        <div class="big-heart">💗</div>
+        <h1>Hi there!</h1>
+        <p class="question-text">Are you ready for a game? 😏❤️</p>
 
-  .color-options {
-    grid-template-columns: 1fr;
-  }
+        <div class="button-row">
+            <button class="primary" onclick="goTo(2)">Yes 😏</button>
+            <button class="secondary" onclick="wrongChoice()">No 🙃</button>
+        </div>
+    </section>
 
-  .final-buttons {
-    height: 230px;
-  }
+    <!-- SCREEN 2 -->
+    <section class="screen" id="screen2">
+        <div class="big-heart">⚠️</div>
+        <h2>Please proceed with caution.</h2>
+        <div class="warning">
+            Your answers may have consequences.
+        </div>
+        <button class="primary" onclick="goTo(3)">I accept my fate 😌</button>
+    </section>
 
-  #finalYes {
-    left: 28%;
-  }
+    <!-- SCREEN 3 -->
+    <section class="screen" id="screen3">
+        <div class="question-number">Question 1</div>
+        <div class="question-text">How much do you miss me?</div>
 
-  #finalNo {
-    left: 72%;
-  }
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. A little</button>
+            <button class="option-button" onclick="nextQuestion()">B. Quite a bit</button>
+            <button class="option-button" onclick="nextQuestion()">C. More than I'd admit</button>
+            <button class="option-button" onclick="nextQuestion()">D. Ekdomi na. Why are we even discussing this? 😂</button>
+        </div>
+    </section>
 
-  button {
-    min-width: 135px;
-    padding: 14px 22px;
-  }
+    <!-- SCREEN 4 -->
+    <section class="screen" id="screen4">
+        <div class="question-number">Question 2 😏</div>
+        <div class="question-text">What's the most dangerous thing about going on a date with me?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. You'll steal my food</button>
+            <button class="option-button" onclick="nextQuestion()">B. You'll make me laugh when I’m trying to be serious</button>
+            <button class="option-button" onclick="nextQuestion()">C. You'll end up not wanting the date to end</button>
+            <button class="option-button" onclick="nextQuestion()">D. All of the above, obviously</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 5 -->
+    <section class="screen" id="screen5">
+        <div class="question-number">Question 3</div>
+        <div class="question-text">Wait!! Tell me, what's more dangerous?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. Me when I'm hungry</button>
+            <button class="option-button" onclick="nextQuestion()">B. Me when I'm annoyed</button>
+            <button class="option-button" onclick="nextQuestion()">C. Me when I have an idea</button>
+            <button class="option-button" onclick="nextQuestion()">D. Me saying “I have a surprise for you” 😏</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 6 -->
+    <section class="screen" id="screen6">
+        <div class="question-number">Question 4</div>
+        <div class="question-text">If my nose were a food, what would it be?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A) Chocolate 🍫</button>
+            <button class="option-button" onclick="nextQuestion()">B) Horeen er mangho 🍕</button>
+            <button class="option-button" onclick="nextQuestion()">C) Spicy noodles 🌶️</button>
+            <button class="option-button" onclick="nextQuestion()">D) Something you can't stop eating 😏</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 7 -->
+    <section class="screen" id="screen7">
+        <div class="question-number">Question 5</div>
+        <div class="question-text">What's one thing you'd like us to do together again?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. Go somewhere we've been before</button>
+            <button class="option-button" onclick="nextQuestion()">B. Try somewhere completely new</button>
+            <button class="option-button" onclick="nextQuestion()">C. Stay up talking way too late</button>
+            <button class="option-button" onclick="nextQuestion()">D. Make another memory we can laugh about later</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 8 -->
+    <section class="screen" id="screen8">
+        <div class="question-number">Question 6</div>
+        <div class="question-text">I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. Absolutely. Let's go</button>
+            <button class="option-button" onclick="nextQuestion()">B. Ask where we're going first</button>
+            <button class="option-button" onclick="nextQuestion()">C. Ask what to wear</button>
+            <button class="option-button" onclick="nextQuestion()">D. Make a 🌿🚬</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 9 -->
+    <section class="screen" id="screen9">
+        <div class="question-number">Question 7</div>
+        <div class="question-text">If you could change ONE thing about our relationship, what would you choose?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. Less fights</button>
+            <button class="option-button" onclick="nextQuestion()">B. More uninterrupted time together</button>
+            <button class="option-button" onclick="nextQuestion()">C. More adventures</button>
+            <button class="option-button" onclick="nextQuestion()">D. Nothing. I'd rather make more memories from here ❤️</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 10 -->
+    <section class="screen" id="screen10">
+        <div class="question-number">Question 8</div>
+        <div class="question-text">Imagine you have been invited on a date. What kind of date would be hardest to say no to?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. Dinner somewhere beautiful</button>
+            <button class="option-button" onclick="nextQuestion()">B. A movie-night</button>
+            <button class="option-button" onclick="nextQuestion()">C. Somewhere neither of us has been before</button>
+            <button class="option-button" onclick="nextQuestion()">D. A date where the only plan is to spend time together ❤️</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 11 -->
+    <section class="screen" id="screen11">
+        <div class="question-number">Question 9</div>
+        <div class="question-text">And if I told you the person asking is… me?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. Of course, it has to be my wife 😒 ugghhh</button>
+            <button class="option-button" onclick="nextQuestion()">B. I was wondering when you'd get to the point</button>
+            <button class="option-button" onclick="nextQuestion()">C. Let me think about it 😌</button>
+            <button class="option-button" onclick="nextQuestion()">D. Where and when?</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 12 -->
+    <section class="screen" id="screen12">
+        <div class="question-number">Question 10</div>
+        <div class="question-text">Would you let me steal you away for an evening?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. ❤️ Yes — Especially if it's with you</button>
+            <button class="option-button" onclick="nextQuestion()">B. 😏 Yes — But you'll have to convince me</button>
+            <button class="option-button" onclick="nextQuestion()">C. 🙈 No — I'm afraid I'm already a little too interested</button>
+            <button class="option-button" onclick="nextQuestion()">D. 😂 No — This sounds like a terrible idea… let's do it anyway</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 13 -->
+    <section class="screen" id="screen13">
+        <div class="big-heart">💘</div>
+        <h2>Okay, enough questions. ❤️</h2>
+        <p class="subtitle">
+            There's only one thing left to ask...
+        </p>
+
+        <button class="primary" onclick="goTo(14)">I'm listening 👀</button>
+    </section>
+
+    <!-- SCREEN 14 -->
+    <section class="screen" id="screen14">
+        <div class="big-heart">✨💖✨</div>
+        <h1>Will you be my date? ❤️</h1>
+
+        <div class="button-row" id="dateButtons">
+            <button class="primary" onclick="dateYes()">Yes ❤️</button>
+
+            <div id="dateNoArea">
+                <button
+                    class="secondary"
+                    id="noButton"
+                    onmouseenter="escapeNoButton()"
+                    onclick="escapeNoButton()">
+                    No 😈
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- SCREEN 15 -->
+    <section class="screen" id="screen15">
+        <div class="big-heart">🎉</div>
+        <h1>Excellent choice Sir!</h1>
+        <p class="subtitle">
+            Now let's choose when this very important date is happening. ❤️
+        </p>
+        <button class="primary" onclick="goTo(16)">Choose the date 📅</button>
+    </section>
+
+    <!-- SCREEN 16 -->
+    <section class="screen" id="screen16">
+        <div class="question-number">Step 1</div>
+        <h2>Pick our date 📅❤️</h2>
+
+        <div class="calendar-container">
+
+            <div class="calendar-tabs">
+                <button class="secondary month-tab active" id="augTab" onclick="showMonth(8)">
+                    August 2026
+                </button>
+
+                <button class="secondary month-tab" id="sepTab" onclick="showMonth(9)">
+                    September 2026
+                </button>
+            </div>
+
+            <div class="calendar">
+                <div class="calendar-title" id="calendarTitle">
+                    August 2026
+                </div>
+
+                <div class="weekdays">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+
+                <div class="days" id="calendarDays"></div>
+
+                <div class="selected-date" id="selectedDate">
+                    Please choose a date ❤️
+                </div>
+            </div>
+        </div>
+
+        <br>
+
+        <button class="primary" id="dateContinue" onclick="continueFromDate()" disabled>
+            Continue ❤️
+        </button>
+    </section>
+
+    <!-- SCREEN 17 -->
+    <section class="screen" id="screen17">
+        <div class="question-number">Step 2</div>
+        <h2>Pick our outfit colors 🎨</h2>
+        <p class="subtitle">
+            Because obviously we need to look ridiculously cute together.
+        </p>
+
+        <div class="outfit-grid">
+
+            <div class="outfit" onclick="selectOutfit(this, 'Black and Red')">
+                <div class="swatches">
+                    <div class="swatch" style="background:#050505"></div>
+                    <div class="swatch" style="background:#e60035"></div>
+                </div>
+                <h3>Option 1</h3>
+                <p>Black and Red</p>
+            </div>
+
+            <div class="outfit" onclick="selectOutfit(this, 'Blue and White')">
+                <div class="swatches">
+                    <div class="swatch" style="background:#1769ff"></div>
+                    <div class="swatch" style="background:#fff"></div>
+                </div>
+                <h3>Option 2</h3>
+                <p>Blue and White</p>
+            </div>
+
+            <div class="outfit" onclick="selectOutfit(this, 'Beige and Purple')">
+                <div class="swatches">
+                    <div class="swatch" style="background:#d8c0a0"></div>
+                    <div class="swatch" style="background:#7b2cbf"></div>
+                </div>
+                <h3>Option 3</h3>
+                <p>Beige and Purple</p>
+            </div>
+
+            <div class="outfit" onclick="selectOutfit(this, 'Black and White')">
+                <div class="swatches">
+                    <div class="swatch" style="background:#050505"></div>
+                    <div class="swatch" style="background:#fff"></div>
+                </div>
+                <h3>Option 4</h3>
+                <p>Black and White</p>
+            </div>
+
+        </div>
+
+        <br>
+
+        <button class="primary" id="outfitContinue" onclick="finishDate()" disabled>
+            This is the one ❤️
+        </button>
+    </section>
+
+    <!-- SCREEN 18 -->
+    <section class="screen" id="screen18">
+        <div class="party">🎉 🥳 🎊</div>
+        <div class="love">❤️</div>
+
+        <h1 class="final-message">
+            Thank you for your time!<br>
+            I love you ❤️
+        </h1>
+
+        <p class="subtitle" id="finalDetails"></p>
+
+        <div style="font-size:3rem; margin-top:20px;">
+            🎉✨💖✨🎉
+        </div>
+    </section>
+
+</main>
+
+<script>
+
+/* =========================================================
+   BACKGROUND SPARKLES + HEARTS
+========================================================= */
+
+const particles = document.getElementById("particles");
+
+function createSparkles() {
+    for (let i = 0; i < 65; i++) {
+        const sparkle = document.createElement("div");
+        sparkle.className = "sparkle";
+        sparkle.innerHTML = Math.random() > .5 ? "✦" : "✧";
+
+        sparkle.style.left = Math.random() * 100 + "%";
+        sparkle.style.top = Math.random() * 100 + "%";
+        sparkle.style.fontSize = (Math.random() * 15 + 6) + "px";
+        sparkle.style.animationDelay = (Math.random() * 3) + "s";
+        sparkle.style.animationDuration = (Math.random() * 2 + 1.5) + "s";
+
+        particles.appendChild(sparkle);
+    }
 }
 
-</style>
+function createHearts() {
+    for (let i = 0; i < 18; i++) {
+        const heart = document.createElement("div");
+        heart.className = "floating-heart";
+        heart.innerHTML = Math.random() > .5 ? "♥" : "♡";
+
+        heart.style.left = Math.random() * 100 + "%";
+        heart.style.fontSize = (Math.random() * 25 + 12) + "px";
+        heart.style.color = Math.random() > .5 ? "#ff4f9a" : "#ff9fca";
+        heart.style.animationDuration = (Math.random() * 10 + 9) + "s";
+        heart.style.animationDelay = (Math.random() * 10) + "s";
+
+        particles.appendChild(heart);
+    }
+}
+
+createSparkles();
+createHearts();
+
+
+/* =========================================================
+   SCREEN NAVIGATION
+========================================================= */
+
+function goTo(number) {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    const next = document.getElementById("screen" + number);
+
+    if (next) {
+        next.classList.add("active");
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+}
+
+function nextQuestion() {
+
+    const current = document.querySelector(".screen.active");
+    const currentNumber = parseInt(current.id.replace("screen", ""));
+
+    goTo(currentNumber + 1);
+}
+
+
+/* =========================================================
+   WRONG CHOICE
+========================================================= */
+
+function wrongChoice() {
+
+    const message =
+        "Wrong Choice. You know it’s not the right answer. 🤨😂";
+
+    alert(message);
+}
+
+
+/* =========================================================
+   DATE QUESTION — YES
+========================================================= */
+
+function dateYes() {
+    goTo(15);
+
+    createConfetti();
+}
+
+
+/* =========================================================
+   MOVING NO BUTTON
+========================================================= */
+
+const noButton = document.getElementById("noButton");
+const noArea = document.getElementById("dateNoArea");
+
+function escapeNoButton() {
+
+    const areaRect = noArea.getBoundingClientRect();
+
+    const buttonWidth = noButton.offsetWidth;
+    const buttonHeight = noButton.offsetHeight;
+
+    const maxX = Math.max(0, areaRect.width - buttonWidth);
+    const maxY = Math.max(0, areaRect.height - buttonHeight);
+
+    const randomX = Math.random() * maxX;
+    const randomY = Math.random() * maxY;
+
+    noButton.style.position = "absolute";
+    noButton.style.left = randomX + "px";
+    noButton.style.top = randomY + "px";
+
+    noButton.style.transform =
+        `rotate(${(Math.random() * 14) - 7}deg)`;
+
+    /* Make sure it remains visible */
+    noButton.style.opacity = "1";
+    noButton.style.visibility = "visible";
+}
+
+
+/* =========================================================
+   CALENDAR
+========================================================= */
+
+let currentMonth = 8;
+let selectedDate = null;
+
+const monthNames = {
+    8: "August 2026",
+    9: "September 2026"
+};
+
+function showMonth(month) {
+
+    currentMonth = month;
+
+    document.getElementById("calendarTitle").textContent =
+        monthNames[month];
+
+    document.getElementById("augTab").classList.toggle(
+        "active",
+        month === 8
+    );
+
+    document.getElementById("sepTab").classList.toggle(
+        "active",
+        month === 9
+    );
+
+    renderCalendar(month);
+}
+
+function renderCalendar(month) {
+
+    const calendarDays = document.getElementById("calendarDays");
+
+    calendarDays.innerHTML = "";
+
+    const year = 2026;
+
+    const firstDay = new Date(year, month - 1, 1).getDay();
+    const daysInMonth = new Date(year, month, 0).getDate();
+
+    /* Empty spaces before first day */
+    for (let i = 0; i < firstDay; i++) {
+
+        const empty = document.createElement("div");
+        empty.className = "day empty";
+
+        calendarDays.appendChild(empty);
+    }
+
+    for (let day = 1; day <= daysInMonth; day++) {
+
+        const dayButton = document.createElement("button");
+
+        dayButton.className = "day";
+        dayButton.textContent = day;
+
+        const dateKey =
+            `2026-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+        if (selectedDate === dateKey) {
+            dayButton.classList.add("selected");
+        }
+
+        dayButton.onclick = function() {
+            selectDate(dateKey);
+        };
+
+        calendarDays.appendChild(dayButton);
+    }
+}
+
+function selectDate(dateKey) {
+
+    selectedDate = dateKey;
+
+    const parts = dateKey.split("-");
+
+    const month = parseInt(parts[1]);
+    const day = parseInt(parts[2]);
+
+    const dateObject = new Date(2026, month - 1, day);
+
+    const formatted = dateObject.toLocaleDateString(
+        "en-US",
+        {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        }
+    );
+
+    document.getElementById("selectedDate").innerHTML =
+        `Our date is looking at us like… 👀❤️ <strong>${formatted}</strong>`;
+
+    document.getElementById("dateContinue").disabled = false;
+
+    renderCalendar(currentMonth);
+}
+
+function continueFromDate() {
+
+    if (!selectedDate) return;
+
+    goTo(17);
+}
+
+
+/* =========================================================
+   OUTFIT SELECTION
+========================================================= */
+
+let selectedOutfit = "";
+
+function selectOutfit(element, outfit) {
+
+    document.querySelectorAll(".outfit").forEach(item => {
+        item.classList.remove("selected");
+    });
+
+    element.classList.add("selected");
+
+    selectedOutfit = outfit;
+
+    document.getElementById("outfitContinue").disabled = false;
+}
+
+function finishDate() {
+
+    if (!selectedOutfit) return;
+
+    const dateObject = new Date(selectedDate + "T12:00:00");
+
+    const formattedDate = dateObject.toLocaleDateString(
+        "en-US",
+        {
+            weekday: "long",
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        }
+    );
+
+    document.getElementById("finalDetails").innerHTML =
+        `Date locked in for <strong>${formattedDate}</strong>.<br>
+         Outfit code: <strong>${selectedOutfit}</strong> 🎨❤️`;
+
+    goTo(18);
+
+    createConfetti();
+    createConfetti();
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function createConfetti() {
+
+    const colors = [
+        "#ff267f",
+        "#ff77b7",
+        "#a82cff",
+        "#ffd166",
+        "#06d6a0",
+        "#ffffff"
+    ];
+
+    for (let i = 0; i < 100; i++) {
+
+        const piece = document.createElement("div");
+
+        piece.className = "confetti";
+
+        piece.style.left = Math.random() * 100 + "vw";
+        piece.style.top = "-20px";
+
+        piece.style.width =
+            Math.random() * 8 + 5 + "px";
+
+        piece.style.height =
+            Math.random() * 14 + 6 + "px";
+
+        piece.style.background =
+            colors[Math.floor(Math.random() * colors.length)];
+
+        piece.style.borderRadius =
+            Math.random() > .5 ? "50%" : "2px";
+
+        piece.style.zIndex = "100";
+
+        document.body.appendChild(piece);
+
+        const duration =
+            Math.random() * 3 + 2;
+
+        piece.animate(
+            [
+                {
+                    transform:
+                        `translateY(0) rotate(0deg)`,
+                    opacity: 1
+                },
+                {
+                    transform:
+                        `translateY(110vh) translateX(${(Math.random() * 300) - 150}px) rotate(720deg)`,
+                    opacity: 0
+                }
+            ],
+            {
+                duration: duration * 1000,
+                easing: "cubic-bezier(.2,.7,.3,1)"
+            }
+        );
+
+        setTimeout(() => {
+            piece.remove();
+        }, duration * 1000 + 100);
+    }
+}
+
+
+/* =========================================================
+   INITIAL CALENDAR
+========================================================= */
+
+renderCalendar(8);
+
+
+/* =========================================================
+   KEYBOARD / MOUSE FUN
+========================================================= */
+
+document.addEventListener("mousemove", function(event) {
+
+    const activeScreen =
+        document.querySelector(".screen.active");
+
+    if (!activeScreen) return;
+
+    /* Only activate the escape effect on the final question */
+    if (activeScreen.id !== "screen14") return;
+
+    const rect = noButton.getBoundingClientRect();
+
+    const distanceX =
+        event.clientX - (rect.left + rect.width / 2);
+
+    const distanceY =
+        event.clientY - (rect.top + rect.height / 2);
+
+    const distance =
+        Math.sqrt(
+            distanceX * distanceX +
+            distanceY * distanceY
+        );
+
+    /* Button starts moving before cursor can reach it */
+    if (distance < 120) {
+        escapeNoButton();
+    }
+});
+
+</script>
+
+</body>
+</html>
