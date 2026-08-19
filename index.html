@@ -1,1451 +1,1260 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Our Little Date Game ❤️</title>
-
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    html, body {
-      margin: 0;
-      padding: 0;
-      width: 100%;
-      min-height: 100%;
-      font-family: "Trebuchet MS", "Segoe UI", sans-serif;
-      color: #fff;
-      overflow-x: hidden;
-    }
-
-    body {
-      min-height: 100vh;
-      background:
-        radial-gradient(circle at 15% 20%, rgba(255, 79, 129, 0.35), transparent 25%),
-        radial-gradient(circle at 85% 15%, rgba(180, 90, 255, 0.30), transparent 25%),
-        radial-gradient(circle at 50% 90%, rgba(255, 160, 60, 0.25), transparent 30%),
-        linear-gradient(135deg, #16001f, #30002e 45%, #12001c);
-      position: relative;
-    }
-
-    /* Animated glow */
-    body::before {
-      content: "";
-      position: fixed;
-      inset: -50%;
-      background:
-        radial-gradient(circle, rgba(255, 50, 120, 0.12) 0%, transparent 35%),
-        radial-gradient(circle, rgba(140, 70, 255, 0.10) 0%, transparent 40%);
-      animation: backgroundMove 12s ease-in-out infinite alternate;
-      pointer-events: none;
-      z-index: 0;
-    }
-
-    @keyframes backgroundMove {
-      from {
-        transform: translate(-5%, -3%) rotate(0deg);
-      }
-      to {
-        transform: translate(5%, 3%) rotate(8deg);
-      }
-    }
-
-    /* Sparkles */
-    .sparkle-container {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 1;
-      overflow: hidden;
-    }
-
-    .sparkle {
-      position: absolute;
-      color: #fff;
-      font-size: 12px;
-      opacity: 0;
-      animation: sparkleFloat linear infinite;
-      text-shadow: 0 0 8px #fff, 0 0 15px #ff79ad;
-    }
-
-    @keyframes sparkleFloat {
-      0% {
-        opacity: 0;
-        transform: translateY(20px) scale(0.5) rotate(0deg);
-      }
-      20% {
-        opacity: 1;
-      }
-      50% {
-        opacity: 0.8;
-        transform: translateY(-40vh) scale(1.2) rotate(180deg);
-      }
-      80% {
-        opacity: 0.7;
-      }
-      100% {
-        opacity: 0;
-        transform: translateY(-100vh) scale(0.4) rotate(360deg);
-      }
-    }
-
-    .app {
-      min-height: 100vh;
-      position: relative;
-      z-index: 2;
-      display: flex;
-      justify-content: center;
-      align-items: center;
-      padding: 25px;
-    }
-
-    .screen {
-      width: min(900px, 100%);
-      min-height: 560px;
-      padding: 50px 40px;
-      border-radius: 30px;
-      background: rgba(255, 255, 255, 0.10);
-      border: 1px solid rgba(255, 255, 255, 0.20);
-      box-shadow:
-        0 25px 80px rgba(0, 0, 0, 0.45),
-        inset 0 0 40px rgba(255, 255, 255, 0.04);
-      backdrop-filter: blur(18px);
-      -webkit-backdrop-filter: blur(18px);
-      display: flex;
-      flex-direction: column;
-      justify-content: center;
-      align-items: center;
-      text-align: center;
-      animation: screenIn 0.6s ease;
-      position: relative;
-    }
-
-    @keyframes screenIn {
-      from {
-        opacity: 0;
-        transform: translateY(20px) scale(0.97);
-      }
-      to {
-        opacity: 1;
-        transform: translateY(0) scale(1);
-      }
-    }
-
-    .screen::after {
-      content: "✦";
-      position: absolute;
-      top: 18px;
-      right: 25px;
-      font-size: 25px;
-      color: #ffd6e7;
-      animation: twinkle 1.5s infinite alternate;
-    }
-
-    @keyframes twinkle {
-      from {
-        opacity: 0.3;
-        transform: scale(0.7) rotate(0);
-      }
-      to {
-        opacity: 1;
-        transform: scale(1.2) rotate(25deg);
-      }
-    }
-
-    h1 {
-      font-size: clamp(2rem, 6vw, 4rem);
-      margin: 0 0 25px;
-      line-height: 1.15;
-      text-shadow: 0 0 20px rgba(255, 105, 160, 0.6);
-    }
-
-    h2 {
-      font-size: clamp(1.5rem, 4vw, 2.5rem);
-      margin: 0 0 30px;
-      line-height: 1.3;
-    }
-
-    .subtitle {
-      font-size: 1.25rem;
-      line-height: 1.7;
-      max-width: 720px;
-      margin-bottom: 30px;
-      color: #ffe8f1;
-    }
-
-    .heart {
-      color: #ff557f;
-      text-shadow: 0 0 15px #ff557f;
-    }
-
-    .buttons {
-      display: flex;
-      gap: 18px;
-      justify-content: center;
-      flex-wrap: wrap;
-      margin-top: 20px;
-    }
-
-    button {
-      border: none;
-      padding: 15px 30px;
-      min-width: 150px;
-      border-radius: 999px;
-      font-size: 1.05rem;
-      font-weight: bold;
-      cursor: pointer;
-      color: #fff;
-      background: linear-gradient(135deg, #ff4f81, #a63cff);
-      box-shadow: 0 10px 30px rgba(255, 60, 130, 0.30);
-      transition: transform 0.2s ease, box-shadow 0.2s ease;
-    }
-
-    button:hover {
-      transform: translateY(-3px) scale(1.03);
-      box-shadow: 0 15px 35px rgba(255, 60, 130, 0.45);
-    }
-
-    button.secondary {
-      background: rgba(255,255,255,0.12);
-      border: 1px solid rgba(255,255,255,0.3);
-    }
-
-    .question-number {
-      display: inline-block;
-      margin-bottom: 12px;
-      color: #ffb6d0;
-      font-size: 1rem;
-      letter-spacing: 2px;
-      text-transform: uppercase;
-      font-weight: bold;
-    }
-
-    .options {
-      width: min(720px, 100%);
-      display: grid;
-      grid-template-columns: 1fr;
-      gap: 14px;
-      margin-top: 5px;
-    }
-
-    .option {
-      width: 100%;
-      text-align: left;
-      padding: 17px 22px;
-      border-radius: 18px;
-      background: rgba(255,255,255,0.10);
-      border: 1px solid rgba(255,255,255,0.18);
-      color: #fff;
-      font-size: 1.05rem;
-      box-shadow: none;
-    }
-
-    .option:hover {
-      background: rgba(255, 105, 160, 0.25);
-    }
-
-    .warning {
-      color: #ffd0df;
-      font-size: 1.2rem;
-      line-height: 1.8;
-      max-width: 650px;
-      margin-bottom: 25px;
-    }
-
-    /* Final date question */
-    .final-question {
-      background:
-        radial-gradient(circle at 50% 30%, rgba(255, 90, 160, 0.30), transparent 40%),
-        rgba(255,255,255,0.08);
-    }
-
-    .big-heart {
-      font-size: 5rem;
-      animation: heartbeat 1.2s infinite;
-      margin-bottom: 15px;
-    }
-
-    @keyframes heartbeat {
-      0%, 100% {
-        transform: scale(1);
-      }
-      15% {
-        transform: scale(1.18);
-      }
-      30% {
-        transform: scale(1);
-      }
-      45% {
-        transform: scale(1.12);
-      }
-    }
-
-    /* Moving No button area */
-    .final-buttons {
-      position: relative;
-      width: min(700px, 100%);
-      height: 180px;
-      margin-top: 20px;
-    }
-
-    .final-buttons button {
-      position: absolute;
-    }
-
-    #finalYes {
-      left: 25%;
-      transform: translateX(-50%);
-      top: 55px;
-    }
-
-    #finalNo {
-      left: 75%;
-      transform: translateX(-50%);
-      top: 55px;
-      transition: left 0.18s ease, top 0.18s ease, transform 0.18s ease;
-      z-index: 5;
-    }
-
-    /* Calendar */
-    .calendar-wrapper {
-      width: 100%;
-      max-width: 760px;
-    }
-
-    .calendar-months {
-      display: grid;
-      grid-template-columns: 1fr 1fr;
-      gap: 25px;
-      width: 100%;
-    }
-
-    .month {
-      background: rgba(255,255,255,0.08);
-      padding: 20px;
-      border-radius: 22px;
-      border: 1px solid rgba(255,255,255,0.15);
-    }
-
-    .month h3 {
-      margin: 0 0 15px;
-      font-size: 1.4rem;
-      color: #ffd3e2;
-    }
-
-    .weekdays,
-    .days {
-      display: grid;
-      grid-template-columns: repeat(7, 1fr);
-      gap: 5px;
-    }
-
-    .weekday {
-      font-size: 0.75rem;
-      color: #ffb8ce;
-      padding: 5px 0;
-    }
-
-    .day {
-      min-width: 0;
-      padding: 9px 3px;
-      font-size: 0.9rem;
-      border-radius: 10px;
-      background: rgba(255,255,255,0.07);
-      border: 1px solid transparent;
-      cursor: pointer;
-      color: #fff;
-      transition: 0.2s;
-    }
-
-    .day:hover {
-      background: rgba(255, 90, 150, 0.35);
-      transform: scale(1.05);
-    }
-
-    .day.selected {
-      background: linear-gradient(135deg, #ff4f81, #a63cff);
-      border-color: #fff;
-      box-shadow: 0 0 18px rgba(255, 70, 140, 0.6);
-    }
-
-    .day.empty {
-      background: transparent;
-      cursor: default;
-    }
-
-    .selected-date {
-      margin-top: 20px;
-      color: #ffd6e5;
-      font-size: 1.1rem;
-      min-height: 25px;
-    }
-
-    /* Color selection */
-    .color-options {
-      width: min(700px, 100%);
-      display: grid;
-      grid-template-columns: repeat(2, 1fr);
-      gap: 18px;
-    }
-
-    .color-option {
-      min-height: 120px;
-      border-radius: 22px;
-      padding: 20px;
-      border: 2px solid rgba(255,255,255,0.15);
-      cursor: pointer;
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      justify-content: center;
-      transition: 0.25s;
-    }
-
-    .color-option:hover {
-      transform: translateY(-5px);
-      border-color: #fff;
-    }
-
-    .color-option.selected {
-      border-color: #fff;
-      box-shadow: 0 0 25px rgba(255,255,255,0.35);
-      transform: scale(1.03);
-    }
-
-    .swatches {
-      display: flex;
-      margin-bottom: 12px;
-    }
-
-    .swatch {
-      width: 38px;
-      height: 38px;
-      border-radius: 50%;
-      border: 2px solid rgba(255,255,255,0.6);
-      margin: 0 -5px;
-    }
-
-    .black { background: #080808; }
-    .red { background: #e63946; }
-    .blue { background: #2878d0; }
-    .white { background: #fff; }
-    .beige { background: #d8c2a5; }
-    .purple { background: #9b59b6; }
-
-    .color-name {
-      font-size: 1.1rem;
-      font-weight: bold;
-    }
-
-    /* Celebration */
-    .celebration {
-      position: fixed;
-      inset: 0;
-      pointer-events: none;
-      z-index: 20;
-      overflow: hidden;
-    }
-
-    .confetti {
-      position: absolute;
-      width: 10px;
-      height: 16px;
-      top: -30px;
-      animation: confettiFall linear forwards;
-    }
-
-    @keyframes confettiFall {
-      to {
-        transform: translateY(110vh) rotate(720deg);
-        opacity: 0;
-      }
-    }
-
-    .floating-heart {
-      position: absolute;
-      bottom: -50px;
-      animation: heartRise linear forwards;
-      font-size: 25px;
-    }
-
-    @keyframes heartRise {
-      to {
-        transform: translateY(-110vh) rotate(360deg);
-        opacity: 0;
-      }
-    }
-
-    .progress {
-      position: fixed;
-      top: 0;
-      left: 0;
-      height: 4px;
-      background: linear-gradient(90deg, #ff4f81, #d86bff, #ffd166);
-      z-index: 100;
-      transition: width 0.4s ease;
-    }
-
-    .back-button {
-      position: absolute;
-      bottom: 20px;
-      left: 25px;
-      min-width: auto;
-      padding: 10px 18px;
-      font-size: 0.85rem;
-      background: rgba(255,255,255,0.08);
-      box-shadow: none;
-    }
-
-    .tiny-note {
-      color: rgba(255,255,255,0.65);
-      font-size: 0.85rem;
-      margin-top: 20px;
-    }
-
-    @media (max-width: 700px) {
-      .screen {
-        padding: 40px 20px 55px;
-        min-height: 600px;
-      }
-
-      .calendar-months {
-        grid-template-columns: 1fr;
-      }
-
-      .color-options {
-        grid-template-columns: 1fr;
-      }
-
-      #finalYes {
-        left: 30%;
-      }
-
-      #finalNo {
-        left: 70%;
-      }
-
-      .final-buttons {
-        height: 220px;
-      }
-
-      button {
-        min-width: 130px;
-        padding: 14px 20px;
-      }
-    }
-  </style>
-</head>
-
-<body>
-
-  <div class="progress" id="progress"></div>
-
-  <div class="sparkle-container" id="sparkleContainer"></div>
-  <div class="celebration" id="celebration"></div>
-
-  <main class="app">
-    <div class="screen" id="screen"></div>
-  </main>
-
-  <script>
-    /*
-      ==========================================================
-      DATE GAME WEBSITE
-      Formspree endpoint:
-      https://formspree.io/f/xoeapopq
-      ==========================================================
-    */
-
-    const FORMSPREE_URL = "https://formspree.io/f/xoeapopq";
-
-    const answers = {
-      question1: "",
-      question2: "",
-      question3: "",
-      question4: "",
-      question5: "",
-      question6: "",
-      question7: "",
-      question8: "",
-      question9: "",
-      question10: "",
-      date: "",
-      outfit: ""
-    };
-
-    let currentScreen = 0;
-    let selectedDate = "";
-
-    const screen = document.getElementById("screen");
-    const progress = document.getElementById("progress");
-
-    /* ----------------------------------------------------------
-       SPARKLES
-    ---------------------------------------------------------- */
-
-    function createSparkles() {
-      const container = document.getElementById("sparkleContainer");
-
-      for (let i = 0; i < 55; i++) {
-        const sparkle = document.createElement("div");
-        sparkle.className = "sparkle";
-        sparkle.innerHTML = Math.random() > 0.5 ? "✦" : "·";
-
-        sparkle.style.left = Math.random() * 100 + "%";
-        sparkle.style.top = (70 + Math.random() * 40) + "%";
-        sparkle.style.fontSize = (7 + Math.random() * 15) + "px";
-        sparkle.style.animationDuration = (5 + Math.random() * 9) + "s";
-        sparkle.style.animationDelay = (Math.random() * 8) + "s";
-
-        container.appendChild(sparkle);
-      }
-    }
-
-    createSparkles();
-
-    /* ----------------------------------------------------------
-       SCREEN MANAGEMENT
-    ---------------------------------------------------------- */
-
-    function updateProgress() {
-      const totalScreens = 15;
-      const percentage = Math.min((currentScreen / (totalScreens - 1)) * 100, 100);
-      progress.style.width = percentage + "%";
-    }
-
-    function render(content) {
-      screen.innerHTML = content;
-      screen.style.animation = "none";
-
-      void screen.offsetWidth;
-
-      screen.style.animation = "screenIn 0.6s ease";
-
-      updateProgress();
-      window.scrollTo({ top: 0, behavior: "smooth" });
-    }
-
-    function nextScreen() {
-      currentScreen++;
-      showScreen(currentScreen);
-    }
-
-    function previousScreen() {
-      if (currentScreen > 0) {
-        currentScreen--;
-        showScreen(currentScreen);
-      }
-    }
-
-    function backButton() {
-      return `
-        <button class="back-button" onclick="previousScreen()">
-          ← Back
-        </button>
-      `;
-    }
-
-    /* ----------------------------------------------------------
-       INITIAL SCREEN
-    ---------------------------------------------------------- */
-
-    function showScreen(index) {
-
-      /* SCREEN 0 */
-      if (index === 0) {
-        render(`
-          <div class="big-heart">❤️</div>
-
-          <h1>Hi there! Are you ready for a game? 😏❤️</h1>
-
-          <div class="buttons">
-            <button onclick="nextScreen()">Yes ❤️</button>
-            <button class="secondary" onclick="wrongChoice()">No</button>
-          </div>
-
-          <p class="tiny-note">Choose wisely... 😌</p>
-        `);
-      }
-
-      /* SCREEN 1 */
-      else if (index === 1) {
-        render(`
-          <div class="big-heart">⚠️</div>
-
-          <h1>Please proceed with caution.</h1>
-
-          <p class="warning">
-            Your answers may have consequences.
-          </p>
-
-          <button onclick="nextScreen()">I accept my fate 😏</button>
-        `);
-      }
-
-      /* QUESTION 1 */
-      else if (index === 2) {
-        questionScreen(
-          1,
-          "How much do you miss me?",
-          [
-            "A. A little",
-            "B. Quite a bit",
-            "C. More than I'd admit",
-            "D. Ekdomi na. Why are we even discussing this? 😂"
-          ],
-          "question1"
-        );
-      }
-
-      /* QUESTION 2 */
-      else if (index === 3) {
-        questionScreen(
-          2,
-          "What's the most dangerous thing about going on a date with me?",
-          [
-            "A. You'll steal my food",
-            "B. You'll make me laugh when I’m trying to be serious",
-            "C. You'll end up not wanting the date to end",
-            "D. All of the above, obviously"
-          ],
-          "question2"
-        );
-      }
-
-      /* QUESTION 3 */
-      else if (index === 4) {
-        questionScreen(
-          3,
-          "Wait!! Tell me, what's more dangerous?",
-          [
-            "A. Me when I'm hungry",
-            "B. Me when I'm annoyed",
-            "C. Me when I have an idea",
-            "D. Me saying “I have a surprise for you” 😏"
-          ],
-          "question3"
-        );
-      }
-
-      /* QUESTION 4 */
-      else if (index === 5) {
-        questionScreen(
-          4,
-          "If my nose were a food, what would it be?",
-          [
-            "A) Chocolate 🍫",
-            "B) Horeen er mangho 🍕",
-            "C) Spicy noodles 🌶️",
-            "D) Something you can't stop eating 😏"
-          ],
-          "question4"
-        );
-      }
-
-      /* QUESTION 5 */
-      else if (index === 6) {
-        questionScreen(
-          5,
-          "What's one thing you'd like us to do together again?",
-          [
-            "A. Go somewhere we've been before",
-            "B. Try somewhere completely new",
-            "C. Stay up talking way too late",
-            "D. Make another memory we can laugh about later"
-          ],
-          "question5"
-        );
-      }
-
-      /* QUESTION 6 */
-      else if (index === 7) {
-        questionScreen(
-          6,
-          "I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.",
-          [
-            "A. Absolutely. Let's go",
-            "B. Ask where we're going first",
-            "C. Ask what to wear",
-            "D. Make a 🌿🚬"
-          ],
-          "question6"
-        );
-      }
-
-      /* QUESTION 7 */
-      else if (index === 8) {
-        questionScreen(
-          7,
-          "If you could change ONE thing about our relationship, what would you choose?",
-          [
-            "A. Less fights",
-            "B. More uninterrupted time together",
-            "C. More adventures",
-            "D. Nothing. I'd rather make more memories from here ❤️"
-          ],
-          "question7"
-        );
-      }
-
-      /* QUESTION 8 */
-      else if (index === 9) {
-        questionScreen(
-          8,
-          "Imagine you have been invited on a date. What kind of date would be hardest to say no to?",
-          [
-            "A. Dinner somewhere beautiful",
-            "B. A movie-night",
-            "C. Somewhere neither of us has been before",
-            "D. A date where the only plan is to spend time together ❤️"
-          ],
-          "question8"
-        );
-      }
-
-      /* QUESTION 9 */
-      else if (index === 10) {
-        questionScreen(
-          9,
-          "And if I told you the person asking is… me?",
-          [
-            "A. Of course, it has to be my wife 😒 ugghhh",
-            "B. I was wondering when you'd get to the point",
-            "C. Let me think about it 😌",
-            "D. Where and when?"
-          ],
-          "question9"
-        );
-      }
-
-      /* QUESTION 10 */
-      else if (index === 11) {
-        questionScreen(
-          10,
-          "Would you let me steal you away for an evening?",
-          [
-            "A. ❤️ Yes — Especially if it's with you",
-            "B. 😏 Yes — But you'll have to convince me",
-            "C. 🙈 No — I'm afraid I'm already a little too interested",
-            "D. 😂 No — This sounds like a terrible idea… let's do it anyway"
-          ],
-          "question10"
-        );
-      }
-
-      /* FINAL INTRO */
-      else if (index === 12) {
-        render(`
-          <div class="big-heart">❤️</div>
-
-          <h1>Okay, enough questions. ❤️</h1>
-
-          <p class="subtitle">
-            There's only one thing left to ask...
-          </p>
-
-          <button onclick="nextScreen()">
-            Continue ✨
-          </button>
-
-          ${backButton()}
-        `);
-      }
-
-      /* WILL YOU BE MY DATE */
-      else if (index === 13) {
-        render(`
-          <div class="final-question">
-            <div class="big-heart">💖✨💖</div>
-
-            <h1>Will you be my date? ❤️</h1>
-
-            <p class="subtitle">
-              Think carefully, Sir... 😏
-            </p>
-
-            <div class="final-buttons" id="finalButtonArea">
-              <button id="finalYes" onclick="dateYes()">
-                Yes ❤️
-              </button>
-
-              <button id="finalNo">
-                No 😌
-              </button>
-            </div>
-
-            ${backButton()}
-          </div>
-        `);
-
-        setupMovingNoButton();
-      }
-
-      /* EXCELLENT CHOICE */
-      else if (index === 14) {
-        render(`
-          <div class="big-heart">🎉❤️🎉</div>
-
-          <h1>Excellent choice Sir!</h1>
-
-          <p class="subtitle">
-            I knew you'd make the right decision. 😏❤️
-          </p>
-
-          <button onclick="showDatePicker()">
-            Now choose our date ✨
-          </button>
-        `);
-
-        launchSmallCelebration();
-      }
-    }
-
-    /* ----------------------------------------------------------
-       WRONG CHOICE
-    ---------------------------------------------------------- */
-
-    function wrongChoice() {
-      render(`
-        <div class="big-heart">🤦‍♀️😂</div>
-
-        <h1>Wrong Choice.</h1>
-
-        <p class="subtitle">
-          You know it’s not the right answer. 😂
-        </p>
-
-        <button onclick="showScreen(0)">
-          Try again 😏
-        </button>
-      `);
-    }
-
-    /* ----------------------------------------------------------
-       QUESTIONS
-    ---------------------------------------------------------- */
-
-    function questionScreen(number, question, options, answerKey) {
-
-      let optionsHTML = options.map((option, index) => {
-        return `
-          <button class="option"
-            onclick="saveAnswer('${answerKey}', ${index}, \`${escapeForJS(option)}\`)">
-            ${option}
-          </button>
-        `;
-      }).join("");
-
-      render(`
-        <span class="question-number">Question ${number}</span>
-
-        <h2>${question}</h2>
-
-        <div class="options">
-          ${optionsHTML}
-        </div>
-
-        ${backButton()}
-      `);
-    }
-
-    function escapeForJS(text) {
-      return text.replace(/`/g, "\\`").replace(/\\/g, "\\\\");
-    }
-
-    function saveAnswer(key, index, answerText) {
-      answers[key] = answerText;
-      nextScreen();
-    }
-
-    /* ----------------------------------------------------------
-       FINAL YES / MOVING NO
-    ---------------------------------------------------------- */
-
-    function dateYes() {
-      currentScreen = 14;
-      showScreen(14);
-    }
-
-    function setupMovingNoButton() {
-
-      const noButton = document.getElementById("finalNo");
-      const area = document.getElementById("finalButtonArea");
-
-      if (!noButton || !area) return;
-
-      function moveNoButton() {
-
-        const areaRect = area.getBoundingClientRect();
-        const buttonRect = noButton.getBoundingClientRect();
-
-        const maxX = Math.max(
-          0,
-          area.clientWidth - buttonRect.width
-        );
-
-        const maxY = Math.max(
-          0,
-          area.clientHeight - buttonRect.height
-        );
-
-        let newX = Math.random() * maxX;
-        let newY = Math.random() * maxY;
-
-        /*
-          Keep the button comfortably inside the screen.
-        */
-        newX = Math.max(5, Math.min(newX, maxX - 5));
-        newY = Math.max(5, Math.min(newY, maxY - 5));
-
-        noButton.style.left = newX + "px";
-        noButton.style.top = newY + "px";
-        noButton.style.transform = "none";
-      }
-
-      /*
-        Move the button whenever the cursor gets close.
-        It remains visible on the screen at all times.
-      */
-      area.addEventListener("mousemove", function(event) {
-
-        const rect = noButton.getBoundingClientRect();
-
-        const buttonCenterX = rect.left + rect.width / 2;
-        const buttonCenterY = rect.top + rect.height / 2;
-
-        const distance = Math.sqrt(
-          Math.pow(event.clientX - buttonCenterX, 2) +
-          Math.pow(event.clientY - buttonCenterY, 2)
-        );
-
-        if (distance < 130) {
-          moveNoButton();
-        }
-      });
-
-      /*
-        Also make it impossible to click the No button.
-      */
-      noButton.addEventListener("mouseenter", moveNoButton);
-
-      /*
-        Touch support for phones.
-      */
-      noButton.addEventListener("touchstart", function(event) {
-        event.preventDefault();
-        moveNoButton();
-      });
-
-      noButton.addEventListener("click", function(event) {
-        event.preventDefault();
-        moveNoButton();
-      });
-    }
-
-    /* ----------------------------------------------------------
-       DATE PICKER
-    ---------------------------------------------------------- */
-
-    function showDatePicker() {
-
-      currentScreen = 15;
-
-      render(`
-        <div class="big-heart">📅❤️</div>
-
-        <h1>Pick our date ❤️</h1>
-
-        <p class="subtitle">
-          Choose a day for our little adventure.
-        </p>
-
-        <div class="calendar-wrapper">
-          <div class="calendar-months">
-
-            <div class="month">
-              <h3>August 2026</h3>
-              <div id="augustCalendar"></div>
-            </div>
-
-            <div class="month">
-              <h3>September 2026</h3>
-              <div id="septemberCalendar"></div>
-            </div>
-
-          </div>
-
-          <div class="selected-date" id="selectedDate">
-            Choose a date ❤️
-          </div>
-        </div>
-
-        <div class="buttons">
-          <button id="dateContinue" disabled onclick="goToOutfit()">
-            Continue ✨
-          </button>
-        </div>
-      `);
-
-      createCalendar(2026, 7, "augustCalendar");
-      createCalendar(2026, 8, "septemberCalendar");
-    }
-
-    function createCalendar(year, month, containerId) {
-
-      const container = document.getElementById(containerId);
-
-      const weekdays = [
-        "Sun", "Mon", "Tue", "Wed", "Thu", "Fri", "Sat"
-      ];
-
-      let html = `
-        <div class="weekdays">
-          ${weekdays.map(day => `<div class="weekday">${day}</div>`).join("")}
-        </div>
-        <div class="days">
-      `;
-
-      const firstDay = new Date(year, month, 1).getDay();
-      const daysInMonth = new Date(year, month + 1, 0).getDate();
-
-      for (let i = 0; i < firstDay; i++) {
-        html += `<div class="day empty"></div>`;
-      }
-
-      for (let day = 1; day <= daysInMonth; day++) {
-
-        const dateString =
-          year + "-" +
-          String(month + 1).padStart(2, "0") + "-" +
-          String(day).padStart(2, "0");
-
-        html += `
-          <button
-            class="day"
-            onclick="selectDate('${dateString}', this)">
-            ${day}
-          </button>
-        `;
-      }
-
-      html += `</div>`;
-
-      container.innerHTML = html;
-    }
-
-    function selectDate(dateString, button) {
-
-      selectedDate = dateString;
-      answers.date = dateString;
-
-      document.querySelectorAll(".day").forEach(day => {
-        day.classList.remove("selected");
-      });
-
-      button.classList.add("selected");
-
-      const dateObject = new Date(dateString + "T12:00:00");
-
-      const formatted = dateObject.toLocaleDateString("en-US", {
-        weekday: "long",
-        month: "long",
-        day: "numeric",
-        year: "numeric"
-      });
-
-      document.getElementById("selectedDate").innerHTML =
-        "Our date: <strong>" + formatted + "</strong> ❤️";
-
-      const continueButton = document.getElementById("dateContinue");
-      continueButton.disabled = false;
-      continueButton.style.opacity = "1";
-    }
-
-    function goToOutfit() {
-
-      if (!selectedDate) return;
-
-      currentScreen = 16;
-
-      render(`
-        <div class="big-heart">👗❤️</div>
-
-        <h1>Now let's pick our outfit colors ❤️</h1>
-
-        <p class="subtitle">
-          Because obviously we need to look coordinated. 😌
-        </p>
-
-        <div class="color-options">
-
-          <div class="color-option" onclick="selectOutfit(this, 'Black and Red')">
-            <div class="swatches">
-              <span class="swatch black"></span>
-              <span class="swatch red"></span>
-            </div>
-            <div class="color-name">Option 1: Black and Red</div>
-          </div>
-
-          <div class="color-option" onclick="selectOutfit(this, 'Blue and White')">
-            <div class="swatches">
-              <span class="swatch blue"></span>
-              <span class="swatch white"></span>
-            </div>
-            <div class="color-name">Option 2: Blue and White</div>
-          </div>
-
-          <div class="color-option" onclick="selectOutfit(this, 'Beige and Purple')">
-            <div class="swatches">
-              <span class="swatch beige"></span>
-              <span class="swatch purple"></span>
-            </div>
-            <div class="color-name">Option 3: Beige and Purple</div>
-          </div>
-
-          <div class="color-option" onclick="selectOutfit(this, 'Black and White')">
-            <div class="swatches">
-              <span class="swatch black"></span>
-              <span class="swatch white"></span>
-            </div>
-            <div class="color-name">Option 4: Black and White</div>
-          </div>
-
-        </div>
-
-        <div class="buttons">
-          <button id="outfitContinue" disabled onclick="finishGame()">
-            This one! ❤️
-          </button>
-        </div>
-      `);
-    }
-
-    function selectOutfit(element, color) {
-
-      document.querySelectorAll(".color-option").forEach(option => {
-        option.classList.remove("selected");
-      });
-
-      element.classList.add("selected");
-
-      answers.outfit = color;
-
-      const button = document.getElementById("outfitContinue");
-      button.disabled = false;
-      button.style.opacity = "1";
-    }
-
-    /* ----------------------------------------------------------
-       FORMspree SUBMISSION
-    ---------------------------------------------------------- */
-
-    async function finishGame() {
-
-      if (!answers.outfit || !answers.date) return;
-
-      currentScreen = 17;
-
-      render(`
-        <div class="big-heart">🎉❤️🎉</div>
-
-        <h1>Thank you for your time! I love you</h1>
-
-        <p class="subtitle">
-          And apparently... you're officially my date. ❤️
-        </p>
-
-        <div style="font-size: 4rem; margin-top: 20px;">
-          🎉 🥳 🎊 💕 🎉
-        </div>
-
-        <p class="tiny-note">
-          Saving our answers... ❤️
-        </p>
-      `);
-
-      launchBigCelebration();
-
-      await submitToFormspree();
-    }
-
-    async function submitToFormspree() {
-
-      const formData = new FormData();
-
-      formData.append("subject", "❤️ Date Game Answers");
-
-      formData.append("Question 1 - How much do you miss me?", answers.question1);
-      formData.append("Question 2 - Most dangerous thing about a date with me", answers.question2);
-      formData.append("Question 3 - What's more dangerous?", answers.question3);
-      formData.append("Question 4 - If my nose were a food", answers.question4);
-      formData.append("Question 5 - Something we'd do together again", answers.question5);
-      formData.append("Question 6 - 10 minute adventure", answers.question6);
-      formData.append("Question 7 - One thing to change", answers.question7);
-      formData.append("Question 8 - Hardest date to say no to", answers.question8);
-      formData.append("Question 9 - If the person asking is me", answers.question9);
-      formData.append("Question 10 - Would you let me steal you away?", answers.question10);
-
-      formData.append("Selected Date", answers.date);
-      formData.append("Outfit Color Code", answers.outfit);
-
-      formData.append("Final Answer", "Yes ❤️");
-      formData.append("Game Completed", "Yes");
-
-      try {
-
-        const response = await fetch(FORMSPREE_URL, {
-          method: "POST",
-          body: formData,
-          headers: {
-            "Accept": "application/json"
-          }
-        });
-
-        const tinyNote = document.querySelector(".tiny-note");
-
-        if (response.ok) {
-
-          if (tinyNote) {
-            tinyNote.innerHTML =
-              "Everything has been saved. Now get ready for our date. ❤️✨";
-          }
-
-        } else {
-
-          if (tinyNote) {
-            tinyNote.innerHTML =
-              "Our date is confirmed ❤️ (There was a tiny issue saving the answers.)";
-          }
-
-          console.error("Formspree submission failed.");
-        }
-
-      } catch (error) {
-
-        console.error("Formspree error:", error);
-
-        const tinyNote = document.querySelector(".tiny-note");
-
-        if (tinyNote) {
-          tinyNote.innerHTML =
-            "Our date is confirmed ❤️";
-        }
-      }
-    }
-
-    /* ----------------------------------------------------------
-       CELEBRATIONS
-    ---------------------------------------------------------- */
-
-    function launchSmallCelebration() {
-
-      const container = document.getElementById("celebration");
-
-      for (let i = 0; i < 45; i++) {
-
-        const confetti = document.createElement("div");
-
-        confetti.className = "confetti";
-
-        const colors = [
-          "#ff4f81",
-          "#ffcf56",
-          "#a855f7",
-          "#4ade80",
-          "#60a5fa",
-          "#ffffff"
-        ];
-
-        confetti.style.background =
-          colors[Math.floor(Math.random() * colors.length)];
-
-        confetti.style.left = Math.random() * 100 + "%";
-        confetti.style.animationDuration =
-          (2 + Math.random() * 3) + "s";
-
-        confetti.style.animationDelay =
-          Math.random() * 1 + "s";
-
-        container.appendChild(confetti);
-
-        setTimeout(() => confetti.remove(), 6000);
-      }
-    }
-
-    function launchBigCelebration() {
-
-      const container = document.getElementById("celebration");
-
-      /* Confetti */
-      for (let i = 0; i < 180; i++) {
-
-        const confetti = document.createElement("div");
-
-        confetti.className = "confetti";
-
-        const colors = [
-          "#ff4f81",
-          "#ffcf56",
-          "#a855f7",
-          "#4ade80",
-          "#60a5fa",
-          "#ffffff",
-          "#ff8fab"
-        ];
-
-        confetti.style.background =
-          colors[Math.floor(Math.random() * colors.length)];
-
-        confetti.style.left = Math.random() * 100 + "%";
-        confetti.style.width = (5 + Math.random() * 9) + "px";
-        confetti.style.height = (8 + Math.random() * 14) + "px";
-
-        confetti.style.animationDuration =
-          (2 + Math.random() * 4) + "s";
-
-        confetti.style.animationDelay =
-          Math.random() * 2 + "s";
-
-        container.appendChild(confetti);
-
-        setTimeout(() => confetti.remove(), 8000);
-      }
-
-      /* Floating hearts */
-      const hearts = ["❤️", "💕", "💖", "💗", "💓", "💘", "✨"];
-
-      for (let i = 0; i < 50; i++) {
-
-        const heart = document.createElement("div");
-
-        heart.className = "floating-heart";
-
-        heart.innerHTML =
-          hearts[Math.floor(Math.random() * hearts.length)];
-
-        heart.style.left = Math.random() * 100 + "%";
-
-        heart.style.animationDuration =
-          (4 + Math.random() * 6) + "s";
-
-        heart.style.animationDelay =
-          Math.random() * 3 + "s";
-
-        container.appendChild(heart);
-
-        setTimeout(() => heart.remove(), 11000);
-      }
-    }
-
-    /* ----------------------------------------------------------
-       START
-    ---------------------------------------------------------- */
-
-    showScreen(0);
-
-  </script>
-
-</body>
-</html>
+<style>
+
+@import url('https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&family=Great+Vibes&display=swap');
+
+:root {
+  --pink: #ff4f91;
+  --hot-pink: #ff2f75;
+  --rose: #ff8eae;
+  --purple: #a855f7;
+  --deep-purple: #160018;
+  --wine: #35001f;
+  --gold: #ffd98a;
+  --cream: #fff5f7;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+html,
+body {
+  margin: 0;
+  padding: 0;
+  width: 100%;
+  min-height: 100%;
+}
+
+body {
+  min-height: 100vh;
+  color: white;
+  font-family: "DM Sans", sans-serif;
+  overflow-x: hidden;
+
+  background:
+    radial-gradient(
+      circle at 15% 10%,
+      rgba(255, 65, 130, 0.30),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 90% 15%,
+      rgba(155, 70, 255, 0.30),
+      transparent 28%
+    ),
+    radial-gradient(
+      circle at 50% 100%,
+      rgba(255, 0, 95, 0.22),
+      transparent 35%
+    ),
+    linear-gradient(
+      135deg,
+      #0b0012 0%,
+      #1a001d 30%,
+      #32001f 65%,
+      #100018 100%
+    );
+
+  position: relative;
+}
+
+/* ==========================================================
+   ANIMATED BACKGROUND
+========================================================== */
+
+body::before {
+  content: "";
+  position: fixed;
+  inset: -30%;
+  z-index: 0;
+  pointer-events: none;
+
+  background:
+    radial-gradient(
+      circle at 30% 40%,
+      rgba(255, 44, 112, 0.12),
+      transparent 25%
+    ),
+    radial-gradient(
+      circle at 70% 60%,
+      rgba(135, 55, 255, 0.12),
+      transparent 25%
+    );
+
+  animation: backgroundGlow 16s ease-in-out infinite alternate;
+}
+
+@keyframes backgroundGlow {
+  0% {
+    transform: translate(-5%, -3%) scale(1);
+  }
+
+  50% {
+    transform: translate(5%, 4%) scale(1.08);
+  }
+
+  100% {
+    transform: translate(-2%, 7%) scale(1.15);
+  }
+}
+
+/* ==========================================================
+   STARS
+========================================================== */
+
+.sparkle-container {
+  position: fixed;
+  inset: 0;
+  pointer-events: none;
+  z-index: 1;
+  overflow: hidden;
+}
+
+.sparkle {
+  position: absolute;
+  color: #fff;
+  opacity: 0;
+  font-size: 12px;
+
+  text-shadow:
+    0 0 5px white,
+    0 0 12px #ff79a9,
+    0 0 22px #ff3f83;
+
+  animation: starFloat linear infinite;
+}
+
+@keyframes starFloat {
+
+  0% {
+    opacity: 0;
+    transform:
+      translateY(30px)
+      scale(0.4)
+      rotate(0deg);
+  }
+
+  20% {
+    opacity: 1;
+  }
+
+  50% {
+    opacity: 0.8;
+    transform:
+      translateY(-35vh)
+      scale(1.2)
+      rotate(180deg);
+  }
+
+  80% {
+    opacity: 0.8;
+  }
+
+  100% {
+    opacity: 0;
+    transform:
+      translateY(-100vh)
+      scale(0.3)
+      rotate(360deg);
+  }
+}
+
+/* ==========================================================
+   MAIN CONTAINER
+========================================================== */
+
+.app {
+  min-height: 100vh;
+  position: relative;
+  z-index: 2;
+
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  padding: 35px 20px;
+}
+
+/* ==========================================================
+   MAIN GLASS CARD
+========================================================== */
+
+.screen {
+  width: min(920px, 100%);
+  min-height: 600px;
+
+  padding: 65px 55px;
+
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+
+  text-align: center;
+
+  position: relative;
+
+  border-radius: 38px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.13),
+      rgba(255,255,255,0.045)
+    );
+
+  border: 1px solid rgba(255,255,255,0.20);
+
+  box-shadow:
+    0 30px 100px rgba(0,0,0,0.60),
+    0 0 80px rgba(255,55,125,0.10),
+    inset 0 1px 0 rgba(255,255,255,0.15);
+
+  backdrop-filter: blur(25px);
+  -webkit-backdrop-filter: blur(25px);
+
+  animation: cardEntrance 0.7s cubic-bezier(.2,.8,.2,1);
+}
+
+.screen::before {
+  content: "";
+
+  position: absolute;
+  inset: 1px;
+
+  border-radius: 37px;
+
+  pointer-events: none;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,0.07),
+      transparent 35%,
+      transparent 65%,
+      rgba(255,120,170,0.05)
+    );
+}
+
+@keyframes cardEntrance {
+
+  from {
+    opacity: 0;
+    transform:
+      translateY(35px)
+      scale(0.94);
+    filter: blur(4px);
+  }
+
+  to {
+    opacity: 1;
+    transform:
+      translateY(0)
+      scale(1);
+    filter: blur(0);
+  }
+}
+
+/* ==========================================================
+   DECORATIVE CORNERS
+========================================================== */
+
+.screen::after {
+  content: "✦";
+
+  position: absolute;
+
+  top: 22px;
+  right: 28px;
+
+  color: #ffd3e3;
+
+  font-size: 25px;
+
+  text-shadow:
+    0 0 8px white,
+    0 0 20px #ff4f91;
+
+  animation: twinkle 1.8s ease-in-out infinite alternate;
+}
+
+@keyframes twinkle {
+
+  from {
+    opacity: 0.25;
+    transform: scale(0.7) rotate(0deg);
+  }
+
+  to {
+    opacity: 1;
+    transform: scale(1.3) rotate(30deg);
+  }
+}
+
+/* ==========================================================
+   TYPOGRAPHY
+========================================================== */
+
+h1,
+h2,
+h3 {
+  font-family: "Cormorant Garamond", serif;
+}
+
+h1 {
+  margin: 0 0 24px;
+
+  font-size: clamp(3rem, 7vw, 5.2rem);
+
+  line-height: 0.98;
+
+  font-weight: 600;
+
+  letter-spacing: -1px;
+
+  color: #fff8fb;
+
+  text-shadow:
+    0 2px 20px rgba(255,65,130,0.35),
+    0 0 45px rgba(255,65,130,0.12);
+}
+
+h2 {
+  margin: 0 0 35px;
+
+  max-width: 800px;
+
+  font-size: clamp(2rem, 4.5vw, 3.2rem);
+
+  line-height: 1.15;
+
+  font-weight: 600;
+
+  color: #fff7fa;
+
+  text-shadow:
+    0 0 25px rgba(255,100,160,0.18);
+}
+
+h3 {
+  font-size: 1.6rem;
+}
+
+.subtitle {
+  max-width: 700px;
+
+  margin: 0 auto 35px;
+
+  color: #fbdce8;
+
+  font-family: "DM Sans", sans-serif;
+
+  font-size: 1.15rem;
+
+  line-height: 1.8;
+}
+
+.warning {
+  max-width: 650px;
+
+  margin-bottom: 35px;
+
+  color: #ffd5e3;
+
+  font-size: 1.25rem;
+
+  line-height: 1.8;
+}
+
+/* ==========================================================
+   SCRIPT-STYLE ACCENT
+========================================================== */
+
+.big-heart {
+  margin-bottom: 15px;
+
+  font-size: 5rem;
+
+  filter:
+    drop-shadow(0 0 10px rgba(255,50,110,0.8))
+    drop-shadow(0 0 25px rgba(255,50,110,0.4));
+
+  animation: heartBeat 1.3s ease-in-out infinite;
+}
+
+@keyframes heartBeat {
+
+  0%,
+  100% {
+    transform: scale(1);
+  }
+
+  15% {
+    transform: scale(1.16);
+  }
+
+  30% {
+    transform: scale(1);
+  }
+
+  45% {
+    transform: scale(1.1);
+  }
+}
+
+/* ==========================================================
+   QUESTION NUMBER
+========================================================== */
+
+.question-number {
+
+  display: inline-flex;
+
+  align-items: center;
+  justify-content: center;
+
+  margin-bottom: 18px;
+
+  padding: 8px 18px;
+
+  border-radius: 100px;
+
+  color: #ffd0df;
+
+  background: rgba(255,80,140,0.10);
+
+  border: 1px solid rgba(255,120,170,0.20);
+
+  font-size: 0.8rem;
+
+  letter-spacing: 3px;
+
+  text-transform: uppercase;
+
+  font-weight: 700;
+
+  box-shadow:
+    0 0 20px rgba(255,50,120,0.08);
+}
+
+/* ==========================================================
+   BUTTONS
+========================================================== */
+
+.buttons {
+
+  display: flex;
+
+  justify-content: center;
+
+  align-items: center;
+
+  gap: 16px;
+
+  flex-wrap: wrap;
+
+  margin-top: 20px;
+}
+
+button {
+
+  position: relative;
+
+  border: none;
+
+  padding: 16px 34px;
+
+  min-width: 155px;
+
+  border-radius: 100px;
+
+  font-family: "DM Sans", sans-serif;
+
+  font-size: 1rem;
+
+  font-weight: 700;
+
+  letter-spacing: 0.2px;
+
+  cursor: pointer;
+
+  color: white;
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff477f,
+      #d63cff
+    );
+
+  box-shadow:
+    0 12px 30px rgba(255,40,120,0.25),
+    inset 0 1px 0 rgba(255,255,255,0.25);
+
+  transition:
+    transform 0.25s ease,
+    box-shadow 0.25s ease,
+    filter 0.25s ease;
+}
+
+button::before {
+
+  content: "";
+
+  position: absolute;
+
+  inset: 1px;
+
+  border-radius: inherit;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,0.15),
+      transparent 40%
+    );
+
+  pointer-events: none;
+}
+
+button:hover {
+
+  transform:
+    translateY(-4px)
+    scale(1.04);
+
+  box-shadow:
+    0 18px 45px rgba(255,40,120,0.40),
+    0 0 25px rgba(255,60,140,0.20);
+
+  filter: brightness(1.08);
+}
+
+button:active {
+
+  transform:
+    translateY(-1px)
+    scale(0.98);
+}
+
+button.secondary {
+
+  color: #ffe9f1;
+
+  background:
+    rgba(255,255,255,0.06);
+
+  border: 1px solid rgba(255,255,255,0.22);
+
+  box-shadow:
+    0 10px 25px rgba(0,0,0,0.15);
+}
+
+/* ==========================================================
+   QUESTION OPTIONS
+========================================================== */
+
+.options {
+
+  width: min(760px, 100%);
+
+  display: grid;
+
+  grid-template-columns: 1fr;
+
+  gap: 13px;
+
+  margin-top: 5px;
+}
+
+.option {
+
+  width: 100%;
+
+  min-width: 0;
+
+  padding: 18px 23px;
+
+  border-radius: 18px;
+
+  text-align: left;
+
+  font-size: 1rem;
+
+  font-weight: 500;
+
+  color: #fff5f8;
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255,255,255,0.08),
+      rgba(255,255,255,0.035)
+    );
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  box-shadow:
+    0 8px 25px rgba(0,0,0,0.12);
+
+  transition:
+    0.25s ease;
+}
+
+.option:hover {
+
+  transform:
+    translateX(7px);
+
+  background:
+    linear-gradient(
+      120deg,
+      rgba(255,70,130,0.25),
+      rgba(150,60,255,0.16)
+    );
+
+  border-color:
+    rgba(255,150,190,0.45);
+
+  box-shadow:
+    0 10px 35px rgba(255,40,120,0.18);
+
+}
+
+/* ==========================================================
+   FINAL DATE QUESTION
+========================================================== */
+
+.final-question {
+
+  width: 100%;
+
+  padding: 15px;
+
+  position: relative;
+}
+
+.final-question h1 {
+
+  font-size: clamp(3.5rem, 9vw, 6.5rem);
+
+  background:
+    linear-gradient(
+      135deg,
+      #fff,
+      #ffd2e1,
+      #ff70a0,
+      #d88cff
+    );
+
+  -webkit-background-clip: text;
+  background-clip: text;
+
+  color: transparent;
+
+  background-size: 300% auto;
+
+  animation:
+    gradientText 5s ease infinite;
+
+  text-shadow: none;
+}
+
+@keyframes gradientText {
+
+  0% {
+    background-position: 0% 50%;
+  }
+
+  50% {
+    background-position: 100% 50%;
+  }
+
+  100% {
+    background-position: 0% 50%;
+  }
+}
+
+/* ==========================================================
+   FINAL YES / NO AREA
+========================================================== */
+
+.final-buttons {
+
+  position: relative;
+
+  width: min(760px, 100%);
+
+  height: 210px;
+
+  margin-top: 15px;
+}
+
+.final-buttons button {
+
+  position: absolute;
+
+  top: 65px;
+}
+
+#finalYes {
+
+  left: 32%;
+
+  transform: translateX(-50%);
+}
+
+#finalNo {
+
+  left: 68%;
+
+  transform: translateX(-50%);
+
+  transition:
+    left 0.18s ease,
+    top 0.18s ease,
+    transform 0.18s ease;
+}
+
+/* ==========================================================
+   BACK BUTTON
+========================================================== */
+
+.back-button {
+
+  position: absolute;
+
+  bottom: 20px;
+  left: 25px;
+
+  min-width: auto;
+
+  padding: 9px 18px;
+
+  font-size: 0.82rem;
+
+  color: #ffdce8;
+
+  background: rgba(255,255,255,0.04);
+
+  border: 1px solid rgba(255,255,255,0.12);
+
+  box-shadow: none;
+}
+
+.back-button:hover {
+
+  transform: translateY(-2px);
+
+  box-shadow:
+    0 5px 20px rgba(255,50,120,0.15);
+}
+
+/* ==========================================================
+   CALENDAR
+========================================================== */
+
+.calendar-wrapper {
+
+  width: 100%;
+
+  max-width: 780px;
+}
+
+.calendar-months {
+
+  display: grid;
+
+  grid-template-columns: repeat(2, 1fr);
+
+  gap: 22px;
+
+  width: 100%;
+}
+
+.month {
+
+  padding: 23px;
+
+  border-radius: 25px;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.09),
+      rgba(255,255,255,0.035)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.13);
+
+  box-shadow:
+    0 15px 40px rgba(0,0,0,0.18);
+}
+
+.month h3 {
+
+  margin: 0 0 18px;
+
+  color: #ffd8e5;
+
+  text-shadow:
+    0 0 15px rgba(255,80,140,0.25);
+}
+
+.weekdays,
+.days {
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(7, 1fr);
+
+  gap: 5px;
+}
+
+.weekday {
+
+  padding: 5px 0;
+
+  color: #e9aabd;
+
+  font-size: 0.7rem;
+
+  font-weight: 700;
+
+  text-transform: uppercase;
+}
+
+.day {
+
+  min-width: 0;
+
+  padding: 9px 2px;
+
+  border-radius: 10px;
+
+  color: #fff;
+
+  background:
+    rgba(255,255,255,0.055);
+
+  border:
+    1px solid transparent;
+
+  font-size: 0.85rem;
+
+  box-shadow: none;
+
+  transition:
+    transform 0.2s ease,
+    background 0.2s ease;
+}
+
+.day:hover {
+
+  transform: scale(1.08);
+
+  background:
+    rgba(255,75,140,0.28);
+}
+
+.day.selected {
+
+  background:
+    linear-gradient(
+      135deg,
+      #ff477f,
+      #a83cff
+    );
+
+  border-color: rgba(255,255,255,0.7);
+
+  box-shadow:
+    0 0 20px rgba(255,50,130,0.45);
+}
+
+.day.empty {
+
+  background: transparent;
+
+  cursor: default;
+
+  box-shadow: none;
+}
+
+.selected-date {
+
+  margin-top: 20px;
+
+  min-height: 28px;
+
+  color: #ffd6e5;
+
+  font-size: 1.05rem;
+
+  text-shadow:
+    0 0 15px rgba(255,70,140,0.2);
+}
+
+/* ==========================================================
+   OUTFIT COLORS
+========================================================== */
+
+.color-options {
+
+  width: min(760px, 100%);
+
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, 1fr);
+
+  gap: 18px;
+}
+
+.color-option {
+
+  min-height: 135px;
+
+  padding: 22px;
+
+  border-radius: 25px;
+
+  display: flex;
+
+  flex-direction: column;
+
+  justify-content: center;
+
+  align-items: center;
+
+  cursor: pointer;
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,255,255,0.09),
+      rgba(255,255,255,0.035)
+    );
+
+  border:
+    1px solid rgba(255,255,255,0.13);
+
+  transition:
+    transform 0.25s ease,
+    border 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.color-option:hover {
+
+  transform:
+    translateY(-7px);
+
+  border-color:
+    rgba(255,150,190,0.5);
+
+  box-shadow:
+    0 15px 35px rgba(255,40,120,0.15);
+}
+
+.color-option.selected {
+
+  transform:
+    translateY(-5px)
+    scale(1.025);
+
+  border-color:
+    rgba(255,255,255,0.8);
+
+  background:
+    linear-gradient(
+      145deg,
+      rgba(255,65,130,0.20),
+      rgba(140,50,255,0.13)
+    );
+
+  box-shadow:
+    0 0 30px rgba(255,60,140,0.25);
+}
+
+.swatches {
+
+  display: flex;
+
+  margin-bottom: 15px;
+}
+
+.swatch {
+
+  width: 42px;
+
+  height: 42px;
+
+  border-radius: 50%;
+
+  margin: 0 -5px;
+
+  border:
+    2px solid rgba(255,255,255,0.75);
+
+  box-shadow:
+    0 5px 15px rgba(0,0,0,0.25);
+}
+
+.black {
+  background: #050505;
+}
+
+.red {
+  background: #e63946;
+}
+
+.blue {
+  background: #3478db;
+}
+
+.white {
+  background: #ffffff;
+}
+
+.beige {
+  background: #d8c2a5;
+}
+
+.purple {
+  background: #9b59b6;
+}
+
+.color-name {
+
+  font-size: 1rem;
+
+  font-weight: 700;
+
+  color: #ffeaf1;
+}
+
+/* ==========================================================
+   DISABLED BUTTON
+========================================================== */
+
+button:disabled {
+
+  opacity: 0.35;
+
+  cursor: not-allowed;
+
+  transform: none !important;
+
+  box-shadow: none;
+}
+
+/* ==========================================================
+   PROGRESS BAR
+========================================================== */
+
+.progress {
+
+  position: fixed;
+
+  top: 0;
+  left: 0;
+
+  width: 0%;
+
+  height: 4px;
+
+  z-index: 100;
+
+  background:
+    linear-gradient(
+      90deg,
+      #ff3f7f,
+      #ff79ad,
+      #c76cff,
+      #ffd166
+    );
+
+  box-shadow:
+    0 0 15px rgba(255,70,140,0.8);
+
+  transition:
+    width 0.5s ease;
+}
+
+/* ==========================================================
+   SMALL NOTE
+========================================================== */
+
+.tiny-note {
+
+  margin-top: 22px;
+
+  color:
+    rgba(255,220,232,0.65);
+
+  font-size: 0.82rem;
+
+  letter-spacing: 0.3px;
+}
+
+/* ==========================================================
+   CELEBRATION
+========================================================== */
+
+.celebration {
+
+  position: fixed;
+
+  inset: 0;
+
+  pointer-events: none;
+
+  z-index: 200;
+
+  overflow: hidden;
+}
+
+.confetti {
+
+  position: absolute;
+
+  width: 9px;
+  height: 15px;
+
+  top: -30px;
+
+  border-radius: 2px;
+
+  animation:
+    confettiFall linear forwards;
+}
+
+@keyframes confettiFall {
+
+  0% {
+
+    transform:
+      translateY(0)
+      rotate(0deg);
+
+    opacity: 1;
+  }
+
+  100% {
+
+    transform:
+      translateY(110vh)
+      rotate(900deg);
+
+    opacity: 0;
+  }
+}
+
+.floating-heart {
+
+  position: absolute;
+
+  bottom: -60px;
+
+  font-size: 25px;
+
+  animation:
+    heartRise linear forwards;
+
+  filter:
+    drop-shadow(0 0 8px rgba(255,70,140,0.8));
+}
+
+@keyframes heartRise {
+
+  0% {
+
+    opacity: 0;
+
+    transform:
+      translateY(0)
+      scale(0.6)
+      rotate(0deg);
+  }
+
+  15% {
+    opacity: 1;
+  }
+
+  100% {
+
+    opacity: 0;
+
+    transform:
+      translateY(-115vh)
+      scale(1.3)
+      rotate(360deg);
+  }
+}
+
+/* ==========================================================
+   RESPONSIVE
+========================================================== */
+
+@media (max-width: 700px) {
+
+  .app {
+    padding: 18px 12px;
+  }
+
+  .screen {
+
+    min-height: 650px;
+
+    padding:
+      45px 20px 60px;
+
+    border-radius: 28px;
+  }
+
+  .screen::before {
+    border-radius: 27px;
+  }
+
+  h1 {
+    font-size: clamp(2.7rem, 13vw, 4rem);
+  }
+
+  h2 {
+    font-size: 2rem;
+  }
+
+  .subtitle {
+    font-size: 1rem;
+  }
+
+  .calendar-months {
+    grid-template-columns: 1fr;
+  }
+
+  .color-options {
+    grid-template-columns: 1fr;
+  }
+
+  .final-buttons {
+    height: 230px;
+  }
+
+  #finalYes {
+    left: 28%;
+  }
+
+  #finalNo {
+    left: 72%;
+  }
+
+  button {
+    min-width: 135px;
+    padding: 14px 22px;
+  }
+}
+
+</style>
