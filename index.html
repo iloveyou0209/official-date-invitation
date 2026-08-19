@@ -884,9 +884,9 @@ function nextQuestion() {
 
     const current = document.querySelector(".screen.active");
     const currentNumber = parseInt(current.id.replace("screen", ""));
-
     goTo(currentNumber + 1);
 }
+    
 /* =========================================================
    WRONG CHOICE
 ========================================================= */
@@ -1074,7 +1074,7 @@ function selectOutfit(element, outfit) {
     document.getElementById("outfitContinue").disabled = false;
 }
 
-function finishDate() {
+function finishDate() 
 
     if (!selectedOutfit) return;
 
