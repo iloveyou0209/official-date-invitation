@@ -3,45 +3,56 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Our Date ❤️</title>
+
+<title>Our Little Date Game ❤️</title>
 
 <style>
+
 * {
     box-sizing: border-box;
-    margin: 0;
-    padding: 0;
 }
 
 html,
 body {
+    margin: 0;
+    padding: 0;
+
     width: 100%;
     min-height: 100%;
+
+    font-family:
+        Georgia,
+        "Times New Roman",
+        serif;
+
+    color: #173b60;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dcecff,
+            #ffffff,
+            #c4ced8
+        );
 }
 
-body {
-    font-family: Georgia, "Times New Roman", serif;
-    background:
-        linear-gradient(135deg, #ffffff 0%, #e9f3ff 45%, #bfcbd8 100%);
-    color: #173452;
-    overflow-x: hidden;
-}
 
 /* =========================================================
-   SCREENS
+   GENERAL SCREEN
 ========================================================= */
 
 .screen {
-    min-height: 100vh;
     width: 100%;
+    min-height: 100vh;
 
     display: none;
 
-    justify-content: center;
     align-items: center;
+    justify-content: center;
 
     padding: 30px 20px;
 
-    animation: fadeIn 0.45s ease;
+    animation: fadeIn 0.4s ease;
 }
 
 .screen.active {
@@ -49,27 +60,32 @@ body {
 }
 
 @keyframes fadeIn {
+
     from {
         opacity: 0;
-        transform: translateY(12px);
+        transform: translateY(10px);
     }
 
     to {
         opacity: 1;
         transform: translateY(0);
     }
+
 }
 
+
 /* =========================================================
-   WHITE PANELS
+   WHITE CARD
 ========================================================= */
 
 .card {
-    width: min(760px, 94vw);
 
-    background: rgba(255, 255, 255, 0.96);
+    width: min(780px, 94vw);
 
-    border: 1px solid #b9c3ce;
+    background: rgba(255,255,255,0.97);
+
+    border:
+        1px solid #b8c5d2;
 
     border-radius: 28px;
 
@@ -78,83 +94,168 @@ body {
     text-align: center;
 
     box-shadow:
-        0 25px 60px rgba(20, 55, 90, 0.25),
-        inset 0 1px 0 white;
+        0 25px 60px
+        rgba(31,64,94,0.22);
 
-    backdrop-filter: blur(10px);
 }
 
-.card-wide {
+
+.card.wide {
+
     width: min(1150px, 94vw);
+
 }
+
 
 /* =========================================================
    TEXT
 ========================================================= */
 
 h1 {
-    color: #0d47a1;
+
+    margin:
+        0 0 25px;
 
     font-size:
-        clamp(2rem, 5vw, 3.6rem);
+        clamp(2rem, 5vw, 4rem);
 
     line-height: 1.2;
 
-    margin-bottom: 25px;
+    color: #0d4d91;
+
 }
 
+
 h2 {
-    color: #173f70;
+
+    margin:
+        0 0 25px;
 
     font-size:
-        clamp(1.4rem, 3.5vw, 2.25rem);
+        clamp(1.4rem, 3vw, 2.3rem);
 
     line-height: 1.45;
 
-    margin-bottom: 25px;
+    color: #173f68;
+
 }
 
-.subtitle {
-    color: #5b6d80;
 
-    font-size: 1.2rem;
+.subtitle {
+
+    font-family: Arial, sans-serif;
+
+    color: #65788c;
+
+    font-size: 1.15rem;
 
     line-height: 1.7;
 
-    margin-bottom: 25px;
 }
 
+
 .sparkles {
-    color: #929daa;
+
+    color: #9ba8b5;
 
     font-size: 2rem;
 
     letter-spacing: 8px;
 
-    margin-bottom: 25px;
+    margin-bottom: 20px;
+
 }
 
-.question-number {
-    color: #778594;
+
+.question-label {
 
     font-family: Arial, sans-serif;
 
-    font-size: 0.9rem;
+    color: #758596;
 
-    font-weight: bold;
+    font-size: 0.85rem;
 
     text-transform: uppercase;
 
     letter-spacing: 2px;
 
+    font-weight: bold;
+
     margin-bottom: 15px;
+
 }
+
 
 /* =========================================================
    BUTTONS
 ========================================================= */
 
-.buttons {
+.main-button {
+
+    border: none;
+
+    border-radius: 50px;
+
+    padding:
+        15px 30px;
+
+    min-width: 150px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #0d4d91,
+            #5790c8
+        );
+
+    color: white;
+
+    font-family: Arial, sans-serif;
+
+    font-weight: bold;
+
+    font-size: 1rem;
+
+    cursor: pointer;
+
+    box-shadow:
+        0 8px 20px
+        rgba(13,77,145,0.28);
+
+    transition:
+        transform 0.2s,
+        box-shadow 0.2s;
+
+}
+
+
+.main-button:hover {
+
+    transform:
+        translateY(-3px);
+
+    box-shadow:
+        0 12px 25px
+        rgba(13,77,145,0.35);
+
+}
+
+
+.silver-button {
+
+    background:
+        linear-gradient(
+            135deg,
+            #737f8b,
+            #c7cdd3,
+            #747f8b
+        );
+
+}
+
+
+.button-row {
+
     display: flex;
 
     justify-content: center;
@@ -166,74 +267,16 @@ h2 {
     flex-wrap: wrap;
 
     margin-top: 30px;
+
 }
 
-.main-btn {
-    min-width: 150px;
-
-    padding: 15px 28px;
-
-    border: none;
-
-    border-radius: 50px;
-
-    color: white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0d47a1,
-            #4b86c5
-        );
-
-    font-family: Arial, sans-serif;
-
-    font-size: 1rem;
-
-    font-weight: bold;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 20px rgba(13, 71, 161, 0.3);
-
-    transition: 0.2s ease;
-}
-
-.main-btn:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 12px 25px rgba(13, 71, 161, 0.4);
-}
-
-.silver-btn {
-    background:
-        linear-gradient(
-            135deg,
-            #737e89,
-            #c7ccd2,
-            #727d88
-        );
-}
-
-/* =========================================================
-   WRONG
-========================================================= */
-
-.wrong {
-    color: #9d2d50;
-
-    font-size: 2.7rem;
-
-    margin-bottom: 25px;
-}
 
 /* =========================================================
    QUESTIONS
 ========================================================= */
 
-.choice-container {
+.answers {
+
     display: grid;
 
     grid-template-columns:
@@ -242,18 +285,20 @@ h2 {
     gap: 16px;
 
     margin-top: 30px;
+
 }
 
-.choice {
+
+.answer-button {
+
     width: 100%;
 
-    padding: 18px 20px;
+    padding: 18px;
 
-    text-align: left;
+    border:
+        1px solid #c2ced9;
 
-    border-radius: 16px;
-
-    border: 1px solid #bac6d3;
+    border-radius: 17px;
 
     background:
         linear-gradient(
@@ -262,7 +307,9 @@ h2 {
             #edf5ff
         );
 
-    color: #1d3958;
+    color: #214666;
+
+    text-align: left;
 
     font-family: Arial, sans-serif;
 
@@ -272,68 +319,92 @@ h2 {
 
     cursor: pointer;
 
-    transition: 0.2s ease;
+    transition:
+        transform 0.2s,
+        background 0.2s,
+        border 0.2s;
 
-    box-shadow:
-        0 5px 14px rgba(40,70,100,0.08);
 }
 
-.choice:hover {
-    transform: translateY(-3px);
 
-    border-color: #3d7fc7;
+.answer-button:hover {
+
+    transform:
+        translateY(-3px);
+
+    border-color:
+        #3b7fc2;
 
     background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #dcecff
-        );
+        #e0efff;
+
 }
+
 
 /* =========================================================
    FINAL SCREEN
 ========================================================= */
 
 /*
-   THIS IS NOW A TRUE FULL-WIDTH FINAL SCREEN.
+    THIS IS THE ENTIRE VIEWPORT.
 
-   The white area is wide.
-   The No button is NOT inside the white card.
+    The white panel sits inside it.
+
+    The No button is NOT inside the panel.
 */
 
-#screen-final {
+#final-screen {
+
     position: relative;
 
     width: 100vw;
 
+    height: 100vh;
+
     min-height: 100vh;
 
-    padding: 25px;
+    padding: 0;
 
     overflow: hidden;
 
     background:
         linear-gradient(
             135deg,
-            #dcecff 0%,
-            #ffffff 45%,
-            #c5d0dc 100%
+            #d7eaff,
+            #ffffff 48%,
+            #bec9d4
         );
+
 }
 
+
 /*
-   Wide white panel.
+    WIDE WHITE AREA
 */
 
-.final-wide-panel {
-    position: relative;
+.final-white-area {
+
+    position: absolute;
+
+    left: 3vw;
+
+    top: 5vh;
 
     width: 94vw;
 
-    max-width: 1400px;
+    height: 90vh;
 
-    min-height: 88vh;
+    background:
+        rgba(255,255,255,0.98);
+
+    border:
+        1px solid #b7c4d0;
+
+    border-radius: 35px;
+
+    box-shadow:
+        0 25px 70px
+        rgba(25,58,88,0.25);
 
     display: flex;
 
@@ -345,62 +416,34 @@ h2 {
 
     text-align: center;
 
-    padding: 50px;
-
-    background:
-        rgba(255,255,255,0.97);
-
-    border:
-        1px solid #b7c2ce;
-
-    border-radius: 35px;
-
-    box-shadow:
-        0 25px 70px rgba(20,60,100,0.28);
-
     z-index: 10;
+
 }
 
-.final-title {
-    color: #0d47a1;
-
-    font-size:
-        clamp(2.4rem, 7vw, 5.5rem);
-
-    line-height: 1.2;
-
-    margin-bottom: 30px;
-
-    text-shadow:
-        2px 2px 0 #d2d7dd;
-}
-
-/* =========================================================
-   THE FLOATING NO BUTTON
-========================================================= */
 
 /*
-   VERY IMPORTANT:
+    THE NO BUTTON HAS A HIGHER Z-INDEX
+    THAN THE WHITE PANEL.
 
-   This button is absolutely positioned relative
-   to the FULL SCREEN.
-
-   It is NOT inside the white panel.
-
-   It therefore has the entire browser screen
-   available for movement.
+    It belongs to the viewport,
+    NOT to the panel.
 */
 
 #noButton {
-    position: absolute;
 
-    z-index: 999999;
+    position: fixed;
 
-    display: none;
+    z-index: 1000000;
 
-    min-width: 155px;
+    display: block;
 
-    padding: 16px 30px;
+    visibility: visible;
+
+    opacity: 1;
+
+    width: 155px;
+
+    height: 52px;
 
     border: none;
 
@@ -409,83 +452,100 @@ h2 {
     background:
         linear-gradient(
             135deg,
-            #727d88,
-            #c6cbd1,
-            #737e89
+            #737f8b,
+            #c7cdd3,
+            #737f8b
         );
 
     color: white;
 
     font-family: Arial, sans-serif;
 
-    font-size: 1rem;
-
     font-weight: bold;
+
+    font-size: 1rem;
 
     cursor: pointer;
 
     box-shadow:
-        0 12px 30px rgba(20,40,60,0.35);
+        0 12px 30px
+        rgba(20,45,70,0.35);
+
+    /*
+        IMPORTANT:
+
+        No CSS transform.
+        No display:none.
+        No opacity animation.
+    */
 
     transition:
-        left 0.20s ease,
-        top 0.20s ease,
-        transform 0.20s ease;
+        left 0.16s ease,
+        top 0.16s ease;
+
 }
+
 
 /*
-   When final screen is active,
-   JavaScript adds this class.
+    FINAL TITLE
 */
 
-#noButton.show {
-    display: block;
+.final-title {
+
+    font-size:
+        clamp(2.3rem, 7vw, 5.5rem);
+
+    color: #0d4d91;
+
+    margin-bottom: 30px;
+
+    text-shadow:
+        2px 2px 0 #d0d6dc;
+
 }
 
-#noButton.running {
-    transform:
-        scale(1.08)
-        rotate(3deg);
-}
 
 /* =========================================================
    CALENDAR
 ========================================================= */
 
-.calendar-wrapper {
-    margin-top: 25px;
-}
-
 .calendar-header {
-    display: flex;
 
-    justify-content: space-between;
+    display: flex;
 
     align-items: center;
 
-    padding: 15px 20px;
-
-    margin-bottom: 18px;
-
-    border-radius: 16px;
-
-    color: white;
+    justify-content: space-between;
 
     background:
         linear-gradient(
             135deg,
-            #0d47a1,
-            #5789bd
+            #0d4d91,
+            #5b91c6
         );
+
+    color: white;
+
+    padding: 14px 18px;
+
+    border-radius: 15px;
+
+    margin-top: 25px;
+
 }
+
 
 .calendar-header h3 {
+
+    margin: 0;
+
     font-family: Arial, sans-serif;
 
-    font-size: 1.25rem;
 }
 
-.calendar-nav {
+
+.month-button {
+
     width: 42px;
 
     height: 42px;
@@ -494,131 +554,151 @@ h2 {
 
     border-radius: 50%;
 
-    color: white;
-
     background:
         rgba(255,255,255,0.2);
 
-    font-size: 1.4rem;
+    color: white;
+
+    font-size: 1.5rem;
 
     cursor: pointer;
+
 }
 
-.calendar-nav:hover {
-    background:
-        rgba(255,255,255,0.4);
-}
 
 .calendar-days,
 .calendar-grid {
+
     display: grid;
 
     grid-template-columns:
-        repeat(7, 1fr);
+        repeat(7,1fr);
 
     gap: 7px;
+
 }
 
-.calendar-days div {
-    padding: 8px;
 
-    color: #687888;
+.calendar-days {
+
+    margin-top: 15px;
+
+}
+
+
+.calendar-days div {
 
     font-family: Arial, sans-serif;
 
     font-size: 0.8rem;
 
     font-weight: bold;
+
+    color: #718194;
+
+    padding: 7px;
+
 }
 
-.date-btn {
+
+.calendar-grid {
+
+    margin-top: 7px;
+
+}
+
+
+.date-button {
+
     min-height: 48px;
 
-    border: 1px solid #ced7e0;
+    border:
+        1px solid #ced7df;
 
     border-radius: 12px;
 
     background: #f7fbff;
 
-    color: #1c426c;
+    color: #214c72;
 
     font-weight: bold;
 
     cursor: pointer;
 
-    transition: 0.2s ease;
 }
 
-.date-btn:hover {
-    transform: scale(1.04);
 
-    background: #dcecff;
+.date-button:hover {
 
-    border-color: #3578c7;
+    background: #deedff;
+
+    border-color: #367bbf;
+
 }
 
-.date-btn.selected {
+
+.date-button.selected {
+
     color: white;
 
     background:
         linear-gradient(
             135deg,
-            #0d47a1,
-            #5a91cf
+            #0d4d91,
+            #5b91c6
         );
 
-    border-color: #0d47a1;
 }
+
 
 .empty-date {
+
     min-height: 48px;
+
 }
+
 
 .selected-date {
-    min-height: 25px;
 
-    margin-top: 18px;
-
-    color: #53687c;
+    margin-top: 17px;
 
     font-family: Arial, sans-serif;
+
+    color: #65798c;
+
 }
+
 
 /* =========================================================
    OUTFITS
 ========================================================= */
 
-.outfit-options {
+.outfit-grid {
+
     display: grid;
 
     grid-template-columns:
-        repeat(2, 1fr);
+        repeat(2,1fr);
 
     gap: 18px;
 
     margin-top: 30px;
+
 }
 
-.outfit {
-    min-height: 115px;
 
-    display: flex;
+.outfit-button {
 
-    flex-direction: column;
+    min-height: 120px;
 
-    justify-content: center;
-
-    align-items: center;
-
-    gap: 12px;
-
-    border: 2px solid transparent;
+    border:
+        2px solid #d1dae3;
 
     border-radius: 20px;
 
-    background: #f5f7fa;
+    background: #f8fafc;
 
-    color: #23374d;
+    color: #29445d;
 
     font-family: Arial, sans-serif;
 
@@ -626,36 +706,51 @@ h2 {
 
     cursor: pointer;
 
-    box-shadow:
-        0 8px 18px rgba(30,60,90,0.1);
+    transition: 0.2s;
 
-    transition: 0.2s ease;
 }
 
-.outfit:hover {
-    transform: translateY(-4px);
 
-    border-color: #3578c7;
+.outfit-button:hover {
+
+    transform:
+        translateY(-4px);
+
+    border-color:
+        #397fbe;
+
 }
+
 
 .color-dots {
+
     display: flex;
 
+    justify-content: center;
+
     gap: 8px;
+
+    margin-bottom: 12px;
+
 }
 
-.dot {
-    width: 29px;
 
-    height: 29px;
+.dot {
+
+    width: 30px;
+
+    height: 30px;
 
     border-radius: 50%;
 
-    border: 2px solid rgba(0,0,0,0.15);
+    border:
+        2px solid rgba(0,0,0,0.15);
+
 }
 
+
 .black {
-    background: #111111;
+    background: #111;
 }
 
 .red {
@@ -667,179 +762,157 @@ h2 {
 }
 
 .white {
-    background: #ffffff;
+    background: #fff;
 }
 
 .beige {
-    background: #d8c3a5;
+    background: #d9c2a3;
 }
 
 .purple {
-    background: #7b4b9b;
+    background: #75458e;
 }
+
 
 /* =========================================================
    CELEBRATION
 ========================================================= */
 
 .celebration {
+
     position: relative;
 
     overflow: hidden;
+
 }
 
-.party-popper {
-    position: absolute;
 
-    font-size: 2.3rem;
+.party {
+
+    position: fixed;
+
+    font-size: 2.5rem;
 
     animation:
-        popper 1.4s ease-in-out infinite alternate;
+        partyFloat 1.5s infinite alternate;
+
 }
 
-.pop1 {
+
+.party.one {
     left: 8%;
     top: 10%;
 }
 
-.pop2 {
+.party.two {
     right: 8%;
-    top: 12%;
-
-    animation-delay: 0.3s;
+    top: 10%;
 }
 
-.pop3 {
-    left: 12%;
-    bottom: 12%;
-
-    animation-delay: 0.6s;
-}
-
-.pop4 {
-    right: 12%;
+.party.three {
+    left: 10%;
     bottom: 10%;
-
-    animation-delay: 0.9s;
 }
 
-@keyframes popper {
+.party.four {
+    right: 10%;
+    bottom: 10%;
+}
+
+
+@keyframes partyFloat {
+
     from {
         transform:
-            rotate(-12deg)
+            rotate(-10deg)
             scale(0.9);
     }
 
     to {
         transform:
-            rotate(12deg)
+            rotate(10deg)
             scale(1.15);
     }
+
 }
 
+
 .love-message {
-    color: #0d47a1;
 
     font-size:
         clamp(2rem, 6vw, 4.5rem);
 
+    color: #0d4d91;
+
     line-height: 1.25;
 
-    margin-bottom: 25px;
 }
 
-.love-sub {
-    color: #5f7183;
 
-    font-size: 1.5rem;
-}
+.love-details {
 
-.tiny-note {
     margin-top: 25px;
-
-    color: #7b8794;
 
     font-family: Arial, sans-serif;
 
-    font-size: 0.9rem;
+    color: #66798c;
+
 }
 
-/* =========================================================
-   CONFETTI
-========================================================= */
-
-.confetti {
-    position: fixed;
-
-    top: -30px;
-
-    width: 9px;
-
-    height: 16px;
-
-    z-index: 9999999;
-
-    animation:
-        confettiFall linear forwards;
-}
-
-@keyframes confettiFall {
-    to {
-        transform:
-            translateY(110vh)
-            rotate(720deg);
-    }
-}
 
 /* =========================================================
    MOBILE
 ========================================================= */
 
-@media (max-width: 700px) {
+@media(max-width:700px) {
 
     .card {
-        padding: 30px 20px;
+
+        padding:
+            30px 20px;
+
     }
 
-    .choice-container {
+
+    .answers {
+
         grid-template-columns: 1fr;
+
     }
 
-    .outfit-options {
+
+    .outfit-grid {
+
         grid-template-columns: 1fr;
+
     }
 
-    .final-wide-panel {
+
+    .final-white-area {
+
+        left: 2vw;
+
+        top: 3vh;
+
         width: 96vw;
 
-        min-height: 92vh;
-
-        padding: 30px 18px;
+        height: 94vh;
 
         border-radius: 25px;
+
     }
 
-    #screen-final {
-        padding: 10px;
-    }
 
     #noButton {
-        min-width: 125px;
 
-        padding: 13px 20px;
+        width: 125px;
+
+        height: 48px;
 
         font-size: 0.9rem;
+
     }
 
-    .calendar-days,
-    .calendar-grid {
-        gap: 4px;
-    }
-
-    .date-btn,
-    .empty-date {
-        min-height: 42px;
-    }
 }
 
 </style>
@@ -848,7 +921,6 @@ h2 {
 
 <body>
 
-<div id="app">
 
 <!-- =========================================================
      START
@@ -856,7 +928,7 @@ h2 {
 
 <section
     class="screen active"
-    id="screen-start"
+    id="start-screen"
 >
 
     <div class="card">
@@ -869,18 +941,18 @@ h2 {
             Hi there! Are you ready for a game? 😏❤️
         </h1>
 
-        <div class="buttons">
+        <div class="button-row">
 
             <button
-                class="main-btn"
-                onclick="showScreen('screen-warning')"
+                class="main-button"
+                onclick="goTo('warning-screen')"
             >
                 Yes ❤️
             </button>
 
             <button
-                class="main-btn silver-btn"
-                onclick="showScreen('screen-wrong')"
+                class="main-button silver-button"
+                onclick="goTo('wrong-screen')"
             >
                 No
             </button>
@@ -893,30 +965,34 @@ h2 {
 
 
 <!-- =========================================================
-     WRONG CHOICE
+     WRONG
 ========================================================= -->
 
 <section
     class="screen"
-    id="screen-wrong"
+    id="wrong-screen"
 >
 
     <div class="card">
 
-        <div class="wrong">
+        <h1>
             Wrong Choice
-        </div>
+        </h1>
 
         <p class="subtitle">
-            Hmm… let's try that again. 😏
+            Nice try. 😏
         </p>
 
-        <button
-            class="main-btn"
-            onclick="showScreen('screen-start')"
-        >
-            Try Again ❤️
-        </button>
+        <div class="button-row">
+
+            <button
+                class="main-button"
+                onclick="goTo('start-screen')"
+            >
+                Try Again ❤️
+            </button>
+
+        </div>
 
     </div>
 
@@ -929,7 +1005,7 @@ h2 {
 
 <section
     class="screen"
-    id="screen-warning"
+    id="warning-screen"
 >
 
     <div class="card">
@@ -939,41 +1015,49 @@ h2 {
         </div>
 
         <p class="subtitle">
-            Please proceed with caution.
-            Your answers may have consequences.
+            Please proceed with caution. Your answers may have consequences.
         </p>
 
-        <button
-            class="main-btn"
-            onclick="showQuestion(1)"
-        >
-            Proceed 😏
-        </button>
+        <div class="button-row">
+
+            <button
+                class="main-button"
+                onclick="showQuestion(1)"
+            >
+                Proceed 😏
+            </button>
+
+        </div>
 
     </div>
 
 </section>
 
 
-<!-- QUESTIONS -->
-<div id="questions"></div>
+<!-- =========================================================
+     QUESTIONS WILL BE INSERTED HERE
+========================================================= -->
+
+<div id="question-container"></div>
 
 
 <!-- =========================================================
-     FINAL SCREEN
-
-     NOTICE:
-     The white panel is WIDE.
-
-     The No button is OUTSIDE the white panel.
+     FINAL QUESTION
 ========================================================= -->
 
 <section
     class="screen"
-    id="screen-final"
+    id="final-screen"
 >
 
-    <div class="final-wide-panel">
+
+    <!--
+        WIDE WHITE AREA
+    -->
+
+    <div
+        class="final-white-area"
+    >
 
         <div class="sparkles">
             ✦ ❤️ ✧ ❤️ ✦
@@ -983,33 +1067,40 @@ h2 {
             Will you be my date? ❤️
         </h1>
 
-        <div class="buttons">
-
-            <button
-                class="main-btn"
-                onclick="showScreen('screen-excellent')"
-            >
-                Yes ❤️
-            </button>
-
-        </div>
-
-        <p class="tiny-note">
-            Choose wisely, Sir. 😏
-        </p>
+        <button
+            class="main-button"
+            onclick="goTo('excellent-screen')"
+        >
+            Yes ❤️
+        </button>
 
     </div>
 
+
     <!--
-       THE NO BUTTON IS HERE,
-       DIRECTLY INSIDE THE FULL SCREEN,
-       BUT OUTSIDE THE WHITE PANEL.
+        ======================================================
+        THIS IS THE IMPORTANT PART.
+
+        The No button is DIRECTLY attached to the BODY.
+
+        It is position: fixed.
+
+        It is NOT inside the white card.
+
+        It is NOT inside a container.
+
+        It cannot be clipped by the card.
+
+        It cannot be hidden by overflow.
+
+        It will always have a visible position.
+        ======================================================
     -->
 
     <button
         id="noButton"
-        onclick="runAway()"
-        ontouchstart="runAway(event)"
+        type="button"
+        onclick="moveNoButton()"
     >
         No
     </button>
@@ -1018,12 +1109,12 @@ h2 {
 
 
 <!-- =========================================================
-     EXCELLENT CHOICE
+     EXCELLENT
 ========================================================= -->
 
 <section
     class="screen"
-    id="screen-excellent"
+    id="excellent-screen"
 >
 
     <div class="card">
@@ -1040,12 +1131,16 @@ h2 {
             I knew you'd make the right decision. ❤️
         </p>
 
-        <button
-            class="main-btn"
-            onclick="showScreen('screen-calendar')"
-        >
-            Now choose our date 😏
-        </button>
+        <div class="button-row">
+
+            <button
+                class="main-button"
+                onclick="goTo('calendar-screen')"
+            >
+                Choose our date 😏
+            </button>
+
+        </div>
 
     </div>
 
@@ -1058,79 +1153,82 @@ h2 {
 
 <section
     class="screen"
-    id="screen-calendar"
+    id="calendar-screen"
 >
 
-    <div class="card card-wide">
+    <div class="card wide">
 
-        <div class="question-number">
+        <div class="question-label">
             One last decision...
         </div>
 
         <h2>
-            Pick a date for our date ❤️
+            Pick a date for the date ❤️
         </h2>
 
-        <div class="calendar-wrapper">
+        <div class="calendar-header">
 
-            <div class="calendar-header">
-
-                <button
-                    class="calendar-nav"
-                    onclick="previousMonth()"
-                >
-                    ‹
-                </button>
-
-                <h3 id="monthYear"></h3>
-
-                <button
-                    class="calendar-nav"
-                    onclick="nextMonth()"
-                >
-                    ›
-                </button>
-
-            </div>
-
-            <div class="calendar-days">
-
-                <div>Sun</div>
-                <div>Mon</div>
-                <div>Tue</div>
-                <div>Wed</div>
-                <div>Thu</div>
-                <div>Fri</div>
-                <div>Sat</div>
-
-            </div>
-
-            <div
-                class="calendar-grid"
-                id="calendarGrid"
-            ></div>
-
-            <div
-                class="selected-date"
-                id="selectedDate"
+            <button
+                class="month-button"
+                onclick="previousMonth()"
             >
-                Please select a date.
-            </div>
+                ‹
+            </button>
+
+            <h3 id="month-title"></h3>
+
+            <button
+                class="month-button"
+                onclick="nextMonth()"
+            >
+                ›
+            </button>
 
         </div>
 
-        <button
-            class="main-btn"
-            id="dateContinue"
-            style="
-                margin-top:25px;
-                opacity:0.5;
-                pointer-events:none;
-            "
-            onclick="showScreen('screen-outfits')"
+
+        <div class="calendar-days">
+
+            <div>Sun</div>
+            <div>Mon</div>
+            <div>Tue</div>
+            <div>Wed</div>
+            <div>Thu</div>
+            <div>Fri</div>
+            <div>Sat</div>
+
+        </div>
+
+
+        <div
+            class="calendar-grid"
+            id="calendar-grid"
+        ></div>
+
+
+        <div
+            class="selected-date"
+            id="selected-date"
         >
-            Continue ❤️
-        </button>
+            Please select a date.
+        </div>
+
+
+        <div class="button-row">
+
+            <button
+                id="continue-date"
+                class="main-button"
+                style="
+                    opacity:0.45;
+                    pointer-events:none;
+                "
+                onclick="goTo('outfit-screen')"
+            >
+                Continue ❤️
+            </button>
+
+        </div>
 
     </div>
 
@@ -1143,10 +1241,10 @@ h2 {
 
 <section
     class="screen"
-    id="screen-outfits"
+    id="outfit-screen"
 >
 
-    <div class="card card-wide">
+    <div class="card wide">
 
         <div class="sparkles">
             ✦ ✧ ✦
@@ -1156,16 +1254,19 @@ h2 {
             Pick a color code for our outfits
         </h2>
 
-        <div class="outfit-options">
+
+        <div class="outfit-grid">
+
 
             <button
-                class="outfit"
-                onclick="chooseOutfit('Black and Red')"
+                class="outfit-button"
+                onclick="selectOutfit('Black and Red')"
             >
 
                 <div class="color-dots">
 
                     <span class="dot black"></span>
+
                     <span class="dot red"></span>
 
                 </div>
@@ -1176,13 +1277,14 @@ h2 {
 
 
             <button
-                class="outfit"
-                onclick="chooseOutfit('Blue and White')"
+                class="outfit-button"
+                onclick="selectOutfit('Blue and White')"
             >
 
                 <div class="color-dots">
 
                     <span class="dot blue"></span>
+
                     <span class="dot white"></span>
 
                 </div>
@@ -1193,13 +1295,14 @@ h2 {
 
 
             <button
-                class="outfit"
-                onclick="chooseOutfit('Beige and Purple')"
+                class="outfit-button"
+                onclick="selectOutfit('Beige and Purple')"
             >
 
                 <div class="color-dots">
 
                     <span class="dot beige"></span>
+
                     <span class="dot purple"></span>
 
                 </div>
@@ -1210,13 +1313,14 @@ h2 {
 
 
             <button
-                class="outfit"
-                onclick="chooseOutfit('Black and White')"
+                class="outfit-button"
+                onclick="selectOutfit('Black and White')"
             >
 
                 <div class="color-dots">
 
                     <span class="dot black"></span>
+
                     <span class="dot white"></span>
 
                 </div>
@@ -1224,6 +1328,7 @@ h2 {
                 Option 4: Black and White
 
             </button>
+
 
         </div>
 
@@ -1238,13 +1343,25 @@ h2 {
 
 <section
     class="screen celebration"
-    id="screen-thankyou"
+    id="thankyou-screen"
 >
 
-    <span class="party-popper pop1">🎉</span>
-    <span class="party-popper pop2">🎊</span>
-    <span class="party-popper pop3">🎉</span>
-    <span class="party-popper pop4">🎊</span>
+    <div class="party one">
+        🎉
+    </div>
+
+    <div class="party two">
+        🎊
+    </div>
+
+    <div class="party three">
+        🎉
+    </div>
+
+    <div class="party four">
+        🎊
+    </div>
+
 
     <div class="card">
 
@@ -1252,28 +1369,67 @@ h2 {
             ✦ ❤️ ✧ ❤️ ✦
         </div>
 
-        <h1 class="love-message">
+        <div class="love-message">
             Thank you for your time!<br>
             I love you ❤️
-        </h1>
+        </div>
 
-        <p class="love-sub">
-            Date successfully unlocked. 😏
-        </p>
-
-        <p
-            class="tiny-note"
-            id="finalDetails"
-        ></p>
+        <div
+            class="love-details"
+            id="love-details"
+        ></div>
 
     </div>
 
 </section>
 
-</div>
 
 
 <script>
+
+/* =========================================================
+   NAVIGATION
+========================================================= */
+
+function goTo(id) {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(function(screen) {
+
+            screen.classList.remove(
+                "active"
+            );
+
+        });
+
+
+    document
+        .getElementById(id)
+        .classList.add("active");
+
+
+    window.scrollTo(
+        0,
+        0
+    );
+
+
+    /*
+        If entering final screen,
+        initialize No button.
+    */
+
+    if (
+        id === "final-screen"
+    ) {
+
+        initializeNoButton();
+
+    }
+
+}
+
 
 /* =========================================================
    QUESTIONS
@@ -1282,320 +1438,325 @@ h2 {
 const questions = [
 
     {
-        number: 1,
-
         text:
-            "How much do you miss me?",
+        "How much do you miss me?",
 
         answers: [
+
             "A. A little",
+
             "B. Quite a bit",
+
             "C. More than I'd admit",
+
             "D. Ekdomi na. Why are we even discussing this? 😂"
+
         ]
     },
 
-    {
-        number: 2,
 
+    {
         text:
-            "Question 2 😏: What's the most dangerous thing about going on a date with me?",
+        "Question 2 😏: What's the most dangerous thing about going on a date with me?",
 
         answers: [
+
             "A. You'll steal my food",
+
             "B. You'll make me laugh when I’m trying to be serious",
+
             "C. You'll end up not wanting the date to end",
+
             "D. All of the above, obviously"
+
         ]
     },
 
-    {
-        number: 3,
 
+    {
         text:
-            "Question 3: Wait!! Tell me, what's more dangerous?",
+        "Question 3: Wait!! Tell me, what's more dangerous?",
 
         answers: [
+
             "A. Me when I'm hungry",
+
             "B. Me when I'm annoyed",
+
             "C. Me when I have an idea",
+
             "D. Me saying “I have a surprise for you” 😏"
+
         ]
     },
 
-    {
-        number: 4,
 
+    {
         text:
-            "Question 4: If my nose were a food, what would it be?",
+        "Question 4: If my nose were a food, what would it be?",
 
         answers: [
+
             "A) Chocolate 🍫",
+
             "B) Horeen er mangho 🍕",
+
             "C) Spicy noodles 🌶️",
+
             "D) Something you can't stop eating 😏"
+
         ]
     },
 
-    {
-        number: 5,
 
+    {
         text:
-            "Question 5: What's one thing you'd like us to do together again?",
+        "Question 5: What's one thing you'd like us to do together again?",
 
         answers: [
+
             "A. Go somewhere we've been before",
+
             "B. Try somewhere completely new",
+
             "C. Stay up talking way too late",
+
             "D. Make another memory we can laugh about later"
+
         ]
     },
 
-    {
-        number: 6,
 
+    {
         text:
-            "Question 6: I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.",
+        "Question 6: I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.",
 
         answers: [
+
             "A. Absolutely. Let's go",
+
             "B. Ask where we're going first",
+
             "C. Ask what to wear",
+
             "D. Make a 🌿🚬"
+
         ]
     },
 
-    {
-        number: 7,
 
+    {
         text:
-            "Question 7: If you could change ONE thing about our relationship, what would you choose?",
+        "Question 7: If you could change ONE thing about our relationship, what would you choose?",
 
         answers: [
+
             "A. Less fights",
+
             "B. More uninterrupted time together",
+
             "C. More adventures",
+
             "D. Nothing. I'd rather make more memories from here ❤️"
+
         ]
     },
 
-    {
-        number: 8,
 
+    {
         text:
-            "Question 8: Imagine you have been invited on a date. What kind of date would be hardest to say no to?",
+        "Question 8: Imagine you have been invited on a date. What kind of date would be hardest to say no to?",
 
         answers: [
+
             "A. Dinner somewhere beautiful",
+
             "B. A movie-night",
+
             "C. Somewhere neither of us has been before",
+
             "D. A date where the only plan is to spend time together ❤️"
+
         ]
     },
 
-    {
-        number: 9,
 
+    {
         text:
-            "Question 9: And if I told you the person asking is… me?",
+        "Question 9: And if I told you the person asking is… me?",
 
         answers: [
+
             "A. Of course, it has to be my wife 😒 ugghhh",
+
             "B. I was wondering when you'd get to the point",
+
             "C. Let me think about it 😌",
+
             "D. Where and when?"
+
         ]
     },
 
-    {
-        number: 10,
 
+    {
         text:
-            "Question 10: Would you let me steal you away for an evening?",
+        "Question 10: Would you let me steal you away for an evening?",
 
         answers: [
+
             "A. ❤️ Yes — Especially if it's with you",
+
             "B. 😏 Yes — But you'll have to convince me",
+
             "C. 🙈 No — I'm afraid I'm already a little too interested",
+
             "D. 😂 No — This sounds like a terrible idea… let's do it anyway"
+
         ]
     }
 
 ];
 
 
-/* =========================================================
-   VARIABLES
-========================================================= */
-
-let sessionAnswers = {};
-
-let selectedDate = null;
-
-let selectedOutfit = null;
-
-let currentMonth = 7;
-
-let currentYear = 2026;
+const questionContainer =
+    document.getElementById(
+        "question-container"
+    );
 
 
-/* =========================================================
-   SCREEN NAVIGATION
-========================================================= */
+questions.forEach(
+    function(question, index) {
 
-function showScreen(id) {
-
-    document
-        .querySelectorAll(".screen")
-        .forEach(screen => {
-            screen.classList.remove("active");
-        });
+        const section =
+            document.createElement(
+                "section"
+            );
 
 
-    const target =
-        document.getElementById(id);
+        section.className =
+            "screen";
 
 
-    if (target) {
-        target.classList.add("active");
-    }
+        section.id =
+            "question-" +
+            (index + 1);
 
 
-    window.scrollTo(0, 0);
+        const card =
+            document.createElement(
+                "div"
+            );
 
 
-    /*
-       Final question:
-       SHOW THE FLOATING NO BUTTON.
-    */
-
-    if (id === "screen-final") {
-
-        showNoButton();
-
-    }
-
-    else {
-
-        hideNoButton();
-
-    }
-
-}
+        card.className =
+            "card wide";
 
 
-/* =========================================================
-   GENERATE QUESTIONS
-========================================================= */
-
-const questionsContainer =
-    document.getElementById("questions");
+        const label =
+            document.createElement(
+                "div"
+            );
 
 
-questions.forEach((question, index) => {
-
-    const section =
-        document.createElement("section");
-
-    section.className = "screen";
-
-    section.id =
-        "question-" + question.number;
+        label.className =
+            "question-label";
 
 
-    const card =
-        document.createElement("div");
-
-    card.className =
-        "card card-wide";
+        label.textContent =
+            "Question " +
+            (index + 1);
 
 
-    const number =
-        document.createElement("div");
-
-    number.className =
-        "question-number";
-
-    number.textContent =
-        "Question " + question.number;
+        const heading =
+            document.createElement(
+                "h2"
+            );
 
 
-    const heading =
-        document.createElement("h2");
-
-    heading.textContent =
-        question.text;
+        heading.textContent =
+            question.text;
 
 
-    const choices =
-        document.createElement("div");
-
-    choices.className =
-        "choice-container";
-
-
-    question.answers.forEach(answer => {
-
-        const button =
-            document.createElement("button");
-
-        button.className =
-            "choice";
-
-        button.textContent =
-            answer;
+        const answers =
+            document.createElement(
+                "div"
+            );
 
 
-        button.onclick = function() {
-
-            sessionAnswers[
-                question.number
-            ] = answer;
+        answers.className =
+            "answers";
 
 
-            if (
-                index <
-                questions.length - 1
-            ) {
+        question.answers.forEach(
+            function(answer) {
 
-                showQuestion(
-                    question.number + 1
+                const button =
+                    document.createElement(
+                        "button"
+                    );
+
+
+                button.className =
+                    "answer-button";
+
+
+                button.textContent =
+                    answer;
+
+
+                button.onclick =
+                    function() {
+
+                        if (
+                            index <
+                            questions.length - 1
+                        ) {
+
+                            showQuestion(
+                                index + 2
+                            );
+
+                        }
+
+                        else {
+
+                            goTo(
+                                "final-screen"
+                            );
+
+                        }
+
+                    };
+
+
+                answers.appendChild(
+                    button
                 );
 
             }
-
-            else {
-
-                showScreen(
-                    "screen-final"
-                );
-
-            }
-
-        };
+        );
 
 
-        choices.appendChild(button);
+        card.appendChild(label);
 
-    });
+        card.appendChild(heading);
 
+        card.appendChild(answers);
 
-    card.appendChild(number);
+        section.appendChild(card);
 
-    card.appendChild(heading);
+        questionContainer.appendChild(
+            section
+        );
 
-    card.appendChild(choices);
-
-    section.appendChild(card);
-
-    questionsContainer.appendChild(section);
-
-});
+    }
+);
 
 
 function showQuestion(number) {
 
-    showScreen(
+    goTo(
         "question-" + number
     );
 
@@ -1603,34 +1764,69 @@ function showQuestion(number) {
 
 
 /* =========================================================
-   NO BUTTON
+   =========================================================
+   THE NO BUTTON
+   =========================================================
 ========================================================= */
 
 const noButton =
-    document.getElementById("noButton");
+    document.getElementById(
+        "noButton"
+    );
 
 
 /*
-   This function ALWAYS calculates a position
-   INSIDE the entire browser viewport.
+    These are deliberately conservative.
 
-   It does NOT use negative coordinates.
-
-   It does NOT use transform to move the button.
-
-   It does NOT hide the button.
-
-   It does NOT remove the button.
+    The button will NEVER be placed closer
+    than 20px to the edge.
 */
 
-function putNoButtonSomewhere() {
+const EDGE = 20;
 
-    const screenWidth =
-        window.innerWidth;
 
-    const screenHeight =
-        window.innerHeight;
+/*
+    Keep track of the last position.
+*/
 
+let noX = 0;
+
+let noY = 0;
+
+
+/*
+    TRUE if final screen is active.
+*/
+
+function finalIsActive() {
+
+    return document
+        .getElementById(
+            "final-screen"
+        )
+        .classList
+        .contains("active");
+
+}
+
+
+/*
+    Get a completely safe random location.
+
+    Notice:
+
+    We use viewport width and viewport height.
+
+    We do NOT use the white panel.
+
+    We do NOT use the final card.
+
+    We do NOT use the mouse position.
+
+    The entire browser is the playground.
+*/
+
+function getSafePosition() {
 
     const buttonWidth =
         noButton.offsetWidth;
@@ -1639,137 +1835,176 @@ function putNoButtonSomewhere() {
         noButton.offsetHeight;
 
 
-    /*
-       Large safety margin.
-    */
+    const viewportWidth =
+        window.innerWidth;
 
-    const margin = 25;
-
-
-    /*
-       Maximum possible position.
-
-       This guarantees:
-       
-       left >= 25
-       top >= 25
-       
-       AND
-       
-       right >= 25px from edge
-       bottom >= 25px from edge
-    */
-
-    const maxLeft =
-        screenWidth
-        - buttonWidth
-        - margin;
-
-
-    const maxTop =
-        screenHeight
-        - buttonHeight
-        - margin;
+    const viewportHeight =
+        window.innerHeight;
 
 
     /*
-       Random location.
+        Calculate the absolute maximum
+        X and Y values.
+
+        This means the RIGHT and BOTTOM
+        of the button also remain visible.
     */
 
-    const left =
-        margin +
-        Math.random()
-        *
+    const maxX =
         Math.max(
-            1,
-            maxLeft - margin
+            EDGE,
+            viewportWidth -
+            buttonWidth -
+            EDGE
         );
 
 
-    const top =
-        margin +
-        Math.random()
-        *
+    const maxY =
         Math.max(
-            1,
-            maxTop - margin
+            EDGE,
+            viewportHeight -
+            buttonHeight -
+            EDGE
         );
 
 
     /*
-       HARD SAFETY LIMIT.
+        Random position.
     */
 
-    const safeLeft =
+    let x =
+        EDGE +
+        Math.random() *
         Math.max(
-            margin,
+            1,
+            maxX - EDGE
+        );
+
+
+    let y =
+        EDGE +
+        Math.random() *
+        Math.max(
+            1,
+            maxY - EDGE
+        );
+
+
+    /*
+        HARD CLAMP.
+
+        Absolutely cannot exceed viewport.
+    */
+
+    x =
+        Math.max(
+            EDGE,
             Math.min(
-                left,
-                maxLeft
+                x,
+                maxX
             )
         );
 
 
-    const safeTop =
+    y =
         Math.max(
-            margin,
+            EDGE,
             Math.min(
-                top,
-                maxTop
+                y,
+                maxY
             )
         );
 
 
-    /*
-       Move the button.
-    */
-
-    noButton.style.left =
-        safeLeft + "px";
-
-    noButton.style.top =
-        safeTop + "px";
-
-
-    noButton.classList.add(
-        "running"
-    );
-
-
-    setTimeout(
-        function() {
-
-            noButton.classList.remove(
-                "running"
-            );
-
-        },
-        220
-    );
+    return {
+        x: x,
+        y: y
+    };
 
 }
 
 
 /*
-   SHOW button.
+    Actually move the button.
 */
 
-function showNoButton() {
+function moveNoButton() {
 
-    noButton.classList.add("show");
+    /*
+        NEVER do anything outside
+        the final screen.
+    */
+
+    if (
+        !finalIsActive()
+    ) {
+
+        return;
+
+    }
+
+
+    const position =
+        getSafePosition();
+
+
+    noX =
+        position.x;
+
+    noY =
+        position.y;
 
 
     /*
-       Wait until the browser has
-       actually rendered it.
+        IMPORTANT:
 
-       Then calculate its dimensions.
+        left/top only.
+
+        No transform.
+    */
+
+    noButton.style.left =
+        noX + "px";
+
+    noButton.style.top =
+        noY + "px";
+
+}
+
+
+/*
+    Initialize.
+
+    We explicitly set:
+
+        display:block
+        visibility:visible
+        opacity:1
+
+    every single time.
+*/
+
+function initializeNoButton() {
+
+    noButton.style.display =
+        "block";
+
+    noButton.style.visibility =
+        "visible";
+
+    noButton.style.opacity =
+        "1";
+
+
+    /*
+        Wait one frame so the browser
+        knows the button's dimensions.
     */
 
     requestAnimationFrame(
         function() {
 
-            putNoButtonSomewhere();
+            moveNoButton();
 
         }
     );
@@ -1777,58 +2012,26 @@ function showNoButton() {
 }
 
 
-/*
-   HIDE button ONLY when leaving
-   the final screen.
-
-   It is NEVER hidden while he is
-   on the final screen.
-*/
-
-function hideNoButton() {
-
-    noButton.classList.remove("show");
-
-}
-
-
 /* =========================================================
-   MOUSE APPROACH DETECTION
+   MOUSE DETECTION
 ========================================================= */
+
+/*
+    The button moves BEFORE the cursor
+    actually touches it.
+
+    This is the key difference.
+
+    The cursor can never successfully
+    enter the button.
+*/
 
 document.addEventListener(
     "mousemove",
     function(event) {
 
-        const finalScreen =
-            document.getElementById(
-                "screen-final"
-            );
-
-
-        /*
-           Only operate on final screen.
-        */
-
         if (
-            !finalScreen.classList.contains(
-                "active"
-            )
-        ) {
-
-            return;
-
-        }
-
-
-        /*
-           Button must be visible.
-        */
-
-        if (
-            !noButton.classList.contains(
-                "show"
-            )
+            !finalIsActive()
         ) {
 
             return;
@@ -1841,55 +2044,51 @@ document.addEventListener(
 
 
         /*
-           Find nearest point of
-           button to cursor.
+            Center of button.
         */
 
-        const closestX =
-            Math.max(
-                rect.left,
-                Math.min(
-                    event.clientX,
-                    rect.right
-                )
-            );
+        const centerX =
+            rect.left +
+            rect.width / 2;
 
 
-        const closestY =
-            Math.max(
-                rect.top,
-                Math.min(
-                    event.clientY,
-                    rect.bottom
-                )
-            );
+        const centerY =
+            rect.top +
+            rect.height / 2;
 
 
-        const distanceX =
-            event.clientX - closestX;
+        const dx =
+            event.clientX -
+            centerX;
 
 
-        const distanceY =
-            event.clientY - closestY;
+        const dy =
+            event.clientY -
+            centerY;
 
 
         const distance =
             Math.sqrt(
-                distanceX * distanceX +
-                distanceY * distanceY
+                dx * dx +
+                dy * dy
             );
 
 
         /*
-           110px invisible safety zone.
+            Large avoidance radius.
 
-           The cursor doesn't even need
-           to touch the button.
+            At 180px away,
+            the button moves.
+
+            Therefore the cursor should
+            never reach it.
         */
 
-        if (distance < 110) {
+        if (
+            distance < 180
+        ) {
 
-            putNoButtonSomewhere();
+            moveNoButton();
 
         }
 
@@ -1898,19 +2097,8 @@ document.addEventListener(
 
 
 /* =========================================================
-   CLICK / TOUCH
+   TOUCH
 ========================================================= */
-
-function runAway(event) {
-
-    if (event) {
-        event.preventDefault();
-    }
-
-    putNoButtonSomewhere();
-
-}
-
 
 noButton.addEventListener(
     "touchstart",
@@ -1918,56 +2106,28 @@ noButton.addEventListener(
 
         event.preventDefault();
 
-        putNoButtonSomewhere();
+        moveNoButton();
 
     },
     {
-        passive: false
-    }
-);
-
-
-noButton.addEventListener(
-    "click",
-    function(event) {
-
-        event.preventDefault();
-
-        putNoButtonSomewhere();
-
+        passive:false
     }
 );
 
 
 /* =========================================================
-   WINDOW RESIZE
+   RESIZE
 ========================================================= */
-
-/*
-   This is important.
-
-   If he changes the browser size,
-   the button is recalculated so it
-   remains completely visible.
-*/
 
 window.addEventListener(
     "resize",
     function() {
 
-        const finalScreen =
-            document.getElementById(
-                "screen-final"
-            );
-
-
         if (
-            finalScreen.classList.contains(
-                "active"
-            )
+            finalIsActive()
         ) {
 
-            putNoButtonSomewhere();
+            moveNoButton();
 
         }
 
@@ -1979,24 +2139,31 @@ window.addEventListener(
    CALENDAR
 ========================================================= */
 
+let calendarYear = 2026;
+
+let calendarMonth = 7;
+
+let chosenDate = null;
+
+
 function renderCalendar() {
 
-    const monthYear =
+    const title =
         document.getElementById(
-            "monthYear"
+            "month-title"
         );
 
 
     const grid =
         document.getElementById(
-            "calendarGrid"
+            "calendar-grid"
         );
 
 
     const date =
         new Date(
-            currentYear,
-            currentMonth,
+            calendarYear,
+            calendarMonth,
             1
         );
 
@@ -2005,31 +2172,36 @@ function renderCalendar() {
         date.toLocaleString(
             "en-US",
             {
-                month: "long"
+                month:"long"
             }
         );
 
 
-    monthYear.textContent =
+    title.textContent =
         monthName +
         " " +
-        currentYear;
+        calendarYear;
 
 
-    grid.innerHTML = "";
+    grid.innerHTML =
+        "";
 
 
     const firstDay =
         date.getDay();
 
 
-    const daysInMonth =
+    const days =
         new Date(
-            currentYear,
-            currentMonth + 1,
+            calendarYear,
+            calendarMonth + 1,
             0
         ).getDate();
 
+
+    /*
+        Empty spaces before first day.
+    */
 
     for (
         let i = 0;
@@ -2038,48 +2210,59 @@ function renderCalendar() {
     ) {
 
         const empty =
-            document.createElement("div");
+            document.createElement(
+                "div"
+            );
+
 
         empty.className =
             "empty-date";
 
-        grid.appendChild(empty);
+
+        grid.appendChild(
+            empty
+        );
 
     }
 
 
+    /*
+        Days.
+    */
+
     for (
         let day = 1;
-        day <= daysInMonth;
+        day <= days;
         day++
     ) {
 
         const button =
-            document.createElement("button");
+            document.createElement(
+                "button"
+            );
+
 
         button.className =
-            "date-btn";
+            "date-button";
+
 
         button.textContent =
             day;
 
 
-        const dateString =
-            currentYear +
+        const value =
+            calendarYear +
             "-" +
             String(
-                currentMonth + 1
-            ).padStart(2, "0") +
+                calendarMonth + 1
+            ).padStart(2,"0") +
             "-" +
-            String(day).padStart(
-                2,
-                "0"
-            );
+            String(day)
+                .padStart(2,"0");
 
 
         if (
-            selectedDate ===
-            dateString
+            chosenDate === value
         ) {
 
             button.classList.add(
@@ -2092,28 +2275,29 @@ function renderCalendar() {
         button.onclick =
             function() {
 
-                selectedDate =
-                    dateString;
+                chosenDate =
+                    value;
 
 
                 document
                     .getElementById(
-                        "selectedDate"
+                        "selected-date"
                     )
                     .textContent =
-                    "You picked: " +
+                    "You picked " +
                     monthName +
                     " " +
                     day +
                     ", " +
-                    currentYear +
+                    calendarYear +
                     " ❤️";
 
 
                 const continueButton =
-                    document.getElementById(
-                        "dateContinue"
-                    );
+                    document
+                        .getElementById(
+                            "continue-date"
+                        );
 
 
                 continueButton.style.opacity =
@@ -2129,27 +2313,31 @@ function renderCalendar() {
             };
 
 
-        grid.appendChild(button);
+        grid.appendChild(
+            button
+        );
 
     }
 
 }
 
 
-/*
-   August 2026 = month 7
-   September 2026 = month 8
-*/
-
 function previousMonth() {
 
-    if (currentMonth <= 7) {
+    /*
+        Only August and September.
+    */
+
+    if (
+        calendarMonth === 7
+    ) {
 
         return;
 
     }
 
-    currentMonth--;
+
+    calendarMonth--;
 
     renderCalendar();
 
@@ -2158,13 +2346,20 @@ function previousMonth() {
 
 function nextMonth() {
 
-    if (currentMonth >= 8) {
+    /*
+        Only August and September.
+    */
+
+    if (
+        calendarMonth === 8
+    ) {
 
         return;
 
     }
 
-    currentMonth++;
+
+    calendarMonth++;
 
     renderCalendar();
 
@@ -2178,41 +2373,42 @@ renderCalendar();
    OUTFIT
 ========================================================= */
 
-function chooseOutfit(outfit) {
+let chosenOutfit = "";
 
-    selectedOutfit =
+
+function selectOutfit(outfit) {
+
+    chosenOutfit =
         outfit;
 
 
     document
         .getElementById(
-            "finalDetails"
+            "love-details"
         )
         .textContent =
         "Our date: " +
-        formatDate() +
+        formatChosenDate() +
         " • Outfit: " +
         outfit +
         " ❤️";
 
 
-    showScreen(
-        "screen-thankyou"
+    goTo(
+        "thankyou-screen"
     );
 
 
-    createConfetti();
+    makeConfetti();
 
 }
 
 
-/* =========================================================
-   DATE FORMAT
-========================================================= */
+function formatChosenDate() {
 
-function formatDate() {
-
-    if (!selectedDate) {
+    if (
+        !chosenDate
+    ) {
 
         return "Our special day";
 
@@ -2220,7 +2416,7 @@ function formatDate() {
 
 
     const parts =
-        selectedDate.split("-");
+        chosenDate.split("-");
 
 
     const date =
@@ -2234,9 +2430,9 @@ function formatDate() {
     return date.toLocaleDateString(
         "en-US",
         {
-            month: "long",
-            day: "numeric",
-            year: "numeric"
+            month:"long",
+            day:"numeric",
+            year:"numeric"
         }
     );
 
@@ -2247,15 +2443,16 @@ function formatDate() {
    CONFETTI
 ========================================================= */
 
-function createConfetti() {
+function makeConfetti() {
 
     const colors = [
-        "#0d47a1",
+
+        "#0d4d91",
         "#ffffff",
-        "#c5ccd5",
-        "#7890a8",
-        "#4f83cc",
-        "#aeb7c2"
+        "#c5cdd5",
+        "#7e9ab5",
+        "#4d80b2"
+
     ];
 
 
@@ -2271,34 +2468,48 @@ function createConfetti() {
             );
 
 
-        piece.className =
-            "confetti";
+        piece.style.position =
+            "fixed";
 
 
         piece.style.left =
-            Math.random() *
-            100 +
+            Math.random() * 100 +
             "vw";
+
+
+        piece.style.top =
+            "-20px";
+
+
+        piece.style.width =
+            "9px";
+
+
+        piece.style.height =
+            "16px";
+
+
+        piece.style.zIndex =
+            "999999";
 
 
         piece.style.background =
             colors[
                 Math.floor(
-                    Math.random()
-                    * colors.length
+                    Math.random() *
+                    colors.length
                 )
             ];
 
 
-        piece.style.animationDuration =
-            2.5 +
-            Math.random() * 3 +
-            "s";
+        piece.style.transform =
+            "rotate(" +
+            Math.random() * 360 +
+            "deg)";
 
 
-        piece.style.animationDelay =
-            Math.random() * 1.5 +
-            "s";
+        piece.style.transition =
+            "top 3s linear";
 
 
         document.body.appendChild(
@@ -2309,10 +2520,21 @@ function createConfetti() {
         setTimeout(
             function() {
 
+                piece.style.top =
+                    "110vh";
+
+            },
+            50
+        );
+
+
+        setTimeout(
+            function() {
+
                 piece.remove();
 
             },
-            6500
+            3500
         );
 
     }
