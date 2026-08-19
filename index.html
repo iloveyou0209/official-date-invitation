@@ -8,6 +8,10 @@
 
 <style>
 
+/* =========================================================
+   BASIC
+========================================================= */
+
 * {
     box-sizing: border-box;
 }
@@ -16,10 +20,11 @@ html,
 body {
     margin: 0;
     padding: 0;
-
     width: 100%;
     min-height: 100%;
+}
 
+body {
     font-family:
         Georgia,
         "Times New Roman",
@@ -38,7 +43,7 @@ body {
 
 
 /* =========================================================
-   GENERAL SCREEN
+   SCREENS
 ========================================================= */
 
 .screen {
@@ -60,7 +65,6 @@ body {
 }
 
 @keyframes fadeIn {
-
     from {
         opacity: 0;
         transform: translateY(10px);
@@ -70,22 +74,19 @@ body {
         opacity: 1;
         transform: translateY(0);
     }
-
 }
 
 
 /* =========================================================
-   WHITE CARD
+   CARDS
 ========================================================= */
 
 .card {
-
     width: min(780px, 94vw);
 
-    background: rgba(255,255,255,0.97);
+    background: rgba(255,255,255,0.98);
 
-    border:
-        1px solid #b8c5d2;
+    border: 1px solid #b8c5d2;
 
     border-radius: 28px;
 
@@ -96,14 +97,10 @@ body {
     box-shadow:
         0 25px 60px
         rgba(31,64,94,0.22);
-
 }
 
-
 .card.wide {
-
     width: min(1150px, 94vw);
-
 }
 
 
@@ -112,9 +109,7 @@ body {
 ========================================================= */
 
 h1 {
-
-    margin:
-        0 0 25px;
+    margin: 0 0 25px;
 
     font-size:
         clamp(2rem, 5vw, 4rem);
@@ -122,14 +117,10 @@ h1 {
     line-height: 1.2;
 
     color: #0d4d91;
-
 }
 
-
 h2 {
-
-    margin:
-        0 0 25px;
+    margin: 0 0 25px;
 
     font-size:
         clamp(1.4rem, 3vw, 2.3rem);
@@ -137,12 +128,9 @@ h2 {
     line-height: 1.45;
 
     color: #173f68;
-
 }
 
-
 .subtitle {
-
     font-family: Arial, sans-serif;
 
     color: #65788c;
@@ -150,12 +138,9 @@ h2 {
     font-size: 1.15rem;
 
     line-height: 1.7;
-
 }
 
-
 .sparkles {
-
     color: #9ba8b5;
 
     font-size: 2rem;
@@ -163,12 +148,9 @@ h2 {
     letter-spacing: 8px;
 
     margin-bottom: 20px;
-
 }
 
-
 .question-label {
-
     font-family: Arial, sans-serif;
 
     color: #758596;
@@ -182,7 +164,6 @@ h2 {
     font-weight: bold;
 
     margin-bottom: 15px;
-
 }
 
 
@@ -191,13 +172,11 @@ h2 {
 ========================================================= */
 
 .main-button {
-
     border: none;
 
     border-radius: 50px;
 
-    padding:
-        15px 30px;
+    padding: 15px 30px;
 
     min-width: 150px;
 
@@ -225,24 +204,17 @@ h2 {
     transition:
         transform 0.2s,
         box-shadow 0.2s;
-
 }
 
-
 .main-button:hover {
-
-    transform:
-        translateY(-3px);
+    transform: translateY(-3px);
 
     box-shadow:
         0 12px 25px
         rgba(13,77,145,0.35);
-
 }
 
-
 .silver-button {
-
     background:
         linear-gradient(
             135deg,
@@ -250,12 +222,9 @@ h2 {
             #c7cdd3,
             #747f8b
         );
-
 }
 
-
 .button-row {
-
     display: flex;
 
     justify-content: center;
@@ -267,7 +236,6 @@ h2 {
     flex-wrap: wrap;
 
     margin-top: 30px;
-
 }
 
 
@@ -276,7 +244,6 @@ h2 {
 ========================================================= */
 
 .answers {
-
     display: grid;
 
     grid-template-columns:
@@ -285,12 +252,9 @@ h2 {
     gap: 16px;
 
     margin-top: 30px;
-
 }
 
-
 .answer-button {
-
     width: 100%;
 
     padding: 18px;
@@ -323,42 +287,25 @@ h2 {
         transform 0.2s,
         background 0.2s,
         border 0.2s;
-
 }
 
-
 .answer-button:hover {
+    transform: translateY(-3px);
 
-    transform:
-        translateY(-3px);
+    border-color: #3b7fc2;
 
-    border-color:
-        #3b7fc2;
-
-    background:
-        #e0efff;
-
+    background: #e0efff;
 }
 
 
 /* =========================================================
-   FINAL SCREEN
+   FINAL DATE QUESTION
 ========================================================= */
 
-/*
-    THIS IS THE ENTIRE VIEWPORT.
-
-    The white panel sits inside it.
-
-    The No button is NOT inside the panel.
-*/
-
 #final-screen {
-
     position: relative;
 
     width: 100vw;
-
     height: 100vh;
 
     min-height: 100vh;
@@ -374,24 +321,15 @@ h2 {
             #ffffff 48%,
             #bec9d4
         );
-
 }
 
-
-/*
-    WIDE WHITE AREA
-*/
-
 .final-white-area {
-
     position: absolute;
 
     left: 3vw;
-
     top: 5vh;
 
     width: 94vw;
-
     height: 90vh;
 
     background:
@@ -417,20 +355,26 @@ h2 {
     text-align: center;
 
     z-index: 10;
+}
 
+.final-title {
+    font-size:
+        clamp(2.3rem, 7vw, 5.5rem);
+
+    color: #0d4d91;
+
+    margin-bottom: 30px;
+
+    text-shadow:
+        2px 2px 0 #d0d6dc;
 }
 
 
-/*
-    THE NO BUTTON HAS A HIGHER Z-INDEX
-    THAN THE WHITE PANEL.
-
-    It belongs to the viewport,
-    NOT to the panel.
-*/
+/* =========================================================
+   MOVING NO BUTTON
+========================================================= */
 
 #noButton {
-
     position: fixed;
 
     z-index: 1000000;
@@ -471,37 +415,9 @@ h2 {
         0 12px 30px
         rgba(20,45,70,0.35);
 
-    /*
-        IMPORTANT:
-
-        No CSS transform.
-        No display:none.
-        No opacity animation.
-    */
-
     transition:
         left 0.16s ease,
         top 0.16s ease;
-
-}
-
-
-/*
-    FINAL TITLE
-*/
-
-.final-title {
-
-    font-size:
-        clamp(2.3rem, 7vw, 5.5rem);
-
-    color: #0d4d91;
-
-    margin-bottom: 30px;
-
-    text-shadow:
-        2px 2px 0 #d0d6dc;
-
 }
 
 
@@ -510,7 +426,6 @@ h2 {
 ========================================================= */
 
 .calendar-header {
-
     display: flex;
 
     align-items: center;
@@ -531,21 +446,15 @@ h2 {
     border-radius: 15px;
 
     margin-top: 25px;
-
 }
 
-
 .calendar-header h3 {
-
     margin: 0;
 
     font-family: Arial, sans-serif;
-
 }
 
-
 .month-button {
-
     width: 42px;
 
     height: 42px;
@@ -562,32 +471,23 @@ h2 {
     font-size: 1.5rem;
 
     cursor: pointer;
-
 }
-
 
 .calendar-days,
 .calendar-grid {
-
     display: grid;
 
     grid-template-columns:
         repeat(7,1fr);
 
     gap: 7px;
-
 }
-
 
 .calendar-days {
-
     margin-top: 15px;
-
 }
 
-
 .calendar-days div {
-
     font-family: Arial, sans-serif;
 
     font-size: 0.8rem;
@@ -597,19 +497,13 @@ h2 {
     color: #718194;
 
     padding: 7px;
-
 }
-
 
 .calendar-grid {
-
     margin-top: 7px;
-
 }
 
-
 .date-button {
-
     min-height: 48px;
 
     border:
@@ -624,21 +518,15 @@ h2 {
     font-weight: bold;
 
     cursor: pointer;
-
 }
 
-
 .date-button:hover {
-
     background: #deedff;
 
     border-color: #367bbf;
-
 }
 
-
 .date-button.selected {
-
     color: white;
 
     background:
@@ -647,25 +535,18 @@ h2 {
             #0d4d91,
             #5b91c6
         );
-
 }
-
 
 .empty-date {
-
     min-height: 48px;
-
 }
 
-
 .selected-date {
-
     margin-top: 17px;
 
     font-family: Arial, sans-serif;
 
     color: #65798c;
-
 }
 
 
@@ -674,7 +555,6 @@ h2 {
 ========================================================= */
 
 .outfit-grid {
-
     display: grid;
 
     grid-template-columns:
@@ -683,12 +563,9 @@ h2 {
     gap: 18px;
 
     margin-top: 30px;
-
 }
 
-
 .outfit-button {
-
     min-height: 120px;
 
     border:
@@ -707,23 +584,15 @@ h2 {
     cursor: pointer;
 
     transition: 0.2s;
-
 }
-
 
 .outfit-button:hover {
+    transform: translateY(-4px);
 
-    transform:
-        translateY(-4px);
-
-    border-color:
-        #397fbe;
-
+    border-color: #397fbe;
 }
 
-
 .color-dots {
-
     display: flex;
 
     justify-content: center;
@@ -731,12 +600,9 @@ h2 {
     gap: 8px;
 
     margin-bottom: 12px;
-
 }
 
-
 .dot {
-
     width: 30px;
 
     height: 30px;
@@ -745,9 +611,7 @@ h2 {
 
     border:
         2px solid rgba(0,0,0,0.15);
-
 }
-
 
 .black {
     background: #111;
@@ -779,25 +643,19 @@ h2 {
 ========================================================= */
 
 .celebration {
-
     position: relative;
 
     overflow: hidden;
-
 }
 
-
 .party {
-
     position: fixed;
 
     font-size: 2.5rem;
 
     animation:
         partyFloat 1.5s infinite alternate;
-
 }
-
 
 .party.one {
     left: 8%;
@@ -819,9 +677,7 @@ h2 {
     bottom: 10%;
 }
 
-
 @keyframes partyFloat {
-
     from {
         transform:
             rotate(-10deg)
@@ -833,30 +689,23 @@ h2 {
             rotate(10deg)
             scale(1.15);
     }
-
 }
 
-
 .love-message {
-
     font-size:
         clamp(2rem, 6vw, 4.5rem);
 
     color: #0d4d91;
 
     line-height: 1.25;
-
 }
 
-
 .love-details {
-
     margin-top: 25px;
 
     font-family: Arial, sans-serif;
 
     color: #66798c;
-
 }
 
 
@@ -867,29 +716,19 @@ h2 {
 @media(max-width:700px) {
 
     .card {
-
         padding:
             30px 20px;
-
     }
-
 
     .answers {
-
         grid-template-columns: 1fr;
-
     }
-
 
     .outfit-grid {
-
         grid-template-columns: 1fr;
-
     }
 
-
     .final-white-area {
-
         left: 2vw;
 
         top: 3vh;
@@ -899,20 +738,15 @@ h2 {
         height: 94vh;
 
         border-radius: 25px;
-
     }
 
-
     #noButton {
-
         width: 125px;
 
         height: 48px;
 
         font-size: 0.9rem;
-
     }
-
 }
 
 </style>
@@ -965,7 +799,7 @@ h2 {
 
 
 <!-- =========================================================
-     WRONG
+     WRONG CHOICE
 ========================================================= -->
 
 <section
@@ -1035,7 +869,7 @@ h2 {
 
 
 <!-- =========================================================
-     QUESTIONS WILL BE INSERTED HERE
+     QUESTIONS GENERATED HERE
 ========================================================= -->
 
 <div id="question-container"></div>
@@ -1050,14 +884,7 @@ h2 {
     id="final-screen"
 >
 
-
-    <!--
-        WIDE WHITE AREA
-    -->
-
-    <div
-        class="final-white-area"
-    >
+    <div class="final-white-area">
 
         <div class="sparkles">
             ✦ ❤️ ✧ ❤️ ✦
@@ -1077,30 +904,9 @@ h2 {
     </div>
 
 
-    <!--
-        ======================================================
-        THIS IS THE IMPORTANT PART.
-
-        The No button is DIRECTLY attached to the BODY.
-
-        It is position: fixed.
-
-        It is NOT inside the white card.
-
-        It is NOT inside a container.
-
-        It cannot be clipped by the card.
-
-        It cannot be hidden by overflow.
-
-        It will always have a visible position.
-        ======================================================
-    -->
-
     <button
         id="noButton"
         type="button"
-        onclick="moveNoButton()"
     >
         No
     </button>
@@ -1388,6 +1194,212 @@ h2 {
 <script>
 
 /* =========================================================
+   FORMSPREE
+========================================================= */
+
+const FORMSPREE_URL =
+    "https://formspree.io/f/xoeapopq";
+
+
+/* =========================================================
+   SESSION DATA
+========================================================= */
+
+const sessionId =
+    Date.now().toString() +
+    "-" +
+    Math.random()
+        .toString(36)
+        .substring(2,10);
+
+
+const recordedAnswers = {
+
+    q1: "",
+    q2: "",
+    q3: "",
+    q4: "",
+    q5: "",
+    q6: "",
+    q7: "",
+    q8: "",
+    q9: "",
+    q10: "",
+
+    date: "",
+
+    outfit: ""
+
+};
+
+
+/* =========================================================
+   SUBMIT COMPLETE GAME TO FORMSPREE
+========================================================= */
+
+async function submitGame() {
+
+    /*
+        Create a FormData object.
+
+        Every field has a name, which Formspree
+        uses to identify the submitted data.
+    */
+
+    const formData =
+        new FormData();
+
+
+    formData.append(
+        "subject",
+        "Our Date Game ❤️"
+    );
+
+
+    formData.append(
+        "session_id",
+        sessionId
+    );
+
+
+    formData.append(
+        "question_1",
+        recordedAnswers.q1
+    );
+
+
+    formData.append(
+        "question_2",
+        recordedAnswers.q2
+    );
+
+
+    formData.append(
+        "question_3",
+        recordedAnswers.q3
+    );
+
+
+    formData.append(
+        "question_4",
+        recordedAnswers.q4
+    );
+
+
+    formData.append(
+        "question_5",
+        recordedAnswers.q5
+    );
+
+
+    formData.append(
+        "question_6",
+        recordedAnswers.q6
+    );
+
+
+    formData.append(
+        "question_7",
+        recordedAnswers.q7
+    );
+
+
+    formData.append(
+        "question_8",
+        recordedAnswers.q8
+    );
+
+
+    formData.append(
+        "question_9",
+        recordedAnswers.q9
+    );
+
+
+    formData.append(
+        "question_10",
+        recordedAnswers.q10
+    );
+
+
+    formData.append(
+        "chosen_date",
+        recordedAnswers.date
+    );
+
+
+    formData.append(
+        "outfit",
+        recordedAnswers.outfit
+    );
+
+
+    /*
+        Honeypot field.
+
+        A normal visitor never fills this.
+        Automated bots sometimes do.
+    */
+
+    formData.append(
+        "_gotcha",
+        ""
+    );
+
+
+    try {
+
+        const response =
+            await fetch(
+                FORMSPREE_URL,
+                {
+                    method: "POST",
+
+                    body: formData,
+
+                    headers: {
+                        "Accept":
+                            "application/json"
+                    }
+                }
+            );
+
+
+        if (
+            response.ok
+        ) {
+
+            console.log(
+                "Date game submitted successfully."
+            );
+
+            return true;
+
+        }
+
+
+        console.error(
+            "Formspree submission failed."
+        );
+
+        return false;
+
+
+    } catch (error) {
+
+        console.error(
+            "Submission error:",
+            error
+        );
+
+        return false;
+
+    }
+
+}
+
+
+/* =========================================================
    NAVIGATION
 ========================================================= */
 
@@ -1395,13 +1407,15 @@ function goTo(id) {
 
     document
         .querySelectorAll(".screen")
-        .forEach(function(screen) {
+        .forEach(
+            function(screen) {
 
-            screen.classList.remove(
-                "active"
-            );
+                screen.classList.remove(
+                    "active"
+                );
 
-        });
+            }
+        );
 
 
     document
@@ -1414,11 +1428,6 @@ function goTo(id) {
         0
     );
 
-
-    /*
-        If entering final screen,
-        initialize No button.
-    */
 
     if (
         id === "final-screen"
@@ -1626,17 +1635,15 @@ const questionContainer =
 
 
 questions.forEach(
-    function(question, index) {
+    function(question,index) {
 
         const section =
             document.createElement(
                 "section"
             );
 
-
         section.className =
             "screen";
-
 
         section.id =
             "question-" +
@@ -1648,7 +1655,6 @@ questions.forEach(
                 "div"
             );
 
-
         card.className =
             "card wide";
 
@@ -1658,10 +1664,8 @@ questions.forEach(
                 "div"
             );
 
-
         label.className =
             "question-label";
-
 
         label.textContent =
             "Question " +
@@ -1673,7 +1677,6 @@ questions.forEach(
                 "h2"
             );
 
-
         heading.textContent =
             question.text;
 
@@ -1682,7 +1685,6 @@ questions.forEach(
             document.createElement(
                 "div"
             );
-
 
         answers.className =
             "answers";
@@ -1696,10 +1698,11 @@ questions.forEach(
                         "button"
                     );
 
-
                 button.className =
                     "answer-button";
 
+                button.type =
+                    "button";
 
                 button.textContent =
                     answer;
@@ -1707,6 +1710,25 @@ questions.forEach(
 
                 button.onclick =
                     function() {
+
+                        /*
+                            Save answer locally.
+
+                            It is NOT submitted yet.
+                        */
+
+                        const key =
+                            "q" +
+                            (index + 1);
+
+
+                        recordedAnswers[key] =
+                            answer;
+
+
+                        /*
+                            Move to next screen.
+                        */
 
                         if (
                             index <
@@ -1717,9 +1739,7 @@ questions.forEach(
                                 index + 2
                             );
 
-                        }
-
-                        else {
+                        } else {
 
                             goTo(
                                 "final-screen"
@@ -1738,13 +1758,23 @@ questions.forEach(
         );
 
 
-        card.appendChild(label);
+        card.appendChild(
+            label
+        );
 
-        card.appendChild(heading);
+        card.appendChild(
+            heading
+        );
 
-        card.appendChild(answers);
+        card.appendChild(
+            answers
+        );
 
-        section.appendChild(card);
+
+        section.appendChild(
+            card
+        );
+
 
         questionContainer.appendChild(
             section
@@ -1757,16 +1787,15 @@ questions.forEach(
 function showQuestion(number) {
 
     goTo(
-        "question-" + number
+        "question-" +
+        number
     );
 
 }
 
 
 /* =========================================================
-   =========================================================
-   THE NO BUTTON
-   =========================================================
+   MOVING NO BUTTON
 ========================================================= */
 
 const noButton =
@@ -1775,28 +1804,9 @@ const noButton =
     );
 
 
-/*
-    These are deliberately conservative.
+const EDGE =
+    20;
 
-    The button will NEVER be placed closer
-    than 20px to the edge.
-*/
-
-const EDGE = 20;
-
-
-/*
-    Keep track of the last position.
-*/
-
-let noX = 0;
-
-let noY = 0;
-
-
-/*
-    TRUE if final screen is active.
-*/
 
 function finalIsActive() {
 
@@ -1810,26 +1820,11 @@ function finalIsActive() {
 }
 
 
-/*
-    Get a completely safe random location.
-
-    Notice:
-
-    We use viewport width and viewport height.
-
-    We do NOT use the white panel.
-
-    We do NOT use the final card.
-
-    We do NOT use the mouse position.
-
-    The entire browser is the playground.
-*/
-
 function getSafePosition() {
 
     const buttonWidth =
         noButton.offsetWidth;
+
 
     const buttonHeight =
         noButton.offsetHeight;
@@ -1838,17 +1833,10 @@ function getSafePosition() {
     const viewportWidth =
         window.innerWidth;
 
+
     const viewportHeight =
         window.innerHeight;
 
-
-    /*
-        Calculate the absolute maximum
-        X and Y values.
-
-        This means the RIGHT and BOTTOM
-        of the button also remain visible.
-    */
 
     const maxX =
         Math.max(
@@ -1868,10 +1856,6 @@ function getSafePosition() {
         );
 
 
-    /*
-        Random position.
-    */
-
     let x =
         EDGE +
         Math.random() *
@@ -1889,12 +1873,6 @@ function getSafePosition() {
             maxY - EDGE
         );
 
-
-    /*
-        HARD CLAMP.
-
-        Absolutely cannot exceed viewport.
-    */
 
     x =
         Math.max(
@@ -1924,16 +1902,7 @@ function getSafePosition() {
 }
 
 
-/*
-    Actually move the button.
-*/
-
 function moveNoButton() {
-
-    /*
-        NEVER do anything outside
-        the final screen.
-    */
 
     if (
         !finalIsActive()
@@ -1944,44 +1913,40 @@ function moveNoButton() {
     }
 
 
+    /*
+        Make absolutely sure it remains
+        visible.
+    */
+
+    noButton.style.display =
+        "block";
+
+    noButton.style.visibility =
+        "visible";
+
+    noButton.style.opacity =
+        "1";
+
+
     const position =
         getSafePosition();
 
 
-    noX =
-        position.x;
-
-    noY =
-        position.y;
-
-
-    /*
-        IMPORTANT:
-
-        left/top only.
-
-        No transform.
-    */
-
     noButton.style.left =
-        noX + "px";
+        position.x +
+        "px";
+
 
     noButton.style.top =
-        noY + "px";
+        position.y +
+        "px";
 
 }
 
 
 /*
-    Initialize.
-
-    We explicitly set:
-
-        display:block
-        visibility:visible
-        opacity:1
-
-    every single time.
+    Initialize it whenever the final
+    question opens.
 */
 
 function initializeNoButton() {
@@ -1996,11 +1961,6 @@ function initializeNoButton() {
         "1";
 
 
-    /*
-        Wait one frame so the browser
-        knows the button's dimensions.
-    */
-
     requestAnimationFrame(
         function() {
 
@@ -2012,18 +1972,9 @@ function initializeNoButton() {
 }
 
 
-/* =========================================================
-   MOUSE DETECTION
-========================================================= */
-
 /*
-    The button moves BEFORE the cursor
-    actually touches it.
-
-    This is the key difference.
-
-    The cursor can never successfully
-    enter the button.
+    The button starts moving BEFORE
+    the cursor reaches it.
 */
 
 document.addEventListener(
@@ -2042,10 +1993,6 @@ document.addEventListener(
         const rect =
             noButton.getBoundingClientRect();
 
-
-        /*
-            Center of button.
-        */
 
         const centerX =
             rect.left +
@@ -2074,16 +2021,6 @@ document.addEventListener(
             );
 
 
-        /*
-            Large avoidance radius.
-
-            At 180px away,
-            the button moves.
-
-            Therefore the cursor should
-            never reach it.
-        */
-
         if (
             distance < 180
         ) {
@@ -2096,9 +2033,9 @@ document.addEventListener(
 );
 
 
-/* =========================================================
-   TOUCH
-========================================================= */
+/*
+    Touch devices.
+*/
 
 noButton.addEventListener(
     "touchstart",
@@ -2115,9 +2052,10 @@ noButton.addEventListener(
 );
 
 
-/* =========================================================
-   RESIZE
-========================================================= */
+/*
+    Keep it inside the viewport
+    if the browser is resized.
+*/
 
 window.addEventListener(
     "resize",
@@ -2139,11 +2077,19 @@ window.addEventListener(
    CALENDAR
 ========================================================= */
 
-let calendarYear = 2026;
+let calendarYear =
+    2026;
 
-let calendarMonth = 7;
 
-let chosenDate = null;
+let calendarMonth =
+    7;
+/*
+    7 = August
+*/
+
+
+let chosenDate =
+    null;
 
 
 function renderCalendar() {
@@ -2199,10 +2145,6 @@ function renderCalendar() {
         ).getDate();
 
 
-    /*
-        Empty spaces before first day.
-    */
-
     for (
         let i = 0;
         i < firstDay;
@@ -2226,10 +2168,6 @@ function renderCalendar() {
     }
 
 
-    /*
-        Days.
-    */
-
     for (
         let day = 1;
         day <= days;
@@ -2240,6 +2178,10 @@ function renderCalendar() {
             document.createElement(
                 "button"
             );
+
+
+        button.type =
+            "button";
 
 
         button.className =
@@ -2276,6 +2218,10 @@ function renderCalendar() {
             function() {
 
                 chosenDate =
+                    value;
+
+
+                recordedAnswers.date =
                     value;
 
 
@@ -2325,11 +2271,11 @@ function renderCalendar() {
 function previousMonth() {
 
     /*
-        Only August and September.
+        Only August and September 2026.
     */
 
     if (
-        calendarMonth === 7
+        calendarMonth <= 7
     ) {
 
         return;
@@ -2347,11 +2293,11 @@ function previousMonth() {
 function nextMonth() {
 
     /*
-        Only August and September.
+        Only August and September 2026.
     */
 
     if (
-        calendarMonth === 8
+        calendarMonth >= 8
     ) {
 
         return;
@@ -2373,14 +2319,15 @@ renderCalendar();
    OUTFIT
 ========================================================= */
 
-let chosenOutfit = "";
+async function selectOutfit(outfit) {
 
-
-function selectOutfit(outfit) {
-
-    chosenOutfit =
+    recordedAnswers.outfit =
         outfit;
 
+
+    /*
+        Display the final message immediately.
+    */
 
     document
         .getElementById(
@@ -2400,6 +2347,26 @@ function selectOutfit(outfit) {
 
 
     makeConfetti();
+
+
+    /*
+        Submit ONE complete record.
+
+        This happens after everything
+        has been selected.
+    */
+
+    const success =
+        await submitGame();
+
+
+    if (!success) {
+
+        console.warn(
+            "The celebration is shown, but the response could not be submitted."
+        );
+
+    }
 
 }
 
@@ -2473,7 +2440,8 @@ function makeConfetti() {
 
 
         piece.style.left =
-            Math.random() * 100 +
+            Math.random() *
+            100 +
             "vw";
 
 
@@ -2504,7 +2472,8 @@ function makeConfetti() {
 
         piece.style.transform =
             "rotate(" +
-            Math.random() * 360 +
+            Math.random() *
+            360 +
             "deg)";
 
 
