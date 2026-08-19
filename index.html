@@ -1322,7 +1322,7 @@ function recordAnswer(questionNumber, answer) {
 }
 
 
-function nextQuestion() {
+ffunction nextQuestion() {
 
     const current =
         document.querySelector(".screen.active");
@@ -1330,9 +1330,34 @@ function nextQuestion() {
     if (!current) return;
 
     const currentNumber =
-        parseInt(
-            current.id.replace("screen", "")
-        );
+        parseInt(current.id.replace("screen", ""));
+
+    /*
+     * Automatically record the clicked answer.
+     * Your existing HTML buttons already call
+     * nextQuestion(), so no HTML changes are needed.
+     */
+
+    if (currentNumber >= 3 && currentNumber <= 12) {
+
+        const clickedButton =
+            event.target.closest("button");
+
+        if (clickedButton) {
+
+            const questionNumber =
+                currentNumber - 2;
+
+            answers["Question " + questionNumber] =
+                clickedButton.textContent.trim();
+
+            console.log(
+                "Recorded:",
+                "Question " + questionNumber,
+                clickedButton.textContent.trim()
+            );
+        }
+    }
 
     goTo(currentNumber + 1);
 }
