@@ -3,21 +3,14 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-
 <title>Our Little Date Game ❤️</title>
 
 <style>
-
-/* =========================================================
-   BASIC
-========================================================= */
-
 * {
     box-sizing: border-box;
 }
 
-html,
-body {
+html, body {
     margin: 0;
     padding: 0;
     width: 100%;
@@ -25,38 +18,18 @@ body {
 }
 
 body {
-    font-family:
-        Georgia,
-        "Times New Roman",
-        serif;
-
+    font-family: Georgia, "Times New Roman", serif;
     color: #173b60;
-
-    background:
-        linear-gradient(
-            135deg,
-            #dcecff,
-            #ffffff,
-            #c4ced8
-        );
+    background: linear-gradient(135deg, #dcecff, #ffffff, #c4ced8);
 }
-
-
-/* =========================================================
-   SCREENS
-========================================================= */
 
 .screen {
     width: 100%;
     min-height: 100vh;
-
     display: none;
-
     align-items: center;
     justify-content: center;
-
     padding: 30px 20px;
-
     animation: fadeIn 0.4s ease;
 }
 
@@ -69,417 +42,251 @@ body {
         opacity: 0;
         transform: translateY(10px);
     }
-
     to {
         opacity: 1;
         transform: translateY(0);
     }
 }
 
-
-/* =========================================================
-   CARDS
-========================================================= */
-
 .card {
     width: min(780px, 94vw);
-
     background: rgba(255,255,255,0.98);
-
     border: 1px solid #b8c5d2;
-
     border-radius: 28px;
-
     padding: 45px;
-
     text-align: center;
-
-    box-shadow:
-        0 25px 60px
-        rgba(31,64,94,0.22);
+    box-shadow: 0 25px 60px rgba(31,64,94,0.22);
 }
 
 .card.wide {
     width: min(1150px, 94vw);
 }
 
-
-/* =========================================================
-   TEXT
-========================================================= */
-
 h1 {
     margin: 0 0 25px;
-
-    font-size:
-        clamp(2rem, 5vw, 4rem);
-
+    font-size: clamp(2rem, 5vw, 4rem);
     line-height: 1.2;
-
     color: #0d4d91;
 }
 
 h2 {
     margin: 0 0 25px;
-
-    font-size:
-        clamp(1.4rem, 3vw, 2.3rem);
-
+    font-size: clamp(1.4rem, 3vw, 2.3rem);
     line-height: 1.45;
-
     color: #173f68;
 }
 
 .subtitle {
     font-family: Arial, sans-serif;
-
     color: #65788c;
-
     font-size: 1.15rem;
-
     line-height: 1.7;
 }
 
 .sparkles {
     color: #9ba8b5;
-
     font-size: 2rem;
-
     letter-spacing: 8px;
-
     margin-bottom: 20px;
 }
 
 .question-label {
     font-family: Arial, sans-serif;
-
     color: #758596;
-
     font-size: 0.85rem;
-
     text-transform: uppercase;
-
     letter-spacing: 2px;
-
     font-weight: bold;
-
     margin-bottom: 15px;
-}
-
-
-/* =========================================================
-   BUTTONS
-========================================================= */
-
-.main-button {
-    border: none;
-
-    border-radius: 50px;
-
-    padding: 15px 30px;
-
-    min-width: 150px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0d4d91,
-            #5790c8
-        );
-
-    color: white;
-
-    font-family: Arial, sans-serif;
-
-    font-weight: bold;
-
-    font-size: 1rem;
-
-    cursor: pointer;
-
-    box-shadow:
-        0 8px 20px
-        rgba(13,77,145,0.28);
-
-    transition:
-        transform 0.2s,
-        box-shadow 0.2s;
-}
-
-.main-button:hover {
-    transform: translateY(-3px);
-
-    box-shadow:
-        0 12px 25px
-        rgba(13,77,145,0.35);
-}
-
-.silver-button {
-    background:
-        linear-gradient(
-            135deg,
-            #737f8b,
-            #c7cdd3,
-            #747f8b
-        );
 }
 
 .button-row {
     display: flex;
-
     justify-content: center;
-
     align-items: center;
-
     gap: 18px;
-
     flex-wrap: wrap;
-
     margin-top: 30px;
 }
 
+.main-button {
+    border: none;
+    border-radius: 50px;
+    padding: 15px 30px;
+    min-width: 150px;
+    background: linear-gradient(135deg, #0d4d91, #5790c8);
+    color: white;
+    font-family: Arial, sans-serif;
+    font-weight: bold;
+    font-size: 1rem;
+    cursor: pointer;
+    box-shadow: 0 8px 20px rgba(13,77,145,0.28);
+    transition: transform 0.2s, box-shadow 0.2s;
+}
 
-/* =========================================================
-   QUESTIONS
-========================================================= */
+.main-button:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 12px 25px rgba(13,77,145,0.35);
+}
+
+.silver-button {
+    background: linear-gradient(135deg, #737f8b, #c7cdd3, #747f8b);
+}
 
 .answers {
     display: grid;
-
-    grid-template-columns:
-        repeat(2, 1fr);
-
+    grid-template-columns: repeat(2, 1fr);
     gap: 16px;
-
     margin-top: 30px;
 }
 
 .answer-button {
     width: 100%;
-
     padding: 18px;
-
-    border:
-        1px solid #c2ced9;
-
+    border: 1px solid #c2ced9;
     border-radius: 17px;
-
-    background:
-        linear-gradient(
-            135deg,
-            #ffffff,
-            #edf5ff
-        );
-
+    background: linear-gradient(135deg, #ffffff, #edf5ff);
     color: #214666;
-
     text-align: left;
-
     font-family: Arial, sans-serif;
-
     font-size: 1rem;
-
     line-height: 1.5;
-
     cursor: pointer;
-
-    transition:
-        transform 0.2s,
-        background 0.2s,
-        border 0.2s;
+    transition: transform 0.2s, background 0.2s, border 0.2s;
 }
 
 .answer-button:hover {
     transform: translateY(-3px);
-
     border-color: #3b7fc2;
-
     background: #e0efff;
 }
 
 
-/* =========================================================
-   FINAL DATE QUESTION
-========================================================= */
+/* FINAL QUESTION */
 
 #final-screen {
     position: relative;
-
     width: 100vw;
     height: 100vh;
-
     min-height: 100vh;
-
     padding: 0;
-
     overflow: hidden;
-
-    background:
-        linear-gradient(
-            135deg,
-            #d7eaff,
-            #ffffff 48%,
-            #bec9d4
-        );
+    background: linear-gradient(135deg, #d7eaff, #ffffff 48%, #bec9d4);
 }
 
 .final-white-area {
     position: absolute;
-
     left: 3vw;
     top: 5vh;
-
     width: 94vw;
     height: 90vh;
-
-    background:
-        rgba(255,255,255,0.98);
-
-    border:
-        1px solid #b7c4d0;
-
+    background: rgba(255,255,255,0.98);
+    border: 1px solid #b7c4d0;
     border-radius: 35px;
-
-    box-shadow:
-        0 25px 70px
-        rgba(25,58,88,0.25);
+    box-shadow: 0 25px 70px rgba(25,58,88,0.25);
 
     display: flex;
-
     flex-direction: column;
-
     justify-content: center;
-
     align-items: center;
-
     text-align: center;
 
     z-index: 10;
 }
 
 .final-title {
-    font-size:
-        clamp(2.3rem, 7vw, 5.5rem);
-
+    font-size: clamp(2.3rem, 7vw, 5.5rem);
     color: #0d4d91;
-
     margin-bottom: 30px;
-
-    text-shadow:
-        2px 2px 0 #d0d6dc;
+    text-shadow: 2px 2px 0 #d0d6dc;
 }
 
 
-/* =========================================================
-   MOVING NO BUTTON
-========================================================= */
+/*
+   IMPORTANT:
+   The No button is ALWAYS visible.
+   It is NEVER display:none.
+   It is NEVER opacity:0.
+   It is NEVER moved outside the viewport.
+*/
 
 #noButton {
     position: fixed;
-
     z-index: 1000000;
 
-    display: block;
-
-    visibility: visible;
-
-    opacity: 1;
+    display: block !important;
+    visibility: visible !important;
+    opacity: 1 !important;
 
     width: 155px;
-
     height: 52px;
 
     border: none;
-
     border-radius: 50px;
 
-    background:
-        linear-gradient(
-            135deg,
-            #737f8b,
-            #c7cdd3,
-            #737f8b
-        );
+    background: linear-gradient(
+        135deg,
+        #737f8b,
+        #c7cdd3,
+        #737f8b
+    );
 
     color: white;
 
     font-family: Arial, sans-serif;
-
     font-weight: bold;
-
     font-size: 1rem;
 
     cursor: pointer;
 
-    box-shadow:
-        0 12px 30px
-        rgba(20,45,70,0.35);
+    box-shadow: 0 12px 30px rgba(20,45,70,0.35);
 
     transition:
-        left 0.16s ease,
-        top 0.16s ease;
+        left 0.14s ease,
+        top 0.14s ease;
 }
 
 
-/* =========================================================
-   CALENDAR
-========================================================= */
+/* CALENDAR */
 
 .calendar-header {
     display: flex;
-
     align-items: center;
-
     justify-content: space-between;
 
-    background:
-        linear-gradient(
-            135deg,
-            #0d4d91,
-            #5b91c6
-        );
+    background: linear-gradient(
+        135deg,
+        #0d4d91,
+        #5b91c6
+    );
 
     color: white;
 
     padding: 14px 18px;
-
     border-radius: 15px;
-
     margin-top: 25px;
 }
 
 .calendar-header h3 {
     margin: 0;
-
     font-family: Arial, sans-serif;
 }
 
 .month-button {
     width: 42px;
-
     height: 42px;
-
     border: none;
-
     border-radius: 50%;
-
-    background:
-        rgba(255,255,255,0.2);
-
+    background: rgba(255,255,255,0.2);
     color: white;
-
     font-size: 1.5rem;
-
     cursor: pointer;
 }
 
 .calendar-days,
 .calendar-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(7,1fr);
-
+    grid-template-columns: repeat(7,1fr);
     gap: 7px;
 }
 
@@ -489,13 +296,9 @@ h2 {
 
 .calendar-days div {
     font-family: Arial, sans-serif;
-
     font-size: 0.8rem;
-
     font-weight: bold;
-
     color: #718194;
-
     padding: 7px;
 }
 
@@ -505,36 +308,26 @@ h2 {
 
 .date-button {
     min-height: 48px;
-
-    border:
-        1px solid #ced7df;
-
+    border: 1px solid #ced7df;
     border-radius: 12px;
-
     background: #f7fbff;
-
     color: #214c72;
-
     font-weight: bold;
-
     cursor: pointer;
 }
 
 .date-button:hover {
     background: #deedff;
-
     border-color: #367bbf;
 }
 
 .date-button.selected {
     color: white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #0d4d91,
-            #5b91c6
-        );
+    background: linear-gradient(
+        135deg,
+        #0d4d91,
+        #5b91c6
+    );
 }
 
 .empty-date {
@@ -543,42 +336,30 @@ h2 {
 
 .selected-date {
     margin-top: 17px;
-
     font-family: Arial, sans-serif;
-
     color: #65798c;
 }
 
 
-/* =========================================================
-   OUTFITS
-========================================================= */
+/* OUTFITS */
 
 .outfit-grid {
     display: grid;
-
-    grid-template-columns:
-        repeat(2,1fr);
-
+    grid-template-columns: repeat(2,1fr);
     gap: 18px;
-
     margin-top: 30px;
 }
 
 .outfit-button {
     min-height: 120px;
 
-    border:
-        2px solid #d1dae3;
-
+    border: 2px solid #d1dae3;
     border-radius: 20px;
 
     background: #f8fafc;
-
     color: #29445d;
 
     font-family: Arial, sans-serif;
-
     font-weight: bold;
 
     cursor: pointer;
@@ -588,73 +369,43 @@ h2 {
 
 .outfit-button:hover {
     transform: translateY(-4px);
-
     border-color: #397fbe;
 }
 
 .color-dots {
     display: flex;
-
     justify-content: center;
-
     gap: 8px;
-
     margin-bottom: 12px;
 }
 
 .dot {
     width: 30px;
-
     height: 30px;
-
     border-radius: 50%;
-
-    border:
-        2px solid rgba(0,0,0,0.15);
+    border: 2px solid rgba(0,0,0,0.15);
 }
 
-.black {
-    background: #111;
-}
-
-.red {
-    background: #c62828;
-}
-
-.blue {
-    background: #1976d2;
-}
-
-.white {
-    background: #fff;
-}
-
-.beige {
-    background: #d9c2a3;
-}
-
-.purple {
-    background: #75458e;
-}
+.black { background: #111; }
+.red { background: #c62828; }
+.blue { background: #1976d2; }
+.white { background: #fff; }
+.beige { background: #d9c2a3; }
+.purple { background: #75458e; }
 
 
-/* =========================================================
-   CELEBRATION
-========================================================= */
+/* CELEBRATION */
 
 .celebration {
     position: relative;
-
     overflow: hidden;
 }
 
 .party {
     position: fixed;
-
     font-size: 2.5rem;
-
-    animation:
-        partyFloat 1.5s infinite alternate;
+    animation: partyFloat 1.5s infinite alternate;
+    z-index: 50;
 }
 
 .party.one {
@@ -679,45 +430,32 @@ h2 {
 
 @keyframes partyFloat {
     from {
-        transform:
-            rotate(-10deg)
-            scale(0.9);
+        transform: rotate(-10deg) scale(0.9);
     }
-
     to {
-        transform:
-            rotate(10deg)
-            scale(1.15);
+        transform: rotate(10deg) scale(1.15);
     }
 }
 
 .love-message {
-    font-size:
-        clamp(2rem, 6vw, 4.5rem);
-
+    font-size: clamp(2rem, 6vw, 4.5rem);
     color: #0d4d91;
-
     line-height: 1.25;
 }
 
 .love-details {
     margin-top: 25px;
-
     font-family: Arial, sans-serif;
-
     color: #66798c;
 }
 
 
-/* =========================================================
-   MOBILE
-========================================================= */
+/* MOBILE */
 
 @media(max-width:700px) {
 
     .card {
-        padding:
-            30px 20px;
+        padding: 30px 20px;
     }
 
     .answers {
@@ -730,40 +468,29 @@ h2 {
 
     .final-white-area {
         left: 2vw;
-
         top: 3vh;
-
         width: 96vw;
-
         height: 94vh;
-
         border-radius: 25px;
     }
 
     #noButton {
         width: 125px;
-
         height: 48px;
-
         font-size: 0.9rem;
     }
 }
-
 </style>
 </head>
-
 
 <body>
 
 
 <!-- =========================================================
-     START
+     START SCREEN
 ========================================================= -->
 
-<section
-    class="screen active"
-    id="start-screen"
->
+<section class="screen active" id="start-screen">
 
     <div class="card">
 
@@ -781,7 +508,7 @@ h2 {
                 class="main-button"
                 onclick="goTo('warning-screen')"
             >
-                Yes ❤️
+                Yes
             </button>
 
             <button
@@ -802,20 +529,17 @@ h2 {
      WRONG CHOICE
 ========================================================= -->
 
-<section
-    class="screen"
-    id="wrong-screen"
->
+<section class="screen" id="wrong-screen">
 
     <div class="card">
 
-        <h1>
-            Wrong Choice
-        </h1>
+        <div class="sparkles">
+            ✦ ✧ ✦
+        </div>
 
-        <p class="subtitle">
-            Nice try. 😏
-        </p>
+        <h1>
+            Wrong choice. You know it's not the answer
+        </h1>
 
         <div class="button-row">
 
@@ -823,7 +547,7 @@ h2 {
                 class="main-button"
                 onclick="goTo('start-screen')"
             >
-                Try Again ❤️
+                Try Again
             </button>
 
         </div>
@@ -837,10 +561,7 @@ h2 {
      WARNING
 ========================================================= -->
 
-<section
-    class="screen"
-    id="warning-screen"
->
+<section class="screen" id="warning-screen">
 
     <div class="card">
 
@@ -848,9 +569,9 @@ h2 {
             ✦ ✧ ✦
         </div>
 
-        <p class="subtitle">
+        <h2>
             Please proceed with caution. Your answers may have consequences.
-        </p>
+        </h2>
 
         <div class="button-row">
 
@@ -858,7 +579,7 @@ h2 {
                 class="main-button"
                 onclick="showQuestion(1)"
             >
-                Proceed 😏
+                Proceed
             </button>
 
         </div>
@@ -868,21 +589,16 @@ h2 {
 </section>
 
 
-<!-- =========================================================
-     QUESTIONS GENERATED HERE
-========================================================= -->
+<!-- QUESTIONS ARE CREATED BY JAVASCRIPT -->
 
 <div id="question-container"></div>
 
 
 <!-- =========================================================
-     FINAL QUESTION
+     WILL YOU BE MY DATE?
 ========================================================= -->
 
-<section
-    class="screen"
-    id="final-screen"
->
+<section class="screen" id="final-screen">
 
     <div class="final-white-area">
 
@@ -898,11 +614,16 @@ h2 {
             class="main-button"
             onclick="goTo('excellent-screen')"
         >
-            Yes ❤️
+            Yes
         </button>
 
     </div>
 
+
+    <!--
+        THIS BUTTON NEVER DISAPPEARS.
+        It stays visible and floats around.
+    -->
 
     <button
         id="noButton"
@@ -915,13 +636,10 @@ h2 {
 
 
 <!-- =========================================================
-     EXCELLENT
+     EXCELLENT CHOICE
 ========================================================= -->
 
-<section
-    class="screen"
-    id="excellent-screen"
->
+<section class="screen" id="excellent-screen">
 
     <div class="card">
 
@@ -933,17 +651,13 @@ h2 {
             Excellent choice Sir!
         </h1>
 
-        <p class="subtitle">
-            I knew you'd make the right decision. ❤️
-        </p>
-
         <div class="button-row">
 
             <button
                 class="main-button"
                 onclick="goTo('calendar-screen')"
             >
-                Choose our date 😏
+                Continue
             </button>
 
         </div>
@@ -957,19 +671,16 @@ h2 {
      CALENDAR
 ========================================================= -->
 
-<section
-    class="screen"
-    id="calendar-screen"
->
+<section class="screen" id="calendar-screen">
 
     <div class="card wide">
 
-        <div class="question-label">
-            One last decision...
+        <div class="sparkles">
+            ✦ ✧ ✦
         </div>
 
         <h2>
-            Pick a date for the date ❤️
+            Pick a date for the date.
         </h2>
 
         <div class="calendar-header">
@@ -992,7 +703,6 @@ h2 {
 
         </div>
 
-
         <div class="calendar-days">
 
             <div>Sun</div>
@@ -1005,12 +715,10 @@ h2 {
 
         </div>
 
-
         <div
             class="calendar-grid"
             id="calendar-grid"
         ></div>
-
 
         <div
             class="selected-date"
@@ -1018,7 +726,6 @@ h2 {
         >
             Please select a date.
         </div>
-
 
         <div class="button-row">
 
@@ -1031,7 +738,7 @@ h2 {
                 "
                 onclick="goTo('outfit-screen')"
             >
-                Continue ❤️
+                Continue
             </button>
 
         </div>
@@ -1042,13 +749,10 @@ h2 {
 
 
 <!-- =========================================================
-     OUTFITS
+     OUTFIT
 ========================================================= -->
 
-<section
-    class="screen"
-    id="outfit-screen"
->
+<section class="screen" id="outfit-screen">
 
     <div class="card wide">
 
@@ -1057,9 +761,12 @@ h2 {
         </div>
 
         <h2>
-            Pick a color code for our outfits
+            After you choose this, on the next page:
         </h2>
 
+        <p class="subtitle">
+            Pick a color code for our outfits
+        </p>
 
         <div class="outfit-grid">
 
@@ -1070,11 +777,8 @@ h2 {
             >
 
                 <div class="color-dots">
-
                     <span class="dot black"></span>
-
                     <span class="dot red"></span>
-
                 </div>
 
                 Option 1: Black and Red
@@ -1088,11 +792,8 @@ h2 {
             >
 
                 <div class="color-dots">
-
                     <span class="dot blue"></span>
-
                     <span class="dot white"></span>
-
                 </div>
 
                 Option 2: Blue and White
@@ -1106,11 +807,8 @@ h2 {
             >
 
                 <div class="color-dots">
-
                     <span class="dot beige"></span>
-
                     <span class="dot purple"></span>
-
                 </div>
 
                 Option 3: Beige and Purple
@@ -1124,17 +822,13 @@ h2 {
             >
 
                 <div class="color-dots">
-
                     <span class="dot black"></span>
-
                     <span class="dot white"></span>
-
                 </div>
 
                 Option 4: Black and White
 
             </button>
-
 
         </div>
 
@@ -1147,27 +841,12 @@ h2 {
      THANK YOU
 ========================================================= -->
 
-<section
-    class="screen celebration"
-    id="thankyou-screen"
->
+<section class="screen celebration" id="thankyou-screen">
 
-    <div class="party one">
-        🎉
-    </div>
-
-    <div class="party two">
-        🎊
-    </div>
-
-    <div class="party three">
-        🎉
-    </div>
-
-    <div class="party four">
-        🎊
-    </div>
-
+    <div class="party one">🎉</div>
+    <div class="party two">🎊</div>
+    <div class="party three">🎉</div>
+    <div class="party four">🎊</div>
 
     <div class="card">
 
@@ -1176,19 +855,12 @@ h2 {
         </div>
 
         <div class="love-message">
-            Thank you for your time!<br>
-            I love you ❤️
+            Thank you for your time! I love you
         </div>
-
-        <div
-            class="love-details"
-            id="love-details"
-        ></div>
 
     </div>
 
 </section>
-
 
 
 <script>
@@ -1202,16 +874,8 @@ const FORMSPREE_URL =
 
 
 /* =========================================================
-   SESSION DATA
+   STORE ANSWERS LOCALLY
 ========================================================= */
-
-const sessionId =
-    Date.now().toString() +
-    "-" +
-    Math.random()
-        .toString(36)
-        .substring(2,10);
-
 
 const recordedAnswers = {
 
@@ -1229,174 +893,7 @@ const recordedAnswers = {
     date: "",
 
     outfit: ""
-
 };
-
-
-/* =========================================================
-   SUBMIT COMPLETE GAME TO FORMSPREE
-========================================================= */
-
-async function submitGame() {
-
-    /*
-        Create a FormData object.
-
-        Every field has a name, which Formspree
-        uses to identify the submitted data.
-    */
-
-    const formData =
-        new FormData();
-
-
-    formData.append(
-        "subject",
-        "Our Date Game ❤️"
-    );
-
-
-    formData.append(
-        "session_id",
-        sessionId
-    );
-
-
-    formData.append(
-        "question_1",
-        recordedAnswers.q1
-    );
-
-
-    formData.append(
-        "question_2",
-        recordedAnswers.q2
-    );
-
-
-    formData.append(
-        "question_3",
-        recordedAnswers.q3
-    );
-
-
-    formData.append(
-        "question_4",
-        recordedAnswers.q4
-    );
-
-
-    formData.append(
-        "question_5",
-        recordedAnswers.q5
-    );
-
-
-    formData.append(
-        "question_6",
-        recordedAnswers.q6
-    );
-
-
-    formData.append(
-        "question_7",
-        recordedAnswers.q7
-    );
-
-
-    formData.append(
-        "question_8",
-        recordedAnswers.q8
-    );
-
-
-    formData.append(
-        "question_9",
-        recordedAnswers.q9
-    );
-
-
-    formData.append(
-        "question_10",
-        recordedAnswers.q10
-    );
-
-
-    formData.append(
-        "chosen_date",
-        recordedAnswers.date
-    );
-
-
-    formData.append(
-        "outfit",
-        recordedAnswers.outfit
-    );
-
-
-    /*
-        Honeypot field.
-
-        A normal visitor never fills this.
-        Automated bots sometimes do.
-    */
-
-    formData.append(
-        "_gotcha",
-        ""
-    );
-
-
-    try {
-
-        const response =
-            await fetch(
-                FORMSPREE_URL,
-                {
-                    method: "POST",
-
-                    body: formData,
-
-                    headers: {
-                        "Accept":
-                            "application/json"
-                    }
-                }
-            );
-
-
-        if (
-            response.ok
-        ) {
-
-            console.log(
-                "Date game submitted successfully."
-            );
-
-            return true;
-
-        }
-
-
-        console.error(
-            "Formspree submission failed."
-        );
-
-        return false;
-
-
-    } catch (error) {
-
-        console.error(
-            "Submission error:",
-            error
-        );
-
-        return false;
-
-    }
-
-}
 
 
 /* =========================================================
@@ -1407,15 +904,11 @@ function goTo(id) {
 
     document
         .querySelectorAll(".screen")
-        .forEach(
-            function(screen) {
+        .forEach(function(screen) {
 
-                screen.classList.remove(
-                    "active"
-                );
+            screen.classList.remove("active");
 
-            }
-        );
+        });
 
 
     document
@@ -1423,15 +916,10 @@ function goTo(id) {
         .classList.add("active");
 
 
-    window.scrollTo(
-        0,
-        0
-    );
+    window.scrollTo(0, 0);
 
 
-    if (
-        id === "final-screen"
-    ) {
+    if (id === "final-screen") {
 
         initializeNoButton();
 
@@ -1447,181 +935,112 @@ function goTo(id) {
 const questions = [
 
     {
-        text:
-        "How much do you miss me?",
+        text: "How much do you miss me?",
 
         answers: [
-
             "A. A little",
-
             "B. Quite a bit",
-
             "C. More than I'd admit",
-
             "D. Ekdomi na. Why are we even discussing this? 😂"
-
         ]
     },
 
-
     {
-        text:
-        "Question 2 😏: What's the most dangerous thing about going on a date with me?",
+        text: "Question 2 😏: What's the most dangerous thing about going on a date with me?",
 
         answers: [
-
             "A. You'll steal my food",
-
             "B. You'll make me laugh when I’m trying to be serious",
-
             "C. You'll end up not wanting the date to end",
-
             "D. All of the above, obviously"
-
         ]
     },
 
-
     {
-        text:
-        "Question 3: Wait!! Tell me, what's more dangerous?",
+        text: "Question 3: Wait!! Tell me, what's more dangerous?",
 
         answers: [
-
             "A. Me when I'm hungry",
-
             "B. Me when I'm annoyed",
-
             "C. Me when I have an idea",
-
             "D. Me saying “I have a surprise for you” 😏"
-
         ]
     },
 
-
     {
-        text:
-        "Question 4: If my nose were a food, what would it be?",
+        text: "Question 4: If my nose were a food, what would it be?",
 
         answers: [
-
             "A) Chocolate 🍫",
-
             "B) Horeen er mangho 🍕",
-
             "C) Spicy noodles 🌶️",
-
             "D) Something you can't stop eating 😏"
-
         ]
     },
 
-
     {
-        text:
-        "Question 5: What's one thing you'd like us to do together again?",
+        text: "Question 5: What's one thing you'd like us to do together again?",
 
         answers: [
-
             "A. Go somewhere we've been before",
-
             "B. Try somewhere completely new",
-
             "C. Stay up talking way too late",
-
             "D. Make another memory we can laugh about later"
-
         ]
     },
 
-
     {
-        text:
-        "Question 6: I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.",
+        text: "Question 6: I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.",
 
         answers: [
-
             "A. Absolutely. Let's go",
-
             "B. Ask where we're going first",
-
             "C. Ask what to wear",
-
             "D. Make a 🌿🚬"
-
         ]
     },
 
-
     {
-        text:
-        "Question 7: If you could change ONE thing about our relationship, what would you choose?",
+        text: "Question 7: If you could change ONE thing about our relationship, what would you choose?",
 
         answers: [
-
             "A. Less fights",
-
             "B. More uninterrupted time together",
-
             "C. More adventures",
-
             "D. Nothing. I'd rather make more memories from here ❤️"
-
         ]
     },
 
-
     {
-        text:
-        "Question 8: Imagine you have been invited on a date. What kind of date would be hardest to say no to?",
+        text: "Question 8: Imagine you have been invited on a date. What kind of date would be hardest to say no to?",
 
         answers: [
-
             "A. Dinner somewhere beautiful",
-
             "B. A movie-night",
-
             "C. Somewhere neither of us has been before",
-
             "D. A date where the only plan is to spend time together ❤️"
-
         ]
     },
 
-
     {
-        text:
-        "Question 9: And if I told you the person asking is… me?",
+        text: "Question 9: And if I told you the person asking is… me?",
 
         answers: [
-
             "A. Of course, it has to be my wife 😒 ugghhh",
-
             "B. I was wondering when you'd get to the point",
-
             "C. Let me think about it 😌",
-
             "D. Where and when?"
-
         ]
     },
 
-
     {
-        text:
-        "Question 10: Would you let me steal you away for an evening?",
+        text: "Question 10: Would you let me steal you away for an evening?",
 
         answers: [
-
             "A. ❤️ Yes — Especially if it's with you",
-
             "B. 😏 Yes — But you'll have to convince me",
-
             "C. 🙈 No — I'm afraid I'm already a little too interested",
-
             "D. 😂 No — This sounds like a terrible idea… let's do it anyway"
-
         ]
     }
 
@@ -1629,293 +1048,198 @@ const questions = [
 
 
 const questionContainer =
-    document.getElementById(
-        "question-container"
-    );
+    document.getElementById("question-container");
 
 
-questions.forEach(
-    function(question,index) {
+questions.forEach(function(question, index) {
 
-        const section =
-            document.createElement(
-                "section"
-            );
+    const section =
+        document.createElement("section");
 
-        section.className =
-            "screen";
+    section.className = "screen";
 
-        section.id =
-            "question-" +
-            (index + 1);
+    section.id =
+        "question-" + (index + 1);
 
 
-        const card =
-            document.createElement(
-                "div"
-            );
+    const card =
+        document.createElement("div");
 
-        card.className =
-            "card wide";
+    card.className = "card wide";
 
 
-        const label =
-            document.createElement(
-                "div"
-            );
+    const label =
+        document.createElement("div");
 
-        label.className =
-            "question-label";
+    label.className =
+        "question-label";
 
-        label.textContent =
-            "Question " +
-            (index + 1);
+    label.textContent =
+        "Question " + (index + 1);
 
 
-        const heading =
-            document.createElement(
-                "h2"
-            );
+    const heading =
+        document.createElement("h2");
 
-        heading.textContent =
-            question.text;
+    heading.textContent =
+        question.text;
 
 
-        const answers =
-            document.createElement(
-                "div"
-            );
+    const answers =
+        document.createElement("div");
 
-        answers.className =
-            "answers";
+    answers.className = "answers";
 
 
-        question.answers.forEach(
-            function(answer) {
+    question.answers.forEach(function(answer) {
 
-                const button =
-                    document.createElement(
-                        "button"
-                    );
+        const button =
+            document.createElement("button");
 
-                button.className =
-                    "answer-button";
+        button.className =
+            "answer-button";
 
-                button.type =
-                    "button";
+        button.type = "button";
 
-                button.textContent =
-                    answer;
+        button.textContent =
+            answer;
 
 
-                button.onclick =
-                    function() {
+        button.onclick = function() {
 
-                        /*
-                            Save answer locally.
+            const key =
+                "q" + (index + 1);
 
-                            It is NOT submitted yet.
-                        */
-
-                        const key =
-                            "q" +
-                            (index + 1);
+            recordedAnswers[key] =
+                answer;
 
 
-                        recordedAnswers[key] =
-                            answer;
+            if (
+                index <
+                questions.length - 1
+            ) {
 
+                showQuestion(index + 2);
 
-                        /*
-                            Move to next screen.
-                        */
+            } else {
 
-                        if (
-                            index <
-                            questions.length - 1
-                        ) {
-
-                            showQuestion(
-                                index + 2
-                            );
-
-                        } else {
-
-                            goTo(
-                                "final-screen"
-                            );
-
-                        }
-
-                    };
-
-
-                answers.appendChild(
-                    button
-                );
+                goTo("final-screen");
 
             }
-        );
+
+        };
 
 
-        card.appendChild(
-            label
-        );
+        answers.appendChild(button);
 
-        card.appendChild(
-            heading
-        );
-
-        card.appendChild(
-            answers
-        );
+    });
 
 
-        section.appendChild(
-            card
-        );
+    card.appendChild(label);
+    card.appendChild(heading);
+    card.appendChild(answers);
 
+    section.appendChild(card);
 
-        questionContainer.appendChild(
-            section
-        );
+    questionContainer.appendChild(section);
 
-    }
-);
+});
 
 
 function showQuestion(number) {
 
-    goTo(
-        "question-" +
-        number
-    );
+    goTo("question-" + number);
 
 }
 
 
 /* =========================================================
-   MOVING NO BUTTON
+   FINAL NO BUTTON
 ========================================================= */
 
 const noButton =
-    document.getElementById(
-        "noButton"
-    );
+    document.getElementById("noButton");
 
 
-const EDGE =
-    20;
-
-
-function finalIsActive() {
+function finalScreenIsActive() {
 
     return document
-        .getElementById(
-            "final-screen"
-        )
+        .getElementById("final-screen")
         .classList
         .contains("active");
 
 }
 
 
-function getSafePosition() {
+function moveNoButton() {
+
+    if (!finalScreenIsActive()) {
+        return;
+    }
+
+
+    /*
+       The button always stays visible.
+       We calculate a position that is completely
+       INSIDE the browser viewport.
+    */
 
     const buttonWidth =
         noButton.offsetWidth;
-
 
     const buttonHeight =
         noButton.offsetHeight;
 
 
-    const viewportWidth =
-        window.innerWidth;
-
-
-    const viewportHeight =
-        window.innerHeight;
+    const margin = 20;
 
 
     const maxX =
-        Math.max(
-            EDGE,
-            viewportWidth -
-            buttonWidth -
-            EDGE
-        );
+        window.innerWidth -
+        buttonWidth -
+        margin;
 
 
     const maxY =
-        Math.max(
-            EDGE,
-            viewportHeight -
-            buttonHeight -
-            EDGE
-        );
+        window.innerHeight -
+        buttonHeight -
+        margin;
 
 
-    let x =
-        EDGE +
+    const x =
+        margin +
         Math.random() *
         Math.max(
             1,
-            maxX - EDGE
+            maxX - margin
         );
 
 
-    let y =
-        EDGE +
+    const y =
+        margin +
         Math.random() *
         Math.max(
             1,
-            maxY - EDGE
+            maxY - margin
         );
 
 
-    x =
+    noButton.style.left =
         Math.max(
-            EDGE,
-            Math.min(
-                x,
-                maxX
-            )
-        );
+            margin,
+            Math.min(x, maxX)
+        ) + "px";
 
 
-    y =
+    noButton.style.top =
         Math.max(
-            EDGE,
-            Math.min(
-                y,
-                maxY
-            )
-        );
-
-
-    return {
-        x: x,
-        y: y
-    };
-
-}
-
-
-function moveNoButton() {
-
-    if (
-        !finalIsActive()
-    ) {
-
-        return;
-
-    }
+            margin,
+            Math.min(y, maxY)
+        ) + "px";
 
 
     /*
-        Make absolutely sure it remains
-        visible.
+       Explicitly force visibility.
     */
 
     noButton.style.display =
@@ -1927,26 +1251,12 @@ function moveNoButton() {
     noButton.style.opacity =
         "1";
 
-
-    const position =
-        getSafePosition();
-
-
-    noButton.style.left =
-        position.x +
-        "px";
-
-
-    noButton.style.top =
-        position.y +
-        "px";
-
 }
 
 
 /*
-    Initialize it whenever the final
-    question opens.
+   Put the button somewhere on the screen
+   when the final page opens.
 */
 
 function initializeNoButton() {
@@ -1961,32 +1271,28 @@ function initializeNoButton() {
         "1";
 
 
-    requestAnimationFrame(
-        function() {
+    requestAnimationFrame(function() {
 
-            moveNoButton();
+        moveNoButton();
 
-        }
-    );
+    });
 
 }
 
 
 /*
-    The button starts moving BEFORE
-    the cursor reaches it.
+   Move when cursor gets close.
+
+   220px gives the button plenty of room
+   to escape before the cursor reaches it.
 */
 
 document.addEventListener(
     "mousemove",
     function(event) {
 
-        if (
-            !finalIsActive()
-        ) {
-
+        if (!finalScreenIsActive()) {
             return;
-
         }
 
 
@@ -2004,26 +1310,20 @@ document.addEventListener(
             rect.height / 2;
 
 
-        const dx =
-            event.clientX -
-            centerX;
-
-
-        const dy =
-            event.clientY -
-            centerY;
-
-
         const distance =
             Math.sqrt(
-                dx * dx +
-                dy * dy
+                Math.pow(
+                    event.clientX - centerX,
+                    2
+                ) +
+                Math.pow(
+                    event.clientY - centerY,
+                    2
+                )
             );
 
 
-        if (
-            distance < 180
-        ) {
+        if (distance < 220) {
 
             moveNoButton();
 
@@ -2034,7 +1334,22 @@ document.addEventListener(
 
 
 /*
-    Touch devices.
+   Also make it escape if the cursor somehow
+   reaches it.
+*/
+
+noButton.addEventListener(
+    "mouseenter",
+    function() {
+
+        moveNoButton();
+
+    }
+);
+
+
+/*
+   Phone/tablet support.
 */
 
 noButton.addEventListener(
@@ -2046,24 +1361,20 @@ noButton.addEventListener(
         moveNoButton();
 
     },
-    {
-        passive:false
-    }
+    { passive: false }
 );
 
 
 /*
-    Keep it inside the viewport
-    if the browser is resized.
+   Keep it inside the viewport if the window
+   changes size.
 */
 
 window.addEventListener(
     "resize",
     function() {
 
-        if (
-            finalIsActive()
-        ) {
+        if (finalScreenIsActive()) {
 
             moveNoButton();
 
@@ -2077,33 +1388,25 @@ window.addEventListener(
    CALENDAR
 ========================================================= */
 
-let calendarYear =
-    2026;
+let calendarYear = 2026;
 
-
-let calendarMonth =
-    7;
+let calendarMonth = 7;
 /*
-    7 = August
+   7 = August
+   8 = September
 */
 
 
-let chosenDate =
-    null;
+let chosenDate = null;
 
 
 function renderCalendar() {
 
     const title =
-        document.getElementById(
-            "month-title"
-        );
-
+        document.getElementById("month-title");
 
     const grid =
-        document.getElementById(
-            "calendar-grid"
-        );
+        document.getElementById("calendar-grid");
 
 
     const date =
@@ -2117,27 +1420,22 @@ function renderCalendar() {
     const monthName =
         date.toLocaleString(
             "en-US",
-            {
-                month:"long"
-            }
+            { month: "long" }
         );
 
 
     title.textContent =
-        monthName +
-        " " +
-        calendarYear;
+        monthName + " " + calendarYear;
 
 
-    grid.innerHTML =
-        "";
+    grid.innerHTML = "";
 
 
     const firstDay =
         date.getDay();
 
 
-    const days =
+    const numberOfDays =
         new Date(
             calendarYear,
             calendarMonth + 1,
@@ -2152,116 +1450,90 @@ function renderCalendar() {
     ) {
 
         const empty =
-            document.createElement(
-                "div"
-            );
-
+            document.createElement("div");
 
         empty.className =
             "empty-date";
 
-
-        grid.appendChild(
-            empty
-        );
+        grid.appendChild(empty);
 
     }
 
 
     for (
         let day = 1;
-        day <= days;
+        day <= numberOfDays;
         day++
     ) {
 
         const button =
-            document.createElement(
-                "button"
-            );
+            document.createElement("button");
 
-
-        button.type =
-            "button";
-
+        button.type = "button";
 
         button.className =
             "date-button";
 
-
-        button.textContent =
-            day;
+        button.textContent = day;
 
 
         const value =
             calendarYear +
             "-" +
-            String(
-                calendarMonth + 1
-            ).padStart(2,"0") +
+            String(calendarMonth + 1)
+                .padStart(2, "0") +
             "-" +
             String(day)
-                .padStart(2,"0");
+                .padStart(2, "0");
 
 
-        if (
-            chosenDate === value
-        ) {
+        if (chosenDate === value) {
 
-            button.classList.add(
-                "selected"
-            );
+            button.classList.add("selected");
 
         }
 
 
-        button.onclick =
-            function() {
+        button.onclick = function() {
 
-                chosenDate =
-                    value;
+            chosenDate =
+                value;
 
-
-                recordedAnswers.date =
-                    value;
+            recordedAnswers.date =
+                value;
 
 
-                document
-                    .getElementById(
-                        "selected-date"
-                    )
-                    .textContent =
-                    "You picked " +
-                    monthName +
-                    " " +
-                    day +
-                    ", " +
-                    calendarYear +
-                    " ❤️";
+            document
+                .getElementById("selected-date")
+                .textContent =
+                "You picked " +
+                monthName +
+                " " +
+                day +
+                ", " +
+                calendarYear +
+                " ❤️";
 
 
-                const continueButton =
-                    document
-                        .getElementById(
-                            "continue-date"
-                        );
+            const continueButton =
+                document.getElementById(
+                    "continue-date"
+                );
 
 
-                continueButton.style.opacity =
-                    "1";
+            continueButton.style.opacity =
+                "1";
+
+            continueButton.style.pointerEvents =
+                "auto";
 
 
-                continueButton.style.pointerEvents =
-                    "auto";
+            renderCalendar();
+
+        };
 
 
-                renderCalendar();
-
-            };
-
-
-        grid.appendChild(
-            button
-        );
+        grid.appendChild(button);
 
     }
 
@@ -2271,17 +1543,12 @@ function renderCalendar() {
 function previousMonth() {
 
     /*
-        Only August and September 2026.
+       August is the first available month.
     */
 
-    if (
-        calendarMonth <= 7
-    ) {
-
+    if (calendarMonth <= 7) {
         return;
-
     }
-
 
     calendarMonth--;
 
@@ -2293,17 +1560,12 @@ function previousMonth() {
 function nextMonth() {
 
     /*
-        Only August and September 2026.
+       September is the last available month.
     */
 
-    if (
-        calendarMonth >= 8
-    ) {
-
+    if (calendarMonth >= 8) {
         return;
-
     }
-
 
     calendarMonth++;
 
@@ -2316,7 +1578,7 @@ renderCalendar();
 
 
 /* =========================================================
-   OUTFIT
+   OUTFIT + FORMSPREE
 ========================================================= */
 
 async function selectOutfit(outfit) {
@@ -2326,82 +1588,135 @@ async function selectOutfit(outfit) {
 
 
     /*
-        Display the final message immediately.
+       Show the requested final message.
     */
 
-    document
-        .getElementById(
-            "love-details"
-        )
-        .textContent =
-        "Our date: " +
-        formatChosenDate() +
-        " • Outfit: " +
-        outfit +
-        " ❤️";
+    goTo("thankyou-screen");
 
-
-    goTo(
-        "thankyou-screen"
-    );
-
-
-    makeConfetti();
+    createConfetti();
 
 
     /*
-        Submit ONE complete record.
-
-        This happens after everything
-        has been selected.
+       Send ALL answers together.
     */
 
-    const success =
-        await submitGame();
-
-
-    if (!success) {
-
-        console.warn(
-            "The celebration is shown, but the response could not be submitted."
-        );
-
-    }
+    await submitToFormspree();
 
 }
 
 
-function formatChosenDate() {
+async function submitToFormspree() {
 
-    if (
-        !chosenDate
-    ) {
-
-        return "Our special day";
-
-    }
+    const formData =
+        new FormData();
 
 
-    const parts =
-        chosenDate.split("-");
+    formData.append(
+        "subject",
+        "Date Game Answers ❤️"
+    );
 
 
-    const date =
-        new Date(
-            Number(parts[0]),
-            Number(parts[1]) - 1,
-            Number(parts[2])
+    formData.append(
+        "Question 1",
+        recordedAnswers.q1
+    );
+
+
+    formData.append(
+        "Question 2",
+        recordedAnswers.q2
+    );
+
+
+    formData.append(
+        "Question 3",
+        recordedAnswers.q3
+    );
+
+
+    formData.append(
+        "Question 4",
+        recordedAnswers.q4
+    );
+
+
+    formData.append(
+        "Question 5",
+        recordedAnswers.q5
+    );
+
+
+    formData.append(
+        "Question 6",
+        recordedAnswers.q6
+    );
+
+
+    formData.append(
+        "Question 7",
+        recordedAnswers.q7
+    );
+
+
+    formData.append(
+        "Question 8",
+        recordedAnswers.q8
+    );
+
+
+    formData.append(
+        "Question 9",
+        recordedAnswers.q9
+    );
+
+
+    formData.append(
+        "Question 10",
+        recordedAnswers.q10
+    );
+
+
+    formData.append(
+        "Chosen Date",
+        recordedAnswers.date
+    );
+
+
+    formData.append(
+        "Outfit",
+        recordedAnswers.outfit
+    );
+
+
+    try {
+
+        await fetch(
+            FORMSPREE_URL,
+            {
+                method: "POST",
+
+                body: formData,
+
+                headers: {
+                    "Accept":
+                        "application/json"
+                }
+            }
         );
 
+        console.log(
+            "Answers submitted."
+        );
 
-    return date.toLocaleDateString(
-        "en-US",
-        {
-            month:"long",
-            day:"numeric",
-            year:"numeric"
-        }
-    );
+    } catch (error) {
+
+        console.error(
+            "Could not submit answers:",
+            error
+        );
+
+    }
 
 }
 
@@ -2410,16 +1725,14 @@ function formatChosenDate() {
    CONFETTI
 ========================================================= */
 
-function makeConfetti() {
+function createConfetti() {
 
     const colors = [
-
         "#0d4d91",
         "#ffffff",
         "#c5cdd5",
         "#7e9ab5",
         "#4d80b2"
-
     ];
 
 
@@ -2430,36 +1743,26 @@ function makeConfetti() {
     ) {
 
         const piece =
-            document.createElement(
-                "div"
-            );
+            document.createElement("div");
 
 
         piece.style.position =
             "fixed";
 
-
         piece.style.left =
-            Math.random() *
-            100 +
-            "vw";
-
+            Math.random() * 100 + "vw";
 
         piece.style.top =
             "-20px";
 
-
         piece.style.width =
             "9px";
-
 
         piece.style.height =
             "16px";
 
-
         piece.style.zIndex =
             "999999";
-
 
         piece.style.background =
             colors[
@@ -2469,42 +1772,31 @@ function makeConfetti() {
                 )
             ];
 
-
         piece.style.transform =
             "rotate(" +
-            Math.random() *
-            360 +
+            Math.random() * 360 +
             "deg)";
-
 
         piece.style.transition =
             "top 3s linear";
 
 
-        document.body.appendChild(
-            piece
-        );
+        document.body.appendChild(piece);
 
 
-        setTimeout(
-            function() {
+        setTimeout(function() {
 
-                piece.style.top =
-                    "110vh";
+            piece.style.top =
+                "110vh";
 
-            },
-            50
-        );
+        }, 50);
 
 
-        setTimeout(
-            function() {
+        setTimeout(function() {
 
-                piece.remove();
+            piece.remove();
 
-            },
-            3500
-        );
+        }, 3500);
 
     }
 
