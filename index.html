@@ -550,62 +550,79 @@
         answers.appendChild(button);
       });
     }
+/* Runaway No button */
+#dateButtons {
+  position: relative;
+  min-height: 70px;
+}
 
-  // ======================================================
-// RUNAWAY "NO" BUTTON — ONLY FOR THE DATE QUESTION
-// ======================================================
-
+#floatingNo {
+  position: absolute;
+  transition: left 0.15s ease, top 0.15s ease;
+}
 // =====================================================
 // RUNAWAY NO BUTTON
 // This ONLY affects the No button on "Will you be my date?"
 // =====================================================
 
+// =====================================================
+// RUNAWAY NO BUTTON
+// Only works on "Will you be my date?"
+// =====================================================
+
 const floatingNo = document.getElementById("floatingNo");
+const dateButtons = document.getElementById("dateButtons");
 
 function moveNoButton() {
-  // Make sure we're actually on the date question
-  const dateAsk = document.getElementById("dateAsk");
+  // Get the available area inside the button container
+  const containerWidth = dateButtons.clientWidth;
+  const containerHeight = dateButtons.clientHeight;
 
-  if (!dateAsk || dateAsk.classList.contains("hidden")) {
-    return;
-  }
+  const buttonWidth = floatingNo.offsetWidth;
+  const buttonHeight = floatingNo.offsetHeight;
 
-  const padding = 20;
+  const padding = 5;
 
-  const maxX = window.innerWidth - floatingNo.offsetWidth - padding;
-  const maxY = window.innerHeight - floatingNo.offsetHeight - padding;
+  const maxX = containerWidth - buttonWidth - padding;
+  const maxY = containerHeight - buttonHeight - padding;
 
-  const x = Math.random() * Math.max(1, maxX - padding) + padding;
-  const y = Math.random() * Math.max(1, maxY - padding) + padding;
+  const randomX =
+    Math.random() * Math.max(1, maxX - padding) + padding;
 
-  floatingNo.style.position = "fixed";
-  floatingNo.style.left = `${x}px`;
-  floatingNo.style.top = `${y}px`;
-  floatingNo.style.zIndex = "99999";
+  const randomY =
+    Math.random() * Math.max(1, maxY - padding) + padding;
+
+  floatingNo.style.left = randomX + "px";
+  floatingNo.style.top = randomY + "px";
 }
+// Move when cursor gets close
+dateButtons.addEventListener("mousemove", function(event) {
 
-// Mouse touches/approaches the No button
-floatingNo.addEventListener("mouseenter", moveNoButton);
+  const rect = floatingNo.getBoundingClientRect();
 
-// Prevent mouse click
-floatingNo.addEventListener("mousedown", function(event) {
-  event.preventDefault();
-  event.stopPropagation();
-  moveNoButton();
+  // How close the cursor has to be before the button escapes
+  const dangerZone = 80;
+
+  const cursorIsNear =
+    event.clientX >= rect.left - dangerZone &&
+    event.clientX <= rect.right + dangerZone &&
+    event.clientY >= rect.top - dangerZone &&
+    event.clientY <= rect.bottom + dangerZone;
+
+  if (cursorIsNear) {
+    moveNoButton();
+  }
 });
-
-// Prevent touch click
-floatingNo.addEventListener("touchstart", function(event) {
-  event.preventDefault();
-  event.stopPropagation();
-  moveNoButton();
-}, { passive: false });
-
-// Prevent normal click
+// If he somehow manages to click it, move it instead
 floatingNo.addEventListener("click", function(event) {
   event.preventDefault();
-  event.stopPropagation();
   moveNoButton();
+});
+// Also works on touchscreens
+floatingNo.addEventListener("touchstart", function(event) {
+  event.preventDefault();
+  moveNoButton();
+}, { passive: false });
 });
     // Calendar generation for August and September 2026.
     function buildMonth(elementId, year, monthIndex, monthName) {
