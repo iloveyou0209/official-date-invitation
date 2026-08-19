@@ -1188,6 +1188,888 @@ document.addEventListener("mousemove", function(event) {
 });
 
 </script>
+<script>
 
+/* =========================================================
+   FORMSPREE
+========================================================= */
+
+const FORMSPREE_ENDPOINT = "https://formspree.io/f/xoeapopq";
+
+const answers = {};
+
+let dateInvitationAnswer = "";
+let noButtonAttempts = 0;
+let selectedDate = null;
+let selectedOutfit = "";
+let formSubmitted = false;
+
+
+/* =========================================================
+   BACKGROUND SPARKLES + HEARTS
+========================================================= */
+
+const particles = document.getElementById("particles");
+
+function createSparkles() {
+
+    for (let i = 0; i < 65; i++) {
+
+        const sparkle = document.createElement("div");
+
+        sparkle.className = "sparkle";
+
+        sparkle.innerHTML =
+            Math.random() > .5 ? "✦" : "✧";
+
+        sparkle.style.left =
+            Math.random() * 100 + "%";
+
+        sparkle.style.top =
+            Math.random() * 100 + "%";
+
+        sparkle.style.fontSize =
+            (Math.random() * 15 + 6) + "px";
+
+        sparkle.style.animationDelay =
+            (Math.random() * 3) + "s";
+
+        sparkle.style.animationDuration =
+            (Math.random() * 2 + 1.5) + "s";
+
+        particles.appendChild(sparkle);
+    }
+}
+
+
+function createHearts() {
+
+    for (let i = 0; i < 18; i++) {
+
+        const heart = document.createElement("div");
+
+        heart.className = "floating-heart";
+
+        heart.innerHTML =
+            Math.random() > .5 ? "♥" : "♡";
+
+        heart.style.left =
+            Math.random() * 100 + "%";
+
+        heart.style.fontSize =
+            (Math.random() * 25 + 12) + "px";
+
+        heart.style.color =
+            Math.random() > .5
+                ? "#ff4f9a"
+                : "#ff9fca";
+
+        heart.style.animationDuration =
+            (Math.random() * 10 + 9) + "s";
+
+        heart.style.animationDelay =
+            (Math.random() * 10) + "s";
+
+        particles.appendChild(heart);
+    }
+}
+
+
+createSparkles();
+createHearts();
+
+
+/* =========================================================
+   SCREEN NAVIGATION
+========================================================= */
+
+function goTo(number) {
+
+    document.querySelectorAll(".screen").forEach(screen => {
+        screen.classList.remove("active");
+    });
+
+    const next =
+        document.getElementById("screen" + number);
+
+    if (next) {
+
+        next.classList.add("active");
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+    }
+}
+
+
+/* =========================================================
+   RECORD ANSWER + MOVE TO NEXT QUESTION
+========================================================= */
+
+function recordAnswer(questionNumber, answer) {
+
+    answers["Question " + questionNumber] = answer;
+
+    console.log(
+        "Recorded:",
+        "Question " + questionNumber,
+        answer
+    );
+
+    nextQuestion();
+}
+
+
+function nextQuestion() {
+
+    const current =
+        document.querySelector(".screen.active");
+
+    if (!current) return;
+
+    const currentNumber =
+        parseInt(
+            current.id.replace("screen", "")
+        );
+
+    goTo(currentNumber + 1);
+}
+
+
+/* =========================================================
+   WRONG CHOICE
+========================================================= */
+
+function wrongChoice() {
+
+    const message =
+        "Wrong Choice. You know it’s not the right answer. 🤨😂";
+
+    alert(message);
+}
+
+
+/* =========================================================
+   DATE QUESTION — YES
+========================================================= */
+
+function dateYes() {
+
+    dateInvitationAnswer = "Yes ❤️";
+
+    goTo(15);
+
+    createConfetti();
+}
+
+
+/* =========================================================
+   MOVING NO BUTTON
+========================================================= */
+
+const noButton =
+    document.getElementById("noButton");
+
+const noArea =
+    document.getElementById("dateNoArea");
+
+
+function escapeNoButton() {
+
+    noButtonAttempts++;
+
+    /*
+     * Record that he tried to click/approach No.
+     * This does NOT submit the form yet.
+     */
+
+    dateInvitationAnswer =
+        "Tried to choose No 😈";
+
+    const areaRect =
+        noArea.getBoundingClientRect();
+
+    const buttonWidth =
+        noButton.offsetWidth;
+
+    const buttonHeight =
+        noButton.offsetHeight;
+
+    const maxX =
+        Math.max(
+            0,
+            areaRect.width - buttonWidth
+        );
+
+    const maxY =
+        Math.max(
+            0,
+            areaRect.height - buttonHeight
+        );
+
+    const randomX =
+        Math.random() * maxX;
+
+    const randomY =
+        Math.random() * maxY;
+
+    noButton.style.position =
+        "absolute";
+
+    noButton.style.left =
+        randomX + "px";
+
+    noButton.style.top =
+        randomY + "px";
+
+    noButton.style.transform =
+        `rotate(${(Math.random() * 14) - 7}deg)`;
+
+    noButton.style.opacity = "1";
+
+    noButton.style.visibility =
+        "visible";
+}
+
+
+/* =========================================================
+   CALENDAR
+========================================================= */
+
+let currentMonth = 8;
+
+const monthNames = {
+    8: "August 2026",
+    9: "September 2026"
+};
+
+
+function showMonth(month) {
+
+    currentMonth = month;
+
+    document.getElementById("calendarTitle").textContent =
+        monthNames[month];
+
+    document.getElementById("augTab").classList.toggle(
+        "active",
+        month === 8
+    );
+
+    document.getElementById("sepTab").classList.toggle(
+        "active",
+        month === 9
+    );
+
+    renderCalendar(month);
+}
+
+
+function renderCalendar(month) {
+
+    const calendarDays =
+        document.getElementById("calendarDays");
+
+    calendarDays.innerHTML = "";
+
+    const year = 2026;
+
+    const firstDay =
+        new Date(
+            year,
+            month - 1,
+            1
+        ).getDay();
+
+    const daysInMonth =
+        new Date(
+            year,
+            month,
+            0
+        ).getDate();
+
+
+    /* Empty spaces before first day */
+
+    for (let i = 0; i < firstDay; i++) {
+
+        const empty =
+            document.createElement("div");
+
+        empty.className =
+            "day empty";
+
+        calendarDays.appendChild(empty);
+    }
+
+
+    /* Days */
+
+    for (
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ) {
+
+        const dayButton =
+            document.createElement("button");
+
+        dayButton.className = "day";
+
+        dayButton.textContent = day;
+
+        const dateKey =
+            `2026-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
+
+
+        if (selectedDate === dateKey) {
+
+            dayButton.classList.add(
+                "selected"
+            );
+        }
+
+
+        dayButton.onclick = function() {
+
+            selectDate(dateKey);
+
+        };
+
+
+        calendarDays.appendChild(
+            dayButton
+        );
+    }
+}
+
+
+function selectDate(dateKey) {
+
+    selectedDate = dateKey;
+
+    const parts =
+        dateKey.split("-");
+
+    const month =
+        parseInt(parts[1]);
+
+    const day =
+        parseInt(parts[2]);
+
+    const dateObject =
+        new Date(
+            2026,
+            month - 1,
+            day
+        );
+
+    const formatted =
+        dateObject.toLocaleDateString(
+            "en-US",
+            {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            }
+        );
+
+
+    document.getElementById(
+        "selectedDate"
+    ).innerHTML =
+        `Our date is looking at us like… 👀❤️ <strong>${formatted}</strong>`;
+
+
+    document.getElementById(
+        "dateContinue"
+    ).disabled = false;
+
+
+    renderCalendar(currentMonth);
+}
+
+
+function continueFromDate() {
+
+    if (!selectedDate) return;
+
+    goTo(17);
+}
+
+
+/* =========================================================
+   OUTFIT SELECTION
+========================================================= */
+
+function selectOutfit(
+    element,
+    outfit
+) {
+
+    document.querySelectorAll(
+        ".outfit"
+    ).forEach(item => {
+
+        item.classList.remove(
+            "selected"
+        );
+
+    });
+
+
+    element.classList.add(
+        "selected"
+    );
+
+
+    selectedOutfit = outfit;
+
+
+    document.getElementById(
+        "outfitContinue"
+    ).disabled = false;
+}
+
+
+/* =========================================================
+   SEND EVERYTHING TO FORMSPREE
+========================================================= */
+
+async function submitAnswersToFormspree() {
+
+    if (formSubmitted) {
+        return true;
+    }
+
+
+    const dateObject =
+        selectedDate
+            ? new Date(
+                selectedDate + "T12:00:00"
+              )
+            : null;
+
+
+    const formattedDate =
+        dateObject
+            ? dateObject.toLocaleDateString(
+                "en-US",
+                {
+                    weekday: "long",
+                    month: "long",
+                    day: "numeric",
+                    year: "numeric"
+                }
+              )
+            : "Not selected";
+
+
+    /*
+     * Build a clean message containing
+     * every answer.
+     */
+
+    let answerSummary = "";
+
+
+    for (
+        let i = 1;
+        i <= 10;
+        i++
+    ) {
+
+        answerSummary +=
+            `Question ${i}: ${answers["Question " + i] || "Not answered"}\n`;
+
+    }
+
+
+    answerSummary +=
+        `\nDate invitation: ${dateInvitationAnswer || "Not answered"}\n`;
+
+    answerSummary +=
+        `No button attempts: ${noButtonAttempts}\n`;
+
+    answerSummary +=
+        `Selected date: ${formattedDate}\n`;
+
+    answerSummary +=
+        `Selected outfit: ${selectedOutfit || "Not selected"}\n`;
+
+    answerSummary +=
+        `Completed: ${new Date().toLocaleString()}`;
+
+
+    /*
+     * Send to Formspree
+     */
+
+    try {
+
+        const response =
+            await fetch(
+                FORMSPREE_ENDPOINT,
+                {
+                    method: "POST",
+
+                    headers: {
+                        "Accept":
+                            "application/json",
+
+                        "Content-Type":
+                            "application/json"
+                    },
+
+                    body: JSON.stringify({
+
+                        subject:
+                            "Our Little Adventure ❤️ — Date Invitation",
+
+                        message:
+                            answerSummary,
+
+                        question_1:
+                            answers["Question 1"] || "",
+
+                        question_2:
+                            answers["Question 2"] || "",
+
+                        question_3:
+                            answers["Question 3"] || "",
+
+                        question_4:
+                            answers["Question 4"] || "",
+
+                        question_5:
+                            answers["Question 5"] || "",
+
+                        question_6:
+                            answers["Question 6"] || "",
+
+                        question_7:
+                            answers["Question 7"] || "",
+
+                        question_8:
+                            answers["Question 8"] || "",
+
+                        question_9:
+                            answers["Question 9"] || "",
+
+                        question_10:
+                            answers["Question 10"] || "",
+
+                        date_invitation:
+                            dateInvitationAnswer,
+
+                        no_button_attempts:
+                            String(noButtonAttempts),
+
+                        selected_date:
+                            formattedDate,
+
+                        selected_outfit:
+                            selectedOutfit,
+
+                        completed_at:
+                            new Date().toISOString()
+
+                    })
+                }
+            );
+
+
+        if (!response.ok) {
+
+            const errorData =
+                await response.json()
+                .catch(() => ({}));
+
+            console.error(
+                "Formspree error:",
+                errorData
+            );
+
+            return false;
+        }
+
+
+        formSubmitted = true;
+
+        console.log(
+            "All answers successfully sent to Formspree."
+        );
+
+        return true;
+
+
+    } catch (error) {
+
+        console.error(
+            "Could not send answers to Formspree:",
+            error
+        );
+
+        return false;
+    }
+}
+
+
+/* =========================================================
+   FINISH DATE
+========================================================= */
+
+async function finishDate() {
+
+    if (!selectedOutfit) return;
+
+    if (!selectedDate) return;
+
+
+    const dateObject =
+        new Date(
+            selectedDate + "T12:00:00"
+        );
+
+
+    const formattedDate =
+        dateObject.toLocaleDateString(
+            "en-US",
+            {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            }
+        );
+
+
+    document.getElementById(
+        "finalDetails"
+    ).innerHTML =
+        `Date locked in for <strong>${formattedDate}</strong>.<br>
+         Outfit code: <strong>${selectedOutfit}</strong> 🎨❤️`;
+
+
+    /*
+     * Send the complete game result
+     * before showing the final screen.
+     */
+
+    const submitButton =
+        document.getElementById(
+            "outfitContinue"
+        );
+
+
+    submitButton.disabled = true;
+
+    submitButton.textContent =
+        "Saving our date... ❤️";
+
+
+    const submitted =
+        await submitAnswersToFormspree();
+
+
+    /*
+     * Even if the internet temporarily fails,
+     * don't trap the user on this screen.
+     */
+
+    if (!submitted) {
+
+        console.warn(
+            "Formspree submission failed. The final screen will still be shown."
+        );
+    }
+
+
+    goTo(18);
+
+
+    createConfetti();
+    createConfetti();
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function createConfetti() {
+
+    const colors = [
+        "#ff267f",
+        "#ff77b7",
+        "#a82cff",
+        "#ffd166",
+        "#06d6a0",
+        "#ffffff"
+    ];
+
+
+    for (
+        let i = 0;
+        i < 100;
+        i++
+    ) {
+
+        const piece =
+            document.createElement("div");
+
+        piece.className =
+            "confetti";
+
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+        piece.style.top =
+            "-20px";
+
+
+        piece.style.width =
+            Math.random() * 8 + 5 + "px";
+
+        piece.style.height =
+            Math.random() * 14 + 6 + "px";
+
+
+        piece.style.background =
+            colors[
+                Math.floor(
+                    Math.random() *
+                    colors.length
+                )
+            ];
+
+
+        piece.style.borderRadius =
+            Math.random() > .5
+                ? "50%"
+                : "2px";
+
+
+        piece.style.zIndex =
+            "100";
+
+
+        document.body.appendChild(
+            piece
+        );
+
+
+        const duration =
+            Math.random() * 3 + 2;
+
+
+        piece.animate(
+
+            [
+                {
+                    transform:
+                        "translateY(0) rotate(0deg)",
+
+                    opacity: 1
+                },
+
+                {
+                    transform:
+                        `translateY(110vh) translateX(${(Math.random() * 300) - 150}px) rotate(720deg)`,
+
+                    opacity: 0
+                }
+            ],
+
+            {
+                duration:
+                    duration * 1000,
+
+                easing:
+                    "cubic-bezier(.2,.7,.3,1)"
+            }
+
+        );
+
+
+        setTimeout(
+            () => piece.remove(),
+            duration * 1000 + 100
+        );
+    }
+}
+
+
+/* =========================================================
+   INITIAL CALENDAR
+========================================================= */
+
+renderCalendar(8);
+
+
+/* =========================================================
+   KEYBOARD / MOUSE FUN
+========================================================= */
+
+document.addEventListener(
+    "mousemove",
+    function(event) {
+
+        const activeScreen =
+            document.querySelector(
+                ".screen.active"
+            );
+
+
+        if (!activeScreen) return;
+
+
+        if (
+            activeScreen.id !==
+            "screen14"
+        ) return;
+
+
+        const rect =
+            noButton.getBoundingClientRect();
+
+
+        const distanceX =
+            event.clientX -
+            (
+                rect.left +
+                rect.width / 2
+            );
+
+
+        const distanceY =
+            event.clientY -
+            (
+                rect.top +
+                rect.height / 2
+            );
+
+
+        const distance =
+            Math.sqrt(
+                distanceX * distanceX +
+                distanceY * distanceY
+            );
+
+
+        if (distance < 120) {
+
+            escapeNoButton();
+
+        }
+
+    }
+);
+
+</script>
 </body>
 </html>
