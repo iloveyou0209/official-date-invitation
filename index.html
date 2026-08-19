@@ -313,10 +313,11 @@
       <div id="start" class="screen">
         <div class="sparkles">✨ 💕 ✨</div>
         <h1>Hi there! Are you ready for a game? 😏❤️</h1>
-        <div class="buttons">
-          <button onclick="goTo('warning')">Yes</button>
-          <button class="secondary" onclick="showWrongChoice()">No</button>
-        </div>
+       <div class="buttons">
+  <button onclick="goTo('warning')">Yes</button>
+  <button class="secondary" onclick="showWrongChoice()">No</button>
+</div>
+
       </div>
 
       <!-- WRONG CHOICE -->
@@ -352,12 +353,10 @@
       <div id="dateAsk" class="screen hidden">
         <div class="sparkles">✨ 💕 ✨</div>
         <h1>Will you be my date? ❤️</h1>
-        <div class="buttons">
        <div class="buttons">
   <button onclick="goTo('excellent')">Yes ❤️</button>
   <button id="floatingNo" class="secondary no-btn" type="button">No 😏</button>
 </div>
-
       </div>
 
       <!-- EXCELLENT -->
@@ -552,63 +551,94 @@
       });
     }
 
-   // Floating "No" button on the final date question.
-   const floatingNo = document.getElementById("floatingNo");
+  // ======================================================
+// RUNAWAY "NO" BUTTON — ONLY FOR THE DATE QUESTION
+// ======================================================
 
-  function moveNoButton() {
-    const buttonWidth = floatingNo.offsetWidth;
-    const buttonHeight = floatingNo.offsetHeight;
+const floatingNo = document.getElementById("floatingNo");
 
-    // Keep the button completely inside the visible screen.
-    const maxX = window.innerWidth - buttonWidth - 20;
-    const maxY = window.innerHeight - buttonHeight - 20;
+// Move the No button to a random position.
+function moveNoButton() {
+  // Only run while the "Will you be my date?" screen is visible.
+  const dateAskScreen = document.getElementById("dateAsk");
 
-    const randomX = Math.max(20, Math.floor(Math.random() * maxX));
-    const randomY = Math.max(20, Math.floor(Math.random() * maxY));
-
-    floatingNo.style.position = "fixed";
-    floatingNo.style.left = randomX + "px";
-    floatingNo.style.top = randomY + "px";
-    floatingNo.style.zIndex = "9999";
+  if (dateAskScreen.classList.contains("hidden")) {
+    return;
   }
 
-  // Move BEFORE the cursor/finger can click it.
-  floatingNo.addEventListener("mouseenter", moveNoButton);
-  floatingNo.addEventListener("pointerdown", function(event) {
-    event.preventDefault();
+  const padding = 20;
+
+  const buttonWidth = floatingNo.offsetWidth;
+  const buttonHeight = floatingNo.offsetHeight;
+
+  const maxX = window.innerWidth - buttonWidth - padding;
+  const maxY = window.innerHeight - buttonHeight - padding;
+
+  const randomX =
+    Math.floor(Math.random() * Math.max(1, maxX - padding)) + padding;
+
+  const randomY =
+    Math.floor(Math.random() * Math.max(1, maxY - padding)) + padding;
+
+  floatingNo.style.position = "fixed";
+  floatingNo.style.left = randomX + "px";
+  floatingNo.style.top = randomY + "px";
+  floatingNo.style.zIndex = "9999";
+}
+
+// When the mouse gets over the No button, escape.
+floatingNo.addEventListener("mouseenter", function () {
+  moveNoButton();
+});
+
+// Prevent clicking the No button.
+floatingNo.addEventListener("pointerdown", function (event) {
+  event.preventDefault();
+  event.stopPropagation();
+  moveNoButton();
+});
+
+// Prevent tapping the No button on phones.
+floatingNo.addEventListener("touchstart", function (event) {
+  event.preventDefault();
+  event.stopPropagation();
+  moveNoButton();
+});
+
+// Make the button escape when the cursor gets close.
+document.addEventListener("mousemove", function (event) {
+  const dateAskScreen = document.getElementById("dateAsk");
+
+  // Don't do anything on the first Yes/No question
+  // or anywhere else in the game.
+  if (dateAskScreen.classList.contains("hidden")) {
+    return;
+  }
+
+  const rect = floatingNo.getBoundingClientRect();
+
+  const escapeDistance = 70;
+
+  const closeToButton =
+    event.clientX >= rect.left - escapeDistance &&
+    event.clientX <= rect.right + escapeDistance &&
+    event.clientY >= rect.top - escapeDistance &&
+    event.clientY <= rect.bottom + escapeDistance;
+
+  if (closeToButton) {
     moveNoButton();
-  });
-
-  // Extra protection for touchscreens.
-  floatingNo.addEventListener("touchstart", function(event) {
-    event.preventDefault();
-    moveNoButton();
-  });
-
-  // If the mouse gets very close to the button, move it again.
-  document.addEventListener("mousemove", function(event) {
-    const rect = floatingNo.getBoundingClientRect();
-
-    const distance = 80;
-
-    const closeToButton =
-      event.clientX > rect.left - distance &&
-      event.clientX < rect.right + distance &&
-      event.clientY > rect.top - distance &&
-      event.clientY < rect.bottom + distance;
-
-    if (closeToButton && !document.getElementById("dateAsk").classList.contains("hidden")) {
-      moveNoButton();
-    }
-  });
-
-  // Reset the button when returning to the date question.
-  function resetNoButton() {
-    floatingNo.style.position = "";
-    floatingNo.style.left = "";
-    floatingNo.style.top = "";
   }
 });
+
+// Put the No button back into its normal position
+// whenever the date question is opened again.
+function resetNoButton() {
+  floatingNo.style.position = "";
+  floatingNo.style.left = "";
+  floatingNo.style.top = "";
+  floatingNo.style.zIndex = "";
+}
+
 
     // Calendar generation for August and September 2026.
     function buildMonth(elementId, year, monthIndex, monthName) {
