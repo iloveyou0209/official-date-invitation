@@ -555,91 +555,58 @@
 // RUNAWAY "NO" BUTTON — ONLY FOR THE DATE QUESTION
 // ======================================================
 
+// =====================================================
+// RUNAWAY NO BUTTON
+// This ONLY affects the No button on "Will you be my date?"
+// =====================================================
+
 const floatingNo = document.getElementById("floatingNo");
 
-// Move the No button to a random position.
 function moveNoButton() {
-  // Only run while the "Will you be my date?" screen is visible.
-  const dateAskScreen = document.getElementById("dateAsk");
+  // Make sure we're actually on the date question
+  const dateAsk = document.getElementById("dateAsk");
 
-  if (dateAskScreen.classList.contains("hidden")) {
+  if (!dateAsk || dateAsk.classList.contains("hidden")) {
     return;
   }
 
   const padding = 20;
 
-  const buttonWidth = floatingNo.offsetWidth;
-  const buttonHeight = floatingNo.offsetHeight;
+  const maxX = window.innerWidth - floatingNo.offsetWidth - padding;
+  const maxY = window.innerHeight - floatingNo.offsetHeight - padding;
 
-  const maxX = window.innerWidth - buttonWidth - padding;
-  const maxY = window.innerHeight - buttonHeight - padding;
-
-  const randomX =
-    Math.floor(Math.random() * Math.max(1, maxX - padding)) + padding;
-
-  const randomY =
-    Math.floor(Math.random() * Math.max(1, maxY - padding)) + padding;
+  const x = Math.random() * Math.max(1, maxX - padding) + padding;
+  const y = Math.random() * Math.max(1, maxY - padding) + padding;
 
   floatingNo.style.position = "fixed";
-  floatingNo.style.left = randomX + "px";
-  floatingNo.style.top = randomY + "px";
-  floatingNo.style.zIndex = "9999";
+  floatingNo.style.left = `${x}px`;
+  floatingNo.style.top = `${y}px`;
+  floatingNo.style.zIndex = "99999";
 }
 
-// When the mouse gets over the No button, escape.
-floatingNo.addEventListener("mouseenter", function () {
-  moveNoButton();
-});
+// Mouse touches/approaches the No button
+floatingNo.addEventListener("mouseenter", moveNoButton);
 
-// Prevent clicking the No button.
-floatingNo.addEventListener("pointerdown", function (event) {
+// Prevent mouse click
+floatingNo.addEventListener("mousedown", function(event) {
   event.preventDefault();
   event.stopPropagation();
   moveNoButton();
 });
 
-// Prevent tapping the No button on phones.
-floatingNo.addEventListener("touchstart", function (event) {
+// Prevent touch click
+floatingNo.addEventListener("touchstart", function(event) {
+  event.preventDefault();
+  event.stopPropagation();
+  moveNoButton();
+}, { passive: false });
+
+// Prevent normal click
+floatingNo.addEventListener("click", function(event) {
   event.preventDefault();
   event.stopPropagation();
   moveNoButton();
 });
-
-// Make the button escape when the cursor gets close.
-document.addEventListener("mousemove", function (event) {
-  const dateAskScreen = document.getElementById("dateAsk");
-
-  // Don't do anything on the first Yes/No question
-  // or anywhere else in the game.
-  if (dateAskScreen.classList.contains("hidden")) {
-    return;
-  }
-
-  const rect = floatingNo.getBoundingClientRect();
-
-  const escapeDistance = 70;
-
-  const closeToButton =
-    event.clientX >= rect.left - escapeDistance &&
-    event.clientX <= rect.right + escapeDistance &&
-    event.clientY >= rect.top - escapeDistance &&
-    event.clientY <= rect.bottom + escapeDistance;
-
-  if (closeToButton) {
-    moveNoButton();
-  }
-});
-
-// Put the No button back into its normal position
-// whenever the date question is opened again.
-function resetNoButton() {
-  floatingNo.style.position = "";
-  floatingNo.style.left = "";
-  floatingNo.style.top = "";
-  floatingNo.style.zIndex = "";
-}
-
-
     // Calendar generation for August and September 2026.
     function buildMonth(elementId, year, monthIndex, monthName) {
       const container = document.getElementById(elementId);
