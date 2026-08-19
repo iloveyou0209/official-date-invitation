@@ -353,9 +353,11 @@
         <div class="sparkles">✨ 💕 ✨</div>
         <h1>Will you be my date? ❤️</h1>
         <div class="buttons">
-          <button onclick="goTo('excellent')">Yes</button>
-          <button id="floatingNo" class="secondary no-btn">No</button>
-        </div>
+       <div class="buttons">
+  <button onclick="goTo('excellent')">Yes ❤️</button>
+  <button id="floatingNo" class="secondary no-btn" type="button">No 😏</button>
+</div>
+
       </div>
 
       <!-- EXCELLENT -->
@@ -551,31 +553,61 @@
     }
 
    // Floating "No" button on the final date question.
-    const floatingNo = document.getElementById("floatingNo");
+   const floatingNo = document.getElementById("floatingNo");
 
-    function moveNoButton() {
-      const padding = 20;
-      const maxX = Math.max(padding, window.innerWidth - floatingNo.offsetWidth - padding);
-      const maxY = Math.max(padding, window.innerHeight - floatingNo.offsetHeight - padding);
+  function moveNoButton() {
+    const buttonWidth = floatingNo.offsetWidth;
+    const buttonHeight = floatingNo.offsetHeight;
 
-      floatingNo.style.position = "fixed";
-      floatingNo.style.left = Math.floor(Math.random() * (maxX - padding + 1) + padding) + "px";
-      floatingNo.style.top = Math.floor(Math.random() * (maxY - padding + 1) + padding) + "px";
-      floatingNo.style.zIndex = "9999";
+    // Keep the button completely inside the visible screen.
+    const maxX = window.innerWidth - buttonWidth - 20;
+    const maxY = window.innerHeight - buttonHeight - 20;
+
+    const randomX = Math.max(20, Math.floor(Math.random() * maxX));
+    const randomY = Math.max(20, Math.floor(Math.random() * maxY));
+
+    floatingNo.style.position = "fixed";
+    floatingNo.style.left = randomX + "px";
+    floatingNo.style.top = randomY + "px";
+    floatingNo.style.zIndex = "9999";
+  }
+
+  // Move BEFORE the cursor/finger can click it.
+  floatingNo.addEventListener("mouseenter", moveNoButton);
+  floatingNo.addEventListener("pointerdown", function(event) {
+    event.preventDefault();
+    moveNoButton();
+  });
+
+  // Extra protection for touchscreens.
+  floatingNo.addEventListener("touchstart", function(event) {
+    event.preventDefault();
+    moveNoButton();
+  });
+
+  // If the mouse gets very close to the button, move it again.
+  document.addEventListener("mousemove", function(event) {
+    const rect = floatingNo.getBoundingClientRect();
+
+    const distance = 80;
+
+    const closeToButton =
+      event.clientX > rect.left - distance &&
+      event.clientX < rect.right + distance &&
+      event.clientY > rect.top - distance &&
+      event.clientY < rect.bottom + distance;
+
+    if (closeToButton && !document.getElementById("dateAsk").classList.contains("hidden")) {
+      moveNoButton();
     }
+  });
 
-    ["mouseenter", "touchstart", "pointerdown"].forEach(eventName => {
-      floatingNo.addEventListener(eventName, moveNoButton);
-    });
-
-    function resetNoButton() {
-      floatingNo.style.position = "random";
-      floatingNo.style.left = "";
-      floatingNo.style.top = "";
-    }
-floatingNo.addEventListener("touchstart", function(event) {
-  event.preventDefault();
-  moveNoButton();
+  // Reset the button when returning to the date question.
+  function resetNoButton() {
+    floatingNo.style.position = "";
+    floatingNo.style.left = "";
+    floatingNo.style.top = "";
+  }
 });
 
     // Calendar generation for August and September 2026.
