@@ -1,5 +1,4 @@
 <!DOCTYPE html>
-
 <html lang="en">
 <head>
 <meta charset="UTF-8">
@@ -468,7 +467,6 @@ button:hover {
     }
 }
 </style>
-
 </head>
 
 <body>
@@ -477,317 +475,317 @@ button:hover {
 
 <main id="app">
 
-<!-- SCREEN 1 -->
-<section class="screen active" id="screen1">
-    <div class="big-heart">💗</div>
-    <h1>Hi there!</h1>
-    <p class="question-text">Are you ready for a game? 😏❤️</p>
+    <!-- SCREEN 1 -->
+    <section class="screen active" id="screen1">
+        <div class="big-heart">💗</div>
+        <h1>Hi there!</h1>
+        <p class="question-text">Are you ready for a game? 😏❤️</p>
 
-    <div class="button-row">
-        <button class="primary" onclick="goTo(2)">Yes 😏</button>
-        <button class="secondary" onclick="wrongChoice()">No 🙃</button>
-    </div>
-</section>
-
-<!-- SCREEN 2 -->
-<section class="screen" id="screen2">
-    <div class="big-heart">⚠️</div>
-    <h2>Please proceed with caution.</h2>
-    <div class="warning">
-        Your answers may have consequences.
-    </div>
-    <button class="primary" onclick="goTo(3)">I accept my fate 😌</button>
-</section>
-
-<!-- SCREEN 3 -->
-<section class="screen" id="screen3">
-    <div class="question-number">Question 1</div>
-    <div class="question-text">How much do you miss me?</div>
-
-    <div class="options">
-        <button class="option-button" onclick="nextQuestion()">A. A little</button>
-        <button class="option-button" onclick="nextQuestion()">B. Quite a bit</button>
-        <button class="option-button" onclick="nextQuestion()">C. More than I'd admit</button>
-        <button class="option-button" onclick="nextQuestion()">D. Ekdomi na. Why are we even discussing this? 😂</button>
-    </div>
-</section>
-
-<!-- SCREEN 4 -->
-<section class="screen" id="screen4">
-    <div class="question-number">Question 2 😏</div>
-    <div class="question-text">What's the most dangerous thing about going on a date with me?</div>
-
-    <div class="options">
-        <button class="option-button" onclick="nextQuestion()">A. You'll steal my food</button>
-        <button class="option-button" onclick="nextQuestion()">B. You'll make me laugh when I’m trying to be serious</button>
-        <button class="option-button" onclick="nextQuestion()">C. You'll end up not wanting the date to end</button>
-        <button class="option-button" onclick="nextQuestion()">D. All of the above, obviously</button>
-    </div>
-</section>
-
-<!-- SCREEN 5 -->
-<section class="screen" id="screen5">
-    <div class="question-number">Question 3</div>
-    <div class="question-text">Wait!! Tell me, what's more dangerous?</div>
-
-    <div class="options">
-        <button class="option-button" onclick="nextQuestion()">A. Me when I'm hungry</button>
-        <button class="option-button" onclick="nextQuestion()">B. Me when I'm annoyed</button>
-        <button class="option-button" onclick="nextQuestion()">C. Me when I have an idea</button>
-        <button class="option-button" onclick="nextQuestion()">D. Me saying “I have a surprise for you” 😏</button>
-    </div>
-</section>
-
-<!-- SCREEN 6 -->
-<section class="screen" id="screen6">
-    <div class="question-number">Question 4</div>
-    <div class="question-text">If my nose were a food, what would it be?</div>
-
-    <div class="options">
-        <button class="option-button" onclick="nextQuestion()">A) Chocolate 🍫</button>
-        <button class="option-button" onclick="nextQuestion()">B) Horeen er mangsho 🍕</button>
-        <button class="option-button" onclick="nextQuestion()">C) Spicy noodles 🌶️</button>
-        <button class="option-button" onclick="nextQuestion()">D) Something you can't stop eating 😏</button>
-    </div>
-</section>
-
-<!-- SCREEN 7 -->
-<section class="screen" id="screen7">
-    <div class="question-number">Question 5</div>
-    <div class="question-text">What's one thing you'd like us to do together again?</div>
-
-    <div class="options">
-        <button class="option-button" onclick="nextQuestion()">A. Go somewhere we've been before</button>
-        <button class="option-button" onclick="nextQuestion()">B. Try somewhere completely new</button>
-        <button class="option-button" onclick="nextQuestion()">C. Stay up talking way too late</button>
-        <button class="option-button" onclick="nextQuestion()">D. Make another memory we can laugh about later</button>
-    </div>
-</section>
-
-<!-- SCREEN 8 -->
-<section class="screen" id="screen8">
-    <div class="question-number">Question 6</div>
-    <div class="question-text">I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.</div>
-
-    <div class="options">
-        <button class="option-button" onclick="nextQuestion()">A. Absolutely. Let's go</button>
-        <button class="option-button" onclick="nextQuestion()">B. Ask where we're going first</button>
-        <button class="option-button" onclick="nextQuestion()">C. Ask what to wear</button>
-        <button class="option-button" onclick="nextQuestion()">D. Make a 🌿🚬</button>
-    </div>
-</section>
-
-<!-- SCREEN 9 -->
-<section class="screen" id="screen9">
-    <div class="question-number">Question 7</div>
-    <div class="question-text">If you could change ONE thing about our relationship, what would you choose?</div>
-
-    <div class="options">
-        <button class="option-button" onclick="nextQuestion()">A. Less fights</button>
-        <button class="option-button" onclick="nextQuestion()">B. More uninterrupted time together</button>
-        <button class="option-button" onclick="nextQuestion()">C. More adventures</button>
-        <button class="option-button" onclick="nextQuestion()">D. Nothing. I'd rather make more memories from here ❤️</button>
-    </div>
-</section>
-
-<!-- SCREEN 10 -->
-<section class="screen" id="screen10">
-    <div class="question-number">Question 8</div>
-    <div class="question-text">Imagine you have been invited on a date. What kind of date would be hardest to say no to?</div>
-
-    <div class="options">
-        <button class="option-button" onclick="nextQuestion()">A. Dinner somewhere beautiful</button>
-        <button class="option-button" onclick="nextQuestion()">B. A movie-night</button>
-        <button class="option-button" onclick="nextQuestion()">C. Somewhere neither of us has been before</button>
-        <button class="option-button" onclick="nextQuestion()">D. A date where the only plan is to spend time together ❤️</button>
-    </div>
-</section>
-
-<!-- SCREEN 11 -->
-<section class="screen" id="screen11">
-    <div class="question-number">Question 9</div>
-    <div class="question-text">And if I told you the person asking is… me?</div>
-
-    <div class="options">
-        <button class="option-button" onclick="nextQuestion()">A. Of course, it has to be my wife 😒 ugghhh</button>
-        <button class="option-button" onclick="nextQuestion()">B. I was wondering when you'd get to the point</button>
-        <button class="option-button" onclick="nextQuestion()">C. Let me think about it 😌</button>
-        <button class="option-button" onclick="nextQuestion()">D. Where and when?</button>
-    </div>
-</section>
-
-<!-- SCREEN 12 -->
-<section class="screen" id="screen12">
-    <div class="question-number">Question 10</div>
-    <div class="question-text">Would you let me steal you away for an evening?</div>
-
-    <div class="options">
-        <button class="option-button" onclick="nextQuestion()">A. ❤️ Yes — Especially if it's with you</button>
-        <button class="option-button" onclick="nextQuestion()">B. 😏 Yes — But you'll have to convince me</button>
-        <button class="option-button" onclick="nextQuestion()">C. 🙈 No — I'm afraid I'm already a little too interested</button>
-        <button class="option-button" onclick="nextQuestion()">D. 😂 No — This sounds like a terrible idea… let's do it anyway</button>
-    </div>
-</section>
-
-<!-- SCREEN 13 -->
-<section class="screen" id="screen13">
-    <div class="big-heart">💘</div>
-    <h2>Okay, enough questions. ❤️</h2>
-    <p class="subtitle">
-        There's only one thing left to ask...
-    </p>
-
-    <button class="primary" onclick="goTo(14)">I'm listening 👀</button>
-</section>
-
-<!-- SCREEN 14 -->
-<section class="screen" id="screen14">
-    <div class="big-heart">✨💖✨</div>
-    <h1>Will you be my date? ❤️</h1>
-
-    <div class="button-row" id="dateButtons">
-        <button class="primary" onclick="dateYes()">Yes ❤️</button>
-
-        <div id="dateNoArea">
-            <button
-                class="secondary"
-                id="noButton"
-                onmouseenter="escapeNoButton()"
-                onclick="escapeNoButton()">
-                No 😈
-            </button>
+        <div class="button-row">
+            <button class="primary" onclick="goTo(2)">Yes 😏</button>
+            <button class="secondary" onclick="wrongChoice()">No 🙃</button>
         </div>
-    </div>
-</section>
+    </section>
 
-<!-- SCREEN 15 -->
-<section class="screen" id="screen15">
-    <div class="big-heart">🎉</div>
-    <h1>Excellent choice Sir!</h1>
-    <p class="subtitle">
-        Now let's choose when this very important date is happening. ❤️
-    </p>
-    <button class="primary" onclick="goTo(16)">Choose the date 📅</button>
-</section>
-
-<!-- SCREEN 16 -->
-<section class="screen" id="screen16">
-    <div class="question-number">Step 1</div>
-    <h2>Pick our date 📅❤️</h2>
-
-    <div class="calendar-container">
-
-        <div class="calendar-tabs">
-            <button class="secondary month-tab active" id="augTab" onclick="showMonth(8)">
-                August 2026
-            </button>
-
-            <button class="secondary month-tab" id="sepTab" onclick="showMonth(9)">
-                September 2026
-            </button>
+    <!-- SCREEN 2 -->
+    <section class="screen" id="screen2">
+        <div class="big-heart">⚠️</div>
+        <h2>Please proceed with caution.</h2>
+        <div class="warning">
+            Your answers may have consequences.
         </div>
+        <button class="primary" onclick="goTo(3)">I accept my fate 😌</button>
+    </section>
 
-        <div class="calendar">
-            <div class="calendar-title" id="calendarTitle">
-                August 2026
-            </div>
+    <!-- SCREEN 3 -->
+    <section class="screen" id="screen3">
+        <div class="question-number">Question 1</div>
+        <div class="question-text">How much do you miss me?</div>
 
-            <div class="weekdays">
-                <div>Sun</div>
-                <div>Mon</div>
-                <div>Tue</div>
-                <div>Wed</div>
-                <div>Thu</div>
-                <div>Fri</div>
-                <div>Sat</div>
-            </div>
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. A little</button>
+            <button class="option-button" onclick="nextQuestion()">B. Quite a bit</button>
+            <button class="option-button" onclick="nextQuestion()">C. More than I'd admit</button>
+            <button class="option-button" onclick="nextQuestion()">D. Ekdomi na. Why are we even discussing this? 😂</button>
+        </div>
+    </section>
 
-            <div class="days" id="calendarDays"></div>
+    <!-- SCREEN 4 -->
+    <section class="screen" id="screen4">
+        <div class="question-number">Question 2 😏</div>
+        <div class="question-text">What's the most dangerous thing about going on a date with me?</div>
 
-            <div class="selected-date" id="selectedDate">
-                Please choose a date ❤️
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. You'll steal my food</button>
+            <button class="option-button" onclick="nextQuestion()">B. You'll make me laugh when I’m trying to be serious</button>
+            <button class="option-button" onclick="nextQuestion()">C. You'll end up not wanting the date to end</button>
+            <button class="option-button" onclick="nextQuestion()">D. All of the above, obviously</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 5 -->
+    <section class="screen" id="screen5">
+        <div class="question-number">Question 3</div>
+        <div class="question-text">Wait!! Tell me, what's more dangerous?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. Me when I'm hungry</button>
+            <button class="option-button" onclick="nextQuestion()">B. Me when I'm annoyed</button>
+            <button class="option-button" onclick="nextQuestion()">C. Me when I have an idea</button>
+            <button class="option-button" onclick="nextQuestion()">D. Me saying “I have a surprise for you” 😏</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 6 -->
+    <section class="screen" id="screen6">
+        <div class="question-number">Question 4</div>
+        <div class="question-text">If my nose were a food, what would it be?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A) Chocolate 🍫</button>
+            <button class="option-button" onclick="nextQuestion()">B) Horeen er mangho 🍕</button>
+            <button class="option-button" onclick="nextQuestion()">C) Spicy noodles 🌶️</button>
+            <button class="option-button" onclick="nextQuestion()">D) Something you can't stop eating 😏</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 7 -->
+    <section class="screen" id="screen7">
+        <div class="question-number">Question 5</div>
+        <div class="question-text">What's one thing you'd like us to do together again?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. Go somewhere we've been before</button>
+            <button class="option-button" onclick="nextQuestion()">B. Try somewhere completely new</button>
+            <button class="option-button" onclick="nextQuestion()">C. Stay up talking way too late</button>
+            <button class="option-button" onclick="nextQuestion()">D. Make another memory we can laugh about later</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 8 -->
+    <section class="screen" id="screen8">
+        <div class="question-number">Question 6</div>
+        <div class="question-text">I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. Absolutely. Let's go</button>
+            <button class="option-button" onclick="nextQuestion()">B. Ask where we're going first</button>
+            <button class="option-button" onclick="nextQuestion()">C. Ask what to wear</button>
+            <button class="option-button" onclick="nextQuestion()">D. Make a 🌿🚬</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 9 -->
+    <section class="screen" id="screen9">
+        <div class="question-number">Question 7</div>
+        <div class="question-text">If you could change ONE thing about our relationship, what would you choose?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. Less fights</button>
+            <button class="option-button" onclick="nextQuestion()">B. More uninterrupted time together</button>
+            <button class="option-button" onclick="nextQuestion()">C. More adventures</button>
+            <button class="option-button" onclick="nextQuestion()">D. Nothing. I'd rather make more memories from here ❤️</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 10 -->
+    <section class="screen" id="screen10">
+        <div class="question-number">Question 8</div>
+        <div class="question-text">Imagine you have been invited on a date. What kind of date would be hardest to say no to?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. Dinner somewhere beautiful</button>
+            <button class="option-button" onclick="nextQuestion()">B. A movie-night</button>
+            <button class="option-button" onclick="nextQuestion()">C. Somewhere neither of us has been before</button>
+            <button class="option-button" onclick="nextQuestion()">D. A date where the only plan is to spend time together ❤️</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 11 -->
+    <section class="screen" id="screen11">
+        <div class="question-number">Question 9</div>
+        <div class="question-text">And if I told you the person asking is… me?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. Of course, it has to be my wife 😒 ugghhh</button>
+            <button class="option-button" onclick="nextQuestion()">B. I was wondering when you'd get to the point</button>
+            <button class="option-button" onclick="nextQuestion()">C. Let me think about it 😌</button>
+            <button class="option-button" onclick="nextQuestion()">D. Where and when?</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 12 -->
+    <section class="screen" id="screen12">
+        <div class="question-number">Question 10</div>
+        <div class="question-text">Would you let me steal you away for an evening?</div>
+
+        <div class="options">
+            <button class="option-button" onclick="nextQuestion()">A. ❤️ Yes — Especially if it's with you</button>
+            <button class="option-button" onclick="nextQuestion()">B. 😏 Yes — But you'll have to convince me</button>
+            <button class="option-button" onclick="nextQuestion()">C. 🙈 No — I'm afraid I'm already a little too interested</button>
+            <button class="option-button" onclick="nextQuestion()">D. 😂 No — This sounds like a terrible idea… let's do it anyway</button>
+        </div>
+    </section>
+
+    <!-- SCREEN 13 -->
+    <section class="screen" id="screen13">
+        <div class="big-heart">💘</div>
+        <h2>Okay, enough questions. ❤️</h2>
+        <p class="subtitle">
+            There's only one thing left to ask...
+        </p>
+
+        <button class="primary" onclick="goTo(14)">I'm listening 👀</button>
+    </section>
+
+    <!-- SCREEN 14 -->
+    <section class="screen" id="screen14">
+        <div class="big-heart">✨💖✨</div>
+        <h1>Will you be my date? ❤️</h1>
+
+        <div class="button-row" id="dateButtons">
+            <button class="primary" onclick="dateYes()">Yes ❤️</button>
+
+            <div id="dateNoArea">
+                <button
+                    class="secondary"
+                    id="noButton"
+                    onmouseenter="escapeNoButton()"
+                    onclick="escapeNoButton()">
+                    No 😈
+                </button>
             </div>
         </div>
-    </div>
+    </section>
 
-    <br>
+    <!-- SCREEN 15 -->
+    <section class="screen" id="screen15">
+        <div class="big-heart">🎉</div>
+        <h1>Excellent choice Sir!</h1>
+        <p class="subtitle">
+            Now let's choose when this very important date is happening. ❤️
+        </p>
+        <button class="primary" onclick="goTo(16)">Choose the date 📅</button>
+    </section>
 
-    <button class="primary" id="dateContinue" onclick="continueFromDate()" disabled>
-        Continue ❤️
-    </button>
-</section>
+    <!-- SCREEN 16 -->
+    <section class="screen" id="screen16">
+        <div class="question-number">Step 1</div>
+        <h2>Pick our date 📅❤️</h2>
 
-<!-- SCREEN 17 -->
-<section class="screen" id="screen17">
-    <div class="question-number">Step 2</div>
-    <h2>Pick our outfit colors 🎨</h2>
-    <p class="subtitle">
-        Because obviously we need to look ridiculously cute together.
-    </p>
+        <div class="calendar-container">
 
-    <div class="outfit-grid">
+            <div class="calendar-tabs">
+                <button class="secondary month-tab active" id="augTab" onclick="showMonth(8)">
+                    August 2026
+                </button>
 
-        <div class="outfit" onclick="selectOutfit(this, 'Black and Red')">
-            <div class="swatches">
-                <div class="swatch" style="background:#050505"></div>
-                <div class="swatch" style="background:#e60035"></div>
+                <button class="secondary month-tab" id="sepTab" onclick="showMonth(9)">
+                    September 2026
+                </button>
             </div>
-            <h3>Option 1</h3>
-            <p>Black and Red</p>
+
+            <div class="calendar">
+                <div class="calendar-title" id="calendarTitle">
+                    August 2026
+                </div>
+
+                <div class="weekdays">
+                    <div>Sun</div>
+                    <div>Mon</div>
+                    <div>Tue</div>
+                    <div>Wed</div>
+                    <div>Thu</div>
+                    <div>Fri</div>
+                    <div>Sat</div>
+                </div>
+
+                <div class="days" id="calendarDays"></div>
+
+                <div class="selected-date" id="selectedDate">
+                    Please choose a date ❤️
+                </div>
+            </div>
         </div>
 
-        <div class="outfit" onclick="selectOutfit(this, 'Blue and White')">
-            <div class="swatches">
-                <div class="swatch" style="background:#1769ff"></div>
-                <div class="swatch" style="background:#fff"></div>
+        <br>
+
+        <button class="primary" id="dateContinue" onclick="continueFromDate()" disabled>
+            Continue ❤️
+        </button>
+    </section>
+
+    <!-- SCREEN 17 -->
+    <section class="screen" id="screen17">
+        <div class="question-number">Step 2</div>
+        <h2>Pick our outfit colors 🎨</h2>
+        <p class="subtitle">
+            Because obviously we need to look ridiculously cute together.
+        </p>
+
+        <div class="outfit-grid">
+
+            <div class="outfit" onclick="selectOutfit(this, 'Black and Red')">
+                <div class="swatches">
+                    <div class="swatch" style="background:#050505"></div>
+                    <div class="swatch" style="background:#e60035"></div>
+                </div>
+                <h3>Option 1</h3>
+                <p>Black and Red</p>
             </div>
-            <h3>Option 2</h3>
-            <p>Blue and White</p>
+
+            <div class="outfit" onclick="selectOutfit(this, 'Blue and White')">
+                <div class="swatches">
+                    <div class="swatch" style="background:#1769ff"></div>
+                    <div class="swatch" style="background:#fff"></div>
+                </div>
+                <h3>Option 2</h3>
+                <p>Blue and White</p>
+            </div>
+
+            <div class="outfit" onclick="selectOutfit(this, 'Beige and Purple')">
+                <div class="swatches">
+                    <div class="swatch" style="background:#d8c0a0"></div>
+                    <div class="swatch" style="background:#7b2cbf"></div>
+                </div>
+                <h3>Option 3</h3>
+                <p>Beige and Purple</p>
+            </div>
+
+            <div class="outfit" onclick="selectOutfit(this, 'Black and White')">
+                <div class="swatches">
+                    <div class="swatch" style="background:#050505"></div>
+                    <div class="swatch" style="background:#fff"></div>
+                </div>
+                <h3>Option 4</h3>
+                <p>Black and White</p>
+            </div>
+
         </div>
 
-        <div class="outfit" onclick="selectOutfit(this, 'Beige and Purple')">
-            <div class="swatches">
-                <div class="swatch" style="background:#d8c0a0"></div>
-                <div class="swatch" style="background:#7b2cbf"></div>
-            </div>
-            <h3>Option 3</h3>
-            <p>Beige and Purple</p>
+        <br>
+
+        <button class="primary" id="outfitContinue" onclick="finishDate()" disabled>
+            This is the one ❤️
+        </button>
+    </section>
+
+    <!-- SCREEN 18 -->
+    <section class="screen" id="screen18">
+        <div class="party">🎉 🥳 🎊</div>
+        <div class="love">❤️</div>
+
+        <h1 class="final-message">
+            Thank you for your time!<br>
+            I love you ❤️
+        </h1>
+
+        <p class="subtitle" id="finalDetails"></p>
+
+        <div style="font-size:3rem; margin-top:20px;">
+            🎉✨💖✨🎉
         </div>
-
-        <div class="outfit" onclick="selectOutfit(this, 'Black and White')">
-            <div class="swatches">
-                <div class="swatch" style="background:#050505"></div>
-                <div class="swatch" style="background:#fff"></div>
-            </div>
-            <h3>Option 4</h3>
-            <p>Black and White</p>
-        </div>
-
-    </div>
-
-    <br>
-
-    <button class="primary" id="outfitContinue" onclick="finishDate()" disabled>
-        This is the one ❤️
-    </button>
-</section>
-
-<!-- SCREEN 18 -->
-<section class="screen" id="screen18">
-    <div class="party">🎉 🥳 🎊</div>
-    <div class="love">❤️</div>
-
-    <h1 class="final-message">
-        Thank you for your time!<br>
-        I love you ❤️
-    </h1>
-
-    <p class="subtitle" id="finalDetails"></p>
-
-    <div style="font-size:3rem; margin-top:20px;">
-        🎉✨💖✨🎉
-    </div>
-</section>
+    </section>
 
 </main>
 
