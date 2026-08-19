@@ -3,10 +3,9 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>A Little Surprise ❤️</title>
+<title>Our Date ❤️</title>
 
 <style>
-
 * {
     box-sizing: border-box;
     margin: 0;
@@ -21,38 +20,15 @@ body {
 
 body {
     font-family: Georgia, "Times New Roman", serif;
-
     background:
-        radial-gradient(
-            circle at 15% 15%,
-            rgba(255,255,255,0.95),
-            transparent 25%
-        ),
-        radial-gradient(
-            circle at 85% 85%,
-            rgba(255,255,255,0.8),
-            transparent 30%
-        ),
-        linear-gradient(
-            135deg,
-            #ffffff 0%,
-            #eaf4ff 30%,
-            #c8d5e5 65%,
-            #ffffff 100%
-        );
-
-    color: #163452;
+        linear-gradient(135deg, #ffffff 0%, #e9f3ff 45%, #bfcbd8 100%);
+    color: #173452;
     overflow-x: hidden;
 }
 
 /* =========================================================
-   GENERAL
+   SCREENS
 ========================================================= */
-
-#app {
-    min-height: 100vh;
-    width: 100%;
-}
 
 .screen {
     min-height: 100vh;
@@ -63,7 +39,7 @@ body {
     justify-content: center;
     align-items: center;
 
-    padding: 30px 18px;
+    padding: 30px 20px;
 
     animation: fadeIn 0.45s ease;
 }
@@ -73,10 +49,9 @@ body {
 }
 
 @keyframes fadeIn {
-
     from {
         opacity: 0;
-        transform: translateY(15px);
+        transform: translateY(12px);
     }
 
     to {
@@ -85,35 +60,43 @@ body {
     }
 }
 
+/* =========================================================
+   WHITE PANELS
+========================================================= */
+
 .card {
     width: min(760px, 94vw);
 
-    padding: 45px;
+    background: rgba(255, 255, 255, 0.96);
 
-    background: rgba(255,255,255,0.94);
-
-    border: 1px solid rgba(120,135,150,0.45);
+    border: 1px solid #b9c3ce;
 
     border-radius: 28px;
+
+    padding: 45px;
 
     text-align: center;
 
     box-shadow:
-        0 25px 65px rgba(20,65,110,0.23),
-        inset 0 1px 0 rgba(255,255,255,1);
+        0 25px 60px rgba(20, 55, 90, 0.25),
+        inset 0 1px 0 white;
 
-    backdrop-filter: blur(12px);
+    backdrop-filter: blur(10px);
 }
 
-.card.wide {
-    width: min(900px, 95vw);
+.card-wide {
+    width: min(1150px, 94vw);
 }
+
+/* =========================================================
+   TEXT
+========================================================= */
 
 h1 {
     color: #0d47a1;
 
     font-size:
-        clamp(2rem, 5vw, 3.5rem);
+        clamp(2rem, 5vw, 3.6rem);
 
     line-height: 1.2;
 
@@ -124,15 +107,15 @@ h2 {
     color: #173f70;
 
     font-size:
-        clamp(1.45rem, 3.5vw, 2.3rem);
+        clamp(1.4rem, 3.5vw, 2.25rem);
 
-    line-height: 1.4;
+    line-height: 1.45;
 
-    margin-bottom: 28px;
+    margin-bottom: 25px;
 }
 
 .subtitle {
-    color: #53677b;
+    color: #5b6d80;
 
     font-size: 1.2rem;
 
@@ -141,12 +124,8 @@ h2 {
     margin-bottom: 25px;
 }
 
-.heart {
-    color: #e6395b;
-}
-
 .sparkles {
-    color: #8c98a5;
+    color: #929daa;
 
     font-size: 2rem;
 
@@ -156,11 +135,11 @@ h2 {
 }
 
 .question-number {
-    color: #758392;
+    color: #778594;
 
     font-family: Arial, sans-serif;
 
-    font-size: 0.95rem;
+    font-size: 0.9rem;
 
     font-weight: bold;
 
@@ -168,7 +147,7 @@ h2 {
 
     letter-spacing: 2px;
 
-    margin-bottom: 14px;
+    margin-bottom: 15px;
 }
 
 /* =========================================================
@@ -182,9 +161,9 @@ h2 {
 
     align-items: center;
 
-    flex-wrap: wrap;
-
     gap: 18px;
+
+    flex-wrap: wrap;
 
     margin-top: 30px;
 }
@@ -198,46 +177,56 @@ h2 {
 
     border-radius: 50px;
 
-    font-family: Arial, sans-serif;
-
-    font-size: 1rem;
-
-    font-weight: bold;
-
     color: white;
 
     background:
         linear-gradient(
             135deg,
             #0d47a1,
-            #3d7fc7
+            #4b86c5
         );
 
-    box-shadow:
-        0 8px 18px rgba(13,71,161,0.28);
+    font-family: Arial, sans-serif;
+
+    font-size: 1rem;
+
+    font-weight: bold;
 
     cursor: pointer;
 
-    transition:
-        transform 0.2s ease,
-        box-shadow 0.2s ease;
+    box-shadow:
+        0 8px 20px rgba(13, 71, 161, 0.3);
+
+    transition: 0.2s ease;
 }
 
 .main-btn:hover {
     transform: translateY(-3px);
 
     box-shadow:
-        0 12px 25px rgba(13,71,161,0.35);
+        0 12px 25px rgba(13, 71, 161, 0.4);
 }
 
 .silver-btn {
     background:
         linear-gradient(
             135deg,
-            #727d89,
-            #c5cbd2,
-            #747e8a
+            #737e89,
+            #c7ccd2,
+            #727d88
         );
+}
+
+/* =========================================================
+   WRONG
+========================================================= */
+
+.wrong {
+    color: #9d2d50;
+
+    font-size: 2.7rem;
+
+    margin-bottom: 25px;
 }
 
 /* =========================================================
@@ -250,7 +239,7 @@ h2 {
     grid-template-columns:
         repeat(2, 1fr);
 
-    gap: 15px;
+    gap: 16px;
 
     margin-top: 30px;
 }
@@ -264,7 +253,7 @@ h2 {
 
     border-radius: 16px;
 
-    border: 1px solid #b9c5d2;
+    border: 1px solid #bac6d3;
 
     background:
         linear-gradient(
@@ -273,108 +262,159 @@ h2 {
             #edf5ff
         );
 
-    color: #1b3655;
+    color: #1d3958;
+
+    font-family: Arial, sans-serif;
 
     font-size: 1rem;
 
-    line-height: 1.45;
+    line-height: 1.5;
 
     cursor: pointer;
 
-    box-shadow:
-        0 5px 12px rgba(50,80,110,0.09);
+    transition: 0.2s ease;
 
-    transition:
-        transform 0.2s ease,
-        background 0.2s ease,
-        border 0.2s ease;
+    box-shadow:
+        0 5px 14px rgba(40,70,100,0.08);
 }
 
 .choice:hover {
     transform: translateY(-3px);
 
-    border-color: #3578c7;
+    border-color: #3d7fc7;
 
     background:
         linear-gradient(
             135deg,
-            #f8fbff,
+            #ffffff,
             #dcecff
         );
 }
 
 /* =========================================================
-   WRONG CHOICE
-========================================================= */
-
-.wrong {
-    color: #9b2346;
-
-    font-size: 2.7rem;
-
-    margin-bottom: 25px;
-}
-
-/* =========================================================
-   FINAL QUESTION
+   FINAL SCREEN
 ========================================================= */
 
 /*
-   IMPORTANT:
+   THIS IS NOW A TRUE FULL-WIDTH FINAL SCREEN.
 
-   The final screen itself does NOT have overflow:hidden.
-   This prevents the floating No button from being clipped.
+   The white area is wide.
+   The No button is NOT inside the white card.
 */
 
 #screen-final {
     position: relative;
 
-    overflow: visible;
+    width: 100vw;
+
+    min-height: 100vh;
+
+    padding: 25px;
+
+    overflow: hidden;
+
+    background:
+        linear-gradient(
+            135deg,
+            #dcecff 0%,
+            #ffffff 45%,
+            #c5d0dc 100%
+        );
+}
+
+/*
+   Wide white panel.
+*/
+
+.final-wide-panel {
+    position: relative;
+
+    width: 94vw;
+
+    max-width: 1400px;
+
+    min-height: 88vh;
+
+    display: flex;
+
+    flex-direction: column;
+
+    justify-content: center;
+
+    align-items: center;
+
+    text-align: center;
+
+    padding: 50px;
+
+    background:
+        rgba(255,255,255,0.97);
+
+    border:
+        1px solid #b7c2ce;
+
+    border-radius: 35px;
+
+    box-shadow:
+        0 25px 70px rgba(20,60,100,0.28);
+
+    z-index: 10;
 }
 
 .final-title {
     color: #0d47a1;
 
     font-size:
-        clamp(2.2rem, 7vw, 4.5rem);
+        clamp(2.4rem, 7vw, 5.5rem);
 
     line-height: 1.2;
 
-    margin-bottom: 35px;
+    margin-bottom: 30px;
 
     text-shadow:
-        2px 2px 0 #d4d9df;
+        2px 2px 0 #d2d7dd;
 }
 
+/* =========================================================
+   THE FLOATING NO BUTTON
+========================================================= */
+
 /*
-===========================================================
-THE FLOATING NO BUTTON
-===========================================================
+   VERY IMPORTANT:
 
-This button is position:fixed.
+   This button is absolutely positioned relative
+   to the FULL SCREEN.
 
-That means it belongs to the browser viewport,
-NOT to the card.
+   It is NOT inside the white panel.
 
-It therefore cannot be pushed out of the card
-or hidden by the card layout.
+   It therefore has the entire browser screen
+   available for movement.
 */
 
-#floatingNoButton {
-
-    position: fixed;
+#noButton {
+    position: absolute;
 
     z-index: 999999;
 
     display: none;
 
-    min-width: 150px;
+    min-width: 155px;
 
-    padding: 15px 28px;
+    padding: 16px 30px;
 
     border: none;
 
     border-radius: 50px;
+
+    background:
+        linear-gradient(
+            135deg,
+            #727d88,
+            #c6cbd1,
+            #737e89
+        );
+
+    color: white;
 
     font-family: Arial, sans-serif;
 
@@ -382,45 +422,30 @@ or hidden by the card layout.
 
     font-weight: bold;
 
-    color: white;
-
-    background:
-        linear-gradient(
-            135deg,
-            #727d89,
-            #c5cbd2,
-            #747e8a
-        );
-
-    box-shadow:
-        0 10px 25px rgba(30,50,70,0.35);
-
     cursor: pointer;
 
-    user-select: none;
-
-    -webkit-user-select: none;
+    box-shadow:
+        0 12px 30px rgba(20,40,60,0.35);
 
     transition:
-        left 0.22s ease,
-        top 0.22s ease,
-        transform 0.22s ease;
+        left 0.20s ease,
+        top 0.20s ease,
+        transform 0.20s ease;
 }
 
 /*
-   It is visible only on the final question.
+   When final screen is active,
+   JavaScript adds this class.
 */
 
-#floatingNoButton.visible {
+#noButton.show {
     display: block;
 }
 
-/*
-   Little movement animation.
-*/
-
-#floatingNoButton.moving {
-    transform: scale(1.08) rotate(2deg);
+#noButton.running {
+    transform:
+        scale(1.08)
+        rotate(3deg);
 }
 
 /* =========================================================
@@ -438,9 +463,9 @@ or hidden by the card layout.
 
     align-items: center;
 
-    margin-bottom: 18px;
-
     padding: 15px 20px;
+
+    margin-bottom: 18px;
 
     border-radius: 16px;
 
@@ -450,7 +475,7 @@ or hidden by the card layout.
         linear-gradient(
             135deg,
             #0d47a1,
-            #557eaf
+            #5789bd
         );
 }
 
@@ -461,9 +486,9 @@ or hidden by the card layout.
 }
 
 .calendar-nav {
-    width: 40px;
+    width: 42px;
 
-    height: 40px;
+    height: 42px;
 
     border: none;
 
@@ -472,21 +497,20 @@ or hidden by the card layout.
     color: white;
 
     background:
-        rgba(255,255,255,0.18);
+        rgba(255,255,255,0.2);
 
-    font-size: 1.3rem;
+    font-size: 1.4rem;
 
     cursor: pointer;
 }
 
 .calendar-nav:hover {
     background:
-        rgba(255,255,255,0.35);
+        rgba(255,255,255,0.4);
 }
 
 .calendar-days,
 .calendar-grid {
-
     display: grid;
 
     grid-template-columns:
@@ -496,10 +520,9 @@ or hidden by the card layout.
 }
 
 .calendar-days div {
+    padding: 8px;
 
-    padding: 8px 2px;
-
-    color: #667586;
+    color: #687888;
 
     font-family: Arial, sans-serif;
 
@@ -509,16 +532,15 @@ or hidden by the card layout.
 }
 
 .date-btn {
-
     min-height: 48px;
+
+    border: 1px solid #ced7e0;
 
     border-radius: 12px;
 
-    border: 1px solid #d0d8e2;
+    background: #f7fbff;
 
     color: #1c426c;
-
-    background: #f7fbff;
 
     font-weight: bold;
 
@@ -528,29 +550,24 @@ or hidden by the card layout.
 }
 
 .date-btn:hover {
+    transform: scale(1.04);
 
     background: #dcecff;
 
     border-color: #3578c7;
-
-    transform: scale(1.04);
 }
 
 .date-btn.selected {
-
     color: white;
 
     background:
         linear-gradient(
             135deg,
             #0d47a1,
-            #5890d0
+            #5a91cf
         );
 
     border-color: #0d47a1;
-
-    box-shadow:
-        0 6px 15px rgba(13,71,161,0.3);
 }
 
 .empty-date {
@@ -558,12 +575,11 @@ or hidden by the card layout.
 }
 
 .selected-date {
-
     min-height: 25px;
 
     margin-top: 18px;
 
-    color: #526579;
+    color: #53687c;
 
     font-family: Arial, sans-serif;
 }
@@ -573,7 +589,6 @@ or hidden by the card layout.
 ========================================================= */
 
 .outfit-options {
-
     display: grid;
 
     grid-template-columns:
@@ -585,7 +600,6 @@ or hidden by the card layout.
 }
 
 .outfit {
-
     min-height: 115px;
 
     display: flex;
@@ -619,24 +633,21 @@ or hidden by the card layout.
 }
 
 .outfit:hover {
-
     transform: translateY(-4px);
 
     border-color: #3578c7;
 }
 
 .color-dots {
-
     display: flex;
 
     gap: 8px;
 }
 
 .dot {
+    width: 29px;
 
-    width: 28px;
-
-    height: 28px;
+    height: 29px;
 
     border-radius: 50%;
 
@@ -668,24 +679,22 @@ or hidden by the card layout.
 }
 
 /* =========================================================
-   FINAL CELEBRATION
+   CELEBRATION
 ========================================================= */
 
 .celebration {
-
     position: relative;
 
     overflow: hidden;
 }
 
 .party-popper {
-
     position: absolute;
 
-    font-size: 2.2rem;
+    font-size: 2.3rem;
 
     animation:
-        popper 1.5s ease-in-out infinite alternate;
+        popper 1.4s ease-in-out infinite alternate;
 }
 
 .pop1 {
@@ -695,27 +704,26 @@ or hidden by the card layout.
 
 .pop2 {
     right: 8%;
-    top: 15%;
+    top: 12%;
 
     animation-delay: 0.3s;
 }
 
 .pop3 {
-    left: 15%;
+    left: 12%;
     bottom: 12%;
 
     animation-delay: 0.6s;
 }
 
 .pop4 {
-    right: 15%;
+    right: 12%;
     bottom: 10%;
 
     animation-delay: 0.9s;
 }
 
 @keyframes popper {
-
     from {
         transform:
             rotate(-12deg)
@@ -730,11 +738,10 @@ or hidden by the card layout.
 }
 
 .love-message {
-
     color: #0d47a1;
 
     font-size:
-        clamp(2rem, 6vw, 4rem);
+        clamp(2rem, 6vw, 4.5rem);
 
     line-height: 1.25;
 
@@ -742,21 +749,19 @@ or hidden by the card layout.
 }
 
 .love-sub {
-
-    color: #5e6d7d;
+    color: #5f7183;
 
     font-size: 1.5rem;
 }
 
 .tiny-note {
-
     margin-top: 25px;
 
-    color: #788594;
+    color: #7b8794;
 
     font-family: Arial, sans-serif;
 
-    font-size: 0.85rem;
+    font-size: 0.9rem;
 }
 
 /* =========================================================
@@ -764,23 +769,21 @@ or hidden by the card layout.
 ========================================================= */
 
 .confetti {
-
     position: fixed;
+
+    top: -30px;
 
     width: 9px;
 
     height: 16px;
 
-    top: -30px;
-
-    z-index: 1000000;
+    z-index: 9999999;
 
     animation:
-        fall linear forwards;
+        confettiFall linear forwards;
 }
 
-@keyframes fall {
-
+@keyframes confettiFall {
     to {
         transform:
             translateY(110vh)
@@ -792,49 +795,50 @@ or hidden by the card layout.
    MOBILE
 ========================================================= */
 
-@media (max-width: 650px) {
+@media (max-width: 700px) {
 
     .card {
-
         padding: 30px 20px;
-
-        border-radius: 22px;
     }
 
     .choice-container {
-
         grid-template-columns: 1fr;
     }
 
     .outfit-options {
-
         grid-template-columns: 1fr;
     }
 
-    .calendar-days,
-    .calendar-grid {
+    .final-wide-panel {
+        width: 96vw;
 
-        gap: 4px;
+        min-height: 92vh;
+
+        padding: 30px 18px;
+
+        border-radius: 25px;
     }
 
-    .date-btn,
-    .empty-date {
-
-        min-height: 42px;
+    #screen-final {
+        padding: 10px;
     }
 
-    .date-btn {
-
-        font-size: 0.8rem;
-    }
-
-    #floatingNoButton {
-
+    #noButton {
         min-width: 125px;
 
         padding: 13px 20px;
 
         font-size: 0.9rem;
+    }
+
+    .calendar-days,
+    .calendar-grid {
+        gap: 4px;
+    }
+
+    .date-btn,
+    .empty-date {
+        min-height: 42px;
     }
 }
 
@@ -846,11 +850,14 @@ or hidden by the card layout.
 
 <div id="app">
 
-<!-- =======================================================
+<!-- =========================================================
      START
-======================================================= -->
+========================================================= -->
 
-<section class="screen active" id="screen-start">
+<section
+    class="screen active"
+    id="screen-start"
+>
 
     <div class="card">
 
@@ -885,11 +892,14 @@ or hidden by the card layout.
 </section>
 
 
-<!-- =======================================================
+<!-- =========================================================
      WRONG CHOICE
-======================================================= -->
+========================================================= -->
 
-<section class="screen" id="screen-wrong">
+<section
+    class="screen"
+    id="screen-wrong"
+>
 
     <div class="card">
 
@@ -898,4 +908,1418 @@ or hidden by the card layout.
         </div>
 
         <p class="subtitle">
-            Hmm… let's try
+            Hmm… let's try that again. 😏
+        </p>
+
+        <button
+            class="main-btn"
+            onclick="showScreen('screen-start')"
+        >
+            Try Again ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     WARNING
+========================================================= -->
+
+<section
+    class="screen"
+    id="screen-warning"
+>
+
+    <div class="card">
+
+        <div class="sparkles">
+            ✦ ✧ ✦
+        </div>
+
+        <p class="subtitle">
+            Please proceed with caution.
+            Your answers may have consequences.
+        </p>
+
+        <button
+            class="main-btn"
+            onclick="showQuestion(1)"
+        >
+            Proceed 😏
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- QUESTIONS -->
+<div id="questions"></div>
+
+
+<!-- =========================================================
+     FINAL SCREEN
+
+     NOTICE:
+     The white panel is WIDE.
+
+     The No button is OUTSIDE the white panel.
+========================================================= -->
+
+<section
+    class="screen"
+    id="screen-final"
+>
+
+    <div class="final-wide-panel">
+
+        <div class="sparkles">
+            ✦ ❤️ ✧ ❤️ ✦
+        </div>
+
+        <h1 class="final-title">
+            Will you be my date? ❤️
+        </h1>
+
+        <div class="buttons">
+
+            <button
+                class="main-btn"
+                onclick="showScreen('screen-excellent')"
+            >
+                Yes ❤️
+            </button>
+
+        </div>
+
+        <p class="tiny-note">
+            Choose wisely, Sir. 😏
+        </p>
+
+    </div>
+
+    <!--
+       THE NO BUTTON IS HERE,
+       DIRECTLY INSIDE THE FULL SCREEN,
+       BUT OUTSIDE THE WHITE PANEL.
+    -->
+
+    <button
+        id="noButton"
+        onclick="runAway()"
+        ontouchstart="runAway(event)"
+    >
+        No
+    </button>
+
+</section>
+
+
+<!-- =========================================================
+     EXCELLENT CHOICE
+========================================================= -->
+
+<section
+    class="screen"
+    id="screen-excellent"
+>
+
+    <div class="card">
+
+        <div class="sparkles">
+            ✦ ✧ ✦
+        </div>
+
+        <h1>
+            Excellent choice Sir!
+        </h1>
+
+        <p class="subtitle">
+            I knew you'd make the right decision. ❤️
+        </p>
+
+        <button
+            class="main-btn"
+            onclick="showScreen('screen-calendar')"
+        >
+            Now choose our date 😏
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     CALENDAR
+========================================================= -->
+
+<section
+    class="screen"
+    id="screen-calendar"
+>
+
+    <div class="card card-wide">
+
+        <div class="question-number">
+            One last decision...
+        </div>
+
+        <h2>
+            Pick a date for our date ❤️
+        </h2>
+
+        <div class="calendar-wrapper">
+
+            <div class="calendar-header">
+
+                <button
+                    class="calendar-nav"
+                    onclick="previousMonth()"
+                >
+                    ‹
+                </button>
+
+                <h3 id="monthYear"></h3>
+
+                <button
+                    class="calendar-nav"
+                    onclick="nextMonth()"
+                >
+                    ›
+                </button>
+
+            </div>
+
+            <div class="calendar-days">
+
+                <div>Sun</div>
+                <div>Mon</div>
+                <div>Tue</div>
+                <div>Wed</div>
+                <div>Thu</div>
+                <div>Fri</div>
+                <div>Sat</div>
+
+            </div>
+
+            <div
+                class="calendar-grid"
+                id="calendarGrid"
+            ></div>
+
+            <div
+                class="selected-date"
+                id="selectedDate"
+            >
+                Please select a date.
+            </div>
+
+        </div>
+
+        <button
+            class="main-btn"
+            id="dateContinue"
+            style="
+                margin-top:25px;
+                opacity:0.5;
+                pointer-events:none;
+            "
+            onclick="showScreen('screen-outfits')"
+        >
+            Continue ❤️
+        </button>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     OUTFITS
+========================================================= -->
+
+<section
+    class="screen"
+    id="screen-outfits"
+>
+
+    <div class="card card-wide">
+
+        <div class="sparkles">
+            ✦ ✧ ✦
+        </div>
+
+        <h2>
+            Pick a color code for our outfits
+        </h2>
+
+        <div class="outfit-options">
+
+            <button
+                class="outfit"
+                onclick="chooseOutfit('Black and Red')"
+            >
+
+                <div class="color-dots">
+
+                    <span class="dot black"></span>
+                    <span class="dot red"></span>
+
+                </div>
+
+                Option 1: Black and Red
+
+            </button>
+
+
+            <button
+                class="outfit"
+                onclick="chooseOutfit('Blue and White')"
+            >
+
+                <div class="color-dots">
+
+                    <span class="dot blue"></span>
+                    <span class="dot white"></span>
+
+                </div>
+
+                Option 2: Blue and White
+
+            </button>
+
+
+            <button
+                class="outfit"
+                onclick="chooseOutfit('Beige and Purple')"
+            >
+
+                <div class="color-dots">
+
+                    <span class="dot beige"></span>
+                    <span class="dot purple"></span>
+
+                </div>
+
+                Option 3: Beige and Purple
+
+            </button>
+
+
+            <button
+                class="outfit"
+                onclick="chooseOutfit('Black and White')"
+            >
+
+                <div class="color-dots">
+
+                    <span class="dot black"></span>
+                    <span class="dot white"></span>
+
+                </div>
+
+                Option 4: Black and White
+
+            </button>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================================================
+     THANK YOU
+========================================================= -->
+
+<section
+    class="screen celebration"
+    id="screen-thankyou"
+>
+
+    <span class="party-popper pop1">🎉</span>
+    <span class="party-popper pop2">🎊</span>
+    <span class="party-popper pop3">🎉</span>
+    <span class="party-popper pop4">🎊</span>
+
+    <div class="card">
+
+        <div class="sparkles">
+            ✦ ❤️ ✧ ❤️ ✦
+        </div>
+
+        <h1 class="love-message">
+            Thank you for your time!<br>
+            I love you ❤️
+        </h1>
+
+        <p class="love-sub">
+            Date successfully unlocked. 😏
+        </p>
+
+        <p
+            class="tiny-note"
+            id="finalDetails"
+        ></p>
+
+    </div>
+
+</section>
+
+</div>
+
+
+<script>
+
+/* =========================================================
+   QUESTIONS
+========================================================= */
+
+const questions = [
+
+    {
+        number: 1,
+
+        text:
+            "How much do you miss me?",
+
+        answers: [
+            "A. A little",
+            "B. Quite a bit",
+            "C. More than I'd admit",
+            "D. Ekdomi na. Why are we even discussing this? 😂"
+        ]
+    },
+
+    {
+        number: 2,
+
+        text:
+            "Question 2 😏: What's the most dangerous thing about going on a date with me?",
+
+        answers: [
+            "A. You'll steal my food",
+            "B. You'll make me laugh when I’m trying to be serious",
+            "C. You'll end up not wanting the date to end",
+            "D. All of the above, obviously"
+        ]
+    },
+
+    {
+        number: 3,
+
+        text:
+            "Question 3: Wait!! Tell me, what's more dangerous?",
+
+        answers: [
+            "A. Me when I'm hungry",
+            "B. Me when I'm annoyed",
+            "C. Me when I have an idea",
+            "D. Me saying “I have a surprise for you” 😏"
+        ]
+    },
+
+    {
+        number: 4,
+
+        text:
+            "Question 4: If my nose were a food, what would it be?",
+
+        answers: [
+            "A) Chocolate 🍫",
+            "B) Horeen er mangho 🍕",
+            "C) Spicy noodles 🌶️",
+            "D) Something you can't stop eating 😏"
+        ]
+    },
+
+    {
+        number: 5,
+
+        text:
+            "Question 5: What's one thing you'd like us to do together again?",
+
+        answers: [
+            "A. Go somewhere we've been before",
+            "B. Try somewhere completely new",
+            "C. Stay up talking way too late",
+            "D. Make another memory we can laugh about later"
+        ]
+    },
+
+    {
+        number: 6,
+
+        text:
+            "Question 6: I suddenly say, “Let's go somewhere. Don't ask where.” You have 10 minutes to get ready.",
+
+        answers: [
+            "A. Absolutely. Let's go",
+            "B. Ask where we're going first",
+            "C. Ask what to wear",
+            "D. Make a 🌿🚬"
+        ]
+    },
+
+    {
+        number: 7,
+
+        text:
+            "Question 7: If you could change ONE thing about our relationship, what would you choose?",
+
+        answers: [
+            "A. Less fights",
+            "B. More uninterrupted time together",
+            "C. More adventures",
+            "D. Nothing. I'd rather make more memories from here ❤️"
+        ]
+    },
+
+    {
+        number: 8,
+
+        text:
+            "Question 8: Imagine you have been invited on a date. What kind of date would be hardest to say no to?",
+
+        answers: [
+            "A. Dinner somewhere beautiful",
+            "B. A movie-night",
+            "C. Somewhere neither of us has been before",
+            "D. A date where the only plan is to spend time together ❤️"
+        ]
+    },
+
+    {
+        number: 9,
+
+        text:
+            "Question 9: And if I told you the person asking is… me?",
+
+        answers: [
+            "A. Of course, it has to be my wife 😒 ugghhh",
+            "B. I was wondering when you'd get to the point",
+            "C. Let me think about it 😌",
+            "D. Where and when?"
+        ]
+    },
+
+    {
+        number: 10,
+
+        text:
+            "Question 10: Would you let me steal you away for an evening?",
+
+        answers: [
+            "A. ❤️ Yes — Especially if it's with you",
+            "B. 😏 Yes — But you'll have to convince me",
+            "C. 🙈 No — I'm afraid I'm already a little too interested",
+            "D. 😂 No — This sounds like a terrible idea… let's do it anyway"
+        ]
+    }
+
+];
+
+
+/* =========================================================
+   VARIABLES
+========================================================= */
+
+let sessionAnswers = {};
+
+let selectedDate = null;
+
+let selectedOutfit = null;
+
+let currentMonth = 7;
+
+let currentYear = 2026;
+
+
+/* =========================================================
+   SCREEN NAVIGATION
+========================================================= */
+
+function showScreen(id) {
+
+    document
+        .querySelectorAll(".screen")
+        .forEach(screen => {
+            screen.classList.remove("active");
+        });
+
+
+    const target =
+        document.getElementById(id);
+
+
+    if (target) {
+        target.classList.add("active");
+    }
+
+
+    window.scrollTo(0, 0);
+
+
+    /*
+       Final question:
+       SHOW THE FLOATING NO BUTTON.
+    */
+
+    if (id === "screen-final") {
+
+        showNoButton();
+
+    }
+
+    else {
+
+        hideNoButton();
+
+    }
+
+}
+
+
+/* =========================================================
+   GENERATE QUESTIONS
+========================================================= */
+
+const questionsContainer =
+    document.getElementById("questions");
+
+
+questions.forEach((question, index) => {
+
+    const section =
+        document.createElement("section");
+
+    section.className = "screen";
+
+    section.id =
+        "question-" + question.number;
+
+
+    const card =
+        document.createElement("div");
+
+    card.className =
+        "card card-wide";
+
+
+    const number =
+        document.createElement("div");
+
+    number.className =
+        "question-number";
+
+    number.textContent =
+        "Question " + question.number;
+
+
+    const heading =
+        document.createElement("h2");
+
+    heading.textContent =
+        question.text;
+
+
+    const choices =
+        document.createElement("div");
+
+    choices.className =
+        "choice-container";
+
+
+    question.answers.forEach(answer => {
+
+        const button =
+            document.createElement("button");
+
+        button.className =
+            "choice";
+
+        button.textContent =
+            answer;
+
+
+        button.onclick = function() {
+
+            sessionAnswers[
+                question.number
+            ] = answer;
+
+
+            if (
+                index <
+                questions.length - 1
+            ) {
+
+                showQuestion(
+                    question.number + 1
+                );
+
+            }
+
+            else {
+
+                showScreen(
+                    "screen-final"
+                );
+
+            }
+
+        };
+
+
+        choices.appendChild(button);
+
+    });
+
+
+    card.appendChild(number);
+
+    card.appendChild(heading);
+
+    card.appendChild(choices);
+
+    section.appendChild(card);
+
+    questionsContainer.appendChild(section);
+
+});
+
+
+function showQuestion(number) {
+
+    showScreen(
+        "question-" + number
+    );
+
+}
+
+
+/* =========================================================
+   NO BUTTON
+========================================================= */
+
+const noButton =
+    document.getElementById("noButton");
+
+
+/*
+   This function ALWAYS calculates a position
+   INSIDE the entire browser viewport.
+
+   It does NOT use negative coordinates.
+
+   It does NOT use transform to move the button.
+
+   It does NOT hide the button.
+
+   It does NOT remove the button.
+*/
+
+function putNoButtonSomewhere() {
+
+    const screenWidth =
+        window.innerWidth;
+
+    const screenHeight =
+        window.innerHeight;
+
+
+    const buttonWidth =
+        noButton.offsetWidth;
+
+    const buttonHeight =
+        noButton.offsetHeight;
+
+
+    /*
+       Large safety margin.
+    */
+
+    const margin = 25;
+
+
+    /*
+       Maximum possible position.
+
+       This guarantees:
+       
+       left >= 25
+       top >= 25
+       
+       AND
+       
+       right >= 25px from edge
+       bottom >= 25px from edge
+    */
+
+    const maxLeft =
+        screenWidth
+        - buttonWidth
+        - margin;
+
+
+    const maxTop =
+        screenHeight
+        - buttonHeight
+        - margin;
+
+
+    /*
+       Random location.
+    */
+
+    const left =
+        margin +
+        Math.random()
+        *
+        Math.max(
+            1,
+            maxLeft - margin
+        );
+
+
+    const top =
+        margin +
+        Math.random()
+        *
+        Math.max(
+            1,
+            maxTop - margin
+        );
+
+
+    /*
+       HARD SAFETY LIMIT.
+    */
+
+    const safeLeft =
+        Math.max(
+            margin,
+            Math.min(
+                left,
+                maxLeft
+            )
+        );
+
+
+    const safeTop =
+        Math.max(
+            margin,
+            Math.min(
+                top,
+                maxTop
+            )
+        );
+
+
+    /*
+       Move the button.
+    */
+
+    noButton.style.left =
+        safeLeft + "px";
+
+    noButton.style.top =
+        safeTop + "px";
+
+
+    noButton.classList.add(
+        "running"
+    );
+
+
+    setTimeout(
+        function() {
+
+            noButton.classList.remove(
+                "running"
+            );
+
+        },
+        220
+    );
+
+}
+
+
+/*
+   SHOW button.
+*/
+
+function showNoButton() {
+
+    noButton.classList.add("show");
+
+
+    /*
+       Wait until the browser has
+       actually rendered it.
+
+       Then calculate its dimensions.
+    */
+
+    requestAnimationFrame(
+        function() {
+
+            putNoButtonSomewhere();
+
+        }
+    );
+
+}
+
+
+/*
+   HIDE button ONLY when leaving
+   the final screen.
+
+   It is NEVER hidden while he is
+   on the final screen.
+*/
+
+function hideNoButton() {
+
+    noButton.classList.remove("show");
+
+}
+
+
+/* =========================================================
+   MOUSE APPROACH DETECTION
+========================================================= */
+
+document.addEventListener(
+    "mousemove",
+    function(event) {
+
+        const finalScreen =
+            document.getElementById(
+                "screen-final"
+            );
+
+
+        /*
+           Only operate on final screen.
+        */
+
+        if (
+            !finalScreen.classList.contains(
+                "active"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        /*
+           Button must be visible.
+        */
+
+        if (
+            !noButton.classList.contains(
+                "show"
+            )
+        ) {
+
+            return;
+
+        }
+
+
+        const rect =
+            noButton.getBoundingClientRect();
+
+
+        /*
+           Find nearest point of
+           button to cursor.
+        */
+
+        const closestX =
+            Math.max(
+                rect.left,
+                Math.min(
+                    event.clientX,
+                    rect.right
+                )
+            );
+
+
+        const closestY =
+            Math.max(
+                rect.top,
+                Math.min(
+                    event.clientY,
+                    rect.bottom
+                )
+            );
+
+
+        const distanceX =
+            event.clientX - closestX;
+
+
+        const distanceY =
+            event.clientY - closestY;
+
+
+        const distance =
+            Math.sqrt(
+                distanceX * distanceX +
+                distanceY * distanceY
+            );
+
+
+        /*
+           110px invisible safety zone.
+
+           The cursor doesn't even need
+           to touch the button.
+        */
+
+        if (distance < 110) {
+
+            putNoButtonSomewhere();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CLICK / TOUCH
+========================================================= */
+
+function runAway(event) {
+
+    if (event) {
+        event.preventDefault();
+    }
+
+    putNoButtonSomewhere();
+
+}
+
+
+noButton.addEventListener(
+    "touchstart",
+    function(event) {
+
+        event.preventDefault();
+
+        putNoButtonSomewhere();
+
+    },
+    {
+        passive: false
+    }
+);
+
+
+noButton.addEventListener(
+    "click",
+    function(event) {
+
+        event.preventDefault();
+
+        putNoButtonSomewhere();
+
+    }
+);
+
+
+/* =========================================================
+   WINDOW RESIZE
+========================================================= */
+
+/*
+   This is important.
+
+   If he changes the browser size,
+   the button is recalculated so it
+   remains completely visible.
+*/
+
+window.addEventListener(
+    "resize",
+    function() {
+
+        const finalScreen =
+            document.getElementById(
+                "screen-final"
+            );
+
+
+        if (
+            finalScreen.classList.contains(
+                "active"
+            )
+        ) {
+
+            putNoButtonSomewhere();
+
+        }
+
+    }
+);
+
+
+/* =========================================================
+   CALENDAR
+========================================================= */
+
+function renderCalendar() {
+
+    const monthYear =
+        document.getElementById(
+            "monthYear"
+        );
+
+
+    const grid =
+        document.getElementById(
+            "calendarGrid"
+        );
+
+
+    const date =
+        new Date(
+            currentYear,
+            currentMonth,
+            1
+        );
+
+
+    const monthName =
+        date.toLocaleString(
+            "en-US",
+            {
+                month: "long"
+            }
+        );
+
+
+    monthYear.textContent =
+        monthName +
+        " " +
+        currentYear;
+
+
+    grid.innerHTML = "";
+
+
+    const firstDay =
+        date.getDay();
+
+
+    const daysInMonth =
+        new Date(
+            currentYear,
+            currentMonth + 1,
+            0
+        ).getDate();
+
+
+    for (
+        let i = 0;
+        i < firstDay;
+        i++
+    ) {
+
+        const empty =
+            document.createElement("div");
+
+        empty.className =
+            "empty-date";
+
+        grid.appendChild(empty);
+
+    }
+
+
+    for (
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ) {
+
+        const button =
+            document.createElement("button");
+
+        button.className =
+            "date-btn";
+
+        button.textContent =
+            day;
+
+
+        const dateString =
+            currentYear +
+            "-" +
+            String(
+                currentMonth + 1
+            ).padStart(2, "0") +
+            "-" +
+            String(day).padStart(
+                2,
+                "0"
+            );
+
+
+        if (
+            selectedDate ===
+            dateString
+        ) {
+
+            button.classList.add(
+                "selected"
+            );
+
+        }
+
+
+        button.onclick =
+            function() {
+
+                selectedDate =
+                    dateString;
+
+
+                document
+                    .getElementById(
+                        "selectedDate"
+                    )
+                    .textContent =
+                    "You picked: " +
+                    monthName +
+                    " " +
+                    day +
+                    ", " +
+                    currentYear +
+                    " ❤️";
+
+
+                const continueButton =
+                    document.getElementById(
+                        "dateContinue"
+                    );
+
+
+                continueButton.style.opacity =
+                    "1";
+
+
+                continueButton.style.pointerEvents =
+                    "auto";
+
+
+                renderCalendar();
+
+            };
+
+
+        grid.appendChild(button);
+
+    }
+
+}
+
+
+/*
+   August 2026 = month 7
+   September 2026 = month 8
+*/
+
+function previousMonth() {
+
+    if (currentMonth <= 7) {
+
+        return;
+
+    }
+
+    currentMonth--;
+
+    renderCalendar();
+
+}
+
+
+function nextMonth() {
+
+    if (currentMonth >= 8) {
+
+        return;
+
+    }
+
+    currentMonth++;
+
+    renderCalendar();
+
+}
+
+
+renderCalendar();
+
+
+/* =========================================================
+   OUTFIT
+========================================================= */
+
+function chooseOutfit(outfit) {
+
+    selectedOutfit =
+        outfit;
+
+
+    document
+        .getElementById(
+            "finalDetails"
+        )
+        .textContent =
+        "Our date: " +
+        formatDate() +
+        " • Outfit: " +
+        outfit +
+        " ❤️";
+
+
+    showScreen(
+        "screen-thankyou"
+    );
+
+
+    createConfetti();
+
+}
+
+
+/* =========================================================
+   DATE FORMAT
+========================================================= */
+
+function formatDate() {
+
+    if (!selectedDate) {
+
+        return "Our special day";
+
+    }
+
+
+    const parts =
+        selectedDate.split("-");
+
+
+    const date =
+        new Date(
+            Number(parts[0]),
+            Number(parts[1]) - 1,
+            Number(parts[2])
+        );
+
+
+    return date.toLocaleDateString(
+        "en-US",
+        {
+            month: "long",
+            day: "numeric",
+            year: "numeric"
+        }
+    );
+
+}
+
+
+/* =========================================================
+   CONFETTI
+========================================================= */
+
+function createConfetti() {
+
+    const colors = [
+        "#0d47a1",
+        "#ffffff",
+        "#c5ccd5",
+        "#7890a8",
+        "#4f83cc",
+        "#aeb7c2"
+    ];
+
+
+    for (
+        let i = 0;
+        i < 120;
+        i++
+    ) {
+
+        const piece =
+            document.createElement(
+                "div"
+            );
+
+
+        piece.className =
+            "confetti";
+
+
+        piece.style.left =
+            Math.random() *
+            100 +
+            "vw";
+
+
+        piece.style.background =
+            colors[
+                Math.floor(
+                    Math.random()
+                    * colors.length
+                )
+            ];
+
+
+        piece.style.animationDuration =
+            2.5 +
+            Math.random() * 3 +
+            "s";
+
+
+        piece.style.animationDelay =
+            Math.random() * 1.5 +
+            "s";
+
+
+        document.body.appendChild(
+            piece
+        );
+
+
+        setTimeout(
+            function() {
+
+                piece.remove();
+
+            },
+            6500
+        );
+
+    }
+
+}
+
+</script>
+
+</body>
+</html>
