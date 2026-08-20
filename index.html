@@ -1376,54 +1376,64 @@ function sendToGoogleSheets() {
 
     };
 
+    console.log("Submitting:", data);
+
+
+    /*
+       Create an invisible form.
+       This avoids the CORS problem between
+       GitHub Pages and Google Apps Script.
+    */
+
+    const form = document.createElement("form");
+
+    form.method = "POST";
+
+    form.action =
+        "https://script.google.com/macros/s/AKfycbzeaN2fuEg2utzgsy28a4i3_lce0YsMYyeG11pMaEL4wTM4aE3C6lE2YQDs0i6m5lWX/exec";
+
+    form.target = "googleSheetFrame";
+
+    form.style.display = "none";
+
+
+    const input =
+        document.createElement("input");
+
+    input.type = "hidden";
+
+    input.name = "payload";
+
+    input.value =
+        JSON.stringify(data);
+
+    form.appendChild(input);
+
+
+    document.body.appendChild(form);
+
+
+    form.submit();
+
+
+    submissionSent = true;
+
 
     console.log(
-        "Sending to Google Sheets:",
-        data
+        "Answers submitted to Google Sheets."
     );
 
 
     /*
-       IMPORTANT:
-
-       text/plain prevents a CORS preflight
-       when sending from GitHub Pages to
-       Google Apps Script.
+       Remove the temporary form shortly
+       after submission.
     */
 
-    fetch(
-        GOOGLE_SHEET_URL,
-        {
-            method: "POST",
+    setTimeout(function() {
 
-            mode: "no-cors",
+        form.remove();
 
-            headers: {
-                "Content-Type":
-                    "text/plain;charset=utf-8"
-            },
-
-            body:
-                JSON.stringify(data)
-        }
-    )
-    .then(function() {
-
-        submissionSent = true;
-
-        console.log(
-            "Response sent to Google Sheets."
-        );
-
-    })
-    .catch(function(error) {
-
-        console.error(
-            "Google Sheets submission error:",
-            error
-        );
-
-    });
+    }, 2000);
 }
 
 
@@ -1633,6 +1643,9 @@ document.addEventListener(
 
 
 </script>
-
+<iframe
+    name="googleSheetFrame"
+    style="display:none;">
+</iframe>
 </body>
 </html>
