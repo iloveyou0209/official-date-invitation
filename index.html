@@ -792,38 +792,92 @@ button:hover {
 <script>
 
 /* =========================================================
+   GOOGLE SHEETS
+========================================================= */
+
+const GOOGLE_SHEET_URL =
+"https://script.google.com/macros/s/AKfycbzeaN2fuEg2utzgsy28a4i3_lce0YsMYyeG11pMaEL4wTM4aE3C6lE2YQDs0i6m5lWX/exec";
+
+
+/* =========================================================
+   ANSWER STORAGE
+========================================================= */
+
+const answers = {};
+
+let dateInvitationAnswer = "";
+let noButtonAttempts = 0;
+let selectedDate = null;
+let selectedOutfit = "";
+let submissionSent = false;
+
+
+/* =========================================================
    BACKGROUND SPARKLES + HEARTS
 ========================================================= */
 
 const particles = document.getElementById("particles");
 
 function createSparkles() {
-    for (let i = 0; i < 65; i++) {
-        const sparkle = document.createElement("div");
-        sparkle.className = "sparkle";
-        sparkle.innerHTML = Math.random() > .5 ? "✦" : "✧";
 
-        sparkle.style.left = Math.random() * 100 + "%";
-        sparkle.style.top = Math.random() * 100 + "%";
-        sparkle.style.fontSize = (Math.random() * 15 + 6) + "px";
-        sparkle.style.animationDelay = (Math.random() * 3) + "s";
-        sparkle.style.animationDuration = (Math.random() * 2 + 1.5) + "s";
+    for (let i = 0; i < 65; i++) {
+
+        const sparkle =
+            document.createElement("div");
+
+        sparkle.className = "sparkle";
+
+        sparkle.innerHTML =
+            Math.random() > .5 ? "✦" : "✧";
+
+        sparkle.style.left =
+            Math.random() * 100 + "%";
+
+        sparkle.style.top =
+            Math.random() * 100 + "%";
+
+        sparkle.style.fontSize =
+            (Math.random() * 15 + 6) + "px";
+
+        sparkle.style.animationDelay =
+            (Math.random() * 3) + "s";
+
+        sparkle.style.animationDuration =
+            (Math.random() * 2 + 1.5) + "s";
 
         particles.appendChild(sparkle);
     }
 }
 
-function createHearts() {
-    for (let i = 0; i < 18; i++) {
-        const heart = document.createElement("div");
-        heart.className = "floating-heart";
-        heart.innerHTML = Math.random() > .5 ? "♥" : "♡";
 
-        heart.style.left = Math.random() * 100 + "%";
-        heart.style.fontSize = (Math.random() * 25 + 12) + "px";
-        heart.style.color = Math.random() > .5 ? "#ff4f9a" : "#ff9fca";
-        heart.style.animationDuration = (Math.random() * 10 + 9) + "s";
-        heart.style.animationDelay = (Math.random() * 10) + "s";
+function createHearts() {
+
+    for (let i = 0; i < 18; i++) {
+
+        const heart =
+            document.createElement("div");
+
+        heart.className = "floating-heart";
+
+        heart.innerHTML =
+            Math.random() > .5 ? "♥" : "♡";
+
+        heart.style.left =
+            Math.random() * 100 + "%";
+
+        heart.style.fontSize =
+            (Math.random() * 25 + 12) + "px";
+
+        heart.style.color =
+            Math.random() > .5
+                ? "#ff4f9a"
+                : "#ff9fca";
+
+        heart.style.animationDuration =
+            (Math.random() * 10 + 9) + "s";
+
+        heart.style.animationDelay =
+            (Math.random() * 10) + "s";
 
         particles.appendChild(heart);
     }
@@ -839,14 +893,18 @@ createHearts();
 
 function goTo(number) {
 
-    document.querySelectorAll(".screen").forEach(screen => {
-        screen.classList.remove("active");
-    });
+    document.querySelectorAll(".screen")
+        .forEach(screen => {
+            screen.classList.remove("active");
+        });
 
-    const next = document.getElementById("screen" + number);
+    const next =
+        document.getElementById("screen" + number);
 
     if (next) {
+
         next.classList.add("active");
+
         window.scrollTo({
             top: 0,
             behavior: "smooth"
@@ -854,10 +912,75 @@ function goTo(number) {
     }
 }
 
+
+/* =========================================================
+   QUESTION ANSWER RECORDING
+========================================================= */
+
+/*
+   We attach one click listener to the whole document.
+
+   This means your existing HTML can continue using:
+
+   onclick="nextQuestion()"
+
+   We don't need to edit all 40 buttons.
+*/
+
+document.addEventListener("click", function(event) {
+
+    const button =
+        event.target.closest(".option-button");
+
+    if (!button) return;
+
+    const currentScreen =
+        button.closest(".screen");
+
+    if (!currentScreen) return;
+
+    const screenNumber =
+        parseInt(
+            currentScreen.id.replace("screen", "")
+        );
+
+    if (
+        screenNumber >= 3 &&
+        screenNumber <= 12
+    ) {
+
+        const questionNumber =
+            screenNumber - 2;
+
+        answers[
+            "Question " + questionNumber
+        ] = button.textContent.trim();
+
+        console.log(
+            "Saved answer:",
+            questionNumber,
+            button.textContent.trim()
+        );
+    }
+
+});
+
+
+/* =========================================================
+   MOVE TO NEXT QUESTION
+========================================================= */
+
 function nextQuestion() {
 
-    const current = document.querySelector(".screen.active");
-    const currentNumber = parseInt(current.id.replace("screen", ""));
+    const current =
+        document.querySelector(".screen.active");
+
+    if (!current) return;
+
+    const currentNumber =
+        parseInt(
+            current.id.replace("screen", "")
+        );
 
     goTo(currentNumber + 1);
 }
@@ -869,10 +992,9 @@ function nextQuestion() {
 
 function wrongChoice() {
 
-    const message =
-        "Wrong Choice. You know it’s not the right answer. 🤨😂";
-
-    alert(message);
+    alert(
+        "Wrong Choice. You know it’s not the right answer. 🤨😂"
+    );
 }
 
 
@@ -881,6 +1003,10 @@ function wrongChoice() {
 ========================================================= */
 
 function dateYes() {
+
+    dateInvitationAnswer =
+        "Yes ❤️";
+
     goTo(15);
 
     createConfetti();
@@ -891,31 +1017,61 @@ function dateYes() {
    MOVING NO BUTTON
 ========================================================= */
 
-const noButton = document.getElementById("noButton");
-const noArea = document.getElementById("dateNoArea");
+const noButton =
+    document.getElementById("noButton");
+
+const noArea =
+    document.getElementById("dateNoArea");
+
 
 function escapeNoButton() {
 
-    const areaRect = noArea.getBoundingClientRect();
+    noButtonAttempts++;
 
-    const buttonWidth = noButton.offsetWidth;
-    const buttonHeight = noButton.offsetHeight;
+    dateInvitationAnswer =
+        "Tried to choose No 😈";
 
-    const maxX = Math.max(0, areaRect.width - buttonWidth);
-    const maxY = Math.max(0, areaRect.height - buttonHeight);
+    const areaRect =
+        noArea.getBoundingClientRect();
 
-    const randomX = Math.random() * maxX;
-    const randomY = Math.random() * maxY;
+    const buttonWidth =
+        noButton.offsetWidth;
 
-    noButton.style.position = "absolute";
-    noButton.style.left = randomX + "px";
-    noButton.style.top = randomY + "px";
+    const buttonHeight =
+        noButton.offsetHeight;
+
+    const maxX =
+        Math.max(
+            0,
+            areaRect.width - buttonWidth
+        );
+
+    const maxY =
+        Math.max(
+            0,
+            areaRect.height - buttonHeight
+        );
+
+    const randomX =
+        Math.random() * maxX;
+
+    const randomY =
+        Math.random() * maxY;
+
+    noButton.style.position =
+        "absolute";
+
+    noButton.style.left =
+        randomX + "px";
+
+    noButton.style.top =
+        randomY + "px";
 
     noButton.style.transform =
         `rotate(${(Math.random() * 14) - 7}deg)`;
 
-    /* Make sure it remains visible */
     noButton.style.opacity = "1";
+
     noButton.style.visibility = "visible";
 }
 
@@ -925,26 +1081,32 @@ function escapeNoButton() {
 ========================================================= */
 
 let currentMonth = 8;
-let selectedDate = null;
 
 const monthNames = {
     8: "August 2026",
     9: "September 2026"
 };
 
+
 function showMonth(month) {
 
     currentMonth = month;
 
-    document.getElementById("calendarTitle").textContent =
+    document.getElementById(
+        "calendarTitle"
+    ).textContent =
         monthNames[month];
 
-    document.getElementById("augTab").classList.toggle(
+    document.getElementById(
+        "augTab"
+    ).classList.toggle(
         "active",
         month === 8
     );
 
-    document.getElementById("sepTab").classList.toggle(
+    document.getElementById(
+        "sepTab"
+    ).classList.toggle(
         "active",
         month === 9
     );
@@ -952,76 +1114,139 @@ function showMonth(month) {
     renderCalendar(month);
 }
 
+
 function renderCalendar(month) {
 
-    const calendarDays = document.getElementById("calendarDays");
+    const calendarDays =
+        document.getElementById(
+            "calendarDays"
+        );
 
     calendarDays.innerHTML = "";
 
     const year = 2026;
 
-    const firstDay = new Date(year, month - 1, 1).getDay();
-    const daysInMonth = new Date(year, month, 0).getDate();
+    const firstDay =
+        new Date(
+            year,
+            month - 1,
+            1
+        ).getDay();
 
-    /* Empty spaces before first day */
-    for (let i = 0; i < firstDay; i++) {
+    const daysInMonth =
+        new Date(
+            year,
+            month,
+            0
+        ).getDate();
 
-        const empty = document.createElement("div");
-        empty.className = "day empty";
+
+    for (
+        let i = 0;
+        i < firstDay;
+        i++
+    ) {
+
+        const empty =
+            document.createElement("div");
+
+        empty.className =
+            "day empty";
 
         calendarDays.appendChild(empty);
     }
 
-    for (let day = 1; day <= daysInMonth; day++) {
 
-        const dayButton = document.createElement("button");
+    for (
+        let day = 1;
+        day <= daysInMonth;
+        day++
+    ) {
 
-        dayButton.className = "day";
-        dayButton.textContent = day;
+        const dayButton =
+            document.createElement("button");
+
+        dayButton.className =
+            "day";
+
+        dayButton.textContent =
+            day;
 
         const dateKey =
             `2026-${String(month).padStart(2, "0")}-${String(day).padStart(2, "0")}`;
 
-        if (selectedDate === dateKey) {
-            dayButton.classList.add("selected");
+
+        if (
+            selectedDate === dateKey
+        ) {
+
+            dayButton.classList.add(
+                "selected"
+            );
         }
 
-        dayButton.onclick = function() {
-            selectDate(dateKey);
-        };
 
-        calendarDays.appendChild(dayButton);
+        dayButton.onclick =
+            function() {
+
+                selectDate(dateKey);
+
+            };
+
+
+        calendarDays.appendChild(
+            dayButton
+        );
     }
 }
+
 
 function selectDate(dateKey) {
 
     selectedDate = dateKey;
 
-    const parts = dateKey.split("-");
+    const parts =
+        dateKey.split("-");
 
-    const month = parseInt(parts[1]);
-    const day = parseInt(parts[2]);
+    const month =
+        parseInt(parts[1]);
 
-    const dateObject = new Date(2026, month - 1, day);
+    const day =
+        parseInt(parts[2]);
 
-    const formatted = dateObject.toLocaleDateString(
-        "en-US",
-        {
-            weekday: "long",
-            month: "long",
-            day: "numeric",
-            year: "numeric"
-        }
-    );
+    const dateObject =
+        new Date(
+            2026,
+            month - 1,
+            day
+        );
 
-    document.getElementById("selectedDate").innerHTML =
+    const formatted =
+        dateObject.toLocaleDateString(
+            "en-US",
+            {
+                weekday: "long",
+                month: "long",
+                day: "numeric",
+                year: "numeric"
+            }
+        );
+
+
+    document.getElementById(
+        "selectedDate"
+    ).innerHTML =
         `Our date is looking at us like… 👀❤️ <strong>${formatted}</strong>`;
 
-    document.getElementById("dateContinue").disabled = false;
+
+    document.getElementById(
+        "dateContinue"
+    ).disabled = false;
+
 
     renderCalendar(currentMonth);
 }
+
 
 function continueFromDate() {
 
@@ -1032,31 +1257,55 @@ function continueFromDate() {
 
 
 /* =========================================================
-   OUTFIT SELECTION
+   OUTFIT
 ========================================================= */
 
-let selectedOutfit = "";
+function selectOutfit(
+    element,
+    outfit
+) {
 
-function selectOutfit(element, outfit) {
+    document.querySelectorAll(
+        ".outfit"
+    ).forEach(item => {
 
-    document.querySelectorAll(".outfit").forEach(item => {
-        item.classList.remove("selected");
+        item.classList.remove(
+            "selected"
+        );
+
     });
 
-    element.classList.add("selected");
 
-    selectedOutfit = outfit;
+    element.classList.add(
+        "selected"
+    );
 
-    document.getElementById("outfitContinue").disabled = false;
+    selectedOutfit =
+        outfit;
+
+
+    document.getElementById(
+        "outfitContinue"
+    ).disabled = false;
 }
 
-function finishDate() {
 
-    if (!selectedOutfit) return;
+/* =========================================================
+   FORMAT DATE
+========================================================= */
 
-    const dateObject = new Date(selectedDate + "T12:00:00");
+function getFormattedDate() {
 
-    const formattedDate = dateObject.toLocaleDateString(
+    if (!selectedDate) {
+        return "Not selected";
+    }
+
+    const dateObject =
+        new Date(
+            selectedDate + "T12:00:00"
+        );
+
+    return dateObject.toLocaleDateString(
         "en-US",
         {
             weekday: "long",
@@ -1065,10 +1314,150 @@ function finishDate() {
             year: "numeric"
         }
     );
+}
 
-    document.getElementById("finalDetails").innerHTML =
+
+/* =========================================================
+   SEND DATA TO GOOGLE SHEETS
+========================================================= */
+
+function sendToGoogleSheets() {
+
+    if (submissionSent) {
+        return;
+    }
+
+    const data = {
+
+        question_1:
+            answers["Question 1"] || "",
+
+        question_2:
+            answers["Question 2"] || "",
+
+        question_3:
+            answers["Question 3"] || "",
+
+        question_4:
+            answers["Question 4"] || "",
+
+        question_5:
+            answers["Question 5"] || "",
+
+        question_6:
+            answers["Question 6"] || "",
+
+        question_7:
+            answers["Question 7"] || "",
+
+        question_8:
+            answers["Question 8"] || "",
+
+        question_9:
+            answers["Question 9"] || "",
+
+        question_10:
+            answers["Question 10"] || "",
+
+        date_invitation:
+            dateInvitationAnswer || "",
+
+        selected_date:
+            getFormattedDate(),
+
+        selected_outfit:
+            selectedOutfit || "",
+
+        no_button_attempts:
+            noButtonAttempts,
+
+        completed_at:
+            new Date().toLocaleString()
+
+    };
+
+
+    console.log(
+        "Sending to Google Sheets:",
+        data
+    );
+
+
+    /*
+       IMPORTANT:
+
+       text/plain prevents a CORS preflight
+       when sending from GitHub Pages to
+       Google Apps Script.
+    */
+
+    fetch(
+        GOOGLE_SHEET_URL,
+        {
+            method: "POST",
+
+            mode: "no-cors",
+
+            headers: {
+                "Content-Type":
+                    "text/plain;charset=utf-8"
+            },
+
+            body:
+                JSON.stringify(data)
+        }
+    )
+    .then(function() {
+
+        submissionSent = true;
+
+        console.log(
+            "Response sent to Google Sheets."
+        );
+
+    })
+    .catch(function(error) {
+
+        console.error(
+            "Google Sheets submission error:",
+            error
+        );
+
+    });
+}
+
+
+/* =========================================================
+   FINISH DATE
+========================================================= */
+
+function finishDate() {
+
+    if (!selectedOutfit) return;
+
+    if (!selectedDate) return;
+
+
+    const formattedDate =
+        getFormattedDate();
+
+
+    document.getElementById(
+        "finalDetails"
+    ).innerHTML =
         `Date locked in for <strong>${formattedDate}</strong>.<br>
          Outfit code: <strong>${selectedOutfit}</strong> 🎨❤️`;
+
+
+    /*
+       Send the answers.
+
+       We intentionally don't await this request.
+       The final screen can appear immediately.
+    */
+
+    sendToGoogleSheets();
+
 
     goTo(18);
 
@@ -1092,14 +1481,24 @@ function createConfetti() {
         "#ffffff"
     ];
 
-    for (let i = 0; i < 100; i++) {
 
-        const piece = document.createElement("div");
+    for (
+        let i = 0;
+        i < 100;
+        i++
+    ) {
 
-        piece.className = "confetti";
+        const piece =
+            document.createElement("div");
 
-        piece.style.left = Math.random() * 100 + "vw";
-        piece.style.top = "-20px";
+        piece.className =
+            "confetti";
+
+        piece.style.left =
+            Math.random() * 100 + "vw";
+
+        piece.style.top =
+            "-20px";
 
         piece.style.width =
             Math.random() * 8 + 5 + "px";
@@ -1108,40 +1507,62 @@ function createConfetti() {
             Math.random() * 14 + 6 + "px";
 
         piece.style.background =
-            colors[Math.floor(Math.random() * colors.length)];
+            colors[
+                Math.floor(
+                    Math.random() *
+                    colors.length
+                )
+            ];
 
         piece.style.borderRadius =
-            Math.random() > .5 ? "50%" : "2px";
+            Math.random() > .5
+                ? "50%"
+                : "2px";
 
-        piece.style.zIndex = "100";
+        piece.style.zIndex =
+            "100";
 
-        document.body.appendChild(piece);
+        document.body.appendChild(
+            piece
+        );
+
 
         const duration =
             Math.random() * 3 + 2;
 
+
         piece.animate(
+
             [
                 {
                     transform:
-                        `translateY(0) rotate(0deg)`,
+                        "translateY(0) rotate(0deg)",
+
                     opacity: 1
                 },
+
                 {
                     transform:
                         `translateY(110vh) translateX(${(Math.random() * 300) - 150}px) rotate(720deg)`,
+
                     opacity: 0
                 }
             ],
+
             {
-                duration: duration * 1000,
-                easing: "cubic-bezier(.2,.7,.3,1)"
+                duration:
+                    duration * 1000,
+
+                easing:
+                    "cubic-bezier(.2,.7,.3,1)"
             }
         );
 
-        setTimeout(() => {
-            piece.remove();
-        }, duration * 1000 + 100);
+
+        setTimeout(
+            () => piece.remove(),
+            duration * 1000 + 100
+        );
     }
 }
 
@@ -1154,38 +1575,62 @@ renderCalendar(8);
 
 
 /* =========================================================
-   KEYBOARD / MOUSE FUN
+   MOUSE FUN
 ========================================================= */
 
-document.addEventListener("mousemove", function(event) {
+document.addEventListener(
+    "mousemove",
+    function(event) {
 
-    const activeScreen =
-        document.querySelector(".screen.active");
+        const activeScreen =
+            document.querySelector(
+                ".screen.active"
+            );
 
-    if (!activeScreen) return;
+        if (!activeScreen) return;
 
-    /* Only activate the escape effect on the final question */
-    if (activeScreen.id !== "screen14") return;
+        if (
+            activeScreen.id !==
+            "screen14"
+        ) return;
 
-    const rect = noButton.getBoundingClientRect();
 
-    const distanceX =
-        event.clientX - (rect.left + rect.width / 2);
+        const rect =
+            noButton.getBoundingClientRect();
 
-    const distanceY =
-        event.clientY - (rect.top + rect.height / 2);
 
-    const distance =
-        Math.sqrt(
-            distanceX * distanceX +
-            distanceY * distanceY
-        );
+        const distanceX =
+            event.clientX -
+            (
+                rect.left +
+                rect.width / 2
+            );
 
-    /* Button starts moving before cursor can reach it */
-    if (distance < 120) {
-        escapeNoButton();
+
+        const distanceY =
+            event.clientY -
+            (
+                rect.top +
+                rect.height / 2
+            );
+
+
+        const distance =
+            Math.sqrt(
+                distanceX * distanceX +
+                distanceY * distanceY
+            );
+
+
+        if (distance < 120) {
+
+            escapeNoButton();
+
+        }
+
     }
-});
+);
+
 
 </script>
 
