@@ -2128,59 +2128,6 @@ document.addEventListener(
 
 </script>
 </body>
-    <form id="formspreeForm" style="display:none;">
-    <input type="hidden" name="question_1" id="fs_q1">
-    <input type="hidden" name="question_2" id="fs_q2">
-    <input type="hidden" name="question_3" id="fs_q3">
-    <input type="hidden" name="question_4" id="fs_q4">
-    <input type="hidden" name="question_5" id="fs_q5">
-    <input type="hidden" name="question_6" id="fs_q6">
-    <input type="hidden" name="question_7" id="fs_q7">
-    <input type="hidden" name="question_8" id="fs_q8">
-    <input type="hidden" name="question_9" id="fs_q9">
-    <input type="hidden" name="question_10" id="fs_q10">
-
-    <input type="hidden" name="date_invitation" id="fs_date_answer">
-    <input type="hidden" name="selected_date" id="fs_selected_date">
-    <input type="hidden" name="selected_outfit" id="fs_outfit">
-    <input type="hidden" name="no_button_attempts" id="fs_no_attempts">
-    <input type="hidden" name="completed_at" id="fs_completed">
-</form>
-
-<script>
-window.formspree =
-    window.formspree ||
-    function () {
-        (formspree.q = formspree.q || []).push(arguments);
-    };
-
-formspree("initForm", {
-    formElement: "#formspreeForm",
-    formId: "xoeapopq"
-});
-</script>
-
-<script src="https://unpkg.com/@formspree/ajax@1" defer></script>
-    function prepareFormspreeSubmission() {
-
-    for (let i = 1; i <= 10; i++) {
-        document.getElementById("fs_q" + i).value =
-            answers["Question " + i] || "Not answered";
-    }
-
-    document.getElementById("fs_date_answer").value =
-        dateInvitationAnswer || "Not answered";
-
-    document.getElementById("fs_selected_date").value =
-        selectedDate || "Not selected";
-
-    document.getElementById("fs_outfit").value =
-        selectedOutfit || "Not selected";
-
-    document.getElementById("fs_no_attempts").value =
-        noButtonAttempts;
-
-    document.getElementById("fs_completed").value =
-        new Date().toLocaleString();
+   
 }
 </html>
